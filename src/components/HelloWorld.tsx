@@ -1,20 +1,20 @@
 import Test from './Test'
 import { ref, type ComponentObjectPropsOptions, type ComponentPropsOptions, type PropType } from 'vue'
 import { computed } from '@vue/reactivity'
-import { createComponent, type DefineProps } from '@/vue'
+import { createComponent, defineProps, type DefineProps } from '@/vue'
 
 export type HelloWorldProps = {
-    hello: string
+    hello?: string
 }
 
-export const defineProps: DefineProps<HelloWorldProps> = {
+const helloWorldProps: DefineProps<HelloWorldProps> = {
     hello: {
         type: String,
-        default: '',
+        default: () => '',
     },
 }
 
-export default createComponent(defineProps, props => {
+export default createComponent(helloWorldProps, props => {
     const hello = computed(() => props.hello)
 
     return () => (

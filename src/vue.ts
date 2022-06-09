@@ -10,18 +10,23 @@ import {
 
 type Data = Record<string, unknown>
 
-export type DefineProps<T = Data> = {
-    [P in keyof T]: DefineProp<T[P]>
+export function defineProps<T, U = DefineProps<T>>(props: U): U {
+    return props
 }
 
-type DefineProp<T> = PropOptions<T> | (IsNullable<T> extends true ? PropType<T> : never)
+export type DefineProps<T = Data> = {
+    [P in keyof Required<T>]: DefineProp<T[P]>
+}
+
+type DefineProp<T> = PropOptions<T> | (IsNullable<T> extends true ? PropType<NonNullable<T>> : never)
 
 type PropOptions<T> = {
     type: PropType<NonNullable<T>>
-} & (IsNullable<T> extends true ? {} : Required | DefaultValue<T>)
+    // eslint-disable-next-line @typescript-eslint/ban-types
+} & (IsNullable<T> extends true ? DefaultValue<T> : RequiredValue)
 
 type IsNullable<T> = null extends T ? true : undefined extends T ? true : false
-type Required = { required: true }
+type RequiredValue = { required: true }
 type DefaultValue<T> = { default: T | (() => T) }
 
 /**

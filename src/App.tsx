@@ -8,7 +8,7 @@ export default defineComponent({
             <div>
                 <header>
                     <div class="wrapper">
-                        <HelloWorld hello="test" />
+                        <HelloWorld />
 
                         <nav>
                             <RouterLink to="/">Home</RouterLink>

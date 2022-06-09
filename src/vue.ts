@@ -1,46 +1,43 @@
 import type { LooseRequired } from '@vue/shared'
 import {
     defineComponent,
-    type ComponentPropsOptions,
+    type ComponentObjectPropsOptions,
     type ExtractPropTypes,
-    type PropType,
     type RenderFunction,
     type SetupContext,
 } from 'vue'
 
 type Data = Record<string, unknown>
-
-export function defineProps<T, U = DefineProps<T>>(props: U): U {
-    return props
-}
-
-export type DefineProps<T = Data> = {
-    [P in keyof Required<T>]: DefineProp<T[P]>
-}
-
-type DefineProp<T> = PropOptions<T> | (IsNullable<T> extends true ? PropType<NonNullable<T>> : never)
-
-type PropOptions<T> = {
-    type: PropType<NonNullable<T>>
-    // eslint-disable-next-line @typescript-eslint/ban-types
-} & (IsNullable<T> extends true ? DefaultValue<T> : RequiredValue)
-
-type IsNullable<T> = null extends T ? true : undefined extends T ? true : false
-type RequiredValue = { required: true }
-type DefaultValue<T> = { default: T | (() => T) }
+export type Props<T = Data> = ComponentObjectPropsOptions<T>
 
 /**
- * Vue-Collection components should be created
- * @param props
- * @param setup
- * @returns
+ * Vue Collection components should be created using this helper function.
+ * It only takes three arguments, the name and the props of the component and the setup function.
+ * All other arguments which the {@link defineComponent} method of vue may provide,
+ * should not be used for a better consistency across all components.
+ * @param name the name of the component, should be more than one word.
+ * @param props the props of the component.
+ * @param setup the setup function, which will be called when the component is mounted.
+ * @returns the created vue-component.
  */
-export function createComponent<T extends ComponentPropsOptions>(
+export function createComponent<T extends Props>(
+    name: string,
     props: T,
     setup: (
         props: Readonly<LooseRequired<Readonly<ExtractPropTypes<T>>>>,
         context: SetupContext<never[]>
     ) => RenderFunction
 ) {
-    return defineComponent({ props, emits: [], setup })
+    return defineComponent({ name, props, emits: [], setup })
+}
+
+/**
+ * If props are specified outside of the {@link createComponent} function
+ * - e.g. to export them or for better code style -
+ * this helper function can be used to ensure strict type-checking.
+ * @param props the props which should be created.
+ * @returns the created props, with correct type-checking
+ */
+export function createProps<T extends Props>(props: T): T {
+    return props
 }

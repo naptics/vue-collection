@@ -8,11 +8,7 @@ export default defineComponent({
             <div>
                 <header>
                     <div class="wrapper">
-                        <HelloWorld />
-
-                        <nav>
-                            <RouterLink to="/">Home</RouterLink>
-                        </nav>
+                        <HelloWorld message="Vue Collection" />
                     </div>
                 </header>
                 <RouterView />

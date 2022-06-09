@@ -1,18 +1,20 @@
 {
-  "compilerOptions": {
-    // "module": "ESNext",
-    // "jsx": "preserve",
-    // "moduleResolution": "node"
-  },
-  "references": [
-    {
-      "path": "./tsconfig.config.json"
+    "extends": "@vue/tsconfig/tsconfig.web.json",
+    "compilerOptions": {
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+        "types": ["vitest/globals"]
     },
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.vitest.json"
-    }
-  ]
+    "references": [
+        {
+            "path": "./tsconfig.config.json"
+        },
+        {
+            "path": "./tsconfig.app.json"
+        },
+        {
+            "path": "./tsconfig.vitest.json"
+        }
+    ]
 }

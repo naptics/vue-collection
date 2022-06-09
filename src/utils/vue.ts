@@ -32,8 +32,8 @@ export function createComponent<T extends Props>(
 }
 
 /**
- * If props are specified outside of the {@link createComponent} function
- * - e.g. to export them or for better code style -
+ * If props are specified outside of the {@link createComponent} function - e.g.
+ * to export them or for better code style -
  * this helper function can be used to ensure strict type-checking.
  * @param props the props which should be created.
  * @returns the created props, with correct type-checking

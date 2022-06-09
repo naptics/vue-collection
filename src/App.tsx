@@ -8,7 +8,7 @@ export default defineComponent({
         return () => (
             <div>
                 <header>
-                    <div class="bg-red-500 text-2xl">
+                    <div class="">
                         <HelloWorld message="Vue Collection" />
                     </div>
                 </header>

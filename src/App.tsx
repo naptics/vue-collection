@@ -1,7 +1,7 @@
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import { defineComponent } from 'vue'
 import './App.css'
+import NButton from './components/base/NButton'
 
 export default defineComponent({
     setup() {
@@ -9,7 +9,7 @@ export default defineComponent({
             <div>
                 <header>
                     <div class="">
-                        <HelloWorld message="Vue Collection" />
+                        <NButton>Hello</NButton>
                     </div>
                 </header>
                 <RouterView />

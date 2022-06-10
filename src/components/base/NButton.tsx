@@ -27,6 +27,7 @@ export default createComponent('NButton', nButtonProps, (props, { slots }) => {
                     : `bg-${props.color}-100 text-${props.color}-200 cursor-default`,
                 props.small ? 'py-1 px-2 text-xs' : 'py-2 px-4 text-sm',
             ]}
+            onClick={props.onClick}
         >
             {slots.default?.()}
         </button>

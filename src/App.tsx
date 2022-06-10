@@ -1,15 +1,5 @@
-import { defineComponent } from 'vue'
+import { createView } from './utils/vue'
+import { RouterView } from 'vue-router'
 import './App.css'
-import NButton from './components/base/NButton'
 
-export default defineComponent({
-    setup() {
-        return () => (
-            <div>
-                <div class="space-x-8">
-                    <NButton>Hello</NButton>
-                </div>
-            </div>
-        )
-    },
-})
+export default createView('App', () => () => <RouterView />)

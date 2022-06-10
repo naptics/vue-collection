@@ -12,7 +12,7 @@ type Data = Record<string, unknown>
 export type Props<T = Data> = ComponentObjectPropsOptions<T>
 
 /**
- * Vue Collection components should be created using this helper function.
+ * Components should be created using this helper function.
  * It only takes three arguments, the name and the props of the component and the setup function.
  * All other arguments which the {@link defineComponent} method of vue may provide,
  * should not be used for a better consistency across all components.
@@ -30,6 +30,18 @@ export function createComponent<T extends Props>(
     ) => RenderFunction
 ) {
     return defineComponent({ name, props, emits: [], setup })
+}
+
+/**
+ * Views should be created using this helper function. Views are special components, which don't have props.
+ * They are often the parent objects in a view hierarchy and contain many components.
+ * This function is syntactic sugar to create views and just calls {@link createComponent}.
+ * @param name the name of the component, should be more than one word.
+ * @param setup the setup function, which will be called when the component is mounted.
+ * @returns the created vue-component.
+ */
+export function createView(name: string, setup: (context: SetupContext<never[]>) => RenderFunction) {
+    return defineComponent({ name, emits: [], setup: (props, context) => setup(context) })
 }
 
 /**

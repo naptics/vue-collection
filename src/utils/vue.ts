@@ -51,7 +51,7 @@ export function createProps<T extends Props>(props: T): T {
  */
 export function vModel<T>(propType: PropType<T>) {
     return {
-        value: propType,
+        value: propType as PropType<T>,
         onUpdateValue: Function as PropType<(newValue: T) => void>,
     }
 }

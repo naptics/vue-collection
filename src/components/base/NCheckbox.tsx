@@ -31,7 +31,6 @@ export default createComponent('NCheckbox', nCheckboxProps, props => {
             checked={props.value}
             disabled={props.disabled}
             onClick={toggle}
-            onKeydownEnter={toggle}
             key={updateKey.value}
             class={[
                 `h-5 w-5 border-gray-300 rounded focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-${props.color}-500`,

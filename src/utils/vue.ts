@@ -3,6 +3,7 @@ import {
     defineComponent,
     type ComponentObjectPropsOptions,
     type ExtractPropTypes,
+    type PropType,
     type RenderFunction,
     type SetupContext,
 } from 'vue'
@@ -32,12 +33,25 @@ export function createComponent<T extends Props>(
 }
 
 /**
- * If props are specified outside of the {@link createComponent} function - e.g.
- * to export them or for better code style -
- * this helper function can be used to ensure strict type-checking.
+ * If props are specified outside of the {@link createComponent}
+ * function - e.g. to export them or for better code style -
+ * this helper function can be used to ensure strict typing.
  * @param props the props which should be created.
- * @returns the created props, with correct type-checking
+ * @returns the created props, with correct typing.
  */
 export function createProps<T extends Props>(props: T): T {
     return props
+}
+
+/**
+ * Creates a v-model of the given type.
+ * A v-model consits of a value-property and a update-function.
+ * @param propType the propType of the v-model.
+ * @returns an object containing the value-property and the update-function.
+ */
+export function vModel<T>(propType: PropType<T>) {
+    return {
+        value: propType,
+        onUpdateValue: Function as PropType<(newValue: T) => void>,
+    }
 }

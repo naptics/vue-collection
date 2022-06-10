@@ -1,6 +1,7 @@
 import { createComponent, createProps } from '@/utils/vue'
 import { ref } from 'vue'
 import NButton from './NButton'
+import NCheckbox from './NCheckbox'
 
 export const helloWorldProps = createProps({
     message: {
@@ -18,6 +19,7 @@ export default createComponent('HelloWorld', helloWorldProps, props => {
             <NButton color="primary" disabled={false}>
                 Click me
             </NButton>
+            <NCheckbox value={true} onUpdateValue={newValue => console.log(newValue)} />
             <h1 class="green">Hello {props.message}</h1>
         </div>
     )

@@ -10,6 +10,8 @@ export const nCheckboxProps = createProps({
     disabled: Boolean,
 })
 
+nCheckboxProps.test = 'cool'
+
 export default createComponent('NCheckbox', nCheckboxProps, props => {
     const toggle = () => {
         props.onUpdateValue?.(!props.value)

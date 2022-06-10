@@ -1,0 +1,24 @@
+cache:
+    paths:
+        - node_modules/
+
+default: 
+    image: node:16.13.0-alpine3.14
+
+stages: 
+    - prebuild
+
+workflow: 
+    rules: 
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+        - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+lint: 
+    stage: prebuild
+    before_script:
+        - npm ci
+    script: 
+        - npm run type-check
+        - npm run lint
+
+    

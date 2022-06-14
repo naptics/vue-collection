@@ -20,12 +20,12 @@ export default createComponent('NCheckboxLabel', nCheckboxLabelProps, props => {
                     onClick={toggleValue}
                     class={[
                         'font-medium select-none',
-                        props.disabled ? 'text-gray-300' : 'text-gray-700 cursor-pointer',
+                        props.disabled ? 'text-default-300' : 'text-default-700 cursor-pointer',
                     ]}
                 >
                     {props.title}
                 </label>
-                <p class={props.disabled ? 'text-gray-300' : 'text-gray-500'}>
+                <p class={props.disabled ? 'text-default-300' : 'text-default-500'}>
                     <span onClick={toggleValue} class={['select-none', props.disabled ? '' : 'cursor-pointer']}>
                         {props.description}
                     </span>

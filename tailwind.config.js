@@ -2,7 +2,7 @@
 const colors = require('tailwindcss/colors')
 
 const allShades = '50|100|200|300|400|500|600|700|800|900'
-const usedColors = 'primary|secondary|green|red|yellow|blue'
+const usedColors = 'default|primary|secondary|green|red|yellow|blue'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -20,6 +20,7 @@ module.exports = {
     theme: {
         extend: {
             colors: {
+                default: colors.slate,
                 primary: colors.violet,
                 secondary: colors.rose,
             },

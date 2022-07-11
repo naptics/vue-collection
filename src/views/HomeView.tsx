@@ -1,3 +1,4 @@
+import NBadge from '@/components/base/NBadge'
 import NButton from '@/components/base/NButton'
 import NCheckbox from '@/components/base/NCheckbox'
 import NCheckboxLabel from '@/components/base/NCheckboxLabel'
@@ -70,8 +71,21 @@ export default createView('HomeView', () => {
                     rules={[matches(() => pwValue.value)]}
                     optional={!pwValue.value}
                 />
-                <button type="submit"> submit now </button>
+                <NButton type="submit"> submit now </NButton>
             </NForm>
+            <div class="flex space-x-2 items-center">
+                <NBadge>Hallo</NBadge>
+                <NBadge color="secondary" text="seco" />
+                <NBadge color="green" shade={700} textShade={100}>
+                    Velo
+                </NBadge>
+                <NBadge color="red" shade={700} textShade={100}>
+                    Auto
+                </NBadge>
+                <NBadge allCaps={false} textSize="text-xl">
+                    Normal
+                </NBadge>
+            </div>
         </div>
     )
 })

@@ -3,7 +3,6 @@ import {
     defineComponent,
     reactive,
     toRef,
-    toRefs,
     type ComponentObjectPropsOptions,
     type ExtractPropTypes,
     type PropType,

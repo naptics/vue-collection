@@ -1,11 +1,10 @@
 import { deferred, type DeferredPromise } from '@/utils/deferred'
 import { createComponent, createProps, extractProps, refAsVModel } from '@/utils/vue'
 import { CheckIcon, ExclamationIcon, LightBulbIcon, TrashIcon } from '@heroicons/vue/outline'
-import { computed, reactive, ref, toRefs, type PropType } from 'vue'
+import { computed, ref, type PropType } from 'vue'
 import NIconCircle from './NIconCircle'
 import NModal from './NModal'
 import { DialogTitle } from '@headlessui/vue'
-import NButton from './NButton'
 
 export const nDialogProps = createProps({
     title: String,
@@ -95,15 +94,6 @@ export default createComponent('NDialog', nDialogProps, (props, context) => {
                     {context.slots.default?.() || <p class="text-sm text-default-500">{props.text}</p>}
                 </div>
             </div>
-
-            {/* <div class="sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
-                <NButton color={props.cancelColor} onClick={cancel} class="w-full">
-                    {props.cancelText}
-                </NButton>
-                <NButton color={props.okColor || defaults.value.okColor} onClick={ok} class="w-full mt-3 sm:mt-0">
-                    {props.okText || defaults.value.okText}
-                </NButton>
-            </div> */}
         </NModal>
     )
 })

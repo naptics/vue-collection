@@ -2,6 +2,7 @@ import NBadge from '@/components/base/NBadge'
 import NButton from '@/components/base/NButton'
 import NCheckbox from '@/components/base/NCheckbox'
 import NCheckboxLabel from '@/components/base/NCheckboxLabel'
+import NCrudModal from '@/components/base/NCrudModal'
 import NDialog, { type NDialogExposed } from '@/components/base/NDialog'
 import NForm from '@/components/base/NForm'
 import NFormModal from '@/components/base/NFormModal'
@@ -149,9 +150,19 @@ export default createView('HomeView', () => {
                     />
                 </NFormModal>
 
+                <NCrudModal
+                    {...refAsVModel(showModal4)}
+                    title="Crud Modal"
+                    removeDialogTitle="Template löschen"
+                    removeDialogText="Möchten Sie das Template unwiderruflich löschen? Dies kann nicht rückgängig gemacht werden."
+                >
+                    Hello Crud Modal
+                </NCrudModal>
+
                 <NButton onClick={() => (showModal1.value = true)}> Open Modal </NButton>
                 <NButton onClick={() => (showModal2.value = true)}> Open Modal 2 </NButton>
                 <NButton onClick={() => (showModal3.value = true)}> Open Form Modal </NButton>
+                <NButton onClick={() => (showModal4.value = true)}> Open Crud Modal </NButton>
             </div>
 
             <div class="flex space-x-2 items-center">
@@ -171,7 +182,7 @@ export default createView('HomeView', () => {
                 <NButton onClick={showDialog}> Show Dialog</NButton>
                 <NDialog
                     ref={dialogRef}
-                    variant="delete"
+                    variant="remove"
                     title="Benutzer löschen"
                     text="Wollen Sie den Benutzer wirklich unwiderruflich löschen? Dies kann nicht rückgängig gemacht werden. "
                 />

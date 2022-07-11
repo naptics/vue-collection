@@ -14,7 +14,7 @@ export const nDialogProps = createProps({
         default: 'sm',
     },
     variant: {
-        type: String as PropType<'success' | 'info' | 'warning' | 'error' | 'delete'>,
+        type: String as PropType<'success' | 'info' | 'warning' | 'error' | 'remove'>,
         default: 'warning',
     },
     icon: Function,
@@ -123,10 +123,10 @@ const VARIANT_DEFAULTS = {
         okText: 'Fortfahren', // trsl('input.action.proceed'),
         okColor: 'red',
     },
-    delete: {
+    remove: {
         icon: TrashIcon,
         iconColor: 'red',
-        okText: 'Löschen', // trsl('input.action.delete'),
+        okText: 'Löschen', // trsl('input.action.remove'),
         okColor: 'red',
     },
 }

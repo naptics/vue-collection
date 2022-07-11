@@ -4,6 +4,7 @@ import {
     type ComponentObjectPropsOptions,
     type ExtractPropTypes,
     type PropType,
+    type Ref,
     type RenderFunction,
     type SetupContext,
 } from 'vue'
@@ -65,5 +66,14 @@ export function vModel<T>(propType: PropType<T>) {
     return {
         value: propType as PropType<T>,
         onUpdateValue: Function as PropType<(newValue: T) => void>,
+    }
+}
+
+export function refAsVModel<T>(ref: Ref<T>) {
+    return {
+        value: ref.value,
+        onUpdateValue: (newValue: T) => {
+            ref.value = newValue
+        },
     }
 }

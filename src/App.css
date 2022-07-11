@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    @apply text-default-900;
+@layer base {
+    body {
+        @apply text-default-900;
+    }
 }

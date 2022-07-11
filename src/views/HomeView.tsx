@@ -22,6 +22,7 @@ export default createView('HomeView', () => {
     const pw2Value = ref('')
 
     const showModal1 = ref(false)
+    const showModal2 = ref(false)
 
     const form = createValidatedForm()
 
@@ -92,20 +93,26 @@ export default createView('HomeView', () => {
                 </NBadge>
             </div>
             <div>
+                <NModal {...refAsVModel(showModal1)} title="Hello Modal">
+                    Here some basic content
+                </NModal>
+
                 <NModal
-                    {...refAsVModel(showModal1)}
+                    {...refAsVModel(showModal2)}
                     header={() => <div>hello</div>}
                     footer={({ ok, cancel }) => (
                         <div class="flex space-x-2">
-                            <NButton onClick={ok}>hoi</NButton>
-                            <NButton onClick={cancel}>michi</NButton>
+                            <NButton onClick={ok}>Custom Ok</NButton>
+                            <NButton color="secondary" onClick={cancel}>
+                                Custom Cancel
+                            </NButton>
                         </div>
                     )}
                 >
-                    hello
+                    Content here
                 </NModal>
                 <NButton onClick={() => (showModal1.value = true)}> Open Modal </NButton>
-                {showModal1.value ? 'open' : 'closed'}
+                <NButton onClick={() => (showModal2.value = true)}> Open Modal 2 </NButton>
             </div>
             <div class="flex space-x-2 items-center">
                 <NIconButton

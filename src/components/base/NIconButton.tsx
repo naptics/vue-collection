@@ -3,7 +3,10 @@ import type { PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 
 export const nIconButtonProps = createProps({
-    icon: Function,
+    icon: {
+        type: Function,
+        required: true,
+    },
     link: Object as PropType<RouteLocationRaw>,
     color: {
         type: String,
@@ -21,7 +24,7 @@ export const nIconButtonProps = createProps({
     onClick: Function as PropType<() => void>,
 })
 
-export default createComponent('NIconButton', nIconButtonProps, (props, { slots }) => {
+export default createComponent('NIconButton', nIconButtonProps, props => {
     const classes = () => [
         'p-0.5 transition rounded-md focus:outline-none focus-visible:ring-2 -m-1',
         props.disabled
@@ -29,7 +32,7 @@ export default createComponent('NIconButton', nIconButtonProps, (props, { slots 
             : `hover:bg-${props.color}-500 hover:bg-opacity-10 text-${props.color}-500 focus-visible:ring-${props.color}-500 cursor-pointer`,
     ]
 
-    const content = () => <div class={`w-${props.size} h-${props.size}`}>{slots.default?.() || props.icon?.()}</div>
+    const content = () => <div class={`w-${props.size} h-${props.size}`}>{props.icon()}</div>
 
     return () =>
         props.link ? (

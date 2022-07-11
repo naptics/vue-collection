@@ -1,5 +1,5 @@
 import { createComponent, createProps } from '@/utils/vue'
-import { reactive, ref, toRefs, type PropType } from 'vue'
+import { ref, type PropType } from 'vue'
 import NButton from './NButton'
 import type { NDialogExposed } from './NDialog'
 import NDialog from './NDialog'

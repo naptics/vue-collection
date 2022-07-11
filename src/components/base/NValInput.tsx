@@ -1,6 +1,6 @@
 import { createComponent, createProps } from '@/utils/vue'
 import { computed, toRefs } from '@vue/reactivity'
-import { ref, reactive, type PropType } from 'vue'
+import { ref, reactive, type PropType, watch } from 'vue'
 import NInput, { nInputProps } from './NInput'
 import { type ValidationRule, type ValidationResult, validate, type InputValue, required } from '@/utils/validation'
 
@@ -48,13 +48,27 @@ export default createComponent('NValInput', nValInputProps, (props, context) => 
     const showError = computed(() => props.error || (validationResult.value != null && !validationResult.value.isValid))
     const errorMessage = computed(() => props.errorMessage || validationResult.value?.errorMessage)
 
+    const validateIfError = (value = props.value) => {
+        if (showError.value) validateRules(value)
+    }
+
+    watch(
+        () => props.value,
+        () => validateIfError()
+    )
+
+    watch(
+        () => rules.value,
+        () => validateIfError()
+    )
+
     const onBlur = () => {
         validateRules(props.value)
         props.onBlur?.()
     }
 
     const onUpdateValue = (newValue: string) => {
-        if (showError.value) validateRules(newValue)
+        validateIfError(newValue)
         props.onUpdateValue?.(newValue)
     }
 

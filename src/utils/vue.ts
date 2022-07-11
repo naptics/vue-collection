@@ -1,12 +1,17 @@
 import type { LooseRequired } from '@vue/shared'
 import {
     defineComponent,
+    reactive,
+    toRef,
+    toRefs,
     type ComponentObjectPropsOptions,
     type ExtractPropTypes,
     type PropType,
     type Ref,
     type RenderFunction,
     type SetupContext,
+    type ToRefs,
+    type UnwrapNestedRefs,
 } from 'vue'
 
 type Data = Record<string, unknown>
@@ -76,4 +81,10 @@ export function refAsVModel<T>(ref: Ref<T>) {
             ref.value = newValue
         },
     }
+}
+
+export function extractProps<T extends object>(props: T, ...keys: (keyof T)[]): UnwrapNestedRefs<Partial<ToRefs<T>>> {
+    const partial: Partial<ToRefs<T>> = {}
+    for (const key of keys) partial[key] = toRef(props, key)
+    return reactive(partial)
 }

@@ -41,6 +41,7 @@ export const nModalProps = createProps({
         type: Boolean,
         default: true,
     },
+    hideCancel: Boolean,
     onOk: Function as PropType<() => void>,
     onCancel: Function as PropType<() => void>,
     /**
@@ -132,9 +133,11 @@ export default createComponent('NModal', nModalProps, (props, { slots }) => {
                                         <div class="px-4 sm:px-6 pb-4 pt-2 bg-default-50 rounded-b-lg">
                                             {props.footer?.({ ok, cancel }) || (
                                                 <div class="flex justify-end space-x-2">
-                                                    <NButton color={props.cancelColor} onClick={cancel}>
-                                                        {props.cancelText}
-                                                    </NButton>
+                                                    {!props.hideCancel && (
+                                                        <NButton color={props.cancelColor} onClick={cancel}>
+                                                            {props.cancelText}
+                                                        </NButton>
+                                                    )}
                                                     {!props.hideOk && (
                                                         <NButton
                                                             color={props.okColor}

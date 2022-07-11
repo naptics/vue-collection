@@ -7,7 +7,7 @@ export const nIconButtonProps = createProps({
         type: Function,
         required: true,
     },
-    link: Object as PropType<RouteLocationRaw>,
+    link: [String, Object] as PropType<RouteLocationRaw>,
     color: {
         type: String,
         default: 'default',

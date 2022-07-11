@@ -2,6 +2,7 @@ import NBadge from '@/components/base/NBadge'
 import NButton from '@/components/base/NButton'
 import NCheckbox from '@/components/base/NCheckbox'
 import NCheckboxLabel from '@/components/base/NCheckboxLabel'
+import NDialog, { type NDialogExposed } from '@/components/base/NDialog'
 import NForm from '@/components/base/NForm'
 import NFormModal from '@/components/base/NFormModal'
 import NIconButton from '@/components/base/NIconButton'
@@ -27,6 +28,9 @@ export default createView('HomeView', () => {
     const showModal2 = ref(false)
     const showModal3 = ref(false)
     const showModal4 = ref(false)
+
+    const dialogRef = ref<NDialogExposed>()
+    const showDialog = () => dialogRef.value?.show()
 
     const form1 = createValidatedForm()
     const form2 = createValidatedForm()
@@ -161,6 +165,16 @@ export default createView('HomeView', () => {
                 <NIconCircle icon={PencilIcon} circleSize={12} />
                 <NIconCircle color="secondary" icon={EyeIcon} iconSize={4} />
                 <NIconCircle color="default" icon={LockClosedIcon} iconSize={4} circleSize={12} />
+            </div>
+
+            <div>
+                <NButton onClick={showDialog}> Show Dialog</NButton>
+                <NDialog
+                    ref={dialogRef}
+                    variant="delete"
+                    title="Benutzer löschen"
+                    text="Wollen Sie den Benutzer wirklich unwiderruflich löschen? Dies kann nicht rückgängig gemacht werden. "
+                />
             </div>
         </div>
     )

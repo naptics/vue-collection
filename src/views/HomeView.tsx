@@ -3,14 +3,16 @@ import NButton from '@/components/base/NButton'
 import NCheckbox from '@/components/base/NCheckbox'
 import NCheckboxLabel from '@/components/base/NCheckboxLabel'
 import NForm from '@/components/base/NForm'
+import NFormModal from '@/components/base/NFormModal'
 import NIconButton from '@/components/base/NIconButton'
+import NIconCircle from '@/components/base/NIconCircle'
 import NInput from '@/components/base/NInput'
 import NModal from '@/components/base/NModal'
 import NValInput from '@/components/base/NValInput'
 import { createValidatedForm } from '@/components/base/ValidatedForm'
 import { email, matches, regex } from '@/utils/validation'
 import { createView, refAsVModel } from '@/utils/vue'
-import { ExternalLinkIcon, PencilIcon } from '@heroicons/vue/solid'
+import { ExternalLinkIcon, EyeIcon, LockClosedIcon, PencilIcon } from '@heroicons/vue/solid'
 import { ref } from 'vue'
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+\-=!*()@%&?]).{8,}$/
@@ -23,11 +25,14 @@ export default createView('HomeView', () => {
 
     const showModal1 = ref(false)
     const showModal2 = ref(false)
+    const showModal3 = ref(false)
+    const showModal4 = ref(false)
 
-    const form = createValidatedForm()
+    const form1 = createValidatedForm()
+    const form2 = createValidatedForm()
 
     const onClick = () => {
-        form.validate()
+        form1.validate()
     }
 
     return () => (
@@ -51,16 +56,16 @@ export default createView('HomeView', () => {
                 onUpdateValue={newValue => (inputValue.value = newValue)}
             />
 
-            <NForm validation={form} onSubmit={() => console.log('submit')}>
+            <NForm form={form1} onSubmit={() => console.log('submit')}>
                 <NValInput
-                    ref={form.addInput()}
+                    ref={form1.addInput()}
                     name="Email"
                     value={inputValue.value}
                     onUpdateValue={newValue => (inputValue.value = newValue)}
                     rules={[email]}
                 />
                 <NValInput
-                    ref={form.addInput()}
+                    ref={form1.addInput()}
                     name="Passwort"
                     type="password"
                     value={pwValue.value}
@@ -69,7 +74,7 @@ export default createView('HomeView', () => {
                     optional={true}
                 />
                 <NValInput
-                    ref={form.addInput()}
+                    ref={form1.addInput()}
                     name="Passwort wiederholen"
                     type="password"
                     value={pw2Value.value}
@@ -111,9 +116,40 @@ export default createView('HomeView', () => {
                 >
                     Content here
                 </NModal>
+
+                <NFormModal {...refAsVModel(showModal3)} form={form2} title="Form Modal">
+                    <NValInput
+                        ref={form2.addInput()}
+                        name="Email"
+                        value={inputValue.value}
+                        onUpdateValue={newValue => (inputValue.value = newValue)}
+                        rules={[email]}
+                    />
+                    <NValInput
+                        ref={form2.addInput()}
+                        name="Passwort"
+                        type="password"
+                        value={pwValue.value}
+                        onUpdateValue={newValue => (pwValue.value = newValue)}
+                        rules={[regex(PASSWORD_FORMAT)]}
+                        optional={true}
+                    />
+                    <NValInput
+                        ref={form2.addInput()}
+                        name="Passwort wiederholen"
+                        type="password"
+                        value={pw2Value.value}
+                        onUpdateValue={newValue => (pw2Value.value = newValue)}
+                        rules={[matches(() => pwValue.value)]}
+                        optional={!pwValue.value}
+                    />
+                </NFormModal>
+
                 <NButton onClick={() => (showModal1.value = true)}> Open Modal </NButton>
                 <NButton onClick={() => (showModal2.value = true)}> Open Modal 2 </NButton>
+                <NButton onClick={() => (showModal3.value = true)}> Open Form Modal </NButton>
             </div>
+
             <div class="flex space-x-2 items-center">
                 <NIconButton
                     icon={PencilIcon}
@@ -121,6 +157,10 @@ export default createView('HomeView', () => {
                     onClick={() => console.log('Hello IconButton')}
                 />
                 <NIconButton icon={ExternalLinkIcon} link="/" />
+
+                <NIconCircle icon={PencilIcon} circleSize={12} />
+                <NIconCircle color="secondary" icon={EyeIcon} iconSize={4} />
+                <NIconCircle color="default" icon={LockClosedIcon} iconSize={4} circleSize={12} />
             </div>
         </div>
     )

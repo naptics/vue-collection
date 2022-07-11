@@ -3,11 +3,14 @@ import NButton from '@/components/base/NButton'
 import NCheckbox from '@/components/base/NCheckbox'
 import NCheckboxLabel from '@/components/base/NCheckboxLabel'
 import NForm from '@/components/base/NForm'
+import NIconButton from '@/components/base/NIconButton'
 import NInput from '@/components/base/NInput'
+import NModal from '@/components/base/NModal'
 import NValInput from '@/components/base/NValInput'
 import { createValidatedForm } from '@/components/base/ValidatedForm'
 import { email, matches, regex } from '@/utils/validation'
-import { createView } from '@/utils/vue'
+import { createView, refAsVModel } from '@/utils/vue'
+import { ExternalLinkIcon, PencilIcon } from '@heroicons/vue/solid'
 import { ref } from 'vue'
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+\-=!*()@%&?]).{8,}$/
@@ -17,6 +20,8 @@ export default createView('HomeView', () => {
     const inputValue = ref('')
     const pwValue = ref('')
     const pw2Value = ref('')
+
+    const showModal1 = ref(false)
 
     const form = createValidatedForm()
 
@@ -85,6 +90,30 @@ export default createView('HomeView', () => {
                 <NBadge allCaps={false} textSize="text-xl">
                     Normal
                 </NBadge>
+            </div>
+            <div>
+                <NModal
+                    {...refAsVModel(showModal1)}
+                    header={() => <div>hello</div>}
+                    footer={({ ok, cancel }) => (
+                        <div class="flex space-x-2">
+                            <NButton onClick={ok}>hoi</NButton>
+                            <NButton onClick={cancel}>michi</NButton>
+                        </div>
+                    )}
+                >
+                    hello
+                </NModal>
+                <NButton onClick={() => (showModal1.value = true)}> Open Modal </NButton>
+                {showModal1.value ? 'open' : 'closed'}
+            </div>
+            <div class="flex space-x-2 items-center">
+                <NIconButton
+                    icon={PencilIcon}
+                    disabled={showModal1.value}
+                    onClick={() => console.log('Hello IconButton')}
+                />
+                <NIconButton icon={ExternalLinkIcon} link="/" />
             </div>
         </div>
     )

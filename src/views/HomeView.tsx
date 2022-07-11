@@ -1,20 +1,26 @@
 import NButton from '@/components/base/NButton'
 import NCheckbox from '@/components/base/NCheckbox'
 import NCheckboxLabel from '@/components/base/NCheckboxLabel'
+import NForm from '@/components/base/NForm'
 import NInput from '@/components/base/NInput'
-import NValInput, { type NValInputExposed } from '@/components/base/NValInput'
-import { email } from '@/utils/validation'
+import NValInput from '@/components/base/NValInput'
+import { createValidatedForm } from '@/components/base/ValidatedForm'
+import { email, matches, regex } from '@/utils/validation'
 import { createView } from '@/utils/vue'
 import { ref } from 'vue'
+
+const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+\-=!*()@%&?]).{8,}$/
 
 export default createView('HomeView', () => {
     const checkboxValue = ref(false)
     const inputValue = ref('')
+    const pwValue = ref('')
+    const pw2Value = ref('')
 
-    const valInput = ref<NValInputExposed>()
+    const form = createValidatedForm()
 
     const onClick = () => {
-        valInput?.value?.validate()
+        form.validate()
     }
 
     return () => (
@@ -37,13 +43,35 @@ export default createView('HomeView', () => {
                 error
                 onUpdateValue={newValue => (inputValue.value = newValue)}
             />
-            <NValInput
-                ref={valInput}
-                name="Email"
-                value={inputValue.value}
-                rules={[email]}
-                onUpdateValue={newValue => (inputValue.value = newValue)}
-            />
+
+            <NForm validation={form} onSubmit={() => console.log('submit')}>
+                <NValInput
+                    ref={form.addInput()}
+                    name="Email"
+                    value={inputValue.value}
+                    onUpdateValue={newValue => (inputValue.value = newValue)}
+                    rules={[email]}
+                />
+                <NValInput
+                    ref={form.addInput()}
+                    name="Passwort"
+                    type="password"
+                    value={pwValue.value}
+                    onUpdateValue={newValue => (pwValue.value = newValue)}
+                    rules={[regex(PASSWORD_FORMAT)]}
+                    optional={true}
+                />
+                <NValInput
+                    ref={form.addInput()}
+                    name="Passwort wiederholen"
+                    type="password"
+                    value={pw2Value.value}
+                    onUpdateValue={newValue => (pw2Value.value = newValue)}
+                    rules={[matches(() => pwValue.value)]}
+                    optional={!pwValue.value}
+                />
+                <button type="submit"> submit now </button>
+            </NForm>
         </div>
     )
 })

@@ -21,8 +21,17 @@ export const nValInputProps = createProps({
     errorMessage: Boolean,
 })
 
+/**
+ * The exposed functions of NValInput
+ */
 export type NValInputExposed = {
+    /**
+     * Validates the input and returns the validation result
+     */
     validate: () => ValidationResult
+    /**
+     * Resets the validation state of the input.
+     */
     reset: () => void
 }
 

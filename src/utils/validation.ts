@@ -52,6 +52,28 @@ export const required: ValidationRule = input => {
  * This rule expects the input-value to be a valid email adress.
  */
 export const email: ValidationRule = input => {
-    if (input && EMAIL_FORMAT.test(input)) return validResult()
+    if (!input || EMAIL_FORMAT.test(input)) return validResult()
     else return invalidResult('Dieses Feld muss eine gültige Email-Adresse sein.')
+}
+
+/**
+ * This rule expects the input-value to match another (input-) value.
+ * @param other a function which returns the other value.
+ */
+export function matches(other: () => string): ValidationRule {
+    return input => {
+        if (!input || input === other()) return validResult()
+        else return invalidResult('Die beiden Felder stimmen nicht überein.')
+    }
+}
+
+/**
+ * This rule expects the input-value to match the regex pattern
+ * @param pattern the pattern the input should match.
+ */
+export function regex(pattern: RegExp): ValidationRule {
+    return input => {
+        if (!input || pattern.test(input)) return validResult()
+        else return invalidResult('Dieses Feld stimmt nicht mit dem geforderten Format überein.')
+    }
 }

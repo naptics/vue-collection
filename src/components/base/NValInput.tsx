@@ -1,5 +1,5 @@
 import { createComponent, createProps } from '@/utils/vue'
-import { computed, toRefs } from '@vue/reactivity'
+import { computed } from '@vue/reactivity'
 import { ref, reactive, type PropType, watch } from 'vue'
 import NInput, { nInputProps } from './NInput'
 import { type ValidationRule, type ValidationResult, validate, type InputValue, required } from '@/utils/validation'
@@ -19,7 +19,17 @@ export const nValInputProps = createProps({
      * Overrides the internal error message. If set, this message is always displayed.
      */
     errorMessage: Boolean,
+    /**
+     * A slot to replace the input.
+     */
+    input: Function as PropType<(props: InputSlotProps) => JSX.Element>,
 })
+
+export type InputSlotProps = {
+    onBlur(): void
+    onUpdateValue(newValue: string): void
+    error: boolean
+}
 
 /**
  * The exposed functions of NValInput
@@ -72,8 +82,7 @@ export default createComponent('NValInput', nValInputProps, (props, context) => 
         props.onUpdateValue?.(newValue)
     }
 
-    const childProps = reactive({
-        ...toRefs(props),
+    const inputSlotProps: InputSlotProps = reactive({
         onBlur,
         onUpdateValue,
         error: showError,
@@ -87,7 +96,7 @@ export default createComponent('NValInput', nValInputProps, (props, context) => 
 
     return () => (
         <div>
-            <NInput {...childProps} />
+            {props.input?.(inputSlotProps) || <NInput {...{ ...props, ...inputSlotProps }} />}
             {showError.value && <p class="text-red-500 text-xs mt-1">{errorMessage.value}</p>}
         </div>
     )

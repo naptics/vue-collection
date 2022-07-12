@@ -11,6 +11,7 @@ import NIconButton from '@/components/base/NIconButton'
 import NIconCircle from '@/components/base/NIconCircle'
 import NInput from '@/components/base/NInput'
 import NModal from '@/components/base/NModal'
+import NSelect from '@/components/base/NSelect'
 import NValInput from '@/components/base/NValInput'
 import { createValidatedForm } from '@/components/base/ValidatedForm'
 import { email, matches, regex } from '@/utils/validation'
@@ -31,6 +32,8 @@ export default createView('HomeView', () => {
     const showModal2 = ref(false)
     const showModal3 = ref(false)
     const showModal4 = ref(false)
+
+    const selectValue = ref<string>()
 
     const dialogRef = ref<NDialogExposed>()
     const showDialog = () => dialogRef.value?.show()
@@ -89,6 +92,17 @@ export default createView('HomeView', () => {
                     rules={[matches(() => pwValue.value)]}
                     optional={!pwValue.value}
                 />
+                <NSelect
+                    {...refAsVModel(selectValue)}
+                    ref={form1.addInput()}
+                    name="Status wählen"
+                    options={[
+                        { key: 'test', label: 'cool' },
+                        { key: 'medium', label: 'medium' },
+                    ]}
+                    optional={true}
+                />
+
                 <NButton type="submit"> submit now </NButton>
             </NForm>
             <div class="flex space-x-2 items-center">

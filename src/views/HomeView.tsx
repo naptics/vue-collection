@@ -14,6 +14,7 @@ import NList from '@/components/base/NList'
 import NLoader from '@/components/base/NLoader'
 import NModal from '@/components/base/NModal'
 import NSearchbar from '@/components/base/NSearchbar'
+import NSearchbarList from '@/components/base/NSearchbarList'
 import NSelect from '@/components/base/NSelect'
 import NValInput from '@/components/base/NValInput'
 import { createValidatedForm } from '@/components/base/ValidatedForm'
@@ -233,8 +234,16 @@ export default createView('HomeView', () => {
             <div>
                 <NLoader />
             </div>
-            <div>
+            <div class="space-y-10">
                 <NSearchbar placeholder="Such jetzt!" {...refAsVModel(pw2Value)} />
+                <NSearchbarList
+                    {...refAsVModel(pw2Value)}
+                    loading={pw2Value.value.length < 4}
+                    showList={pw2Value.value.length > 0}
+                    items={pw2Value.value.length < 4 ? [] : [{ id: 'Hallo' }, { id: 'Test' }]}
+                    onSelect={id => console.log(id)}
+                    listItem={({ item, highlighted }) => <div class={highlighted ? 'text-red-500' : ''}>{item.id}</div>}
+                />
             </div>
         </div>
     )

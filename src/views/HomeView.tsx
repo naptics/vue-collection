@@ -13,6 +13,7 @@ import NInput from '@/components/base/NInput'
 import NList from '@/components/base/NList'
 import NLoader from '@/components/base/NLoader'
 import NModal from '@/components/base/NModal'
+import NPagination from '@/components/base/NPagination'
 import NSearchbar from '@/components/base/NSearchbar'
 import NSearchbarList from '@/components/base/NSearchbarList'
 import NSelect from '@/components/base/NSelect'
@@ -44,6 +45,8 @@ export default createView('HomeView', () => {
 
     const form1 = createValidatedForm()
     const form2 = createValidatedForm()
+
+    const page = ref(1)
 
     const onClick = () => {
         form1.validate()
@@ -244,6 +247,10 @@ export default createView('HomeView', () => {
                     onSelect={id => console.log(id)}
                     listItem={({ item, highlighted }) => <div class={highlighted ? 'text-red-500' : ''}>{item.id}</div>}
                 />
+            </div>
+
+            <div>
+                <NPagination total={12} {...refAsVModel(page)} />
             </div>
         </div>
     )

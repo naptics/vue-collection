@@ -10,6 +10,7 @@ import NFormModal from '@/components/base/NFormModal'
 import NIconButton from '@/components/base/NIconButton'
 import NIconCircle from '@/components/base/NIconCircle'
 import NInput from '@/components/base/NInput'
+import NList from '@/components/base/NList'
 import NModal from '@/components/base/NModal'
 import NSelect from '@/components/base/NSelect'
 import NValInput from '@/components/base/NValInput'
@@ -214,6 +215,17 @@ export default createView('HomeView', () => {
                             { label: 'Disabled', disabled: true, icon: RssIcon },
                         ],
                         [{ label: 'Other section' }],
+                    ]}
+                />
+            </div>
+
+            <div>
+                <NList
+                    items={[
+                        { title: 'Name', text: 'Gerber' },
+                        { title: 'Vorname', text: 'Frank' },
+                        { title: 'Adresse', text: 'Schneestrasse 12' },
+                        { title: 'Ort', text: '8120 Wald ZH' },
                     ]}
                 />
             </div>

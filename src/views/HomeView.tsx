@@ -17,6 +17,8 @@ import NPagination from '@/components/base/NPagination'
 import NSearchbar from '@/components/base/NSearchbar'
 import NSearchbarList from '@/components/base/NSearchbarList'
 import NSelect from '@/components/base/NSelect'
+import NTable from '@/components/base/NTable'
+import NTableAction from '@/components/base/NTableAction'
 import NValInput from '@/components/base/NValInput'
 import { createValidatedForm } from '@/components/base/ValidatedForm'
 import { email, matches, regex } from '@/utils/validation'
@@ -251,6 +253,32 @@ export default createView('HomeView', () => {
 
             <div>
                 <NPagination total={12} {...refAsVModel(page)} />
+            </div>
+            <div class="col-span-3">
+                <NTable
+                    headings={[
+                        { key: 'firstname', label: 'Vorname' },
+                        { key: 'lastname', label: 'Nachname' },
+                        { key: 'email', label: 'Email' },
+                        { key: 'action', cellClass: 'flex items-center flex-row-reverse' },
+                    ]}
+                    items={[
+                        {
+                            firstname: 'Franz',
+                            lastname: 'Huber',
+                            email: () => <NTableAction text="franz.hubi@hotmail.com" link="/" />,
+                            action: () => <NIconButton icon={ExternalLinkIcon} />,
+                        },
+                        {
+                            firstname: 'Micha',
+                            lastname: 'Meier',
+                            email: () => (
+                                <NTableAction onClick={() => console.log('click')} text="meimic@hotmail.com" />
+                            ),
+                            action: () => <NIconButton icon={ExternalLinkIcon} />,
+                        },
+                    ]}
+                />
             </div>
         </div>
     )

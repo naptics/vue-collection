@@ -11,6 +11,7 @@ import NIconButton from '@/components/base/NIconButton'
 import NIconCircle from '@/components/base/NIconCircle'
 import NInput from '@/components/base/NInput'
 import NList from '@/components/base/NList'
+import NLoader from '@/components/base/NLoader'
 import NModal from '@/components/base/NModal'
 import NSelect from '@/components/base/NSelect'
 import NValInput from '@/components/base/NValInput'
@@ -228,6 +229,9 @@ export default createView('HomeView', () => {
                         { title: 'Ort', text: '8120 Wald ZH' },
                     ]}
                 />
+            </div>
+            <div>
+                <NLoader />
             </div>
         </div>
     )

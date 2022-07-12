@@ -99,8 +99,8 @@ export default createComponent('NSearchbarList', nSearchbarListProps, props => {
                             <li
                                 key={item.id}
                                 class={[
-                                    'focus:outline-none hover:bg-gray-50 rounded-md select-none p-2 cursor-pointer',
-                                    selectedIndex.value == index ? 'bg-gray-50' : '',
+                                    'focus:outline-none hover:bg-default-50 rounded-md select-none p-2 cursor-pointer',
+                                    selectedIndex.value == index ? 'bg-default-50' : '',
                                 ]}
                                 onClick={() => props.onSelect?.(item.id)}
                             >
@@ -109,7 +109,7 @@ export default createComponent('NSearchbarList', nSearchbarListProps, props => {
                         ))}
 
                         {displayItems.value.length == 0 && (
-                            <div class="p-2 text-sm font-medium text-gray-700">
+                            <div class="p-2 text-sm font-medium text-default-700">
                                 {props.loading ? (
                                     <div class="flex items-center space-x-2">
                                         <NLoader size={6} />

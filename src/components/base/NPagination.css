@@ -1,5 +1,5 @@
 .pagination-item {
-    @apply h-9 w-9 text-sm inline-flex items-center justify-center border font-medium border-gray-300 text-gray-500;
+    @apply h-9 w-9 text-sm inline-flex items-center justify-center border font-medium border-default-300 text-default-500;
 }
 
 .pagination-item.not-small {
@@ -7,7 +7,7 @@
 }
 
 .pagination-item.selectable {
-    @apply hover:bg-gray-50 focus:outline-none focus-visible:border-primary-500 focus-visible:ring-primary-500 focus-visible:ring-1 focus-visible:z-[2];
+    @apply hover:bg-default-50 focus:outline-none focus-visible:border-primary-500 focus-visible:ring-primary-500 focus-visible:ring-1 focus-visible:z-[2];
 }
 
 .pagination-item.selectable.selected {

@@ -16,7 +16,7 @@ export default createComponent('NTableAction', nTableActionProps, (props, { slot
     const content = () => slots.default?.() || <>{props.text}</>
 
     const classes =
-        'text-left font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 rounded-sm ring-offset-2 text-gray-900 hover:underline hover:text-gray-700'
+        'text-left font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-default-900 rounded-sm ring-offset-2 text-default-900 hover:underline hover:text-default-700'
 
     return () =>
         props.link ? (

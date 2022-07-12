@@ -4,6 +4,7 @@ import NCheckbox from '@/components/base/NCheckbox'
 import NCheckboxLabel from '@/components/base/NCheckboxLabel'
 import NCrudModal from '@/components/base/NCrudModal'
 import NDialog, { type NDialogExposed } from '@/components/base/NDialog'
+import NDropdown from '@/components/base/NDropdown'
 import NForm from '@/components/base/NForm'
 import NFormModal from '@/components/base/NFormModal'
 import NIconButton from '@/components/base/NIconButton'
@@ -14,7 +15,8 @@ import NValInput from '@/components/base/NValInput'
 import { createValidatedForm } from '@/components/base/ValidatedForm'
 import { email, matches, regex } from '@/utils/validation'
 import { createView, refAsVModel } from '@/utils/vue'
-import { ExternalLinkIcon, EyeIcon, LockClosedIcon, PencilIcon } from '@heroicons/vue/solid'
+import { RssIcon } from '@heroicons/vue/outline'
+import { CogIcon, ExternalLinkIcon, EyeIcon, LockClosedIcon, PencilIcon } from '@heroicons/vue/solid'
 import { ref } from 'vue'
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+\-=!*()@%&?]).{8,}$/
@@ -185,6 +187,20 @@ export default createView('HomeView', () => {
                     variant="remove"
                     title="Benutzer löschen"
                     text="Wollen Sie den Benutzer wirklich unwiderruflich löschen? Dies kann nicht rückgängig gemacht werden. "
+                />
+            </div>
+
+            <div>
+                <NDropdown
+                    text="Choose Option"
+                    items={[
+                        [
+                            { label: 'Hello', action: () => console.log('hello'), icon: CogIcon },
+                            { label: 'Link', route: '/', icon: ExternalLinkIcon },
+                            { label: 'Disabled', disabled: true, icon: RssIcon },
+                        ],
+                        [{ label: 'Other section' }],
+                    ]}
                 />
             </div>
         </div>

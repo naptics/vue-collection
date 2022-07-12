@@ -13,6 +13,7 @@ import NInput from '@/components/base/NInput'
 import NList from '@/components/base/NList'
 import NLoader from '@/components/base/NLoader'
 import NModal from '@/components/base/NModal'
+import NSearchbar from '@/components/base/NSearchbar'
 import NSelect from '@/components/base/NSelect'
 import NValInput from '@/components/base/NValInput'
 import { createValidatedForm } from '@/components/base/ValidatedForm'
@@ -102,7 +103,6 @@ export default createView('HomeView', () => {
                         { key: 'test', label: 'cool' },
                         { key: 'medium', label: 'medium' },
                     ]}
-                    optional={true}
                 />
 
                 <NButton type="submit"> submit now </NButton>
@@ -232,6 +232,9 @@ export default createView('HomeView', () => {
             </div>
             <div>
                 <NLoader />
+            </div>
+            <div>
+                <NSearchbar placeholder="Such jetzt!" {...refAsVModel(pw2Value)} />
             </div>
         </div>
     )

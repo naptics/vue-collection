@@ -27,7 +27,7 @@ export default createView('CheckboxView', () => {
             <VariantSection title="With labels" subtitle="Checkboxes can also be toggled by clicking on the texts.">
                 <ColorGrid
                     colors={2}
-                    gridCols="grid-cols-1 sm:grid-cols-2"
+                    cols={2}
                     item={color => (
                         <NCheckboxLabel
                             color={color}
@@ -42,7 +42,7 @@ export default createView('CheckboxView', () => {
             <VariantSection title="Disabled with labels">
                 <ColorGrid
                     colors={2}
-                    gridCols="grid-cols-1 sm:grid-cols-2"
+                    cols={2}
                     item={color => (
                         <NCheckboxLabel
                             color={color}

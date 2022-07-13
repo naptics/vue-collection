@@ -1,5 +1,6 @@
 import NBadge from '@/components/base/NBadge'
 import ColorGrid from '@/components/presentation/ColorGrid'
+import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/vue'
@@ -32,27 +33,27 @@ export default createView('BadgeView', () => {
                 title="Different Text Sizes"
                 subtitle="All text-sizes from text-xs to text-2xl are available."
             >
-                <div class="grid gap-4 grid-cols-3 sm:grid-cols-6">
+                <ComponentGrid>
                     {textSizes.map(size => (
                         <div class="flex justify-start items-start">
                             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                             <NBadge text="Sizes" textSize={size as any} />
                         </div>
                     ))}
-                </div>
+                </ComponentGrid>
             </VariantSection>
 
             <VariantSection
                 title="Different Shades"
                 subtitle="The shade of the background and the shade of the text can be adjusted individually."
             >
-                <div class="grid gap-4 grid-cols-3 sm:grid-cols-6">
+                <ComponentGrid>
                     {shades.map((shade, index) => (
                         <div class="flex">
                             <NBadge text="Shades" color="secondary" shade={shade} textShade={textShades[index]} />
                         </div>
                     ))}
-                </div>
+                </ComponentGrid>
             </VariantSection>
         </ComponentSection>
     )

@@ -1,15 +1,12 @@
 import { createComponent, createProps } from '@/utils/vue'
 import { computed, type PropType } from 'vue'
+import ComponentGrid, { componentGridProps } from './ComponentGrid'
 
 export const colorGridProps = createProps({
+    ...componentGridProps,
     colors: {
         type: Number,
         default: 6,
-    },
-
-    gridCols: {
-        type: String,
-        default: 'grid-cols-3 sm:grid-cols-6',
     },
     item: Function as PropType<(color: string) => JSX.Element>,
 })
@@ -20,10 +17,10 @@ export default createComponent('ColorGrid', colorGridProps, props => {
     const selectedColors = computed(() => colors.slice(0, props.colors))
 
     return () => (
-        <div class={`grid gap-4 ${props.gridCols}`}>
+        <ComponentGrid cols={props.cols}>
             {selectedColors.value.map(color => (
                 <div class="flex">{props.item?.(color)}</div>
             ))}
-        </div>
+        </ComponentGrid>
     )
 })

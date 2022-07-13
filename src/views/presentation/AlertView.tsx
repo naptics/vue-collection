@@ -1,5 +1,6 @@
 import type { AlertVariant } from '@/components/base/NAlert'
 import NAlert from '@/components/base/NAlert'
+import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/vue'
@@ -13,25 +14,25 @@ export default createView('AlertView', () => {
             subtitle="Alerts can be used directly in a view or they can appear at a fixed position as a notification."
         >
             <VariantSection title="Normal Alerts">
-                <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
+                <ComponentGrid cols={2}>
                     {variants.map(variant => (
                         <NAlert variant={variant} text="Hello, this is an important Alert." />
                     ))}
-                </div>
+                </ComponentGrid>
             </VariantSection>
 
             <VariantSection title="Hide Dismiss Button">
-                <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
+                <ComponentGrid cols={2}>
                     {variants.slice(0, 2).map(variant => (
                         <NAlert variant={variant} hideX text="This is undismissable." />
                     ))}
-                </div>
+                </ComponentGrid>
             </VariantSection>
 
             <VariantSection title="Loading Alert">
-                <div class="grid gap-4 grid-cols-1 sm:grid-cols-2">
+                <ComponentGrid cols={2}>
                     <NAlert variant="loading" text="The file is currently downloading..." />
-                </div>
+                </ComponentGrid>
             </VariantSection>
         </ComponentSection>
     )

@@ -26,7 +26,7 @@ module.exports = {
             colors: {
                 default: colors.slate,
                 primary: colors.violet,
-                secondary: colors.rose,
+                secondary: colors.fuchsia,
             },
         },
     },

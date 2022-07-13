@@ -1,10 +1,11 @@
+import type { HeroIcon } from '@/utils/utils'
 import { createComponent, createProps } from '@/utils/vue'
 import type { PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 
 export const nIconButtonProps = createProps({
     icon: {
-        type: Function,
+        type: Object as PropType<HeroIcon>,
         required: true,
     },
     link: [String, Object] as PropType<RouteLocationRaw>,
@@ -32,7 +33,7 @@ export default createComponent('NIconButton', nIconButtonProps, props => {
             : `hover:bg-${props.color}-500 hover:bg-opacity-10 text-${props.color}-500 focus-visible:ring-${props.color}-500 cursor-pointer`,
     ]
 
-    const content = () => <div class={`w-${props.size} h-${props.size}`}>{props.icon()}</div>
+    const content = () => <props.icon class={`w-${props.size} h-${props.size}`} />
 
     return () =>
         props.link ? (

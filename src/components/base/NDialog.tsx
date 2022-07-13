@@ -5,6 +5,7 @@ import { computed, ref, type PropType } from 'vue'
 import NIconCircle from './NIconCircle'
 import NModal from './NModal'
 import { DialogTitle } from '@headlessui/vue'
+import type { HeroIcon } from '@/utils/utils'
 
 export const nDialogProps = createProps({
     title: String,
@@ -17,7 +18,7 @@ export const nDialogProps = createProps({
         type: String as PropType<'success' | 'info' | 'warning' | 'error' | 'remove'>,
         default: 'warning',
     },
-    icon: Function,
+    icon: Object as PropType<HeroIcon>,
     iconColor: String,
     okText: String,
     okColor: String,

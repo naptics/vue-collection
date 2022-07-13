@@ -1,8 +1,10 @@
+import type { HeroIcon } from '@/utils/utils'
 import { createComponent, createProps } from '@/utils/vue'
+import type { PropType } from 'vue'
 
 export const nIconCircleProps = createProps({
     icon: {
-        type: Function,
+        type: Object as PropType<HeroIcon>,
         required: true,
     },
     color: {
@@ -48,7 +50,7 @@ export default createComponent('NIconCircle', nIconCircleProps, props => {
             style={`width: ${circleSize}px; height: ${circleSize}px`}
         >
             <div class={`text-${props.color}-${props.iconShade}`} style={`width: ${iconSize}px; height: ${iconSize}px`}>
-                {props.icon()}
+                <props.icon />
             </div>
         </div>
     )

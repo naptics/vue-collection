@@ -1,3 +1,4 @@
+import NAlert from '@/components/base/NAlert'
 import NBadge from '@/components/base/NBadge'
 import NButton from '@/components/base/NButton'
 import NCheckbox from '@/components/base/NCheckbox'
@@ -279,6 +280,13 @@ export default createView('HomeView', () => {
                         },
                     ]}
                 />
+            </div>
+            <div class="space-y-2">
+                <NAlert variant="success" text="Super gemacht, alles klar!" />
+                <NAlert variant="info" text="Es hat alles geklappt." />
+                <NAlert variant="loading" text="Datei wird heruntergeladen..." />
+                <NAlert variant="warning" text="Es ist ein Fehler aufgetreten." />
+                <NAlert variant="error" text="Die Datei kann nicht gespeichert werden." />
             </div>
         </div>
     )

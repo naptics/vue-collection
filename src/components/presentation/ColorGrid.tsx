@@ -8,18 +8,18 @@ export const colorGridProps = createProps({
         type: Number,
         default: 6,
     },
-    item: Function as PropType<(color: string) => JSX.Element>,
+    item: Function as PropType<(color: string, index: number) => JSX.Element>,
 })
 
 export default createComponent('ColorGrid', colorGridProps, props => {
-    const colors = ['primary', 'secondary', 'green', 'red', 'blue', 'default']
+    const colors = ['primary', 'secondary', 'green', 'red', 'yellow', 'default']
 
     const selectedColors = computed(() => colors.slice(0, props.colors))
 
     return () => (
         <ComponentGrid cols={props.cols}>
-            {selectedColors.value.map(color => (
-                <div class="flex">{props.item?.(color)}</div>
+            {selectedColors.value.map((color, index) => (
+                <div class="flex">{props.item?.(color, index)}</div>
             ))}
         </ComponentGrid>
     )

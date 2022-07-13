@@ -5,7 +5,7 @@ import { RouterLink, type RouteLocationRaw } from 'vue-router'
 
 export const nIconButtonProps = createProps({
     icon: {
-        type: Object as PropType<HeroIcon>,
+        type: Function as PropType<HeroIcon>,
         required: true,
     },
     link: [String, Object] as PropType<RouteLocationRaw>,

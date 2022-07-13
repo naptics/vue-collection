@@ -20,5 +20,5 @@ export default createComponent('ComponentGrid', componentGridProps, (props, { sl
         }
     })
 
-    return () => <div class={`grid gap-4 ${classes.value}`}>{slots.default?.()}</div>
+    return () => <div class={`grid gap-4  ${classes.value}`}>{slots.default?.()}</div>
 })

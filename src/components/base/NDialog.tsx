@@ -7,6 +7,8 @@ import NModal from './NModal'
 import { DialogTitle } from '@headlessui/vue'
 import type { HeroIcon } from '@/utils/utils'
 
+export type DialogVariant = 'success' | 'info' | 'warning' | 'error' | 'remove'
+
 export const nDialogProps = createProps({
     title: String,
     text: String,
@@ -15,10 +17,10 @@ export const nDialogProps = createProps({
         default: 'sm',
     },
     variant: {
-        type: String as PropType<'success' | 'info' | 'warning' | 'error' | 'remove'>,
+        type: String as PropType<DialogVariant>,
         default: 'warning',
     },
-    icon: Object as PropType<HeroIcon>,
+    icon: Function as PropType<HeroIcon>,
     iconColor: String,
     okText: String,
     okColor: String,

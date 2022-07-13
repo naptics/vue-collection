@@ -4,7 +4,7 @@ import type { PropType } from 'vue'
 
 export const nIconCircleProps = createProps({
     icon: {
-        type: Object as PropType<HeroIcon>,
+        type: Function as PropType<HeroIcon>,
         required: true,
     },
     color: {

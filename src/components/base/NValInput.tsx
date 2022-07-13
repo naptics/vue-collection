@@ -3,6 +3,7 @@ import { computed } from '@vue/reactivity'
 import { ref, reactive, type PropType, watch } from 'vue'
 import NInput, { nInputProps } from './NInput'
 import { type ValidationRule, type ValidationResult, validate, type InputValue, required } from '@/utils/validation'
+import type { ValidatedForm } from './ValidatedForm'
 
 export const nValInputProps = createProps({
     ...nInputProps,
@@ -11,6 +12,10 @@ export const nValInputProps = createProps({
         type: Array as PropType<ValidationRule[]>,
         default: () => [],
     },
+    /**
+     * The form, which this input will be added to.
+     */
+    form: Object as PropType<ValidatedForm>,
     /**
      * Overrides the internal error state. If set to true, it will always display an error.
      */
@@ -93,6 +98,7 @@ export default createComponent('NValInput', nValInputProps, (props, context) => 
         reset: () => (validationResult.value = undefined),
     }
     context.expose(expose)
+    props.form?.addInput(expose)
 
     return () => (
         <div>

@@ -1,6 +1,7 @@
 import { createComponent, createProps, vModel } from '@/utils/vue'
 import { ref, type PropType } from 'vue'
 import NValInput, { type NValInputExposed } from './NValInput'
+import type { ValidatedForm } from './ValidatedForm'
 
 export const nSelectProps = createProps({
     ...vModel(String),
@@ -11,6 +12,10 @@ export const nSelectProps = createProps({
     },
     optional: Boolean,
     disabled: Boolean,
+    /**
+     * The form, which this input will be added to.
+     */
+    form: Object as PropType<ValidatedForm>,
 })
 
 export type SelectionOption = {

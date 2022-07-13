@@ -78,14 +78,14 @@ export default createView('HomeView', () => {
 
             <NForm form={form1} onSubmit={() => console.log('submit')}>
                 <NValInput
-                    ref={form1.addInput()}
+                    form={form1}
                     name="Email"
                     value={inputValue.value}
                     onUpdateValue={newValue => (inputValue.value = newValue)}
                     rules={[email]}
                 />
                 <NValInput
-                    ref={form1.addInput()}
+                    form={form1}
                     name="Passwort"
                     type="password"
                     value={pwValue.value}
@@ -94,7 +94,7 @@ export default createView('HomeView', () => {
                     optional={true}
                 />
                 <NValInput
-                    ref={form1.addInput()}
+                    form={form1}
                     name="Passwort wiederholen"
                     type="password"
                     value={pw2Value.value}
@@ -104,7 +104,7 @@ export default createView('HomeView', () => {
                 />
                 <NSelect
                     {...refAsVModel(selectValue)}
-                    ref={form1.addInput()}
+                    form={form1}
                     name="Status wählen"
                     options={[
                         { key: 'test', label: 'cool' },
@@ -149,14 +149,14 @@ export default createView('HomeView', () => {
 
                 <NFormModal {...refAsVModel(showModal3)} form={form2} title="Form Modal">
                     <NValInput
-                        ref={form2.addInput()}
+                        form={form2}
                         name="Email"
                         value={inputValue.value}
                         onUpdateValue={newValue => (inputValue.value = newValue)}
                         rules={[email]}
                     />
                     <NValInput
-                        ref={form2.addInput()}
+                        form={form2}
                         name="Passwort"
                         type="password"
                         value={pwValue.value}
@@ -165,7 +165,7 @@ export default createView('HomeView', () => {
                         optional={true}
                     />
                     <NValInput
-                        ref={form2.addInput()}
+                        form={form2}
                         name="Passwort wiederholen"
                         type="password"
                         value={pw2Value.value}

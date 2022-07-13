@@ -1,5 +1,4 @@
 import type { ValidationResult } from '@/utils/validation'
-import { ref, type Ref } from 'vue'
 import type { NValInputExposed } from './NValInput'
 
 /**
@@ -13,9 +12,9 @@ import type { NValInputExposed } from './NValInput'
  */
 export type ValidatedForm = {
     /**
-     * Adds the input to the list of this form. The returned ref should be used as the inputs ref.
+     * Adds the input to the list of this form.
      */
-    addInput(): Ref<NValInputExposed | undefined>
+    addInput(input: NValInputExposed): void
     /**
      * Validates all inputs of the form. If inputs are invalid they will show it visually.
      * The first invalid validation result is returned.
@@ -36,16 +35,14 @@ export function createValidatedForm(): ValidatedForm {
 }
 
 class ValidatedFormImpl implements ValidatedForm {
-    inputs: Ref<NValInputExposed | undefined>[] = []
+    inputs: NValInputExposed[] = []
 
-    addInput(): Ref<NValInputExposed | undefined> {
-        const newLit = ref<NValInputExposed>()
-        this.inputs.push(newLit)
-        return newLit
+    addInput(input: NValInputExposed): void {
+        this.inputs.push(input)
     }
 
     validate(): ValidationResult {
-        const results = this.inputs.map(input => input.value?.validate())
+        const results = this.inputs.map(input => input.validate())
         // return first invalid result
         for (const result of results) if (result && !result.isValid) return result
         // else return valid result
@@ -53,6 +50,6 @@ class ValidatedFormImpl implements ValidatedForm {
     }
 
     reset(): void {
-        this.inputs.forEach(input => input.value?.reset())
+        this.inputs.forEach(input => input.reset())
     }
 }

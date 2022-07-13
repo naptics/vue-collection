@@ -47,7 +47,7 @@ export const nModalProps = createProps({
     /**
      * A slot to replace the whole modal content including all buttons, header and footer.
      */
-    modal: Function as PropType<() => JSX.Element>,
+    modal: Function as PropType<(props: ModalSlotProps) => JSX.Element>,
     /**
      * A slot to replace the whole header section (excluding the x).
      */
@@ -55,8 +55,10 @@ export const nModalProps = createProps({
     /**
      * A slot to replace the whole footer section.
      */
-    footer: Function as PropType<(props: { ok: () => void; cancel: () => void }) => JSX.Element>,
+    footer: Function as PropType<(props: ModalSlotProps) => JSX.Element>,
 })
+
+export type ModalSlotProps = { ok: () => void; cancel: () => void }
 
 export default createComponent('NModal', nModalProps, (props, { slots }) => {
     const ok = () => {
@@ -103,8 +105,8 @@ export default createComponent('NModal', nModalProps, (props, { slots }) => {
                         leave-from="opacity-100 translate-y-0 sm:scale-100"
                         leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     >
-                        <div class={['inline-block transform m-4 w-full align-middle', props.maxWidth]}>
-                            <slot name="modal">
+                        <div class={['transform m-4 w-full align-middle', props.maxWidth]}>
+                            {props.modal?.({ ok, cancel }) || (
                                 <div
                                     class={[
                                         'shadow-xl rounded-lg bg-white divide-y divide-default-100',
@@ -152,7 +154,7 @@ export default createComponent('NModal', nModalProps, (props, { slots }) => {
                                         </div>
                                     )}
                                 </div>
-                            </slot>
+                            )}
                         </div>
                     </TransitionChild>
                 </div>

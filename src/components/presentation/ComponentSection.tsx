@@ -15,7 +15,7 @@ export default createComponent('ComponentSection', componentSectionProps, (props
                 </div>
             </div>
             <div>
-                <div class="p-8 space-y-8 max-w-4xl mx-auto">{slots.default?.()}</div>
+                <div class="px-8 py-10 space-y-8 max-w-4xl mx-auto">{slots.default?.()}</div>
             </div>
         </>
     )

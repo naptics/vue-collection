@@ -5,6 +5,7 @@ import BadgeView from './presentation/BadgeView'
 import ButtonView from './presentation/ButtonView'
 import CheckboxView from './presentation/CheckboxView'
 import IconButtonView from './presentation/IconButtonView'
+import DropdownView from './presentation/DropdownView'
 
 export default createView('PresentationView', () => {
     return () => (
@@ -14,6 +15,7 @@ export default createView('PresentationView', () => {
             <IconButtonView />
             <BadgeView />
             <CheckboxView />
+            <DropdownView />
             <ModalView />
         </div>
     )

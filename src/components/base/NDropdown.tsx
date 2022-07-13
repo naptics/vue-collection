@@ -3,9 +3,10 @@ import { computed, Transition, type PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/outline'
+import type { HeroIcon } from '@/utils/utils'
 
 export const nDropdownProps = createProps({
-    text: String,
+    title: String,
     items: {
         type: Array as PropType<DropdownItem[] | DropdownItem[][]>,
         default: () => [],
@@ -27,9 +28,7 @@ export default createComponent('NDropdown', nDropdownProps, (props, { slots }) =
 
     const itemWithIcon = (item: DropdownItem) => (
         <div class="flex space-x-3 items-center">
-            {item.icon && (
-                <div class={['h-5 w-5', item.disabled ? 'text-default-300' : 'text-default-400']}> {item.icon()}</div>
-            )}
+            {item.icon && <item.icon class={['h-5 w-5', item.disabled ? 'text-default-300' : 'text-default-400']} />}
             <span>{item.label}</span>
         </div>
     )
@@ -41,14 +40,12 @@ export default createComponent('NDropdown', nDropdownProps, (props, { slots }) =
                     <MenuButton
                         disabled={props.disabled}
                         class={[
-                            'shadow inline-flex justify-center w-full rounded-md border bg-white border-default-300 px-4 py-2 text-sm font-medium focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500',
-                            props.disabled
-                                ? 'text-default-300 cursor-default'
-                                : 'text-default-700 hover:bg-default-100',
+                            'shadow w-full flex justify-between items-center text-default-700 rounded-md border bg-white border-default-300 px-4 py-2 text-sm font-medium focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500',
+                            props.disabled ? 'text-opacity-20 cursor-default' : 'hover:bg-default-100',
                         ]}
                     >
-                        {props.text}
-                        <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+                        <span>{props.title}</span>
+                        <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5 flex-shrink-0" aria-hidden="true" />
                     </MenuButton>
                 )}
             </div>
@@ -120,7 +117,7 @@ export default createComponent('NDropdown', nDropdownProps, (props, { slots }) =
 export type DropdownItem = {
     label: string
     // eslint-disable-next-line @typescript-eslint/ban-types
-    icon?: Function
+    icon?: HeroIcon
     route?: RouteLocationRaw
     disabled?: boolean
     action?: () => void

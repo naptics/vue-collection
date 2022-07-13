@@ -8,7 +8,7 @@ export const nIconButtonProps = createProps({
         type: Function as PropType<HeroIcon>,
         required: true,
     },
-    link: [String, Object] as PropType<RouteLocationRaw>,
+    route: [String, Object] as PropType<RouteLocationRaw>,
     color: {
         type: String,
         default: 'default',
@@ -36,8 +36,8 @@ export default createComponent('NIconButton', nIconButtonProps, props => {
     const content = () => <props.icon class={`w-${props.size} h-${props.size}`} />
 
     return () =>
-        props.link ? (
-            <RouterLink to={props.link} class={classes()}>
+        props.route ? (
+            <RouterLink to={props.route} class={classes()}>
                 {content()}
             </RouterLink>
         ) : (

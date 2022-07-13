@@ -3,7 +3,7 @@ import type { PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 
 export const nTableActionProps = createProps({
-    link: Object as PropType<RouteLocationRaw>,
+    route: Object as PropType<RouteLocationRaw>,
     text: String,
     type: {
         type: String as PropType<'submit' | 'button' | 'reset'>,
@@ -19,8 +19,8 @@ export default createComponent('NTableAction', nTableActionProps, (props, { slot
         'text-left font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-default-900 rounded-sm ring-offset-2 text-default-900 hover:underline hover:text-default-700'
 
     return () =>
-        props.link ? (
-            <RouterLink to={props.link} class={classes}>
+        props.route ? (
+            <RouterLink to={props.route} class={classes}>
                 {content()}
             </RouterLink>
         ) : (

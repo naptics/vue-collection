@@ -196,7 +196,7 @@ export default createView('HomeView', () => {
                     disabled={showModal1.value}
                     onClick={() => console.log('Hello IconButton')}
                 />
-                <NIconButton icon={ExternalLinkIcon} link="/" />
+                <NIconButton icon={ExternalLinkIcon} route="/" />
 
                 <NIconCircle icon={PencilIcon} circleSize={12} />
                 <NIconCircle color="secondary" icon={EyeIcon} iconSize={4} />
@@ -215,7 +215,7 @@ export default createView('HomeView', () => {
 
             <div>
                 <NDropdown
-                    text="Choose Option"
+                    title="Choose Option"
                     items={[
                         [
                             { label: 'Hello', action: () => console.log('hello'), icon: CogIcon },
@@ -267,7 +267,7 @@ export default createView('HomeView', () => {
                         {
                             firstname: 'Franz',
                             lastname: 'Huber',
-                            email: () => <NTableAction text="franz.hubi@hotmail.com" link="/" />,
+                            email: () => <NTableAction text="franz.hubi@hotmail.com" route="/" />,
                             action: () => <NIconButton icon={ExternalLinkIcon} />,
                         },
                         {

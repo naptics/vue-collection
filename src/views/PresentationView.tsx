@@ -5,8 +5,8 @@ import CheckboxView from './presentation/CheckboxView'
 export default createView('PresentationView', () => {
     return () => (
         <div class="bg-default-50">
-            <CheckboxView />
             <div class="h-48" />
+            <CheckboxView />
             <ButtonView />
         </div>
     )

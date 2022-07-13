@@ -4,7 +4,7 @@ import type { PropType } from 'vue'
 export const nBadgeProps = createProps({
     text: String,
     textSize: {
-        type: String as PropType<'text-xs' | 'text-sm' | 'text-base' | 'text-lg' | 'text-xl'>,
+        type: String as PropType<'text-xs' | 'text-sm' | 'text-base' | 'text-lg' | 'text-xl' | 'text-2xl'>,
         default: 'text-sm',
     },
     color: {

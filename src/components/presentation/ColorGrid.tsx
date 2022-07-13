@@ -6,6 +6,7 @@ export const colorGridProps = createProps({
         type: Number,
         default: 6,
     },
+
     gridCols: {
         type: String,
         default: 'grid-cols-3 sm:grid-cols-6',
@@ -21,7 +22,7 @@ export default createComponent('ColorGrid', colorGridProps, props => {
     return () => (
         <div class={`grid gap-4 ${props.gridCols}`}>
             {selectedColors.value.map(color => (
-                <div>{props.item?.(color)}</div>
+                <div class="flex">{props.item?.(color)}</div>
             ))}
         </div>
     )

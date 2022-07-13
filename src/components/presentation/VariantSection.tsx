@@ -10,9 +10,9 @@ export default createComponent('VariantSection', variantSectionProps, (props, { 
         <div>
             <div class="mb-6">
                 <h3 class="text-lg font-medium text-default-700"> {props.title} </h3>
-                {props.subtitle && <p class="text-default-500"> {props.subtitle} </p>}
+                {props.subtitle && <p class="text-default-500 text-sm"> {props.subtitle} </p>}
             </div>
-            {slots.default?.()}
+            <div class="border-2 border-dashed rounded-lg p-8 border-default-200 bg-white">{slots.default?.()}</div>
         </div>
     )
 })

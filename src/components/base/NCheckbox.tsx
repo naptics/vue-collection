@@ -36,7 +36,7 @@ export default createComponent('NCheckbox', nCheckboxProps, props => {
                 `h-5 w-5 border-default-300 rounded focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-${props.color}-500`,
                 props.disabled
                     ? `cursor-default bg-default-100 text-${props.color}-200`
-                    : `cursor-pointer text-${props.color}-500`,
+                    : `cursor-pointer text-${props.color}-400`,
             ]}
         />
     )

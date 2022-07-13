@@ -73,6 +73,25 @@ export function vModel<T>(propType: PropType<T>) {
     }
 }
 
+/**
+ * Cretes a v-model of the given type, with the value beeing a required property.
+ * @see vModel
+ */
+export function requiredVModel<T>(propType: PropType<T>) {
+    return {
+        value: {
+            type: propType as PropType<T>,
+            required: true,
+        },
+        onUpdateValue: Function as PropType<(newValue: T) => void>,
+    }
+}
+
+/**
+ * Uses the given ref as a vmodel, assigning the value property and updating the ref from the update function.
+ * @param ref the ref which should be used as the v-model
+ * @returns an object containing the `value` and the `onUpdateValue` function.
+ */
 export function refAsVModel<T>(ref: Ref<T>) {
     return {
         value: ref.value,
@@ -82,6 +101,16 @@ export function refAsVModel<T>(ref: Ref<T>) {
     }
 }
 
+/**
+ * Extracts props from another prop object and returns a reactive object with the specified props.
+ * @param props the props to extract from
+ * @param keys the keys to extract from the props
+ * @returns the new object with the specified props
+ * @example
+ * const parentProps = { title: 'hi', text: 'ho' }
+ * const childProps = extractProps(parentProps, 'title')
+ * console.log(childProps) // { title: 'hi' }
+ */
 export function extractProps<T extends object>(props: T, ...keys: (keyof T)[]): UnwrapNestedRefs<Partial<ToRefs<T>>> {
     const partial: Partial<ToRefs<T>> = {}
     for (const key of keys) partial[key] = toRef(props, key)

@@ -1,0 +1,46 @@
+import NIconButton from '@/components/base/NIconButton'
+import ColorGrid from '@/components/presentation/ColorGrid'
+import ComponentGrid from '@/components/presentation/ComponentGrid'
+import ComponentSection from '@/components/presentation/ComponentSection'
+import VariantSection from '@/components/presentation/VariantSection'
+import { createView } from '@/utils/vue'
+import {
+    CogIcon,
+    CashIcon,
+    EyeIcon,
+    KeyIcon,
+    PencilIcon,
+    RssIcon,
+    ExternalLinkIcon,
+    ChevronDoubleRightIcon,
+} from '@heroicons/vue/solid'
+
+export default createView('IconButtonView', () => {
+    const icons = [CogIcon, RssIcon, KeyIcon, CashIcon, PencilIcon, EyeIcon]
+    const sizes = [4, 5, 6, 7, 8, 10]
+
+    return () => (
+        <ComponentSection
+            title="Icon Buttons"
+            subtitle="Icon Buttons are regular buttons which just have an icon and no text."
+        >
+            <VariantSection title="Different Colors">
+                <ColorGrid item={(color, index) => <NIconButton icon={icons[index]} color={color} />} />
+            </VariantSection>
+
+            <VariantSection title="Different Sizes">
+                <ComponentGrid>
+                    {sizes.map(size => (
+                        <div class="flex items-center justify-start">
+                            <NIconButton icon={ChevronDoubleRightIcon} size={size} />
+                        </div>
+                    ))}
+                </ComponentGrid>
+            </VariantSection>
+
+            <VariantSection title="Router Links" subtitle="The Icon Button can also be used as a regular router link.">
+                <ColorGrid item={color => <NIconButton icon={ExternalLinkIcon} link="/" color={color} />} />
+            </VariantSection>
+        </ComponentSection>
+    )
+})

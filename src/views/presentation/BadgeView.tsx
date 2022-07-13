@@ -35,7 +35,7 @@ export default createView('BadgeView', () => {
             >
                 <ComponentGrid>
                     {textSizes.map(size => (
-                        <div class="flex justify-start items-start">
+                        <div class="flex justify-start items-center">
                             {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                             <NBadge text="Sizes" textSize={size as any} />
                         </div>

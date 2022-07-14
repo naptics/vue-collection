@@ -1,3 +1,23 @@
 # Vue Collection
 
-Vue Collection contains prestyled and fully functional Vue components which can easily be used in any project.
+Vue Collection contains styled and fully functional Vue components which can easily be used in any project.
+
+## Integrate Vue Collection into a new project 🔨
+
+1. Create a new vue-project with `npm init vue@latest`. Add at least typescript, jsx, vue-router, eslint and prettier.
+2. Remove boilerplate code.
+3. Follow the instructions to [install tailwind](https://tailwindcss.com/docs/installation/using-postcss).
+    - `npm install -D tailwindcss postcss autoprefixer`
+    - `npx tailwindcss init`
+    - ... follow the further instructions
+    - When creating the App.css add contents of this repo's `App.css`
+4. Add tailwind forms with `npm install -D @tailwindcss/forms`
+5. Copy the tailwind configuration `tailwind.config.js` to your project.
+6. Add other dependencies with `npm install @headlessui/vue @heroicons/vue vue-i18n`
+7. Copy files from `.vscode` to your project. Remove `.vscode/settings.json` file from `.gitignore`. Copy `.prettierrc` to your project.
+8. Make sure typescript config is correct. Double check with this repo.
+9. Copy the contents of `src/components/base` (without the tests), `src/i18n` and `src/utils` to your project.
+10. Create your `App.tsx` (you probably deleted earlier) file with a router view and link the `App.css`. Make sure to always use the `createView` and `createComponent` functions.
+11. Close your project and reopen it again. Now all weird warnings should go away.
+12. You're ready to go: Run your app with `npm run dev`.
+13. Don't forget to configure primary, secondary and default color in `tailwind.config.js`. Also choose which classes are white-listed.

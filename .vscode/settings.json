@@ -3,5 +3,6 @@
     "prettier.enable": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
-    "eslint.validate": ["vue", "html", "javascript", "typescript", "javascriptreact", "typescriptreact"]
+    "eslint.validate": ["vue", "html", "javascript", "typescript", "javascriptreact", "typescriptreact"],
+    "css.lint.unknownAtRules": "ignore"
 }

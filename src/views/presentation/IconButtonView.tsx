@@ -40,7 +40,7 @@ export default createView('IconButtonView', () => {
             </VariantSection>
 
             <VariantSection title="Router Links" subtitle="The Icon Button can also be used as a regular router link.">
-                <ColorGrid item={color => <NIconButton icon={ExternalLinkIcon} link="/" color={color} />} />
+                <ColorGrid item={color => <NIconButton icon={ExternalLinkIcon} route="/" color={color} />} />
             </VariantSection>
         </ComponentSection>
     )

@@ -16,11 +16,6 @@ const router = createRouter({
             name: 'home',
             component: HomeView,
         },
-        {
-            path: '/present',
-            name: 'present',
-            component: () => import('@/views/PresentationView'),
-        },
     ],
 })
 

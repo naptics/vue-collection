@@ -27,7 +27,7 @@ export default createView('TableView', () => {
     return () => (
         <ComponentSection
             title="Tables"
-            subtitle="Tables are perfect to display a lot of data in a orderly way."
+            subtitle="Tables are perfect to display a lot of data in an orderly way."
             id="tables"
         >
             <VariantSection

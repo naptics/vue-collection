@@ -28,7 +28,7 @@ export default createView('HomeView', () => {
 
     return () => (
         <div>
-            <div class="bg-gradient-to-r from-primary-500">
+            <div class="bg-gradient-to-r from-primary-500/70 to-white">
                 <div
                     class="bg-gradient-to-b from-default-300/80 to-default-50 border-b-2 border-default-200 z-50"
                     id="overview"

@@ -16,7 +16,6 @@ import TableView from './presentation/TableView'
 import NavigationView from './NavigationView'
 import { RouterLink } from 'vue-router'
 import { ChevronDoubleUpIcon } from '@heroicons/vue/solid'
-import NButton from '@/components/base/NButton'
 import { ref, Transition } from 'vue'
 import NBadge from '@/components/base/NBadge'
 
@@ -66,7 +65,7 @@ export default createView('HomeView', () => {
                 {showButton.value && (
                     <div class="fixed z-20 bottom-4 right-4">
                         <RouterLink to={{ hash: '#overview' }}>
-                            <NBadge textSize="text-lg" allCaps={false}>
+                            <NBadge textSize="text-base" allCaps={false}>
                                 <div class="flex items-center space-x-2">
                                     <span>Overview</span>
                                     <ChevronDoubleUpIcon class="h-5 w-5" />

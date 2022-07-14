@@ -17,7 +17,7 @@ Vue Collection contains styled and fully functional Vue components which can eas
 7. Copy files from `.vscode` to your project. Remove `.vscode/settings.json` file from `.gitignore`. Copy `.prettierrc` to your project.
 8. Make sure typescript config is correct. Double check with this repo.
 9. Copy the contents of `src/components/base` (without the tests), `src/i18n` and `src/utils` to your project.
-10. Create your `App.tsx` (you probably deleted earlier) file with a router view and link the `App.css`. Make sure to always use the `createView` and `createComponent` functions.
+10. Create your `App.tsx` file (you probably deleted earlier) and add a router view to the app. Link the `App.css` to it. Then you're ready to add a `HomeView` and link it to the router. Make sure to always use the `createView` and `createComponent` functions defined in the `src/utils/vue` file.
 11. Close your project and reopen it again. Now all weird warnings should go away.
 12. You're ready to go: Run your app with `npm run dev`.
 13. Don't forget to configure primary, secondary and default color in `tailwind.config.js`. Also choose which classes are white-listed.

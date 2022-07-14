@@ -16,13 +16,13 @@ import TableView from './presentation/TableView'
 
 export default createView('PresentationView', () => {
     return () => (
-        <div class="bg-default-50">
+        <div class="space-y-10">
             <ListView />
             <LoaderView />
             <PaginationView />
             <SearchbarView />
             <TableView />
-            <div class="h-72" />
+
             <AlertView />
             <ButtonView />
             <IconButtonView />

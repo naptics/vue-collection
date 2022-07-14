@@ -13,6 +13,7 @@ export default createView('CheckboxView', () => {
         <ComponentSection
             title="Checkboxes"
             subtitle="Checkboxes come in different colors and can be used on their own or together with labels."
+            id="checkboxes"
         >
             <VariantSection title="On their own">
                 <ColorGrid item={(color, idx) => <NCheckbox color={color} {...refAsVModel(refs[idx])} />} />

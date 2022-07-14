@@ -29,7 +29,11 @@ export default createView('InputView', () => {
     const onSubmit = () => alert('Form was submitted!')
 
     return () => (
-        <ComponentSection title="Inputs and Forms">
+        <ComponentSection
+            title="Inputs and Forms"
+            subtitle="Handle user input well with these inputs and forms."
+            id="inputs"
+        >
             <VariantSection title="Different types">
                 <NForm>
                     <ComponentGrid cols={2}>

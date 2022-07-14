@@ -39,6 +39,7 @@ export default createView('ModalView', () => {
             <ComponentSection
                 title="Modals and Dialogs"
                 subtitle="Useful components which come to the foreground to interact with the user."
+                id="modals"
             >
                 <VariantSection
                     title="Basic Modals"

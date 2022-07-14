@@ -33,6 +33,7 @@ export default createView('SearchbarView', () => {
         <ComponentSection
             title="Searchbars"
             subtitle="Searchbars are styled inputs which can optionally provide a list of suggestions."
+            id="searchbars"
         >
             <VariantSection title="Simple Searchbars">
                 <ComponentGrid cols={2}>

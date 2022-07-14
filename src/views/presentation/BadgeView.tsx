@@ -14,6 +14,7 @@ export default createView('BadgeView', () => {
         <ComponentSection
             title="Badges"
             subtitle="Badges wrap a small text. They come in multiple sizes, colors and shades."
+            id="badges"
         >
             <VariantSection title="Default Size">
                 <ColorGrid item={color => <NBadge color={color}>naptics</NBadge>} />

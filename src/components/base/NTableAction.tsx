@@ -3,7 +3,7 @@ import type { PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 
 export const nTableActionProps = createProps({
-    route: Object as PropType<RouteLocationRaw>,
+    route: [String, Object] as PropType<RouteLocationRaw>,
     text: String,
     type: {
         type: String as PropType<'submit' | 'button' | 'reset'>,

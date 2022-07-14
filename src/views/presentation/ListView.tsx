@@ -16,6 +16,7 @@ export default createView('ListView', () => {
         <ComponentSection
             title="List"
             subtitle="A component to display key-value information in a simple and neat way."
+            id="lists"
         >
             <VariantSection title="Display Information">
                 <NList items={items} />

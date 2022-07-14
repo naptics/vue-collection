@@ -1,293 +1,81 @@
-import NAlert from '@/components/base/NAlert'
-import NBadge from '@/components/base/NBadge'
+import ModalView from './presentation/ModalView'
+import { createView } from '@/utils/vue'
+import AlertView from './presentation/AlertView'
+import BadgeView from './presentation/BadgeView'
+import ButtonView from './presentation/ButtonView'
+import CheckboxView from './presentation/CheckboxView'
+import IconButtonView from './presentation/IconButtonView'
+import DropdownView from './presentation/DropdownView'
+import IconCircleView from './presentation/IconCircleView'
+import InputView from './presentation/InputView'
+import ListView from './presentation/ListView'
+import LoadingIndicatorView from './presentation/LoadingIndicatorView'
+import PaginationView from './presentation/PaginationView'
+import SearchbarView from './presentation/SearchbarView'
+import TableView from './presentation/TableView'
+import NavigationView from './NavigationView'
+import { RouterLink } from 'vue-router'
+import { ChevronDoubleUpIcon } from '@heroicons/vue/solid'
 import NButton from '@/components/base/NButton'
-import NCheckbox from '@/components/base/NCheckbox'
-import NCheckboxLabel from '@/components/base/NCheckboxLabel'
-import NCrudModal from '@/components/base/NCrudModal'
-import NDialog, { type NDialogExposed } from '@/components/base/NDialog'
-import NDropdown from '@/components/base/NDropdown'
-import NForm from '@/components/base/NForm'
-import NFormModal from '@/components/base/NFormModal'
-import NIconButton from '@/components/base/NIconButton'
-import NIconCircle from '@/components/base/NIconCircle'
-import NInput from '@/components/base/NInput'
-import NList from '@/components/base/NList'
-import NLoadingIndicator from '../components/base/NLoadingIndicator'
-import NModal from '@/components/base/NModal'
-import NPagination from '@/components/base/NPagination'
-import NSearchbar from '@/components/base/NSearchbar'
-import NSearchbarList from '@/components/base/NSearchbarList'
-import NSelect from '@/components/base/NSelect'
-import NTable from '@/components/base/NTable'
-import NTableAction from '@/components/base/NTableAction'
-import NValInput from '@/components/base/NValInput'
-import { createValidatedForm } from '@/components/base/ValidatedForm'
-import { email, matches, regex } from '@/utils/validation'
-import { createView, refAsVModel } from '@/utils/vue'
-import { RssIcon } from '@heroicons/vue/outline'
-import { CogIcon, ExternalLinkIcon, EyeIcon, LockClosedIcon, PencilIcon } from '@heroicons/vue/solid'
-import { ref } from 'vue'
-
-const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+\-=!*()@%&?]).{8,}$/
+import { ref, Transition } from 'vue'
+import NBadge from '@/components/base/NBadge'
 
 export default createView('HomeView', () => {
-    const checkboxValue = ref(false)
-    const inputValue = ref('')
-    const pwValue = ref('')
-    const pw2Value = ref('')
-
-    const showModal1 = ref(false)
-    const showModal2 = ref(false)
-    const showModal3 = ref(false)
-    const showModal4 = ref(false)
-
-    const selectValue = ref<string>()
-
-    const dialogRef = ref<NDialogExposed>()
-    const showDialog = () => dialogRef.value?.show()
-
-    const form1 = createValidatedForm()
-    const form2 = createValidatedForm()
-
-    const page = ref(1)
-
-    const onClick = () => {
-        form1.validate()
+    const showButton = ref(false)
+    window.onscroll = () => {
+        const treshhold = 200
+        showButton.value = document.documentElement.scrollTop > treshhold || document.body.scrollTop > treshhold
     }
 
     return () => (
-        <div class="grid grid-cols-3 gap-8 p-8">
-            <NButton onClick={onClick}> Click me! </NButton>
-            <NCheckbox
-                color="secondary"
-                value={checkboxValue.value}
-                onUpdateValue={newValue => (checkboxValue.value = newValue)}
-            />
-            <NCheckboxLabel
-                value={checkboxValue.value}
-                title="Beste Option"
-                description="Mit dieser Option sind Sie immer zufrieden."
-            />
-            <NInput name="Name" value={inputValue.value} onUpdateValue={newValue => (inputValue.value = newValue)} />
-            <NInput
-                name="Nachname"
-                value={inputValue.value}
-                error
-                onUpdateValue={newValue => (inputValue.value = newValue)}
-            />
-
-            <NForm form={form1} onSubmit={() => console.log('submit')}>
-                <NValInput
-                    form={form1}
-                    name="Email"
-                    value={inputValue.value}
-                    onUpdateValue={newValue => (inputValue.value = newValue)}
-                    rules={[email]}
-                />
-                <NValInput
-                    form={form1}
-                    name="Passwort"
-                    type="password"
-                    value={pwValue.value}
-                    onUpdateValue={newValue => (pwValue.value = newValue)}
-                    rules={[regex(PASSWORD_FORMAT)]}
-                    optional={true}
-                />
-                <NValInput
-                    form={form1}
-                    name="Passwort wiederholen"
-                    type="password"
-                    value={pw2Value.value}
-                    onUpdateValue={newValue => (pw2Value.value = newValue)}
-                    rules={[matches(() => pwValue.value)]}
-                    optional={!pwValue.value}
-                />
-                <NSelect
-                    {...refAsVModel(selectValue)}
-                    form={form1}
-                    name="Status wählen"
-                    options={[
-                        { key: 'test', label: 'cool' },
-                        { key: 'medium', label: 'medium' },
-                    ]}
-                />
-
-                <NButton type="submit"> submit now </NButton>
-            </NForm>
-            <div class="flex space-x-2 items-center">
-                <NBadge>Hallo</NBadge>
-                <NBadge color="secondary" text="seco" />
-                <NBadge color="green" shade={700} textShade={100}>
-                    Velo
-                </NBadge>
-                <NBadge color="red" shade={700} textShade={100}>
-                    Auto
-                </NBadge>
-                <NBadge allCaps={false} textSize="text-xl">
-                    Normal
-                </NBadge>
-            </div>
-            <div>
-                <NModal {...refAsVModel(showModal1)} title="Hello Modal">
-                    Here some basic content
-                </NModal>
-
-                <NModal
-                    {...refAsVModel(showModal2)}
-                    header={() => <div>hello</div>}
-                    footer={({ ok, cancel }) => (
-                        <div class="flex space-x-2">
-                            <NButton onClick={ok}>Custom Ok</NButton>
-                            <NButton color="secondary" onClick={cancel}>
-                                Custom Cancel
-                            </NButton>
-                        </div>
-                    )}
-                >
-                    Content here
-                </NModal>
-
-                <NFormModal {...refAsVModel(showModal3)} form={form2} title="Form Modal">
-                    <NValInput
-                        form={form2}
-                        name="Email"
-                        value={inputValue.value}
-                        onUpdateValue={newValue => (inputValue.value = newValue)}
-                        rules={[email]}
-                    />
-                    <NValInput
-                        form={form2}
-                        name="Passwort"
-                        type="password"
-                        value={pwValue.value}
-                        onUpdateValue={newValue => (pwValue.value = newValue)}
-                        rules={[regex(PASSWORD_FORMAT)]}
-                        optional={true}
-                    />
-                    <NValInput
-                        form={form2}
-                        name="Passwort wiederholen"
-                        type="password"
-                        value={pw2Value.value}
-                        onUpdateValue={newValue => (pw2Value.value = newValue)}
-                        rules={[matches(() => pwValue.value)]}
-                        optional={!pwValue.value}
-                    />
-                </NFormModal>
-
-                <NCrudModal
-                    {...refAsVModel(showModal4)}
-                    title="Crud Modal"
-                    removeDialogTitle="Template löschen"
-                    removeDialogText="Möchten Sie das Template unwiderruflich löschen? Dies kann nicht rückgängig gemacht werden."
-                >
-                    Hello Crud Modal
-                </NCrudModal>
-
-                <NButton onClick={() => (showModal1.value = true)}> Open Modal </NButton>
-                <NButton onClick={() => (showModal2.value = true)}> Open Modal 2 </NButton>
-                <NButton onClick={() => (showModal3.value = true)}> Open Form Modal </NButton>
-                <NButton onClick={() => (showModal4.value = true)}> Open Crud Modal </NButton>
-            </div>
-
-            <div class="flex space-x-2 items-center">
-                <NIconButton
-                    icon={PencilIcon}
-                    disabled={showModal1.value}
-                    onClick={() => console.log('Hello IconButton')}
-                />
-                <NIconButton icon={ExternalLinkIcon} route="/" />
-
-                <NIconCircle icon={PencilIcon} circleSize={12} />
-                <NIconCircle color="secondary" icon={EyeIcon} iconSize={4} />
-                <NIconCircle color="default" icon={LockClosedIcon} iconSize={4} circleSize={12} />
-            </div>
-
-            <div>
-                <NButton onClick={showDialog}> Show Dialog</NButton>
-                <NDialog
-                    ref={dialogRef}
-                    variant="remove"
-                    title="Benutzer löschen"
-                    text="Wollen Sie den Benutzer wirklich unwiderruflich löschen? Dies kann nicht rückgängig gemacht werden. "
-                />
-            </div>
-
-            <div>
-                <NDropdown
-                    title="Choose Option"
-                    items={[
-                        [
-                            { label: 'Hello', action: () => console.log('hello'), icon: CogIcon },
-                            { label: 'Link', route: '/', icon: ExternalLinkIcon },
-                            { label: 'Disabled', disabled: true, icon: RssIcon },
-                        ],
-                        [{ label: 'Other section' }],
-                    ]}
-                />
-            </div>
-
-            <div>
-                <NList
-                    items={[
-                        { title: 'Name', text: 'Gerber' },
-                        { title: 'Vorname', text: 'Frank' },
-                        { title: 'Adresse', text: 'Schneestrasse 12' },
-                        { title: 'Ort', text: '8120 Wald ZH' },
-                    ]}
-                />
-            </div>
-            <div>
-                <NLoadingIndicator />
+        <div id="main">
+            <div class="bg-default-50 border-b-2 border-default-200 z-50" id="overview">
+                <div class="px-8 py-20 min-h-screen m-auto text-center max-w-4xl flex items-center justify-center flex-col">
+                    <h1 class="text-6xl font-semibold mb-8">Vue Collection</h1>
+                    <p class="text-3xl font-light text-default-500">
+                        Prestyled and fully functional components created by naptics.
+                    </p>
+                    <NavigationView class="mt-16" />
+                </div>
             </div>
             <div class="space-y-10">
-                <NSearchbar placeholder="Such jetzt!" {...refAsVModel(pw2Value)} />
-                <NSearchbarList
-                    {...refAsVModel(pw2Value)}
-                    loading={pw2Value.value.length < 4}
-                    hideList={pw2Value.value.length == 0}
-                    items={pw2Value.value.length < 4 ? [] : [{ id: 'Hallo' }, { id: 'Test' }]}
-                    onSelect={id => console.log(id)}
-                    listItem={({ item, highlighted }) => <div class={highlighted ? 'text-red-500' : ''}>{item.id}</div>}
-                />
+                <AlertView />
+                <ButtonView />
+                <IconButtonView />
+                <IconCircleView />
+                <BadgeView />
+                <CheckboxView />
+                <DropdownView />
+                <InputView />
+                <SearchbarView />
+                <LoadingIndicatorView />
+                <ModalView />
+                <ListView />
+                <TableView />
+                <PaginationView />
             </div>
 
-            <div>
-                <NPagination total={12} {...refAsVModel(page)} />
-            </div>
-            <div class="col-span-3">
-                <NTable
-                    headings={[
-                        { key: 'firstname', label: 'Vorname' },
-                        { key: 'lastname', label: 'Nachname' },
-                        { key: 'email', label: 'Email' },
-                        { key: 'action', cellClass: 'flex items-center flex-row-reverse' },
-                    ]}
-                    items={[
-                        {
-                            firstname: 'Franz',
-                            lastname: 'Huber',
-                            email: () => <NTableAction text="franz.hubi@hotmail.com" route="/" />,
-                            action: () => <NIconButton icon={ExternalLinkIcon} />,
-                        },
-                        {
-                            firstname: 'Micha',
-                            lastname: 'Meier',
-                            email: () => (
-                                <NTableAction onClick={() => console.log('click')} text="meimic@hotmail.com" />
-                            ),
-                            action: () => <NIconButton icon={ExternalLinkIcon} />,
-                        },
-                    ]}
-                />
-            </div>
-            <div class="space-y-2">
-                <NAlert variant="success" text="Super gemacht, alles klar!" />
-                <NAlert variant="info" text="Es hat alles geklappt." />
-                <NAlert variant="loading" text="Datei wird heruntergeladen..." />
-                <NAlert variant="warning" text="Es ist ein Fehler aufgetreten." />
-                <NAlert variant="error" text="Die Datei kann nicht gespeichert werden." />
-            </div>
+            <Transition
+                enterActiveClass="transition duration-400"
+                enterFromClass="opacity-0"
+                enterToClass="opacity-100"
+                leaveActiveClass="transition duration-400"
+                leaveFromClass="opacity-100"
+                leaveToClass="opacity-0"
+            >
+                {showButton.value && (
+                    <div class="fixed z-20 bottom-4 right-4">
+                        <RouterLink to={{ hash: '#overview' }}>
+                            <NBadge textSize="text-lg" allCaps={false}>
+                                <div class="flex items-center space-x-2">
+                                    <span>Overview</span>
+                                    <ChevronDoubleUpIcon class="h-5 w-5" />
+                                </div>
+                            </NBadge>
+                        </RouterLink>
+                    </div>
+                )}
+            </Transition>
         </div>
     )
 })

@@ -23,7 +23,11 @@ export default createView('DropdownView', () => {
     ]
 
     return () => (
-        <ComponentSection title="Dropdowns" subtitle="Dropdowns can be used to group multiple actions together.">
+        <ComponentSection
+            title="Dropdowns"
+            subtitle="Dropdowns can be used to group multiple actions together."
+            id="dropdowns"
+        >
             <VariantSection
                 title="Different Contents"
                 subtitle="The content can be selected using the mouse or the arrow keys. The items can either trigger an action or be a router link."

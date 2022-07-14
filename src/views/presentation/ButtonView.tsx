@@ -9,6 +9,7 @@ export default createView('ButtonView', () => {
         <ComponentSection
             title="Buttons"
             subtitle="The basic building block of all our apps. They can have two sizes and different colors."
+            id="buttons"
         >
             <VariantSection title="Normal">
                 <ColorGrid item={color => <NButton color={color}>Click me</NButton>} />

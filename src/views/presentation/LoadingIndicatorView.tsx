@@ -11,6 +11,7 @@ export default createView('NLoadingIndicator', () => {
         <ComponentSection
             title="Loading Indicator"
             subtitle="A loading indicator which helps to keep the user patient."
+            id="loading-indicators"
         >
             <VariantSection title="Different colors and shades">
                 <ComponentGrid>

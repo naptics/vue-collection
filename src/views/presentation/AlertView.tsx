@@ -11,6 +11,7 @@ export default createView('AlertView', () => {
     return () => (
         <ComponentSection
             title="Alerts"
+            id="alerts"
             subtitle="Alerts can be used directly in a view or they can appear at a fixed position as a notification."
         >
             <VariantSection title="Normal Alerts">

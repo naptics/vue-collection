@@ -1,16 +1,24 @@
 import { createComponent, createProps } from '@/utils/vue'
+import { LinkIcon } from '@heroicons/vue/solid'
+import { RouterLink } from 'vue-router'
 
 export const componentSectionProps = createProps({
+    id: String,
     title: String,
     subtitle: String,
 })
 
 export default createComponent('ComponentSection', componentSectionProps, (props, { slots }) => {
     return () => (
-        <div class="border-b-2 border-default-200">
+        <div class="border-b-2 border-default-200" id={props.id}>
             <div>
                 <div class="px-8 py-10 max-w-4xl mx-auto">
-                    <h2 class="font-bold text-4xl mb-2">{props.title}</h2>
+                    <RouterLink to={{ hash: props.id ? `#${props.id}` : undefined }}>
+                        <h2 class="font-bold text-4xl mb-2 flex items-center space-x-2 group">
+                            <span>{props.title}</span>
+                            <LinkIcon class="h-8 w-8 text-default-900 opacity-30 hidden group-hover:block" />
+                        </h2>
+                    </RouterLink>
                     <p class="text-default-500 text-xl font-light">{props.subtitle}</p>
                 </div>
             </div>

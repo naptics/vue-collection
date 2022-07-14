@@ -7,7 +7,7 @@ import { FireIcon } from '@heroicons/vue/solid'
 
 export default createView('IconCircleView', () => {
     return () => (
-        <ComponentSection title="Icon Circle" subtitle="Just a regular icon in a circle.">
+        <ComponentSection title="Icon Circles" subtitle="Just a regular icon in a circle." id="icon-circles">
             <VariantSection
                 title="Unlimited possibilities"
                 subtitle="The color, circle size, icon size and the shades of icon and background can be customized."

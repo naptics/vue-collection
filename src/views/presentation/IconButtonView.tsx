@@ -23,6 +23,7 @@ export default createView('IconButtonView', () => {
         <ComponentSection
             title="Icon Buttons"
             subtitle="Icon Buttons are regular buttons which just have an icon and no text."
+            id="icon-buttons"
         >
             <VariantSection title="Different Colors">
                 <ColorGrid item={(color, index) => <NIconButton icon={icons[index]} color={color} />} />

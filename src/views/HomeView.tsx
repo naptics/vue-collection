@@ -36,7 +36,7 @@ export default createView('HomeView', () => {
                     <div class="px-8 py-20 min-h-screen m-auto text-center max-w-4xl flex items-center justify-center flex-col">
                         <h1 class="text-6xl font-semibold mb-8">Vue Collection</h1>
                         <p class="text-3xl font-light text-default-500">
-                            Prestyled and fully functional components created by naptics.
+                            Styled and fully functional components created by naptics.
                         </p>
                         <NavigationView class="mt-16" />
                     </div>

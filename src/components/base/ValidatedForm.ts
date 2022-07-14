@@ -6,8 +6,8 @@ import type { NValInputExposed } from './NValInput'
  * With a form multiple inputs can be validated together by calling the validate function.
  * @example
  * const form = createValidatedForm()
- * <NValInput ... ref={form.addInput()} />
- * <NValInput ... ref={form.addInput()} />
+ * <NValInput ... form={form} />
+ * <NValInput ... form={form} />
  * const onClick = () => form.validate()
  */
 export type ValidatedForm = {

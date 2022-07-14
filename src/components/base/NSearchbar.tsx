@@ -1,5 +1,6 @@
 import { createComponent, createProps, vModel } from '@/utils/vue'
 import { SearchIcon } from '@heroicons/vue/solid'
+import { ref, type PropType } from 'vue'
 
 export const nSearchbarProps = createProps({
     ...vModel(String),
@@ -12,9 +13,24 @@ export const nSearchbarProps = createProps({
      * Add classes directly to the input (e.g. for shadow).
      */
     inputClass: String,
+    onFocus: Function as PropType<() => void>,
+    onBlur: Function as PropType<() => void>,
 })
 
-export default createComponent('NSearchbar', nSearchbarProps, props => {
+export type SearchbarExposed = {
+    focus(): void
+}
+
+export default createComponent('NSearchbar', nSearchbarProps, (props, context) => {
+    const inputRef = ref<HTMLInputElement>()
+
+    const exposed: SearchbarExposed = {
+        focus: () => {
+            inputRef.value?.focus()
+        },
+    }
+    context.expose(exposed)
+
     return () => (
         <div>
             <label for="search" class="sr-only">
@@ -25,6 +41,7 @@ export default createComponent('NSearchbar', nSearchbarProps, props => {
                     <SearchIcon class="h-5 w-5 text-default-400" aria-hidden="true" />
                 </div>
                 <input
+                    ref={inputRef}
                     value={props.value}
                     onInput={event => props.onUpdateValue?.((event.target as HTMLInputElement).value)}
                     type="text"
@@ -36,6 +53,8 @@ export default createComponent('NSearchbar', nSearchbarProps, props => {
                         props.small ? 'py-1' : 'py-2',
                         props.inputClass,
                     ]}
+                    onFocus={props.onFocus}
+                    onBlur={props.onBlur}
                 />
             </div>
         </div>

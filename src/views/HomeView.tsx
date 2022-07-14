@@ -245,7 +245,7 @@ export default createView('HomeView', () => {
                 <NSearchbarList
                     {...refAsVModel(pw2Value)}
                     loading={pw2Value.value.length < 4}
-                    showList={pw2Value.value.length > 0}
+                    hideList={pw2Value.value.length == 0}
                     items={pw2Value.value.length < 4 ? [] : [{ id: 'Hallo' }, { id: 'Test' }]}
                     onSelect={id => console.log(id)}
                     listItem={({ item, highlighted }) => <div class={highlighted ? 'text-red-500' : ''}>{item.id}</div>}

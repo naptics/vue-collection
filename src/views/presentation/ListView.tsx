@@ -1,6 +1,25 @@
+import type { ListItem } from '@/components/base/NList'
+import NList from '@/components/base/NList'
 import ComponentSection from '@/components/presentation/ComponentSection'
+import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/vue'
 
 export default createView('ListView', () => {
-    return () => <ComponentSection title="List"></ComponentSection>
+    const items: ListItem[] = [
+        { title: 'Name', text: 'Michael Scott' },
+        { title: 'Profession', text: 'Nerd' },
+        { title: 'Title', text: 'Dr. phil.' },
+        { title: 'Date Of Birth', text: '14.10.1982' },
+    ]
+
+    return () => (
+        <ComponentSection
+            title="List"
+            subtitle="A component to display key-value information in a simple and neat way."
+        >
+            <VariantSection title="Display Information">
+                <NList items={items} />
+            </VariantSection>
+        </ComponentSection>
+    )
 })

@@ -17,7 +17,6 @@ import TableView from './presentation/TableView'
 export default createView('PresentationView', () => {
     return () => (
         <div class="space-y-10">
-            <ListView />
             <LoaderView />
             <PaginationView />
             <SearchbarView />
@@ -31,6 +30,7 @@ export default createView('PresentationView', () => {
             <CheckboxView />
             <DropdownView />
             <InputView />
+            <ListView />
             <ModalView />
         </div>
     )

@@ -9,7 +9,7 @@ export type TableHeading = {
     cellClass?: string
 }
 
-export type TableItem = string | (() => JSX.Element)
+export type TableItem = string | number | (() => JSX.Element)
 
 export const nTableProps = createProps({
     headings: {
@@ -24,7 +24,7 @@ export const nTableProps = createProps({
 
 export default createComponent('NTable', nTableProps, props => {
     function buildItem(item: TableItem) {
-        if (typeof item == 'string') return <>{item}</>
+        if (typeof item == 'string' || typeof item == 'number') return <>{item}</>
         else return item()
     }
 
@@ -56,6 +56,7 @@ export default createComponent('NTable', nTableProps, props => {
                                     >
                                         <div
                                             class={[
+                                                'flex',
                                                 heading.emph ? 'font-medium text-default-900' : '',
                                                 heading.cellClass,
                                             ]}

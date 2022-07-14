@@ -13,7 +13,7 @@ export const nBadgeProps = createProps({
     },
     shade: {
         type: Number,
-        default: 100,
+        default: 200,
     },
     textShade: {
         type: Number,

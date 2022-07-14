@@ -22,21 +22,27 @@ import NBadge from '@/components/base/NBadge'
 export default createView('HomeView', () => {
     const showButton = ref(false)
     window.onscroll = () => {
-        const treshhold = 200
+        const treshhold = 1000
         showButton.value = document.documentElement.scrollTop > treshhold || document.body.scrollTop > treshhold
     }
 
     return () => (
-        <div id="main">
-            <div class="bg-default-50 border-b-2 border-default-200 z-50" id="overview">
-                <div class="px-8 py-20 min-h-screen m-auto text-center max-w-4xl flex items-center justify-center flex-col">
-                    <h1 class="text-6xl font-semibold mb-8">Vue Collection</h1>
-                    <p class="text-3xl font-light text-default-500">
-                        Prestyled and fully functional components created by naptics.
-                    </p>
-                    <NavigationView class="mt-16" />
+        <div>
+            <div class="bg-gradient-to-r from-primary-500">
+                <div
+                    class="bg-gradient-to-b from-default-300/80 to-default-50 border-b-2 border-default-200 z-50"
+                    id="overview"
+                >
+                    <div class="px-8 py-20 min-h-screen m-auto text-center max-w-4xl flex items-center justify-center flex-col">
+                        <h1 class="text-6xl font-semibold mb-8">Vue Collection</h1>
+                        <p class="text-3xl font-light text-default-500">
+                            Prestyled and fully functional components created by naptics.
+                        </p>
+                        <NavigationView class="mt-16" />
+                    </div>
                 </div>
             </div>
+
             <div class="space-y-10">
                 <AlertView />
                 <ButtonView />

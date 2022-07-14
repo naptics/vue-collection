@@ -9,7 +9,7 @@ import DropdownView from './presentation/DropdownView'
 import IconCircleView from './presentation/IconCircleView'
 import InputView from './presentation/InputView'
 import ListView from './presentation/ListView'
-import LoaderView from './presentation/LoaderView'
+import LoadingIndicatorView from './presentation/LoadingIndicatorView'
 import PaginationView from './presentation/PaginationView'
 import SearchbarView from './presentation/SearchbarView'
 import TableView from './presentation/TableView'
@@ -17,7 +17,7 @@ import TableView from './presentation/TableView'
 export default createView('PresentationView', () => {
     return () => (
         <div class="space-y-10">
-            <LoaderView />
+            <LoadingIndicatorView />
             <PaginationView />
             <SearchbarView />
             <TableView />

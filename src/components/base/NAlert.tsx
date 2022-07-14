@@ -3,7 +3,7 @@ import { createComponent, createProps } from '@/utils/vue'
 import { CheckCircleIcon, ExclamationCircleIcon, InformationCircleIcon, XIcon } from '@heroicons/vue/solid'
 import { computed, type PropType } from 'vue'
 import NIconButton from './NIconButton'
-import NLoader from './NLoader'
+import NLoadingIndicator from './NLoadingIndicator'
 
 export type AlertVariant = 'success' | 'info' | 'warning' | 'error' | 'loading'
 
@@ -65,7 +65,7 @@ const VARIANTS = {
         color: 'red',
     },
     loading: {
-        icon: () => <NLoader color="blue" size={7} shade={500} />,
+        icon: () => <NLoadingIndicator color="blue" size={7} shade={500} />,
         color: 'blue',
     },
 }

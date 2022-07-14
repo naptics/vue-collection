@@ -1,7 +1,7 @@
 import type { Identifiable } from '@/utils/identifiable'
 import { createComponent, createProps, vModel } from '@/utils/vue'
 import { computed, ref, type PropType } from 'vue'
-import NLoader from './NLoader'
+import NLoadingIndicator from './NLoadingIndicator'
 import NSearchbar from './NSearchbar'
 
 export const nSearchbarListProps = createProps({
@@ -112,7 +112,7 @@ export default createComponent('NSearchbarList', nSearchbarListProps, props => {
                             <div class="p-2 text-sm font-medium text-default-700">
                                 {props.loading ? (
                                     <div class="flex items-center space-x-2">
-                                        <NLoader size={6} />
+                                        <NLoadingIndicator size={6} />
                                         <span> Lade Ergebnisse... {/*{ $t('input.text.loading-search-results')*/}</span>
                                     </div>
                                 ) : (

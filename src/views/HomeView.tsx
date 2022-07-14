@@ -12,7 +12,7 @@ import NIconButton from '@/components/base/NIconButton'
 import NIconCircle from '@/components/base/NIconCircle'
 import NInput from '@/components/base/NInput'
 import NList from '@/components/base/NList'
-import NLoader from '@/components/base/NLoader'
+import NLoadingIndicator from '../components/base/NLoadingIndicator'
 import NModal from '@/components/base/NModal'
 import NPagination from '@/components/base/NPagination'
 import NSearchbar from '@/components/base/NSearchbar'
@@ -238,7 +238,7 @@ export default createView('HomeView', () => {
                 />
             </div>
             <div>
-                <NLoader />
+                <NLoadingIndicator />
             </div>
             <div class="space-y-10">
                 <NSearchbar placeholder="Such jetzt!" {...refAsVModel(pw2Value)} />

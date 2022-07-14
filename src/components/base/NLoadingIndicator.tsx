@@ -1,8 +1,8 @@
 import { createComponent, createProps } from '@/utils/vue'
-import { computed, watch } from 'vue'
-import './NLoader.css'
+import { computed, useCssVars } from 'vue'
+import './NLoadingIndicator.css'
 
-export const nLoaderProps = createProps({
+export const nLoadingIndicator = createProps({
     color: {
         type: String,
         default: 'primary',
@@ -20,16 +20,14 @@ export const nLoaderProps = createProps({
     },
 })
 
-export default createComponent('NLoader', nLoaderProps, props => {
+export default createComponent('NLoadingIndicator', nLoadingIndicator, props => {
     const gap = computed(() => (props.size / 13) * 24)
 
     const totalWidth = computed(() => gap.value * 2 + props.size)
 
-    watch(
-        () => gap.value,
-        newGap => document.documentElement.style.setProperty('--hloader-ellipsis-gap', newGap + 'px'),
-        { immediate: true }
-    )
+    useCssVars(() => ({
+        'n-loading-indicator-gap': `${gap.value}px`,
+    }))
 
     return () => (
         <div class="lds-ellipsis" style={`height:${props.size}px;width:${totalWidth.value}px`}>

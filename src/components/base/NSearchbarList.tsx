@@ -27,11 +27,11 @@ export const nSearchbarListProps = createProps({
     listItem: Function as PropType<(props: ItemSlotProps) => JSX.Element>,
 })
 
-export type ItemSlotProps = {
+export type ItemSlotProps<T extends Identifiable = Identifiable & Record<string, unknown>> = {
     /**
      * The current item of the list
      */
-    item: Identifiable
+    item: T
     /**
      * Is true, when the current item is highlighted ("hovered" with the keys)
      */
@@ -101,7 +101,7 @@ export default createComponent('NSearchbarList', nSearchbarListProps, props => {
     }
 
     return () => (
-        <div class="relative z-10" onKeydown={keydown}>
+        <div class="relative" onKeydown={keydown}>
             <NSearchbar
                 ref={searchbarRef}
                 value={props.value}
@@ -113,7 +113,7 @@ export default createComponent('NSearchbarList', nSearchbarListProps, props => {
             />
 
             {showList.value && (
-                <div class="bg-white mt-12 rounded-md shadow-lg p-2 absolute top-0 left-0 min-w-full">
+                <div class="bg-white mt-12 rounded-md shadow-lg p-2 absolute top-0 left-0 min-w-full z-10">
                     <ul>
                         {displayItems.value.map((item, index) => (
                             <li

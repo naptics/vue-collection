@@ -6,6 +6,7 @@ import NIconCircle from './NIconCircle'
 import NModal from './NModal'
 import { DialogTitle } from '@headlessui/vue'
 import type { HeroIcon } from '@/utils/utils'
+import { trsl } from '@/i18n'
 
 export type DialogVariant = 'success' | 'info' | 'warning' | 'error' | 'remove'
 
@@ -26,7 +27,7 @@ export const nDialogProps = createProps({
     okColor: String,
     cancelText: {
         type: String,
-        default: 'Abbrechen', //trsl('input.action.cancel'),
+        default: trsl('general.action.cancel'),
     },
     cancelColor: {
         type: String,
@@ -105,31 +106,31 @@ const VARIANT_DEFAULTS = {
     success: {
         icon: CheckIcon,
         iconColor: 'green',
-        okText: 'Alles klar', // trsl('input.action.all-right'),
+        okText: trsl('general.action.all-right'),
         okColor: 'green',
     },
     info: {
         icon: LightBulbIcon,
         iconColor: 'blue',
-        okText: 'Alles klar', //trsl('input.action.all-right'),
+        okText: trsl('general.action.all-right'),
         okColor: 'blue',
     },
     warning: {
         icon: ExclamationIcon,
         iconColor: 'yellow',
-        okText: 'Fortfahren', // trsl('input.action.proceed'),
+        okText: trsl('general.action.proceed'),
         okColor: 'yellow',
     },
     error: {
         icon: ExclamationIcon,
         iconColor: 'red',
-        okText: 'Fortfahren', // trsl('input.action.proceed'),
+        okText: trsl('general.action.proceed'),
         okColor: 'red',
     },
     remove: {
         icon: TrashIcon,
         iconColor: 'red',
-        okText: 'Löschen', // trsl('input.action.remove'),
+        okText: trsl('general.action.remove'),
         okColor: 'red',
     },
 }

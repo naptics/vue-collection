@@ -1,3 +1,4 @@
+import { trsl } from '@/i18n'
 import { EMAIL_FORMAT } from './format'
 
 export type ValidationResultValid = {
@@ -18,8 +19,8 @@ function validResult(): ValidationResultValid {
     return { isValid: true }
 }
 
-function invalidResult(message: string): ValidationResultInvalid {
-    return { isValid: false, errorMessage: message }
+function invalidResult(ruleKey: string): ValidationResultInvalid {
+    return { isValid: false, errorMessage: trsl(`validation.rules.${ruleKey}`) }
 }
 
 /**
@@ -45,7 +46,7 @@ export function validate(input: InputValue, rules: ValidationRule[]): Validation
 export const required: ValidationRule = input => {
     const trimmed = input?.trim()
     if (trimmed) return validResult()
-    else return invalidResult('Dieses Feld ist ein Pflichtfeld.')
+    else return invalidResult('required')
 }
 
 /**
@@ -53,7 +54,7 @@ export const required: ValidationRule = input => {
  */
 export const email: ValidationRule = input => {
     if (!input || EMAIL_FORMAT.test(input)) return validResult()
-    else return invalidResult('Dieses Feld muss eine gültige Email-Adresse sein.')
+    else return invalidResult('email')
 }
 
 /**
@@ -63,7 +64,7 @@ export const email: ValidationRule = input => {
 export function matches(other: () => string): ValidationRule {
     return input => {
         if (!input || input === other()) return validResult()
-        else return invalidResult('Die beiden Felder stimmen nicht überein.')
+        else return invalidResult('matches')
     }
 }
 
@@ -74,6 +75,6 @@ export function matches(other: () => string): ValidationRule {
 export function regex(pattern: RegExp): ValidationRule {
     return input => {
         if (!input || pattern.test(input)) return validResult()
-        else return invalidResult('Dieses Feld stimmt nicht mit dem geforderten Format überein.')
+        else return invalidResult('regex')
     }
 }

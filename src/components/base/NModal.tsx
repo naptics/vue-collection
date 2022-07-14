@@ -4,6 +4,7 @@ import { Dialog, DialogOverlay, DialogTitle, TransitionRoot, TransitionChild } f
 import NButton from './NButton'
 import NIconButton from './NIconButton'
 import { XIcon } from '@heroicons/vue/solid'
+import { trsl } from '@/i18n'
 
 export const nModalProps = createProps({
     ...vModel(Boolean),
@@ -17,7 +18,7 @@ export const nModalProps = createProps({
     title: String,
     okText: {
         type: String,
-        default: 'Speichern' /*trsl('input.action.save')*/,
+        default: trsl('general.action.save'),
     },
     okColor: {
         type: String,
@@ -31,7 +32,7 @@ export const nModalProps = createProps({
     okDisabled: Boolean,
     cancelText: {
         type: String,
-        default: 'Abbrechen' /*trsl('input.action.cancel')*/,
+        default: trsl('general.action.cancel'),
     },
     cancelColor: {
         type: String,

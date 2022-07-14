@@ -1,3 +1,4 @@
+import { trsl } from '@/i18n'
 import type { Identifiable } from '@/utils/identifiable'
 import { createComponent, createProps, vModel } from '@/utils/vue'
 import { computed, ref, type PropType } from 'vue'
@@ -135,13 +136,10 @@ export default createComponent('NSearchbarList', nSearchbarListProps, props => {
                                 {props.loading ? (
                                     <div class="flex items-center space-x-2">
                                         <NLoadingIndicator size={6} />
-                                        <span> Lade Ergebnisse... {/*{ $t('input.text.loading-search-results')*/}</span>
+                                        <span> {trsl('general.text.loading-search-results')}</span>
                                     </div>
                                 ) : (
-                                    <div>
-                                        Keine Ergebnisse
-                                        {/* { $t('input.text.no-search-results', { input: modelValue }) } */}
-                                    </div>
+                                    <div>{trsl('general.text.no-search-results', { input: props.value })}</div>
                                 )}
                             </div>
                         )}

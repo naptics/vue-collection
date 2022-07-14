@@ -1,3 +1,4 @@
+import { trsl } from '@/i18n'
 import { createComponent, createProps, vModel } from '@/utils/vue'
 import { ref, type PropType } from 'vue'
 import NValInput, { type NValInputExposed } from './NValInput'
@@ -63,7 +64,7 @@ export default createComponent('NSelect', nSelectProps, (props, context) => {
                         ]}
                     >
                         <option disabled={!props.optional} selected={!props.value} value="">
-                            Auswählen {/* { $t('input.action.select') } */}
+                            {trsl('general.action.select')}
                         </option>
                         {props.options.map(option => (
                             <option key={option.key} value={option.key} selected={props.value == option.key}>

@@ -1,0 +1,8 @@
+{
+    "rules": {
+        "required": "This field is required.",
+        "email": "This field must be a valid email address.",
+        "matches": "The fields don't match.",
+        "regex": "This field does not conform to the required format."
+    }
+}

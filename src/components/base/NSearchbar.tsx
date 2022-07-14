@@ -1,3 +1,4 @@
+import { trsl } from '@/i18n'
 import { createComponent, createProps, vModel } from '@/utils/vue'
 import { SearchIcon } from '@heroicons/vue/solid'
 import { ref, type PropType } from 'vue'
@@ -6,7 +7,7 @@ export const nSearchbarProps = createProps({
     ...vModel(String),
     placeholder: {
         type: String,
-        default: 'Suchen', //trsl('input.property.search'),
+        default: trsl('general.property.search'),
     },
     small: Boolean,
     /**

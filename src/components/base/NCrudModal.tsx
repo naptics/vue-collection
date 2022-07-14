@@ -1,3 +1,4 @@
+import { trsl } from '@/i18n'
 import { createComponent, createProps } from '@/utils/vue'
 import { ref, type PropType } from 'vue'
 import NButton from './NButton'
@@ -9,7 +10,7 @@ export const nCrudModalProps = createProps({
     ...nFormModalProps,
     removeText: {
         type: String,
-        default: 'Löschen', //trsl('input.action.remove'),
+        default: trsl('general.action.remove'),
     },
     removeColor: {
         type: String,

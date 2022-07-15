@@ -29,7 +29,7 @@ pages:
     stage: deploy
     image: busybox:latest
     script: 
-        - mv dist/index.html public/index.html
+        - mv dist/* public
     artifacts: 
         paths: 
             - public

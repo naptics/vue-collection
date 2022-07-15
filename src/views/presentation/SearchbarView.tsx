@@ -65,8 +65,8 @@ export default createView('SearchbarView', () => {
                         placeholder="Min. 3 Characters"
                     />
                     <NSearchbarList
-                        {...vModel(4)}
-                        items={filteredSuggestions(4).value}
+                        {...vModel(5)}
+                        items={filteredSuggestions(5).value}
                         placeholder="Customized Items"
                         listItem={item => (
                             <div class="flex space-x-2 items-center justify-start">

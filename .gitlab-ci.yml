@@ -29,7 +29,7 @@ build:
     before_script: 
         - npm ci
     script: 
-        - npm run build -- --base=/libraries/vue-collection/
+        - npm run build
     artifacts:
         paths:
             - dist/

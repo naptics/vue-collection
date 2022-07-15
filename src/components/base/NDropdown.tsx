@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '@/utils/vue'
+import { createComponent, createProps } from '@/utils/component'
 import { computed, Transition, type PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'

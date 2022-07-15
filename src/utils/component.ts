@@ -61,6 +61,22 @@ export function createProps<T extends Props>(props: T): T {
 }
 
 /**
+ * Extracts props from another prop object and returns a reactive object with the specified props.
+ * @param props the props to extract from
+ * @param keys the keys to extract from the props
+ * @returns the new object with the specified props
+ * @example
+ * const parentProps = { title: 'hi', text: 'ho' }
+ * const childProps = extractProps(parentProps, 'title')
+ * console.log(childProps) // { title: 'hi' }
+ */
+export function extractProps<T extends object>(props: T, ...keys: (keyof T)[]): UnwrapNestedRefs<Partial<ToRefs<T>>> {
+    const partial: Partial<ToRefs<T>> = {}
+    for (const key of keys) partial[key] = toRef(props, key)
+    return reactive(partial)
+}
+
+/**
  * Creates a v-model of the given type.
  * A v-model consits of a value-property and a update-function.
  * @param propType the propType of the v-model.
@@ -85,20 +101,4 @@ export function refAsVModel<T>(ref: Ref<T>) {
             ref.value = newValue
         },
     }
-}
-
-/**
- * Extracts props from another prop object and returns a reactive object with the specified props.
- * @param props the props to extract from
- * @param keys the keys to extract from the props
- * @returns the new object with the specified props
- * @example
- * const parentProps = { title: 'hi', text: 'ho' }
- * const childProps = extractProps(parentProps, 'title')
- * console.log(childProps) // { title: 'hi' }
- */
-export function extractProps<T extends object>(props: T, ...keys: (keyof T)[]): UnwrapNestedRefs<Partial<ToRefs<T>>> {
-    const partial: Partial<ToRefs<T>> = {}
-    for (const key of keys) partial[key] = toRef(props, key)
-    return reactive(partial)
 }

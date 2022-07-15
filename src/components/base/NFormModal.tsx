@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '@/utils/vue'
+import { createComponent, createProps } from '@/utils/component'
 import { reactive, toRefs, type PropType } from 'vue'
 import NForm from './NForm'
 import NModal, { nModalProps } from './NModal'

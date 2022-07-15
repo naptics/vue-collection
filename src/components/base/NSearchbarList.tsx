@@ -1,6 +1,6 @@
 import { trsl } from '@/i18n'
 import type { Identifiable } from '@/utils/identifiable'
-import { createComponent, createProps, vModel } from '@/utils/vue'
+import { createComponent, createProps, vModel } from '@/utils/component'
 import { computed, ref, type PropType } from 'vue'
 import NLoadingIndicator from './NLoadingIndicator'
 import NSearchbar, { type SearchbarExposed } from './NSearchbar'

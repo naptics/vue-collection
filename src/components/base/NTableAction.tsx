@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '@/utils/vue'
+import { createComponent, createProps } from '@/utils/component'
 import type { PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 

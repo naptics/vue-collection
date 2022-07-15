@@ -1,5 +1,5 @@
 import { trsl } from '@/i18n'
-import { createComponent, createProps } from '@/utils/vue'
+import { createComponent, createProps } from '@/utils/component'
 import { ref, type PropType } from 'vue'
 import NButton from './NButton'
 import type { NDialogExposed } from './NDialog'

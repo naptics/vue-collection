@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '@/utils/vue'
+import { createComponent, createProps } from '@/utils/component'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/solid'
 import { computed, watch, type ComputedRef, type PropType } from 'vue'
 import './NPagination.css'

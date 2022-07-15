@@ -3,7 +3,7 @@ import ColorGrid from '@/components/presentation/ColorGrid'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView } from '@/utils/vue'
+import { createView } from '@/utils/component'
 
 export default createView('BadgeView', () => {
     const textSizes = ['text-xs', 'text-sm', 'text-base', 'text-lg', 'text-xl', 'text-2xl']

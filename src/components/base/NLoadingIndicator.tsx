@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '@/utils/vue'
+import { createComponent, createProps } from '@/utils/component'
 import { computed, useCssVars } from 'vue'
 import './NLoadingIndicator.css'
 

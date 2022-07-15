@@ -1,5 +1,5 @@
 import { trsl } from '@/i18n'
-import { createComponent, createProps, vModel } from '@/utils/vue'
+import { createComponent, createProps, vModel } from '@/utils/component'
 import { SearchIcon } from '@heroicons/vue/solid'
 import { ref, type PropType } from 'vue'
 

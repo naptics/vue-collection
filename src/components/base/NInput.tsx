@@ -1,4 +1,4 @@
-import { createComponent, createProps, vModel } from '@/utils/vue'
+import { createComponent, createProps, vModel } from '@/utils/component'
 import type { PropType } from 'vue'
 import { ExclamationCircleIcon } from '@heroicons/vue/solid'
 

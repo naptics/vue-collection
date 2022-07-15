@@ -8,7 +8,7 @@ import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { email, regex, matches } from '@/utils/validation'
-import { createView, refAsVModel } from '@/utils/vue'
+import { createView, refAsVModel } from '@/utils/component'
 import { ref } from 'vue'
 
 const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+\-=!*()@%&?]).{8,}$/

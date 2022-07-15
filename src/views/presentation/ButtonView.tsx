@@ -1,4 +1,4 @@
-import { createView } from '@/utils/vue'
+import { createView } from '@/utils/component'
 import NButton from '@/components/base/NButton'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'

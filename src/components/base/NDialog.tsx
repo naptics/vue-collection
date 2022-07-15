@@ -1,5 +1,5 @@
 import { deferred, type DeferredPromise } from '@/utils/deferred'
-import { createComponent, createProps, extractProps, refAsVModel } from '@/utils/vue'
+import { createComponent, createProps, extractProps, refAsVModel } from '@/utils/component'
 import { CheckIcon, ExclamationIcon, LightBulbIcon, TrashIcon } from '@heroicons/vue/outline'
 import { computed, ref, type PropType } from 'vue'
 import NIconCircle from './NIconCircle'

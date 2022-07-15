@@ -1,4 +1,4 @@
-import { createComponent, createProps, vModel } from '@/utils/vue'
+import { createComponent, createProps, vModel } from '@/utils/component'
 import { nextTick, ref } from 'vue'
 
 export const nCheckboxProps = createProps({

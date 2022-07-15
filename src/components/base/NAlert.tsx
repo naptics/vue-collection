@@ -1,5 +1,5 @@
 import type { HeroIcon } from '@/utils/utils'
-import { createComponent, createProps } from '@/utils/vue'
+import { createComponent, createProps } from '@/utils/component'
 import { CheckCircleIcon, ExclamationCircleIcon, InformationCircleIcon, XIcon } from '@heroicons/vue/solid'
 import { computed, type PropType } from 'vue'
 import NIconButton from './NIconButton'

@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '@/utils/vue'
+import { createComponent, createProps } from '@/utils/component'
 import { computed } from '@vue/reactivity'
 import { ref, reactive, type PropType, watch } from 'vue'
 import NInput, { nInputProps } from './NInput'

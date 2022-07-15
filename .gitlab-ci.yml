@@ -6,7 +6,6 @@ default:
     image: node:18-alpine3.15
 
 stages: 
-    - prebuild
     - build
     - deploy
 

@@ -2,6 +2,10 @@
 
 Vue Collection contains styled and fully functional Vue components which can easily be used in any project.
 
+## Showroom 🎆
+
+You can take a look at all components on `[Gitlab Pages](https://naptx.gitlab.io/libraries/vue-collection/)`.
+
 ## Integrate Vue Collection into a new project 🔨
 
 1. Create a new vue-project with `npm init vue@latest`. Add at least typescript, jsx, vue-router, eslint and prettier.

@@ -6,6 +6,7 @@ default:
     image: node:18-alpine3.15
 
 stages: 
+    - prebuild
     - build
     - deploy
 
@@ -13,6 +14,16 @@ workflow:
     rules: 
         - if: $CI_PIPELINE_SOURCE == "merge_request_event"
         - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+
+prebuild: 
+    stage: prebuild
+    before_script:
+        - npm ci
+    script: 
+        - npm run type-check
+        - npm run lint
+        - npm run test
+
 
 build-pages: 
     stage: build

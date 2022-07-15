@@ -14,6 +14,7 @@ export const nValInputProps = createProps({
     },
     /**
      * The form, which this input will be added to.
+     * On initialization, this input will call {@link ValidatedForm.addInput} passing itself to the form.
      */
     form: Object as PropType<ValidatedForm>,
     /**

@@ -13,6 +13,9 @@ import type { NValInputExposed } from './NValInput'
 export type ValidatedForm = {
     /**
      * Adds the input to the list of this form.
+     * If this form is passed to a `<NValInput />` via the props, will add itself to this form.
+     * @example
+     * <NValInput ... form={form} />
      */
     addInput(input: NValInputExposed): void
     /**

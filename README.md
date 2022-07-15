@@ -1,10 +1,10 @@
 # Vue Collection
 
-Vue Collection contains styled and fully functional Vue components which can easily be used in any project.
+Vue Collection is a collection of styled and fully functional Vue components which can easily be integrated into our projects.
 
 ## Showroom 🎆
 
-You can take a look at all components on `[Gitlab Pages](https://naptx.gitlab.io/libraries/vue-collection/)`.
+You can take a look at all components on [Gitlab Pages](https://naptx.gitlab.io/libraries/vue-collection/).
 
 ## Integrate Vue Collection into a new project 🔨
 

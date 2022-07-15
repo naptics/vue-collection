@@ -22,11 +22,12 @@ export default createView('NavigationView', () => {
 
     return () => (
         <div>
-            {/* <h2 class="text-3xl font-semibold"> Components </h2>
-            <p class="text-lg font-light  text-default-500"> Click on a component to look at it or start scrolling. </p> */}
             <div class="flex flex-wrap gap-6 justify-center">
                 {sections.map(section => (
-                    <RouterLink to={{ hash: `#${section.hash}` }}>
+                    <RouterLink
+                        to={{ hash: `#${section.hash}` }}
+                        class="outline-none focus-visible:ring-2 focus-visible ring-primary-500 rounded-md"
+                    >
                         <NBadge color="primary" allCaps={false} textSize="text-2xl">
                             {section.label}
                         </NBadge>

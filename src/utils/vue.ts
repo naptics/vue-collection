@@ -74,20 +74,6 @@ export function vModel<T>(propType: PropType<T>) {
 }
 
 /**
- * Cretes a v-model of the given type, with the value beeing a required property.
- * @see vModel
- */
-export function requiredVModel<T>(propType: PropType<T>) {
-    return {
-        value: {
-            type: propType as PropType<T>,
-            required: true,
-        },
-        onUpdateValue: Function as PropType<(newValue: T) => void>,
-    }
-}
-
-/**
  * Uses the given ref as a vmodel, assigning the value property and updating the ref from the update function.
  * @param ref the ref which should be used as the v-model
  * @returns an object containing the `value` and the `onUpdateValue` function.

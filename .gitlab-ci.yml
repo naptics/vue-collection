@@ -14,10 +14,12 @@ workflow:
         - if: $CI_PIPELINE_SOURCE == "merge_request_event"
         - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
-build: 
+build-pages: 
     stage: build
     before_script: 
         - npm ci
+    variables:
+        VITE_BASE_PATH: /$CI_PROJECT_PATH
     script: 
         - npm run build
     artifacts:
@@ -25,7 +27,7 @@ build:
             - dist/
         expire_in: 1 day
 
-pages:
+deploy-pages:
     stage: deploy
     image: busybox:latest
     script: 

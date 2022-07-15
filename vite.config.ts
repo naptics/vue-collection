@@ -5,7 +5,6 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
-/** @type {import('vite').UserConfig} */
 export default defineConfig({
     plugins: [vue(), vueJsx()],
     resolve: {
@@ -13,5 +12,5 @@ export default defineConfig({
             '@': fileURLToPath(new URL('./src', import.meta.url)),
         },
     },
-    base: '/libraries/vue-collection/',
+    base: process.env.VITE_BASE_PATH,
 })

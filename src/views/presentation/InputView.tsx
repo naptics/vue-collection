@@ -7,11 +7,9 @@ import { createValidatedForm } from '@/components/base/ValidatedForm'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { email, regex, matches } from '@/utils/validation'
+import { email, matches, password } from '@/utils/validation'
 import { createView, refAsVModel } from '@/utils/component'
 import { ref } from 'vue'
-
-const PASSWORD_FORMAT = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+\-=!*()@%&?]).{8,}$/
 
 export default createView('InputView', () => {
     // NInput
@@ -59,7 +57,7 @@ export default createView('InputView', () => {
                     <ComponentGrid cols={2}>
                         <NValInput {...vModel(4)} name="Name" />
                         <NValInput {...vModel(5)} name="Email" type="email" rules={[email]} />
-                        <NValInput {...vModel(6)} name="Password" type="password" rules={[regex(PASSWORD_FORMAT)]} />
+                        <NValInput {...vModel(6)} name="Password" type="password" rules={[password]} />
                         <NValInput
                             {...vModel(7)}
                             name="Repeat Password"

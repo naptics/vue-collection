@@ -1,0 +1,72 @@
+import { trsl } from '@/i18n'
+import { describe, expect, test } from 'vitest'
+import { email, matches, password, regex, required } from '../validation'
+
+const expectValid = (test: unknown) => expect(test).toMatchObject({ isValid: true })
+const expectInvalid = (test: unknown, errKey: string) =>
+    expect(test).toMatchObject({ isValid: false, errorMessage: trsl(`validation.rules.${errKey}`) })
+
+describe('validation', () => {
+    test('required', () => {
+        expectValid(required('_'))
+        expectValid(required(' i '))
+        expectValid(required('hellooh'))
+        expectValid(required('`'))
+
+        expectInvalid(required(undefined), 'required')
+        expectInvalid(required(null), 'required')
+        expectInvalid(required(''), 'required')
+        expectInvalid(required(' '), 'required')
+    })
+
+    test('email', () => {
+        expectValid(email('_@_.ch'))
+        expectValid(email('dfadfasd.dfad.fdak@_.ch'))
+        expectValid(email('dfadfasd.dfad.fdak@dfdaf.chdl.ch'))
+        expectValid(email('deslek-djsl@dfdaf-cas.ch'))
+
+        expectInvalid(email(''), 'email')
+        expectInvalid(email('a'), 'email')
+        expectInvalid(email('a@'), 'email')
+        expectInvalid(email('a@d'), 'email')
+        expectInvalid(email('a@d.c'), 'email')
+        expectInvalid(email('a.ch'), 'email')
+    })
+
+    test('password', () => {
+        expectValid(password('Password1+'))
+        expectValid(password('+Password1'))
+        expectValid(password('1+Password'))
+        expectValid(password('assword1+P'))
+        expectValid(password('12p+D678'))
+
+        expectInvalid(password(''), 'password.to-short')
+        expectInvalid(password('Pword1+'), 'password.to-short')
+        expectInvalid(password('PASSWORD1+'), 'password.no-lowercase')
+        expectInvalid(password('password1+'), 'password.no-uppercase')
+        expectInvalid(password('Password+'), 'password.no-digits')
+        expectInvalid(password('Password1'), 'password.no-special-chars')
+    })
+
+    test('matches', () => {
+        const testValid = [undefined, null, '', '1', 'hello', 'So cooool']
+        testValid.forEach(value => {
+            expectValid(matches(() => value)(value))
+        })
+
+        const testInvalid = [undefined, null, '', '1', 'hi', 'noice']
+        const checkInvalid = [null, undefined, null, '', 'HI', 'noices']
+
+        testInvalid.forEach((value, index) => {
+            expectInvalid(matches(() => value)(checkInvalid[index]), 'matches')
+        })
+    })
+
+    test('regex', () => {
+        expectValid(regex(/\d+/)('123'))
+        expectValid(regex(/\d*/)(null))
+
+        expectInvalid(regex(/\d+/)(null), 'regex')
+        expectInvalid(regex(/\d+/)('abc'), 'regex')
+    })
+})

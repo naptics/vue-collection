@@ -1,5 +1,4 @@
 import { trsl } from '@/i18n'
-import { EMAIL_FORMAT } from './format'
 
 export type ValidationResultValid = {
     isValid: true
@@ -40,6 +39,8 @@ export function validate(input: InputValue, rules: ValidationRule[]): Validation
     return validResult()
 }
 
+// Validation formats
+
 /**
  * This rule expects the input-value to be truthy.
  */
@@ -49,21 +50,38 @@ export const required: ValidationRule = input => {
     else return invalidResult('required')
 }
 
+export const VALIDATION_FORMAT_EMAIL = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/
+
 /**
- * This rule expects the input-value to be a valid email adress.
+ * This rule expects the input-value to be a valid email adress matching {@link VALIDATION_FORMAT_EMAIL}.
  */
 export const email: ValidationRule = input => {
-    if (!input || EMAIL_FORMAT.test(input)) return validResult()
+    if (input && VALIDATION_FORMAT_EMAIL.test(input)) return validResult()
     else return invalidResult('email')
+}
+
+export const VALIDATION_FORMAT_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+\-=!*()@%&?]).{8,}$/
+
+/**
+ * This rule expects the input-value to be a password matching {@link VALIDATION_FORMAT_PASSWORD}.
+ */
+export const password: ValidationRule = input => {
+    if (input && VALIDATION_FORMAT_PASSWORD.test(input)) return validResult()
+    else if (!input || input.length < 8) return invalidResult('password.to-short')
+    else if (!/[a-z]+/.test(input)) return invalidResult('password.no-lowercase')
+    else if (!/[A-Z]+/.test(input)) return invalidResult('password.no-uppercase')
+    else if (!/\d+/.test(input)) return invalidResult('password.no-digits')
+    else if (!/[#$^+\-=!*()@%&?]+/.test(input)) return invalidResult('password.no-special-chars')
+    else return invalidResult('password.unknown')
 }
 
 /**
  * This rule expects the input-value to match another (input-) value.
  * @param other a function which returns the other value.
  */
-export function matches(other: () => string): ValidationRule {
+export function matches(other: () => string | null | undefined): ValidationRule {
     return input => {
-        if (!input || input === other()) return validResult()
+        if (input === other()) return validResult()
         else return invalidResult('matches')
     }
 }
@@ -74,7 +92,7 @@ export function matches(other: () => string): ValidationRule {
  */
 export function regex(pattern: RegExp): ValidationRule {
     return input => {
-        if (!input || pattern.test(input)) return validResult()
+        if (pattern.test(input || '')) return validResult()
         else return invalidResult('regex')
     }
 }

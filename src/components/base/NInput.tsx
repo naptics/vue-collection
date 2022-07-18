@@ -4,23 +4,59 @@ import { ExclamationCircleIcon } from '@heroicons/vue/solid'
 
 export const nInputProps = createProps({
     ...vModel(String),
+    /**
+     * The name of the input. Is displayed as a label above the input.
+     */
     name: String,
+    /**
+     * The placeholder of the input.
+     */
     placeholder: String,
+    /**
+     * The html autocomplete attribute of the input.
+     */
     autocomplete: {
         type: String,
         default: 'off',
     },
+    /**
+     * The html type attribute of the input.
+     */
     type: {
         type: String,
         default: 'text',
     },
+    /**
+     * The maximum value of the input.
+     */
     max: String,
+    /**
+     * The minimum value of the input.
+     */
     min: String,
+    /**
+     * If set to `true` the input is displayed with a red border.
+     */
     error: Boolean,
+    /**
+     * If set to `true` the input is disabled and no interaction is possible.
+     */
     disabled: Boolean,
+    /**
+     * If set to `true` the label of the input is hidden.
+     */
     hideLabel: Boolean,
+    /**
+     * If set to `true` the input is displayed smaller.
+     */
     small: Boolean,
+    /**
+     * This is called when the input reveices focus.
+     */
     onFocus: Function as PropType<() => void>,
+    /**
+     * This is called when the input looses focus.
+     */
     onBlur: Function as PropType<() => void>,
 })
 

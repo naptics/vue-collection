@@ -6,17 +6,33 @@ import type { ValidatedForm } from './ValidatedForm'
 
 export const nFormModalProps = createProps({
     ...nModalProps,
+    /**
+     * The maximum width of the modal. A regular tailwind class.
+     */
     maxWidth: {
-        type: String as PropType<'max-w-sm' | 'max-w-md' | 'max-w-lg' | 'max-w-xl' | 'max-w-2xl'>,
+        type: nModalProps.maxWidth.type,
         default: 'max-w-lg',
     },
+    /**
+     * If set to `true` the modal closes when clicking on the background.
+     * Default is `false` as the accidental reseting of the whole form is very annoying.
+     */
     closeOnBackground: {
         type: Boolean,
         default: false,
     },
+    /**
+     * The {@link ValidatedForm} to validate the inputs.
+     * All inputs should be added to the form.
+     */
     form: Object as PropType<ValidatedForm>,
 })
 
+/**
+ * The `NFormModal` is a {@link NModal} with an integrated form.
+ * When submitting a `NFormModal` the form is first validated and
+ * only if the validation is succesful the `onOk` event is called.
+ */
 export default createComponent('NFormModal', nFormModalProps, (props, { slots }) => {
     const childProps = reactive({
         ...toRefs(props),

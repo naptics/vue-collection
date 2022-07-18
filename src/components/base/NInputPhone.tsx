@@ -6,7 +6,7 @@ import NValInput, { nValInputProps } from './NValInput'
 export const nInputPhoneProps = createProps(nValInputProps)
 
 /**
- * An input which auto formats phone numbers and checks if they are valid.
+ * The `NInputPhone` autoformats phone numbers and checks if they are valid.
  */
 export default createComponent('NInputPhoneSuspended', nInputPhoneProps, props => {
     // Async components have to be wrapped in a suspense component.

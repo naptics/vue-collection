@@ -7,12 +7,18 @@ export type ListItem = {
 }
 
 export const nListProps = createProps({
+    /**
+     * The items which are displayed in the list.
+     */
     items: {
         type: Array as PropType<ListItem[]>,
         default: () => [],
     },
 })
 
+/**
+ * The `NList` displays key-value data in an appealing way.
+ */
 export default createComponent('NList', nListProps, props => {
     return () => (
         <dl>

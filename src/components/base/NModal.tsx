@@ -8,42 +8,92 @@ import { trsl } from '@/i18n'
 
 export const nModalProps = createProps({
     ...vModel(Boolean),
+    /**
+     * If set to `true` the header of the modal is hidden.
+     */
     hideHeader: Boolean,
+    /**
+     * If set to `true` the footer of the modal is hidden.
+     */
     hideFooter: Boolean,
+    /**
+     * If set to `true` the X-button in the top right is hidden.
+     */
     hideX: Boolean,
+    /**
+     * The maximum width of the modal. A regular tailwind class.
+     */
     maxWidth: {
         type: String as PropType<'max-w-sm' | 'max-w-md' | 'max-w-lg' | 'max-w-xl' | 'max-w-2xl'>,
         default: 'max-w-md',
     },
+    /**
+     * The title of the modal which is displayed in the header.
+     */
     title: String,
+    /**
+     * The text of the ok-button.
+     */
     okText: {
         type: String,
         default: trsl('general.action.save'),
     },
+    /**
+     * The color of the ok-button.
+     */
     okColor: {
         type: String,
         default: 'primary',
     },
+    /**
+     * If set to `true` the modal is closed when `onOk` is called.
+     */
     closeOnOk: {
         type: Boolean,
         default: true,
     },
+    /**
+     * If set to `true` the ok-button is hidden.
+     */
     hideOk: Boolean,
+    /**
+     * If set to `true` the ok-button is disabled.
+     */
     okDisabled: Boolean,
+    /**
+     * The text of the cancel-button.
+     */
     cancelText: {
         type: String,
         default: trsl('general.action.cancel'),
     },
+    /**
+     * The color of the cancel-button.
+     */
     cancelColor: {
         type: String,
         default: 'default',
     },
+    /**
+     * If set to `true`, the modal is closed when clicking on the background.
+     * This will call `onCancel`. Default is `true`.
+     */
     closeOnBackground: {
         type: Boolean,
         default: true,
     },
+    /**
+     * If set to `true` the cancel-button is hidden.
+     */
     hideCancel: Boolean,
+    /**
+     * This is called when the ok-button was clicked.
+     */
     onOk: Function as PropType<() => void>,
+    /**
+     * This is called when the cancel-button or X-button was clicked or
+     * if the modal was closed by clicking on the background.
+     */
     onCancel: Function as PropType<() => void>,
     /**
      * A slot to replace the whole modal content including all buttons, header and footer.
@@ -61,6 +111,10 @@ export const nModalProps = createProps({
 
 export type ModalSlotProps = { ok: () => void; cancel: () => void }
 
+/**
+ * The `NModal` is the base component for all modals and dialogs.
+ * It provides the core mechanics to display a window in front of everything else.
+ */
 export default createComponent('NModal', nModalProps, (props, { slots }) => {
     const ok = () => {
         props.onOk?.()

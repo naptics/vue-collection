@@ -2,29 +2,42 @@ import type { HeroIcon } from '@/utils/utils'
 import { createComponent, createProps } from '@/utils/component'
 import type { PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
+import { nButtonProps } from './NButton'
 
 export const nIconButtonProps = createProps({
+    /**
+     * The icon of the icon-button.
+     */
     icon: {
         type: Function as PropType<HeroIcon>,
         required: true,
     },
+    /**
+     * If set, the icon-button becomes a {@link RouterLink}.
+     */
     route: [String, Object] as PropType<RouteLocationRaw>,
+    /**
+     * The color of the icon-button.
+     */
     color: {
         type: String,
         default: 'default',
     },
+    /**
+     * The size of the icon in tailwind-units.
+     */
     size: {
         type: Number,
         default: 5,
     },
-    type: {
-        type: String as PropType<'button' | 'submit' | 'reset'>,
-        default: 'button',
-    },
-    disabled: Boolean,
-    onClick: Function as PropType<() => void>,
+    type: nButtonProps.type,
+    disabled: nButtonProps.disabled,
+    onClick: nButtonProps.onClick,
 })
 
+/**
+ * The `NIconButton` is a regular button which does not have any text but an icon instead.
+ */
 export default createComponent('NIconButton', nIconButtonProps, props => {
     const classes = () => [
         'p-0.5 transition rounded-md focus:outline-none focus-visible:ring-2 -m-1',

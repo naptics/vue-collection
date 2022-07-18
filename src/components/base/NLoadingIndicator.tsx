@@ -3,16 +3,22 @@ import { computed, useCssVars } from 'vue'
 import './NLoadingIndicator.css'
 
 export const nLoadingIndicator = createProps({
+    /**
+     * The color of the loading-indicator.
+     */
     color: {
         type: String,
         default: 'primary',
     },
+    /**
+     * The shade of the loading-indicator.
+     */
     shade: {
         type: Number,
         default: 400,
     },
     /**
-     * The height of the loader in px.
+     * The height of the loading-indicator in px.
      */
     size: {
         type: Number,
@@ -20,6 +26,9 @@ export const nLoadingIndicator = createProps({
     },
 })
 
+/**
+ * The `NLoadingIndicator` is an component which shows a loading indicator.
+ */
 export default createComponent('NLoadingIndicator', nLoadingIndicator, props => {
     const gap = computed(() => (props.size / 13) * 24)
 

@@ -22,7 +22,11 @@ export default createView('SearchbarView', () => {
     ]
 
     const filteredSuggestions = (n: number) => {
-        return computed(() => suggestions.filter(sugg => sugg.name.toLowerCase().includes(refs[n].value.toLowerCase())))
+        return computed(() =>
+            suggestions
+                .filter(sugg => sugg.name.toLowerCase().includes(refs[n].value.toLowerCase()))
+                .map(sugg => ({ id: sugg.id, label: sugg.name }))
+        )
     }
 
     function vModel(n: number) {
@@ -44,16 +48,10 @@ export default createView('SearchbarView', () => {
 
             <VariantSection title="With Suggestion List" subtitle="">
                 <ComponentGrid cols={2}>
-                    <NSearchbarList
-                        {...vModel(2)}
-                        items={filteredSuggestions(2).value}
-                        listItem={item => <span>{item.item.name}</span>}
-                        placeholder="Basic List"
-                    />
+                    <NSearchbarList {...vModel(2)} items={filteredSuggestions(2).value} placeholder="Basic List" />
                     <NSearchbarList
                         {...vModel(3)}
                         items={filteredSuggestions(3).value}
-                        listItem={item => <span>{item.item.name}</span>}
                         placeholder="Loading Indicator"
                         loading
                     />
@@ -61,7 +59,6 @@ export default createView('SearchbarView', () => {
                         {...vModel(4)}
                         items={filteredSuggestions(4).value}
                         hideList={refs[4].value.length < 3}
-                        listItem={item => <span>{item.item.name}</span>}
                         placeholder="Min. 3 Characters"
                     />
                     <NSearchbarList
@@ -71,7 +68,7 @@ export default createView('SearchbarView', () => {
                         listItem={item => (
                             <div class="flex space-x-2 items-center justify-start">
                                 <UserIcon class="h-5 w-5 text-default-600" />
-                                <span class="text-lg text-default-700 font-medium">{item.item.name}</span>
+                                <span class="text-lg text-default-700 font-medium">{item.item.label}</span>
                             </div>
                         )}
                     />

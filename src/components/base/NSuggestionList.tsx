@@ -6,7 +6,7 @@ import NLoadingIndicator from './NLoadingIndicator'
 
 export const nSuggestionListPropsForConfig = createProps({
     items: {
-        type: Array as PropType<Array<Identifiable>>,
+        type: Array as PropType<Array<NSuggestionItem>>,
         default: () => [],
     },
     maxItems: {
@@ -60,7 +60,7 @@ export type InputSlotProps = {
     onBlur(): void
 }
 
-export type ItemSlotProps<T extends Identifiable = Identifiable & Record<string, unknown>> = {
+export type ItemSlotProps<T extends Identifiable = NSuggestionItem> = {
     /**
      * The current item of the list
      */
@@ -70,6 +70,8 @@ export type ItemSlotProps<T extends Identifiable = Identifiable & Record<string,
      */
     highlighted: boolean
 }
+
+export type NSuggestionItem = Identifiable & { label?: string } & Record<string, unknown>
 
 export default createComponent('NSuggestionList', nSuggestionListProps, props => {
     const selectedIndex = ref<number | null>(null)
@@ -150,7 +152,7 @@ export default createComponent('NSuggestionList', nSuggestionListProps, props =>
                                 onMouseleave={onListMouseLeave}
                                 onClick={() => onSelect(item.id)}
                             >
-                                {props.listItem?.({ item, highlighted: selectedIndex.value == index }) || item.id}
+                                {props.listItem?.({ item, highlighted: selectedIndex.value == index }) || item.label}
                             </li>
                         ))}
 

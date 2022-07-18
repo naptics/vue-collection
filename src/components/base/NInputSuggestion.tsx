@@ -14,6 +14,10 @@ export const nInputSuggestionProps = createProps({
     },
 })
 
+/**
+ * `NInputSuggestion` is an input, which shows a list of possible suggestions to the user
+ *  which is filtered while typing. Contrary to {@link NInputSelect} the user is not required to choose any of the suggestions.
+ */
 export default createComponent('NInputSuggestion', nInputSuggestionProps, props => {
     const suggestionItems = computed(() =>
         props.suggestions

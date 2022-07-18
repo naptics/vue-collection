@@ -28,6 +28,9 @@ export type NInputExposed = {
     focus(): void
 }
 
+/**
+ * The base class of inputs. A styled input with a lot of configuration but no validation.
+ */
 export default createComponent('NInput', nInputProps, (props, context) => {
     const inputRef = ref<HTMLInputElement>()
     const exposed: NInputExposed = {

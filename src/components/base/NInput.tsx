@@ -1,5 +1,5 @@
 import { createComponent, createProps, vModel } from '@/utils/component'
-import type { PropType } from 'vue'
+import { ref, type PropType } from 'vue'
 import { ExclamationCircleIcon } from '@heroicons/vue/solid'
 
 export const nInputProps = createProps({
@@ -24,7 +24,17 @@ export const nInputProps = createProps({
     onBlur: Function as PropType<() => void>,
 })
 
-export default createComponent('NInput', nInputProps, props => {
+export type NInputExposed = {
+    focus(): void
+}
+
+export default createComponent('NInput', nInputProps, (props, context) => {
+    const inputRef = ref<HTMLInputElement>()
+    const exposed: NInputExposed = {
+        focus: () => inputRef.value?.focus(),
+    }
+    context.expose(exposed)
+
     return () => (
         <div>
             {!props.hideLabel && (

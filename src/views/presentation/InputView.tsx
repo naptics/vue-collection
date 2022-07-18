@@ -10,6 +10,7 @@ import VariantSection from '@/components/presentation/VariantSection'
 import { email, matches, password } from '@/utils/validation'
 import { createView, refAsVModel } from '@/utils/component'
 import { ref } from 'vue'
+import NInputSelect from '@/components/base/NInputSelect'
 
 export default createView('InputView', () => {
     // NInput
@@ -17,7 +18,18 @@ export default createView('InputView', () => {
     // NSelect
     // Form
 
-    const refs = Array.from({ length: 10 }, () => ref(''))
+    const suggestions = [
+        { id: '1', label: 'Heidi Klum' },
+        { id: '2', label: 'Frida Kahlo' },
+        { id: '3', label: 'Berta Meier' },
+        { id: '4', label: 'Mike Müller' },
+        { id: '5', label: 'Hans Peter' },
+        { id: '6', label: 'Franz Weber' },
+        { id: '7', label: 'Franziska Weberin' },
+        { id: '8', label: 'Angela Merkel' },
+    ]
+
+    const refs = Array.from({ length: 14 }, () => ref(''))
 
     function vModel(n: number) {
         return refAsVModel(refs[n])
@@ -43,11 +55,13 @@ export default createView('InputView', () => {
                             name="Country"
                             optional
                             options={[
-                                { key: 'ch', label: 'Switzerland' },
-                                { key: 'de', label: 'Germany' },
-                                { key: 'au', label: 'Austria' },
+                                { id: 'ch', label: 'Switzerland' },
+                                { id: 'de', label: 'Germany' },
+                                { id: 'au', label: 'Austria' },
                             ]}
                         />
+                        <NInputSelect {...vModel(10)} options={suggestions} />
+                        {vModel(10).value}
                     </ComponentGrid>
                 </NForm>
             </VariantSection>

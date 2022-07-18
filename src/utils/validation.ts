@@ -87,6 +87,17 @@ export function matches(other: () => string | null | undefined): ValidationRule 
 }
 
 /**
+ * This rule expects the input-value to match one option in an array.
+ * @param options the options which the input can match
+ */
+export function option(options: string[]): ValidationRule {
+    return input => {
+        if (options.includes(input || '')) return validResult()
+        else return invalidResult('option')
+    }
+}
+
+/**
  * This rule expects the input-value to match the regex pattern
  * @param pattern the pattern the input should match.
  */

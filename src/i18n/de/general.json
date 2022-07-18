@@ -1,0 +1,21 @@
+{
+    "title": {},
+    "subtitle": {},
+    "text": {
+        "loading-search-results": "Ergebnisse werden geladen...",
+        "no-search-results": "Keine Ergebnisse für «{input}»."
+    },
+    "property": {},
+    "term": {},
+    "action": {
+        "search": "Suchen",
+        "select": "Auswählen",
+        "remove": "Löschen",
+        "cancel": "Abbrechen",
+        "all-right": "Alles klar",
+        "proceed": "Fortfahren",
+        "save": "Speichern"
+    },
+    "enum": {},
+    "error": {}
+}

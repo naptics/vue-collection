@@ -11,6 +11,7 @@ import { email, matches, password } from '@/utils/validation'
 import { createView, refAsVModel } from '@/utils/component'
 import { ref } from 'vue'
 import NInputSelect from '@/components/base/NInputSelect'
+import NInputSuggestion from '@/components/base/NInputSuggestion'
 
 export default createView('InputView', () => {
     // NInput
@@ -74,6 +75,12 @@ export default createView('InputView', () => {
                             name={'Person'}
                         />
                         {`${inputSelectRef.value.id}: ${inputSelectRef.value.label}`}
+
+                        <NInputSuggestion
+                            {...vModel(11)}
+                            suggestions={suggestions.map(sugg => sugg.label)}
+                            name="Other Person"
+                        />
                     </ComponentGrid>
                 </NForm>
             </VariantSection>

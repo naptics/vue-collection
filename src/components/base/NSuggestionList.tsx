@@ -161,13 +161,13 @@ export default createComponent('NSuggestionList', nSuggestionListProps, props =>
                                     key={item.id}
                                     class={[
                                         'focus:outline-none hover:bg-default-50 rounded-md select-none p-2 cursor-pointer',
-                                        selectedIndex.value == index ? 'bg-default-50' : '',
+                                        selectedIndex.value === index ? 'bg-default-50' : '',
                                     ]}
                                     onMousedown={onListMouseDown}
                                     onMouseleave={onListMouseLeave}
                                     onClick={() => onSelect(item.id)}
                                 >
-                                    {props.listItem?.({ item, highlighted: selectedIndex.value == index }) ||
+                                    {props.listItem?.({ item, highlighted: selectedIndex.value === index }) ||
                                         item.label}
                                 </li>
                             ))}

@@ -38,6 +38,11 @@ const NPhoneInput = createComponent('NInputPhone', nInputPhoneProps, async props
     const isValid = computed(() => parsePhoneNumber(props.value || '').isValid())
 
     return () => (
-        <NValInput {...{ ...props, onUpdateValue }} value={value.value} rules={[external(isValid.value, 'phone')]} />
+        <NValInput
+            {...{ ...props, onUpdateValue }}
+            value={value.value}
+            rules={[external(isValid.value, 'phone')]}
+            type="tel"
+        />
     )
 })

@@ -2,12 +2,12 @@ import NButton from '@/components/base/NButton'
 import NForm from '@/components/base/NForm'
 import NInput from '@/components/base/NInput'
 import NSelect from '@/components/base/NSelect'
-import NValInput, { type NValInputExposed } from '@/components/base/NValInput'
+import NValInput from '@/components/base/NValInput'
 import { createValidatedForm } from '@/components/base/ValidatedForm'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { email, matches, password } from '@/utils/validation'
+import { email, matches, password, regex } from '@/utils/validation'
 import { createView, refAsVModel } from '@/utils/component'
 import { ref } from 'vue'
 import NInputSelect from '@/components/base/NInputSelect'
@@ -15,11 +15,6 @@ import NInputSuggestion from '@/components/base/NInputSuggestion'
 import NInputPhone from '@/components/base/NInputPhone'
 
 export default createView('InputView', () => {
-    // NInput
-    // NValInput
-    // NSelect
-    // Form
-
     const suggestions = [
         { id: '1', label: 'Heidi Klum' },
         { id: '2', label: 'Frida Kahlo' },
@@ -32,7 +27,6 @@ export default createView('InputView', () => {
     ]
 
     const refs = Array.from({ length: 14 }, () => ref(''))
-
     const inputSelectRef = ref({
         id: '',
         label: '',
@@ -45,66 +39,95 @@ export default createView('InputView', () => {
     const form = createValidatedForm()
     const onSubmit = () => alert('Form was submitted!')
 
-    const micha = ref<NValInputExposed>()
-
     return () => (
         <ComponentSection
             title="Inputs and Forms"
             subtitle="Handle user input well with these inputs and forms."
             id="inputs"
         >
-            <VariantSection title="Different types">
+            <VariantSection
+                title="Plain HTML"
+                subtitle="Wherever it is possible, the html features are used. The inputs can be selected by specifying the type attribute."
+            >
                 <NForm>
                     <ComponentGrid cols={2}>
                         <NInput {...vModel(0)} name="Name" />
                         <NInput {...vModel(1)} name="Age" type="number" />
                         <NInput {...vModel(2)} name="Password" type="password" />
-                        <NSelect
-                            {...vModel(3)}
-                            name="Country"
-                            optional
-                            options={[
-                                { id: 'ch', label: 'Switzerland' },
-                                { id: 'de', label: 'Germany' },
-                                { id: 'au', label: 'Austria' },
-                            ]}
-                        />
-                        <NInputSelect
-                            {...refAsVModel(inputSelectRef)}
-                            options={suggestions}
-                            maxItems={4}
-                            name={'Person'}
-                        />
-                        {`${inputSelectRef.value.id}: ${inputSelectRef.value.label}`}
-
-                        <NInputSuggestion
-                            {...vModel(10)}
-                            suggestions={suggestions.map(sugg => sugg.label)}
-                            name="Other Person"
-                        />
-
-                        <NValInput {...vModel(11)} name="Date" type="date" />
-                        <NInput {...vModel(12)} name="Time" type="time" />
-                        <NInputPhone {...vModel(13)} name="Number" optional />
+                        <div class="space-y-2">
+                            <NSelect
+                                {...vModel(3)}
+                                name="Country"
+                                optional
+                                options={[
+                                    { id: 'ch', label: 'Switzerland' },
+                                    { id: 'de', label: 'Germany' },
+                                    { id: 'au', label: 'Austria' },
+                                ]}
+                            />
+                            <p class="text-xs text-default-500">{`Value of the field: ${vModel(3).value}`}</p>
+                        </div>
+                        <div class="space-y-2">
+                            <NInput {...vModel(4)} name="Date" type="date" />
+                            <p class="text-xs text-default-500">{`Value of the field: ${vModel(4).value}`}</p>
+                        </div>
+                        <div class="space-y-2">
+                            <NInput {...vModel(5)} name="Time" type="time" />
+                            <p class="text-xs text-default-500">{`Value of the field: ${vModel(5).value}`}</p>
+                        </div>
                     </ComponentGrid>
                 </NForm>
             </VariantSection>
 
-            <VariantSection title="Input Validation" subtitle="Inputs can be validated using different rules.">
+            <VariantSection
+                title="Input Validation"
+                subtitle="Inputs can be validated using different rules. Some inputs also implement a custom formatter, like the input for phone numbers."
+            >
                 <NForm>
                     <ComponentGrid cols={2}>
-                        <NValInput {...vModel(4)} name="Name" ref={micha} />
-                        <NValInput {...vModel(5)} name="Email" type="email" rules={[email]} />
-                        <NValInput {...vModel(6)} name="Password" type="password" rules={[password]} />
+                        <NValInput {...vModel(6)} name="Name" />
+                        <NValInput {...vModel(7)} name="Email" type="email" rules={[email]} />
+                        <NValInput {...vModel(8)} name="Password" type="password" rules={[password]} />
                         <NValInput
-                            {...vModel(7)}
+                            {...vModel(9)}
                             name="Repeat Password"
                             type="password"
                             rules={[matches(refs[6].value)]}
                         />
-                        <NButton onClick={() => micha.value?.focus()}> hi</NButton>
+                        <NValInput
+                            {...vModel(10)}
+                            name="Regex"
+                            rules={[regex(/^foo.*bar$/)]}
+                            placeholder="Try foo...bar"
+                        />
+                        <div class="space-y-2">
+                            <NInputPhone {...vModel(11)} name="Mobile" />
+                            <p class="text-xs text-default-500">{`Value of the field: ${vModel(11).value}`}</p>
+                        </div>
                     </ComponentGrid>
                 </NForm>
+            </VariantSection>
+
+            <VariantSection
+                title="Suggestion Lists"
+                subtitle="The left input just shows filtered suggestions and allows any input. The right input expects the user to pick an item from the list."
+            >
+                <ComponentGrid cols={2}>
+                    <div class="space-y-2">
+                        <NInputSuggestion
+                            {...vModel(12)}
+                            suggestions={suggestions.map(sugg => sugg.label)}
+                            name="Any Person"
+                        />
+                        <p class="text-xs text-default-500">{`Value of the field: ${vModel(12).value}`}</p>
+                    </div>
+                    <div class="space-y-2">
+                        <NInputSelect {...refAsVModel(inputSelectRef)} options={suggestions} name="Choose Person" />
+                        <p class="text-xs text-default-500">{`Value of the field: ${JSON.stringify(
+                            inputSelectRef.value
+                        )}`}</p>
+                    </div>
+                </ComponentGrid>
             </VariantSection>
 
             <VariantSection

@@ -3,10 +3,19 @@ import NCheckbox, { nCheckboxProps } from './NCheckbox'
 
 export const nCheckboxLabelProps = createProps({
     ...nCheckboxProps,
+    /**
+     * The title of the checkbox.
+     */
     title: String,
+    /**
+     * The description of the checkbox.
+     */
     description: String,
 })
 
+/**
+ * The `NCheckboxLabel` is a checkbox with a title and a description.
+ */
 export default createComponent('NCheckboxLabel', nCheckboxLabelProps, props => {
     const toggleValue = () => {
         if (!props.disabled) props.onUpdateValue?.(!props.value)

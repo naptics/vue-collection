@@ -2,19 +2,37 @@ import { createComponent, createProps } from '@/utils/component'
 import type { PropType } from 'vue'
 
 export const nButtonProps = createProps({
+    /**
+     * The color of the button.
+     */
     color: {
         type: String,
         default: 'primary',
     },
+    /**
+     * The html attribute, which indicates the type of the button.
+     */
     type: {
         type: String as PropType<'submit' | 'button' | 'reset'>,
         default: 'button',
     },
+    /**
+     * If set to `true` the button is disabled and no interaction is possible.
+     */
     disabled: Boolean,
+    /**
+     * If set to `true` the button will appear smaller.
+     */
     small: Boolean,
+    /**
+     * This is called, when the button is clicked.
+     */
     onClick: Function as PropType<() => void>,
 })
 
+/**
+ * The `NButton` is a styled button.
+ */
 export default createComponent('NButton', nButtonProps, (props, { slots }) => {
     return () => (
         <button

@@ -11,28 +11,56 @@ import { trsl } from '@/i18n'
 export type DialogVariant = 'success' | 'info' | 'warning' | 'error' | 'remove'
 
 export const nDialogProps = createProps({
+    /**
+     * The title of the dialog.
+     */
     title: String,
+    /**
+     * The text of the dialog.
+     */
     text: String,
-    size: {
-        type: String,
-        default: 'sm',
-    },
+    /**
+     * The variant of the dialog.
+     * This determines the default icon and its color
+     * as well as the default text and color of the ok-button.
+     */
     variant: {
         type: String as PropType<DialogVariant>,
         default: 'warning',
     },
+    /**
+     * The icon of the alert. This overrides the `icon` of the `variant`.
+     */
     icon: Function as PropType<HeroIcon>,
+    /**
+     * The color of the alert's icon. This overrides the `iconColor` of the `variant`.
+     */
     iconColor: String,
+    /**
+     * The text of the ok-button. This overrides the `okText` of the `variant`.
+     */
     okText: String,
+    /**
+     * The color of the ok-button. This overrides the `okColor` of the `variant`.
+     */
     okColor: String,
+    /**
+     * The text of the cancel-button.
+     */
     cancelText: {
         type: String,
         default: trsl('general.action.cancel'),
     },
+    /**
+     * The color of the cancel-button.
+     */
     cancelColor: {
         type: String,
         default: 'default',
     },
+    /**
+     * If set to `true` the cancel-button is hidden.
+     */
     hideCancel: Boolean,
 })
 
@@ -45,6 +73,21 @@ export type NDialogExposed = {
     show(): Promise<boolean>
 }
 
+/**
+ * A `NDialog` is an element to interact directly with the user.
+ * It can be controlled via a ref to prompt the user and to receive their answer.
+ * @example
+ * const dialogRef = ref<NDialogExposed>()
+ * ...
+ * const onShowDialog = () => {
+ *   dialofRef.value?.show().then(result => {
+ *     if (result)   // dialog accepted
+ *     else          // dialog cancelled
+ *   })
+ * }
+ * ...
+ * <NDialog ref={dialogRef} />
+ */
 export default createComponent('NDialog', nDialogProps, (props, context) => {
     const showDialog = ref(false)
 

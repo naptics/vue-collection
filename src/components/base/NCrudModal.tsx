@@ -8,23 +8,46 @@ import NFormModal, { nFormModalProps } from './NFormModal'
 
 export const nCrudModalProps = createProps({
     ...nFormModalProps,
+    /**
+     * The text of the remove-button.
+     */
     removeText: {
         type: String,
         default: trsl('general.action.remove'),
     },
+    /**
+     * The color of the remove-button.
+     */
     removeColor: {
         type: String,
         default: 'red',
     },
+    /**
+     * The title of the dialog, which appears when clicking on the remove-button.
+     */
     removeDialogTitle: String,
+    /**
+     * The text of the dialog, which appears when clicking on the remove-button.
+     */
     removeDialogText: String,
+    /**
+     * If set to `true` the modal will close itself when `onRemove` is called.
+     */
     closeOnRemove: {
         type: Boolean,
         default: true,
     },
+    /**
+     * This is called, when the remove-button has been clicked and the dialog has been accepted.
+     */
     onRemove: Function as PropType<() => void>,
 })
 
+/**
+ * The `NCrudModal` is a {@link NFormModal} which has some convenience features for a CRUD-scenario.
+ * It has an integrated remove-button with a user-dialog to remove the editing element.
+ * When the dialog is accepted `onRemove` is called.
+ */
 export default createComponent('NCrudModal', nCrudModalProps, (props, { slots }) => {
     const removeDialog = ref<NDialogExposed>()
 

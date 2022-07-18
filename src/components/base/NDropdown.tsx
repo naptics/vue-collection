@@ -6,19 +6,37 @@ import { ChevronDownIcon } from '@heroicons/vue/outline'
 import type { HeroIcon } from '@/utils/utils'
 
 export const nDropdownProps = createProps({
+    /**
+     * The title of the dropdown-button.
+     */
     title: String,
+    /**
+     * The items of the dropdown.
+     * They second dimension of the array is used
+     * to create groups of items, which are visually seperated.
+     */
     items: {
         type: Array as PropType<DropdownItem[] | DropdownItem[][]>,
         default: () => [],
     },
+    /**
+     * If set to `true` the panel is right-aligned to the button.
+     */
     right: Boolean,
+    /**
+     * If set to `true` the dropdown-button is disabled and no interaction is possible.
+     */
     disabled: Boolean,
     /**
-     * A slot to replace the button of the dropdown
+     * A slot to replace the button of the dropdown.
      */
     button: Function as PropType<() => JSX.Element>,
 })
 
+/**
+ * The `NDropdown` consists of a button and a panel with multiple actions.
+ * It is useful to group multiple actions together in one place.
+ */
 export default createComponent('NDropdown', nDropdownProps, (props, { slots }) => {
     const items = computed<DropdownItem[][]>(() => {
         if (props.items.length == 0) return []

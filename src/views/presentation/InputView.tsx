@@ -77,10 +77,13 @@ export default createView('InputView', () => {
                         {`${inputSelectRef.value.id}: ${inputSelectRef.value.label}`}
 
                         <NInputSuggestion
-                            {...vModel(11)}
+                            {...vModel(10)}
                             suggestions={suggestions.map(sugg => sugg.label)}
                             name="Other Person"
                         />
+
+                        <NValInput {...vModel(11)} name="Date" type="date" />
+                        <NInput {...vModel(12)} name="Time" type="time" />
                     </ComponentGrid>
                 </NForm>
             </VariantSection>

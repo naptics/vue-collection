@@ -15,6 +15,7 @@ export const nInputSelectProps = createProps({
     errorMessage: nValInputProps.errorMessage,
     hideList: nSuggestionListProps.hideList,
     maxItems: nSuggestionListProps.maxItems,
+    listItem: nSuggestionListProps.listItem,
     ...vModel<InputSelectOption>(Object),
     /**
      * The options which are allowed and suggested for this input.
@@ -25,7 +26,7 @@ export const nInputSelectProps = createProps({
     },
 })
 
-export type InputSelectOption = Identifiable & { label: string }
+export type InputSelectOption = Identifiable & { label: string } & Record<string, unknown>
 
 /**
  * The `NInputSelect` is very similar to the {@link NSelect}, but instead of a select input it is a regular input.
@@ -58,6 +59,7 @@ export default createComponent('NInputSelect', nInputSelectProps, props => {
             value={props.value?.label}
             hideList={props.hideList || matchedOption.value != null || filteredOptions.value.length == 0}
             maxItems={props.maxItems}
+            listItem={props.listItem}
             input={({ onFocus, onBlur }) => (
                 <NValInput
                     ref={inputRef}

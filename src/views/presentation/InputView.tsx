@@ -100,7 +100,7 @@ export default createView('InputView', () => {
                             {...vModel(7)}
                             name="Repeat Password"
                             type="password"
-                            rules={[matches(() => refs[6].value)]}
+                            rules={[matches(refs[6].value)]}
                         />
                         <NButton onClick={() => micha.value?.focus()}> hi</NButton>
                     </ComponentGrid>

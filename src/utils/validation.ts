@@ -77,11 +77,11 @@ export const password: ValidationRule = input => {
 
 /**
  * This rule expects the input-value to match another (input-) value.
- * @param other a function which returns the other value.
+ * @param other the other value to match
  */
-export function matches(other: () => string | null | undefined): ValidationRule {
+export function matches(other: string | null | undefined): ValidationRule {
     return input => {
-        if (!input || input === other()) return validResult()
+        if (!input || input === other) return validResult()
         else return invalidResult('matches')
     }
 }

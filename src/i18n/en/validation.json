@@ -12,6 +12,7 @@
             "no-special-chars": "The password must contain a special character.",
             "unknown": "This field does not match the required password format."
         },
-        "option": "This field has to be an option from the list."
+        "option": "This field has to be an option from the list.",
+        "phone": "This field must be a valid phone number."
     }
 }

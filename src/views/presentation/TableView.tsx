@@ -64,7 +64,7 @@ export default createView('TableView', () => {
                     headings={[...headings.slice(0, 4), { key: 'action', cellClass: 'flex-row-reverse' }]}
                     items={data.map(item => ({
                         ...item,
-                        username: () => <NTableAction route={`/${item.username}`} text={item.username} />,
+                        username: () => <NTableAction route={`/`} text={item.username} />,
                         action: () => (
                             <NIconButton icon={PencilIcon} onClick={() => alert(`You will edit ${item.username}.`)} />
                         ),

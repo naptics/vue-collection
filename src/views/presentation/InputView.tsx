@@ -12,6 +12,7 @@ import { createView, refAsVModel } from '@/utils/component'
 import { ref } from 'vue'
 import NInputSelect from '@/components/base/NInputSelect'
 import NInputSuggestion from '@/components/base/NInputSuggestion'
+import NInputPhone from '@/components/base/NInputPhone'
 
 export default createView('InputView', () => {
     // NInput
@@ -84,6 +85,7 @@ export default createView('InputView', () => {
 
                         <NValInput {...vModel(11)} name="Date" type="date" />
                         <NInput {...vModel(12)} name="Time" type="time" />
+                        <NInputPhone {...vModel(13)} name="Number" optional />
                     </ComponentGrid>
                 </NForm>
             </VariantSection>

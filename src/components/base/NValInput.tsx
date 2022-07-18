@@ -1,7 +1,7 @@
 import { createComponent, createProps } from '@/utils/component'
 import { computed } from '@vue/reactivity'
 import { ref, reactive, type PropType, watch } from 'vue'
-import NInput, { nInputProps } from './NInput'
+import NInput, { nInputProps, type NInputExposed } from './NInput'
 import { type ValidationRule, type ValidationResult, validate, type InputValue, required } from '@/utils/validation'
 import type { ValidatedForm } from './ValidatedForm'
 
@@ -24,11 +24,15 @@ export const nValInputProps = createProps({
     /**
      * Overrides the internal error message. If set, this message is always displayed.
      */
-    errorMessage: Boolean,
+    errorMessage: String,
     /**
      * A slot to replace the input.
      */
     input: Function as PropType<(props: InputSlotProps) => JSX.Element>,
+    /**
+     * Disables the validation on blur. Should only be used in special occasions.
+     */
+    disableBlurValidation: Boolean,
 })
 
 export type InputSlotProps = {
@@ -49,7 +53,7 @@ export type NValInputExposed = {
      * Resets the validation state of the input.
      */
     reset: () => void
-}
+} & NInputExposed
 
 export default createComponent('NValInput', nValInputProps, (props, context) => {
     const rules = computed(() => (props.optional ? props.rules : [required, ...props.rules]))
@@ -79,7 +83,7 @@ export default createComponent('NValInput', nValInputProps, (props, context) => 
     )
 
     const onBlur = () => {
-        validateRules(props.value)
+        if (!props.disableBlurValidation) validateRules(props.value)
         props.onBlur?.()
     }
 
@@ -94,16 +98,18 @@ export default createComponent('NValInput', nValInputProps, (props, context) => 
         error: showError,
     })
 
+    const inputRef = ref<NInputExposed>()
     const expose: NValInputExposed = {
         validate: () => validateRules(props.value),
         reset: () => (validationResult.value = undefined),
+        focus: () => inputRef.value?.focus(),
     }
     context.expose(expose)
     props.form?.addInput(expose)
 
     return () => (
         <div>
-            {props.input?.(inputSlotProps) || <NInput {...{ ...props, ...inputSlotProps }} />}
+            {props.input?.(inputSlotProps) || <NInput ref={inputRef} {...{ ...props, ...inputSlotProps }} />}
             {showError.value && <p class="text-red-500 text-xs mt-1">{errorMessage.value}</p>}
         </div>
     )

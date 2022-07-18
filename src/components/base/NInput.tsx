@@ -1,5 +1,5 @@
 import { createComponent, createProps, vModel } from '@/utils/component'
-import type { PropType } from 'vue'
+import { ref, type PropType } from 'vue'
 import { ExclamationCircleIcon } from '@heroicons/vue/solid'
 
 export const nInputProps = createProps({
@@ -24,7 +24,20 @@ export const nInputProps = createProps({
     onBlur: Function as PropType<() => void>,
 })
 
-export default createComponent('NInput', nInputProps, props => {
+export type NInputExposed = {
+    focus(): void
+}
+
+/**
+ * The base class of inputs. A styled input with a lot of configuration but no validation.
+ */
+export default createComponent('NInput', nInputProps, (props, context) => {
+    const inputRef = ref<HTMLInputElement>()
+    const exposed: NInputExposed = {
+        focus: () => inputRef.value?.focus(),
+    }
+    context.expose(exposed)
+
     return () => (
         <div>
             {!props.hideLabel && (
@@ -37,6 +50,7 @@ export default createComponent('NInput', nInputProps, props => {
             )}
             <div class="relative">
                 <input
+                    ref={inputRef}
                     value={props.value}
                     onInput={event => props.onUpdateValue?.((event.target as HTMLInputElement).value)}
                     placeholder={props.placeholder}

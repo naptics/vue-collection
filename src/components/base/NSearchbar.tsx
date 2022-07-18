@@ -7,7 +7,7 @@ export const nSearchbarProps = createProps({
     ...vModel(String),
     placeholder: {
         type: String,
-        default: trsl('general.property.search'),
+        default: trsl('general.action.search'),
     },
     small: Boolean,
     /**
@@ -18,14 +18,14 @@ export const nSearchbarProps = createProps({
     onBlur: Function as PropType<() => void>,
 })
 
-export type SearchbarExposed = {
+export type NSearchbarExposed = {
     focus(): void
 }
 
 export default createComponent('NSearchbar', nSearchbarProps, (props, context) => {
     const inputRef = ref<HTMLInputElement>()
 
-    const exposed: SearchbarExposed = {
+    const exposed: NSearchbarExposed = {
         focus: () => {
             inputRef.value?.focus()
         },

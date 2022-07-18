@@ -32,7 +32,7 @@ export function createComponent<T extends Props>(
     setup: (
         props: Readonly<LooseRequired<Readonly<ExtractPropTypes<T>>>>,
         context: SetupContext<never[]>
-    ) => RenderFunction
+    ) => RenderFunction | Promise<RenderFunction>
 ) {
     return defineComponent({ name, props, emits: [], setup })
 }
@@ -45,7 +45,10 @@ export function createComponent<T extends Props>(
  * @param setup the setup function, which will be called when the component is mounted.
  * @returns the created vue-component.
  */
-export function createView(name: string, setup: (context: SetupContext<never[]>) => RenderFunction) {
+export function createView(
+    name: string,
+    setup: (context: SetupContext<never[]>) => RenderFunction | Promise<RenderFunction>
+) {
     return defineComponent({ name, emits: [], setup: (props, context) => setup(context) })
 }
 

@@ -56,7 +56,7 @@ export const VALIDATION_FORMAT_EMAIL = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3}
  * This rule expects the input-value to be a valid email adress matching {@link VALIDATION_FORMAT_EMAIL}.
  */
 export const email: ValidationRule = input => {
-    if (input && VALIDATION_FORMAT_EMAIL.test(input)) return validResult()
+    if (!input || VALIDATION_FORMAT_EMAIL.test(input)) return validResult()
     else return invalidResult('email')
 }
 
@@ -66,8 +66,8 @@ export const VALIDATION_FORMAT_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[
  * This rule expects the input-value to be a password matching {@link VALIDATION_FORMAT_PASSWORD}.
  */
 export const password: ValidationRule = input => {
-    if (input && VALIDATION_FORMAT_PASSWORD.test(input)) return validResult()
-    else if (!input || input.length < 8) return invalidResult('password.to-short')
+    if (!input || VALIDATION_FORMAT_PASSWORD.test(input)) return validResult()
+    else if (input.length < 8) return invalidResult('password.to-short')
     else if (!/[a-z]+/.test(input)) return invalidResult('password.no-lowercase')
     else if (!/[A-Z]+/.test(input)) return invalidResult('password.no-uppercase')
     else if (!/\d+/.test(input)) return invalidResult('password.no-digits')
@@ -77,12 +77,23 @@ export const password: ValidationRule = input => {
 
 /**
  * This rule expects the input-value to match another (input-) value.
- * @param other a function which returns the other value.
+ * @param other the other value to match
  */
-export function matches(other: () => string | null | undefined): ValidationRule {
+export function matches(other: string | null | undefined): ValidationRule {
     return input => {
-        if (input === other()) return validResult()
+        if (!input || input === other) return validResult()
         else return invalidResult('matches')
+    }
+}
+
+/**
+ * This rule expects the input-value to match one option in an array.
+ * @param options the options which the input can match
+ */
+export function option(options: string[]): ValidationRule {
+    return input => {
+        if (!input || options.includes(input || '')) return validResult()
+        else return invalidResult('option')
     }
 }
 
@@ -92,7 +103,11 @@ export function matches(other: () => string | null | undefined): ValidationRule 
  */
 export function regex(pattern: RegExp): ValidationRule {
     return input => {
-        if (pattern.test(input || '')) return validResult()
+        if (!input || pattern.test(input || '')) return validResult()
         else return invalidResult('regex')
     }
+}
+
+export function external(isValid: boolean, errorKey: string): ValidationRule {
+    return input => (!input || isValid ? validResult() : invalidResult(errorKey))
 }

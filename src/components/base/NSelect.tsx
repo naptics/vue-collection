@@ -1,5 +1,6 @@
 import { trsl } from '@/i18n'
 import { createComponent, createProps, vModel } from '@/utils/component'
+import type { Identifiable } from '@/utils/identifiable'
 import { ref, type PropType } from 'vue'
 import NValInput, { type NValInputExposed } from './NValInput'
 import type { ValidatedForm } from './ValidatedForm'
@@ -19,8 +20,7 @@ export const nSelectProps = createProps({
     form: Object as PropType<ValidatedForm>,
 })
 
-export type SelectionOption = {
-    key: string
+export type SelectionOption = Identifiable & {
     label: string
 }
 
@@ -67,7 +67,7 @@ export default createComponent('NSelect', nSelectProps, (props, context) => {
                             {trsl('general.action.select')}
                         </option>
                         {props.options.map(option => (
-                            <option key={option.key} value={option.key} selected={props.value == option.key}>
+                            <option key={option.id} value={option.id} selected={props.value == option.id}>
                                 {option.label}
                             </option>
                         ))}

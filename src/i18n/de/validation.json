@@ -1,0 +1,18 @@
+{
+    "rules": {
+        "required": "Dieses Feld ist ein Pflichtfeld.",
+        "email": "Dieses Feld muss eine gültige Email-Adresse sein.",
+        "matches": "Die Felder stimmen nicht überein.",
+        "regex": "Dieses Feld entspricht nicht dem geforderten Format.",
+        "password": {
+            "to-short": "Das Passwort muss aus mindestens 8 Zeichen bestehen.",
+            "no-lowercase": "Das Passwort muss einen Kleinbuchstaben enthalten.",
+            "no-uppercase": "Das Passwort muss einen Grossbuchstaben enthalten.",
+            "no-digits": "Das Passwort muss eine Ziffer enthalten.",
+            "no-special-chars": "Das Passwort muss ein Sonderzeichen enthalten.",
+            "unknown": "Dieses Feld erfüllt nicht die Anforderungen für ein Passwort."
+        },
+        "option": "Dieses Feld muss eine Option aus der Liste sein.",
+        "phone": "Dieses Feld muss eine gültige Telefonnummer sein."
+    }
+}

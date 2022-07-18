@@ -17,7 +17,7 @@ export const nInputSelectProps = createProps({
     maxItems: nSuggestionListProps.maxItems,
     ...vModel<InputSelectOption>(Object),
     /**
-     * The options which the user can select from.
+     * The options which are allowed and suggested for this input.
      */
     options: {
         type: Array as PropType<InputSelectOption[]>,

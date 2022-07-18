@@ -7,7 +7,7 @@ export const nSearchbarProps = createProps({
     ...vModel(String),
     placeholder: {
         type: String,
-        default: trsl('general.property.search'),
+        default: trsl('general.action.search'),
     },
     small: Boolean,
     /**

@@ -6,10 +6,9 @@
         "no-search-results": "No results found for «{input}»."
     },
     "property": {},
-    "term": {
-        "search": "Search"
-    },
+    "term": {},
     "action": {
+        "search": "Search",
         "select": "Select",
         "remove": "Delete",
         "cancel": "Cancel",

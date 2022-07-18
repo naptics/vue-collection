@@ -42,6 +42,8 @@ deploy-pages:
     stage: deploy
     image: busybox:latest
     script: 
+        - rm -r public
+        - mkdir public
         - mv dist/* public
     artifacts: 
         paths: 

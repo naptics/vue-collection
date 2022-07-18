@@ -2,7 +2,7 @@ import NButton from '@/components/base/NButton'
 import NForm from '@/components/base/NForm'
 import NInput from '@/components/base/NInput'
 import NSelect from '@/components/base/NSelect'
-import NValInput from '@/components/base/NValInput'
+import NValInput, { type NValInputExposed } from '@/components/base/NValInput'
 import { createValidatedForm } from '@/components/base/ValidatedForm'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
@@ -31,12 +31,19 @@ export default createView('InputView', () => {
 
     const refs = Array.from({ length: 14 }, () => ref(''))
 
+    const inputSelectRef = ref({
+        id: '',
+        label: '',
+    })
+
     function vModel(n: number) {
         return refAsVModel(refs[n])
     }
 
     const form = createValidatedForm()
     const onSubmit = () => alert('Form was submitted!')
+
+    const micha = ref<NValInputExposed>()
 
     return () => (
         <ComponentSection
@@ -60,8 +67,13 @@ export default createView('InputView', () => {
                                 { id: 'au', label: 'Austria' },
                             ]}
                         />
-                        <NInputSelect {...vModel(10)} options={suggestions} />
-                        {vModel(10).value}
+                        <NInputSelect
+                            {...refAsVModel(inputSelectRef)}
+                            options={suggestions}
+                            maxItems={4}
+                            name={'Person'}
+                        />
+                        {`${inputSelectRef.value.id}: ${inputSelectRef.value.label}`}
                     </ComponentGrid>
                 </NForm>
             </VariantSection>
@@ -69,7 +81,7 @@ export default createView('InputView', () => {
             <VariantSection title="Input Validation" subtitle="Inputs can be validated using different rules.">
                 <NForm>
                     <ComponentGrid cols={2}>
-                        <NValInput {...vModel(4)} name="Name" />
+                        <NValInput {...vModel(4)} name="Name" ref={micha} />
                         <NValInput {...vModel(5)} name="Email" type="email" rules={[email]} />
                         <NValInput {...vModel(6)} name="Password" type="password" rules={[password]} />
                         <NValInput
@@ -78,6 +90,7 @@ export default createView('InputView', () => {
                             type="password"
                             rules={[matches(() => refs[6].value)]}
                         />
+                        <NButton onClick={() => micha.value?.focus()}> hi</NButton>
                     </ComponentGrid>
                 </NForm>
             </VariantSection>

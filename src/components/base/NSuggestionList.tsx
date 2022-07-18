@@ -1,7 +1,7 @@
 import { trsl } from '@/i18n'
 import type { Identifiable } from '@/utils/identifiable'
 import { createComponent, createProps } from '@/utils/component'
-import { computed, ref, watch, type PropType, nextTick } from 'vue'
+import { computed, ref, type PropType } from 'vue'
 import NLoadingIndicator from './NLoadingIndicator'
 
 export const nSuggestionListPropsForConfig = createProps({
@@ -150,42 +150,44 @@ export default createComponent('NSuggestionList', nSuggestionListProps, props =>
     }
 
     return () => (
-        <div class="relative" onKeydown={keydown}>
+        <div onKeydown={keydown}>
             {props.input({ onFocus, onBlur })}
+            <div class="relative">
+                {showList.value && (
+                    <div class="bg-white rounded-md shadow-lg p-2 absolute top-2 left-0 min-w-full z-10">
+                        <ul>
+                            {displayItems.value.map((item, index) => (
+                                <li
+                                    key={item.id}
+                                    class={[
+                                        'focus:outline-none hover:bg-default-50 rounded-md select-none p-2 cursor-pointer',
+                                        selectedIndex.value == index ? 'bg-default-50' : '',
+                                    ]}
+                                    onMousedown={onListMouseDown}
+                                    onMouseleave={onListMouseLeave}
+                                    onClick={() => onSelect(item.id)}
+                                >
+                                    {props.listItem?.({ item, highlighted: selectedIndex.value == index }) ||
+                                        item.label}
+                                </li>
+                            ))}
 
-            {showList.value && (
-                <div class="bg-white mt-12 rounded-md shadow-lg p-2 absolute top-0 left-0 min-w-full z-10">
-                    <ul>
-                        {displayItems.value.map((item, index) => (
-                            <li
-                                key={item.id}
-                                class={[
-                                    'focus:outline-none hover:bg-default-50 rounded-md select-none p-2 cursor-pointer',
-                                    selectedIndex.value == index ? 'bg-default-50' : '',
-                                ]}
-                                onMousedown={onListMouseDown}
-                                onMouseleave={onListMouseLeave}
-                                onClick={() => onSelect(item.id)}
-                            >
-                                {props.listItem?.({ item, highlighted: selectedIndex.value == index }) || item.label}
-                            </li>
-                        ))}
-
-                        {displayItems.value.length == 0 && (
-                            <div class="p-2 text-sm font-medium text-default-700">
-                                {props.loading ? (
-                                    <div class="flex items-center space-x-2">
-                                        <NLoadingIndicator size={6} />
-                                        <span> {trsl('general.text.loading-search-results')}</span>
-                                    </div>
-                                ) : (
-                                    <div>{trsl('general.text.no-search-results', { input: props.value })}</div>
-                                )}
-                            </div>
-                        )}
-                    </ul>
-                </div>
-            )}
+                            {displayItems.value.length == 0 && (
+                                <div class="p-2 text-sm font-medium text-default-700">
+                                    {props.loading ? (
+                                        <div class="flex items-center space-x-2">
+                                            <NLoadingIndicator size={6} />
+                                            <span> {trsl('general.text.loading-search-results')}</span>
+                                        </div>
+                                    ) : (
+                                        <div>{trsl('general.text.no-search-results', { input: props.value })}</div>
+                                    )}
+                                </div>
+                            )}
+                        </ul>
+                    </div>
+                )}
+            </div>
         </div>
     )
 })

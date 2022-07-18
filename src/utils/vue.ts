@@ -14,3 +14,12 @@ export function updateWith<T>(ref: Ref<T>, updater: () => T): void {
         { immediate: true }
     )
 }
+
+/**
+ * Conveience function to create a watcher for a ref
+ * @param ref the ref to watch
+ * @param onChange the function, which is executed on change of a value
+ */
+export function watchRef<T>(ref: Ref<T>, onChange: (newValue: T) => void): void {
+    watch(() => ref.value, onChange)
+}

@@ -11,6 +11,7 @@
             "no-digits": "The password must contain a digit.",
             "no-special-chars": "The password must contain a special character.",
             "unknown": "This field does not match the required password format."
-        }
+        },
+        "option": "This field has to be an option from the list."
     }
 }

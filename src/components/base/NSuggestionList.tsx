@@ -1,12 +1,12 @@
 import { trsl } from '@/i18n'
 import type { Identifiable } from '@/utils/identifiable'
 import { createComponent, createProps } from '@/utils/component'
-import { computed, ref, type PropType } from 'vue'
+import { computed, ref, watch, type PropType, nextTick } from 'vue'
 import NLoadingIndicator from './NLoadingIndicator'
 
 export const nSuggestionListPropsForConfig = createProps({
     items: {
-        type: Array as PropType<Array<NSuggestionItem>>,
+        type: Array as PropType<Array<SuggestionItem>>,
         default: () => [],
     },
     maxItems: {
@@ -27,9 +27,15 @@ export const nSuggestionListPropsForConfig = createProps({
      */
     listItem: Function as PropType<(props: ItemSlotProps) => JSX.Element>,
     /**
-     * The current value of the input. Just used to display the «no results for ...» message.
+     * The current value of the input.
      */
     value: String,
+    /**
+     * This function is called, when the input and the suggestion list are really blurred.
+     * This means, it's not just the input temporarly beeing blurred because the user clicks on the item list,
+     * but the focus has completely disappeared from the input and the list.
+     */
+    onRealBlur: Function as PropType<() => void>,
 })
 
 export const nSuggestionListPropsForInput = createProps({
@@ -56,11 +62,17 @@ export const nSuggestionListProps = createProps({
 })
 
 export type InputSlotProps = {
+    /**
+     * Should be called when the input receives focus.
+     */
     onFocus(): void
+    /**
+     * Should be called when the input is blurred.
+     */
     onBlur(): void
 }
 
-export type ItemSlotProps<T extends Identifiable = NSuggestionItem> = {
+export type ItemSlotProps<T extends Identifiable = SuggestionItem> = {
     /**
      * The current item of the list
      */
@@ -71,7 +83,7 @@ export type ItemSlotProps<T extends Identifiable = NSuggestionItem> = {
     highlighted: boolean
 }
 
-export type NSuggestionItem = Identifiable & { label?: string } & Record<string, unknown>
+export type SuggestionItem = Identifiable & { label?: string } & Record<string, unknown>
 
 export default createComponent('NSuggestionList', nSuggestionListProps, props => {
     const selectedIndex = ref<number | null>(null)
@@ -87,7 +99,10 @@ export default createComponent('NSuggestionList', nSuggestionListProps, props =>
     const onListMouseLeave = () => props.onRequestInputFocus()
 
     const onBlur = () => {
-        if (!listButtonClicked) isInFocus.value = false
+        if (!listButtonClicked) {
+            isInFocus.value = false
+            props.onRealBlur?.()
+        }
         listButtonClicked = false
     }
 
@@ -107,7 +122,7 @@ export default createComponent('NSuggestionList', nSuggestionListProps, props =>
             event.preventDefault()
             const index = selectedIndex.value
             if (index != null && index < displayItems.value.length) {
-                props.onSelect?.(displayItems.value[index].id)
+                onSelect(displayItems.value[index].id)
             }
         }
     }

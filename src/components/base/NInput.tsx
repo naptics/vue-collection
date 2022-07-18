@@ -47,6 +47,7 @@ export default createComponent('NInput', nInputProps, (props, context) => {
             )}
             <div class="relative">
                 <input
+                    ref={inputRef}
                     value={props.value}
                     onInput={event => props.onUpdateValue?.((event.target as HTMLInputElement).value)}
                     placeholder={props.placeholder}

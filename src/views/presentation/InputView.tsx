@@ -26,7 +26,7 @@ export default createView('InputView', () => {
         { id: '8', label: 'Angela Merkel' },
     ]
 
-    const refs = Array.from({ length: 14 }, () => ref(''))
+    const refs = Array.from({ length: 15 }, () => ref(''))
     const inputSelectRef = ref({
         id: '',
         label: '',
@@ -92,7 +92,7 @@ export default createView('InputView', () => {
                             {...vModel(9)}
                             name="Repeat Password"
                             type="password"
-                            rules={matches(refs[6].value)}
+                            rules={[matches(refs[8].value)]}
                         />
                         <NValInput
                             {...vModel(10)}
@@ -136,8 +136,8 @@ export default createView('InputView', () => {
             >
                 <NForm form={form} onSubmit={onSubmit}>
                     <ComponentGrid cols={2}>
-                        <NValInput name="First Name" form={form} {...vModel(8)} />
-                        <NValInput name="Last name" form={form} {...vModel(9)} />
+                        <NValInput name="First Name" form={form} {...vModel(13)} />
+                        <NValInput name="Last name" form={form} {...vModel(14)} />
                         <div class="flex ">
                             <NButton type="submit">Submit Form</NButton>
                         </div>

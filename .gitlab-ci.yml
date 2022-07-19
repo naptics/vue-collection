@@ -29,19 +29,23 @@ build-pages:
     stage: build
     before_script: 
         - npm ci
-    variables:
-        VITE_BASE_PATH: /$CI_PROJECT_PATH
     script: 
+        - export VITE_BASE_PATH="${CI_PROJECT_PATH#$CI_PROJECT_ROOT_NAMESPACE}/"
         - npm run build
     artifacts:
         paths:
             - dist/
         expire_in: 1 day
 
-deploy-pages:
+pages:
     stage: deploy
     image: busybox:latest
+    environment:
+        name: Showroom
+        url: $CI_PAGES_URL
     script: 
+        - rm -rf public
+        - mkdir public
         - mv dist/* public
     artifacts: 
         paths: 

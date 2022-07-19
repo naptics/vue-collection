@@ -32,6 +32,7 @@ build-pages:
     variables:
         VITE_BASE_PATH: "${CI_PROJECT_PATH#$CI_PROJECT_ROOT_NAMESPACE}/"
     script: 
+        - VITE_BASE_PATH="${CI_PROJECT_PATH#$CI_PROJECT_ROOT_NAMESPACE}/"
         - echo $VITE_BASE_PATH
         - echo ${CI_PROJECT_PATH#$CI_PROJECT_ROOT_NAMESPACE}/
         - npm run build

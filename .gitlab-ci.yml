@@ -32,7 +32,7 @@ build-pages:
     variables:
         VITE_BASE_PATH: ${CI_PROJECT_PATH#$CI_PROJECT_NAMESPACE/}
     script: 
-        - echo "Building with base path: $VITE_BASE_PATH"
+        - echo $VITE_BASE_PATH
         - npm run build
     artifacts:
         paths:

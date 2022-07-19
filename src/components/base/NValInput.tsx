@@ -7,9 +7,18 @@ import type { ValidatedForm } from './ValidatedForm'
 
 export const nValInputProps = createProps({
     ...nInputProps,
+    /**
+     * If set to `true` this input is always valid when its value is empty.
+     * If set to `false` the input receives the {@link required} rule. Default is `false`.
+     */
     optional: Boolean,
+    /**
+     * The rules which this input is checked with.
+     * The rules are checked sequentially and the error of the first failed rule is displayed.
+     * If `optional` is set to false, the rule {@link required} will be checked first.
+     */
     rules: {
-        type: Array as PropType<ValidationRule[]>,
+        type: [Object, Array] as PropType<ValidationRule[] | ValidationRule>,
         default: () => [],
     },
     /**
@@ -55,8 +64,14 @@ export type NValInputExposed = {
     reset: () => void
 } & NInputExposed
 
+/**
+ * The `NValInput` is a `NInput` with custom validation.
+ */
 export default createComponent('NValInput', nValInputProps, (props, context) => {
-    const rules = computed(() => (props.optional ? props.rules : [required, ...props.rules]))
+    const rules = computed(() => {
+        const otherRules = Array.isArray(props.rules) ? props.rules : [props.rules]
+        return props.optional ? otherRules : [required, ...otherRules]
+    })
 
     const validationResult = ref<ValidationResult>()
     const validateRules = (input: InputValue) => {

@@ -42,7 +42,7 @@ const NPhoneInput = createComponent('NInputPhone', nInputPhoneProps, async props
         <NValInput
             {...{ ...props, onUpdateValue }}
             value={value.value}
-            rules={[external(isValid.value, 'phone')]}
+            rules={external(isValid.value, 'phone')}
             type="tel"
         />
     )

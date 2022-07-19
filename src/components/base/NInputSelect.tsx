@@ -56,7 +56,7 @@ export default createComponent('NInputSelect', nInputSelectProps, props => {
         <NSuggestionList
             items={filteredOptions.value}
             onSelect={selectId}
-            value={props.value?.label}
+            inputValue={props.value?.label || ''}
             hideList={props.hideList || matchedOption.value != null || filteredOptions.value.length == 0}
             maxItems={props.maxItems}
             listItem={props.listItem}
@@ -65,7 +65,7 @@ export default createComponent('NInputSelect', nInputSelectProps, props => {
                     ref={inputRef}
                     {...{ ...props, onUpdateValue: updateLabel }}
                     value={props.value?.label}
-                    rules={[option(props.options.map(opt => opt.label))]}
+                    rules={option(props.options.map(opt => opt.label))}
                     onFocus={() => {
                         onFocus()
                         props.onFocus?.()

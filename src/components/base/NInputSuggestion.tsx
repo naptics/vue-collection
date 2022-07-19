@@ -43,7 +43,7 @@ export default createComponent('NInputSuggestion', nInputSuggestionProps, props 
         <NSuggestionList
             items={suggestionItems.value}
             onSelect={id => select(id)}
-            value={props.value}
+            inputValue={props.value || ''}
             hideList={hideList.value}
             maxItems={props.maxItems}
             input={({ onFocus, onBlur }) => (

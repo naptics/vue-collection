@@ -1,17 +1,25 @@
 import { createComponent, createProps } from '@/utils/component'
 import type { PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
+import { nButtonProps } from './NButton'
 
 export const nTableActionProps = createProps({
+    /**
+     * The route of the action. If set the component will be a {@link RouterLink}.
+     */
     route: [String, Object] as PropType<RouteLocationRaw>,
+    /**
+     * The text of the action.
+     */
     text: String,
-    type: {
-        type: String as PropType<'submit' | 'button' | 'reset'>,
-        default: 'button',
-    },
-    onClick: Function as PropType<() => void>,
+    type: nButtonProps.type,
+    onClick: nButtonProps.onClick,
 })
 
+/**
+ * The `NTableAction` is a button or {@link RouterLink} which is styled to fit into a table.
+ * It is basically styled as an emphasized text in the table.
+ */
 export default createComponent('NTableAction', nTableActionProps, (props, { slots }) => {
     const content = () => slots.default?.() || <>{props.text}</>
 

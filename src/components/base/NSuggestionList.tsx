@@ -5,31 +5,36 @@ import { computed, ref, type PropType } from 'vue'
 import NLoadingIndicator from './NLoadingIndicator'
 
 export const nSuggestionListPropsForConfig = createProps({
+    /**
+     * The items which are available to show in the list. The first `maxItems` will be displayed.
+     */
     items: {
         type: Array as PropType<Array<SuggestionItem>>,
         default: () => [],
     },
+    /**
+     * The maximum items which are displayed in the list.
+     */
     maxItems: {
         type: Number,
         default: () => 8,
     },
+    /**
+     * If set to `true` the list is hidden.
+     */
     hideList: Boolean,
     /**
-     * If the list should show a loading indicator when no elements are passed in the `items` prop.
+     * If set to `true` the list shows a loading indicator when the `items` array is empty.
      */
     loading: Boolean,
     /**
-     * Is called with the id of the selected item.
+     * This is called with the id of the selected item.
      */
     onSelect: Function as PropType<(id: string) => void>,
     /**
      * The slot for every item of the list.
      */
     listItem: Function as PropType<(props: ItemSlotProps) => JSX.Element>,
-    /**
-     * The current value of the input.
-     */
-    value: String,
     /**
      * This function is called, when the input and the suggestion list are really blurred.
      * This means, it's not just the input temporarly beeing blurred because the user clicks on the item list,
@@ -52,6 +57,13 @@ export const nSuggestionListPropsForInput = createProps({
      */
     onRequestInputFocus: {
         type: Function as PropType<() => void>,
+        required: true,
+    },
+    /**
+     * The current value of the input. This is just needed to display the «No results found for {value}» message.
+     */
+    inputValue: {
+        type: String,
         required: true,
     },
 })
@@ -85,6 +97,9 @@ export type ItemSlotProps<T extends Identifiable = SuggestionItem> = {
 
 export type SuggestionItem = Identifiable & { label?: string } & Record<string, unknown>
 
+/**
+ * The `NSuggestionList` can be added to an input and adds a list below it which is shown when the input is focused.
+ */
 export default createComponent('NSuggestionList', nSuggestionListProps, props => {
     const selectedIndex = ref<number | null>(null)
     const displayItems = computed(() => props.items.slice(0, props.maxItems))
@@ -180,7 +195,7 @@ export default createComponent('NSuggestionList', nSuggestionListProps, props =>
                                             <span> {trsl('general.text.loading-search-results')}</span>
                                         </div>
                                     ) : (
-                                        <div>{trsl('general.text.no-search-results', { input: props.value })}</div>
+                                        <div>{trsl('general.text.no-search-results', { input: props.inputValue })}</div>
                                     )}
                                 </div>
                             )}

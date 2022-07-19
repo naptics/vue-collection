@@ -4,19 +4,39 @@ import { computed, watch, type ComputedRef, type PropType } from 'vue'
 import './NPagination.css'
 
 export const nPaginationProps = createProps({
+    /**
+     * The page number which is currently selected.
+     */
     value: {
         type: Number,
         default: () => 1,
     },
+    /**
+     * This is called, when a new page number has been selected.
+     */
     onUpdateValue: Function as PropType<(newValue: number) => void>,
+    /**
+     * The total pages which exists. This is needed to correctly display the selectable pages.
+     */
     total: {
         type: Number,
         default: () => 1,
     },
+    /**
+     * If set to `true`, the pagination is displayed smaller.
+     */
     small: Boolean,
+    /**
+     * This is called, when the visible pages, which are selectable in the pagination, have changed.
+     * This is useful as only these pages can be navigated to on the next click.
+     * This information can be useful for prefetching.
+     */
     onVisiblePagesChanged: Function as PropType<(visiblePages: number[]) => void>,
 })
 
+/**
+ * The `NPagination` is a styled pagination component.
+ */
 export default createComponent('NPagination', nPaginationProps, props => {
     const numbers = computed(() => {
         if (props.total <= 7) {

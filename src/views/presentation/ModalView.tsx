@@ -134,7 +134,7 @@ export default createView('ModalView', () => {
             {/* Form Modal */}
             <NFormModal {...vModel(4)} title="Form Modal" form={form1}>
                 <NValInput {...refAsVModel(inputRefs[0])} form={form1} name="Name" />
-                <NValInput {...refAsVModel(inputRefs[1])} form={form1} rules={[email]} name="Email" />
+                <NValInput {...refAsVModel(inputRefs[1])} form={form1} rules={email} name="Email" />
             </NFormModal>
 
             {/** Crud Modal */}
@@ -146,7 +146,7 @@ export default createView('ModalView', () => {
                 removeDialogText="Are you really really really sure?"
             >
                 <NValInput {...refAsVModel(inputRefs[2])} form={form2} name="Name" />
-                <NValInput {...refAsVModel(inputRefs[3])} form={form2} rules={[email]} name="Email" />
+                <NValInput {...refAsVModel(inputRefs[3])} form={form2} rules={email} name="Email" />
             </NCrudModal>
 
             {/* Dialogs */}

@@ -5,26 +5,43 @@ import { ref, type PropType } from 'vue'
 
 export const nSearchbarProps = createProps({
     ...vModel(String),
+    /**
+     * The placeholder of the search-bar.
+     */
     placeholder: {
         type: String,
         default: trsl('general.action.search'),
     },
+    /**
+     * If set to `true` the search-bar is displayed smaller.
+     */
     small: Boolean,
     /**
-     * Add classes directly to the input (e.g. for shadow).
+     * The classes are directly added to the input (e.g. for shadow).
      */
     inputClass: String,
+    /**
+     * This is called when the search-bar receives focus.
+     */
     onFocus: Function as PropType<() => void>,
+    /**
+     * This is called when the search-bar looses focus.
+     */
     onBlur: Function as PropType<() => void>,
 })
 
 export type NSearchbarExposed = {
+    /**
+     * Request focus on the search-bar.
+     */
     focus(): void
 }
 
+/**
+ * The `NSearchbar` is a styled input with a search icon.
+ */
 export default createComponent('NSearchbar', nSearchbarProps, (props, context) => {
     const inputRef = ref<HTMLInputElement>()
-
     const exposed: NSearchbarExposed = {
         focus: () => {
             inputRef.value?.focus()

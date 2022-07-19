@@ -61,6 +61,9 @@ export const nInputProps = createProps({
 })
 
 export type NInputExposed = {
+    /**
+     * Request focus on the input.
+     */
     focus(): void
 }
 

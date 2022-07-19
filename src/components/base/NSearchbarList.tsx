@@ -1,21 +1,25 @@
 import { createComponent, createProps, vModel } from '@/utils/component'
 import { ref } from 'vue'
 
-import NSearchbar, { type NSearchbarExposed } from './NSearchbar'
+import NSearchbar, { nSearchbarProps, type NSearchbarExposed } from './NSearchbar'
 import NSuggestionList, { nSuggestionListPropsForConfig } from './NSuggestionList'
 
 export const nSearchbarListProps = createProps({
     ...nSuggestionListPropsForConfig,
     ...vModel(String),
-    placeholder: String,
+    placeholder: nSearchbarProps.placeholder,
 })
 
+/**
+ * The `NSearchbarList` is a {@link NSearchbar} with a {@link NSuggestionList}.
+ */
 export default createComponent('NSearchbarList', nSearchbarListProps, props => {
     const searchbarRef = ref<NSearchbarExposed>()
 
     return () => (
         <NSuggestionList
             {...props}
+            inputValue={props.value || ''}
             input={({ onFocus, onBlur }) => (
                 <NSearchbar
                     ref={searchbarRef}

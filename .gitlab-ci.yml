@@ -30,7 +30,7 @@ build-pages:
     before_script: 
         - npm ci
     variables:
-        VITE_BASE_PATH: /$CI_PROJECT_PATH
+        VITE_BASE_PATH: /libraries/vue-collection/
     script: 
         - npm run build
     artifacts:

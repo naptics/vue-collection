@@ -30,7 +30,7 @@ build-pages:
     before_script: 
         - npm ci
     variables:
-        VITE_BASE_PATH: ${CI_PROJECT_PATH#$CI_PROJECT_ROOT_NAMESPACE}/
+        VITE_BASE_PATH: `${CI_PROJECT_PATH#$CI_PROJECT_ROOT_NAMESPACE}/`
     script: 
         - echo $VITE_BASE_PATH
         - echo ${CI_PROJECT_PATH#$CI_PROJECT_ROOT_NAMESPACE}/

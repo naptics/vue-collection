@@ -6,7 +6,7 @@ default:
     image: node:18-alpine3.15
 
 stages: 
-    - prebuild
+    # - prebuild
     - build
     - deploy
 
@@ -15,14 +15,14 @@ workflow:
         - if: $CI_PIPELINE_SOURCE == "merge_request_event"
         - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
 
-prebuild: 
-    stage: prebuild
-    before_script:
-        - npm ci
-    script: 
-        - npm run type-check
-        - npm run lint
-        - npm run test
+# prebuild: 
+#     stage: prebuild
+#     before_script:
+#         - npm ci
+#     script: 
+#         - npm run type-check
+#         - npm run lint
+#         - npm run test
 
 
 build-pages: 
@@ -30,9 +30,13 @@ build-pages:
     before_script: 
         - npm ci
     variables:
-        VITE_BASE_PATH: ${CI_PROJECT_PATH#$CI_PROJECT_ROOT_NAMESPACE}/
+        TEST1: ${CI_PROJECT_PATH#$CI_PROJECT_ROOT_NAMESPACE}/
+        TEST2: echo ${CI_PROJECT_PATH#$CI_PROJECT_ROOT_NAMESPACE}/
+        TEST3: "hello"
     script: 
-        - echo ${CI_PROJECT_PATH#$CI_PROJECT_ROOT_NAMESPACE}/
+        - echo $TEST1
+        - echo $TEST2
+        - echo $TEST3
         - npm run build
     artifacts:
         paths:

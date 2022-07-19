@@ -77,7 +77,7 @@ export default createView('ModalView', () => {
                 >
                     <ComponentGrid cols={4}>
                         <NButton color="red" onClick={openDialog(3)}>
-                            Error Dialog
+                            Danger Dialog
                         </NButton>
                         <NButton color="red" onClick={openDialog(4)}>
                             Remove Dialog
@@ -160,9 +160,9 @@ export default createView('ModalView', () => {
             />
             <NDialog
                 ref={dialogRefs[3]}
-                variant="error"
-                title="An error ocurred"
-                text="An error ocurred and we're not quite sure how to fix it!"
+                variant="danger"
+                title="Dangerous Action"
+                text="Would you really like to proceed."
             />
             <NDialog
                 ref={dialogRefs[4]}

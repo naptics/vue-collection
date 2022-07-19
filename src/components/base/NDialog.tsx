@@ -8,7 +8,7 @@ import { DialogTitle } from '@headlessui/vue'
 import type { HeroIcon } from '@/utils/utils'
 import { trsl } from '@/i18n'
 
-export type DialogVariant = 'success' | 'info' | 'warning' | 'error' | 'remove'
+export type DialogVariant = 'success' | 'info' | 'warning' | 'danger' | 'remove'
 
 export const nDialogProps = createProps({
     /**
@@ -164,7 +164,7 @@ const VARIANT_DEFAULTS = {
         okText: trsl('general.action.proceed'),
         okColor: 'yellow',
     },
-    error: {
+    danger: {
         icon: ExclamationIcon,
         iconColor: 'red',
         okText: trsl('general.action.proceed'),

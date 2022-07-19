@@ -38,7 +38,7 @@ build-pages:
             - dist/
         expire_in: 1 day
 
-deploy-pages:
+pages:
     stage: deploy
     image: busybox:latest
     script: 

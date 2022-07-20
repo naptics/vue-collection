@@ -10,26 +10,35 @@ export const nSelectProps = createProps({
      */
     value: String,
     /**
-     * This is called with the newly selected id when the selection changes.
+     * This is called with the newly selected id when the selection has changed.
      */
     onUpdateValue: Function as PropType<(newValue: string) => void>,
     /**
-     * The different options which can be chosen from.
+     * The different options which can be selected.
      */
     options: {
         type: Array as PropType<SelectionOption[]>,
         default: () => [],
     },
+    /**
+     * @see {@link nValInputProps.name}
+     */
     name: nValInputProps.name,
+    /**
+     * @see {@link nValInputProps.optional}
+     */
     optional: nValInputProps.optional,
-    disabled: nValInputProps.optional,
+    /**
+     * @see {@link nValInputProps.disabled}
+     */
+    disabled: nValInputProps.disabled,
+    /**
+     * @see {@link nValInputProps.form}
+     */
     form: nValInputProps.form,
 })
 
-export type SelectionOption = Identifiable & {
-    label: string
-}
-
+export type SelectionOption = Identifiable & { label: string }
 export type NSelectExposed = NValInputExposed
 
 /**

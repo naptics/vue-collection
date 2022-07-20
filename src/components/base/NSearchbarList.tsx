@@ -7,6 +7,9 @@ import NSuggestionList, { nSuggestionListPropsForConfig } from './NSuggestionLis
 export const nSearchbarListProps = createProps({
     ...nSuggestionListPropsForConfig,
     ...vModel(String),
+    /**
+     * @see {@link nSearchbarProps.placeholder}
+     */
     placeholder: nSearchbarProps.placeholder,
 })
 

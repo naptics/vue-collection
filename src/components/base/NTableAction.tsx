@@ -12,8 +12,15 @@ export const nTableActionProps = createProps({
      * The text of the action.
      */
     text: String,
+    /**
+     * The html attribute, which indicates the type of the button.
+     */
     type: nButtonProps.type,
-    onClick: nButtonProps.onClick,
+    /**
+     * This is called when the action is clicked.
+     * It is only called when the `route` prop is not set on the action.
+     */
+    onClick: Function as PropType<() => void>,
 })
 
 /**

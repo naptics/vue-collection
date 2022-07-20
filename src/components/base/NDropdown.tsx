@@ -12,7 +12,7 @@ export const nDropdownProps = createProps({
     title: String,
     /**
      * The items of the dropdown.
-     * They second dimension of the array is used
+     * The second dimension of the array is used
      * to create groups of items, which are visually seperated.
      */
     items: {
@@ -32,6 +32,31 @@ export const nDropdownProps = createProps({
      */
     button: Function as PropType<() => JSX.Element>,
 })
+
+export type DropdownItem = {
+    /**
+     * The label of the dropdown-item.
+     */
+    label: string
+    /**
+     * The icon of the dropdown-item. Is displayed to the left of the text.
+     */
+    icon?: HeroIcon
+    /**
+     * The route of the dropdown-item. If this is set, the dropdown-item is a {@link RouterLink}.
+     */
+    route?: RouteLocationRaw
+    /**
+     * If set to `true` the dropdown-item is disabled and no interaction is possible.
+     * The other dropdown-items can still be clicked.
+     */
+    disabled?: boolean
+    /**
+     * This is called when the dropdown-item is clicked.
+     * It is only called when the `route` option is not set on the item.
+     */
+    onClick?: () => void
+}
 
 /**
  * The `NDropdown` consists of a button and a panel with multiple actions.
@@ -108,7 +133,7 @@ export default createComponent('NDropdown', nDropdownProps, (props, { slots }) =
                                                 ) : (
                                                     <button
                                                         type="button"
-                                                        onClick={item.action}
+                                                        onClick={item.onClick}
                                                         class={[
                                                             'w-full text-left px-4 py-2 text-sm',
                                                             active
@@ -131,12 +156,3 @@ export default createComponent('NDropdown', nDropdownProps, (props, { slots }) =
         </Menu>
     )
 })
-
-export type DropdownItem = {
-    label: string
-    // eslint-disable-next-line @typescript-eslint/ban-types
-    icon?: HeroIcon
-    route?: RouteLocationRaw
-    disabled?: boolean
-    action?: () => void
-}

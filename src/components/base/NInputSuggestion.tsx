@@ -6,8 +6,18 @@ import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'
 
 export const nInputSuggestionProps = createProps({
     ...nValInputProps,
+    /**
+     * If set to `true` the list is hidden even if there are still matching items in the list.
+     */
     hideList: nSuggestionListProps.hideList,
+    /**
+     * @see {@link nSuggestionListProps.maxItems}
+     */
     maxItems: nSuggestionListProps.maxItems,
+    /**
+     * The suggestions which are shown to the user for this input.
+     * The suggestions are filtered based on the user input.
+     */
     suggestions: {
         type: Array as PropType<string[]>,
         default: () => [],

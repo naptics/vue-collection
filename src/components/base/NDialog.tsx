@@ -68,7 +68,7 @@ export type NDialogExposed = {
     /**
      * Shows the alert and returns a promise.
      * When the user interaction occurs the promise is resolved.
-     * It is resolved to `true` if clicks on the okButton, `false` if the dialog is cancelled.
+     * It is resolved to `true` if the okButton was clicked, `false` if the dialog was cancelled.
      */
     show(): Promise<boolean>
 }

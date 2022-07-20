@@ -18,7 +18,7 @@ export const nFormProps = createProps({
 /**
  * The `NForm` should be used to wrap multiple inputs.
  * If it contains a button of type `submit` in it's hierarchy,
- * it catches the submit event and passes it to the {@link ValidatedForm} via the `form` prop.
+ * it catches the submit event and passes it to the {@link ValidatedForm} in its `form` prop.
  */
 export default createComponent('NForm', nFormProps, (props, context) => {
     const onSubmit = (event: Event) => {

@@ -2,7 +2,13 @@ import { createComponent, createProps } from '@/utils/component'
 import type { PropType } from 'vue'
 
 export type ListItem = {
+    /**
+     * The title of the item.
+     */
     title: string
+    /**
+     * The text of the item.
+     */
     text?: string
 }
 

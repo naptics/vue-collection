@@ -8,7 +8,7 @@ export type TableHeading = {
      */
     key: string
     /**
-     * The label of the table heading. If not set, not label is displayed.
+     * The label of the table heading. If not set, no label is displayed.
      */
     label?: string
     /**

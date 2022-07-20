@@ -43,10 +43,6 @@ export const nInputProps = createProps({
      */
     disabled: Boolean,
     /**
-     * If set to `true` the label of the input is hidden.
-     */
-    hideLabel: Boolean,
-    /**
      * If set to `true` the input is displayed smaller.
      */
     small: Boolean,
@@ -79,7 +75,7 @@ export default createComponent('NInput', nInputProps, (props, context) => {
 
     return () => (
         <div>
-            {!props.hideLabel && (
+            {props.name && (
                 <label
                     for={props.name}
                     class={['block text-sm font-medium mb-1', props.disabled ? 'text-default-300' : 'text-default-700']}
@@ -90,6 +86,7 @@ export default createComponent('NInput', nInputProps, (props, context) => {
             <div class="relative">
                 <input
                     ref={inputRef}
+                    name={props.name}
                     value={props.value}
                     onInput={event => props.onUpdateValue?.((event.target as HTMLInputElement).value)}
                     placeholder={props.placeholder}

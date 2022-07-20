@@ -18,11 +18,15 @@ export const nIconCircleProps = createProps({
         default: 'primary',
     },
     /**
-     * The size of the circle in "tailwind units" (4 px). Can be any number.
+     * The size of the circle in "tailwind units" (4 px).
+     * Tailwind classes are used for the size, so any number can be passed.
+     * If the `iconSize` is not set, it will be adjusted automatically.
      */
     circleSize: Number,
     /**
-     * The size of the icon in "tailwind units" (4 px). Can be any number.
+     * The size of the icon in "tailwind units" (4 px).
+     * No tailwind classes are used for the size, so any number can be passed.
+     * If the `circleSize` is not set, it will be adjusted automatically.
      */
     iconSize: Number,
     /**

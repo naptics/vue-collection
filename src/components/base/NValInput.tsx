@@ -18,7 +18,7 @@ export const nValInputProps = createProps({
      * If `optional` is set to false, the rule {@link required} will be checked first.
      */
     rules: {
-        type: [Object, Array] as PropType<ValidationRule[] | ValidationRule>,
+        type: [Function, Array] as PropType<ValidationRule[] | ValidationRule>,
         default: () => [],
     },
     /**

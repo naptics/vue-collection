@@ -13,7 +13,7 @@ export const nIconButtonProps = createProps({
         required: true,
     },
     /**
-     * If set, the icon-button becomes a {@link RouterLink}.
+     * The route of the icon-button. If this is set, the icon-button becomes a {@link RouterLink}.
      */
     route: [String, Object] as PropType<RouteLocationRaw>,
     /**
@@ -30,9 +30,19 @@ export const nIconButtonProps = createProps({
         type: Number,
         default: 5,
     },
+    /**
+     * The html attribute, which indicates the type of the button.
+     */
     type: nButtonProps.type,
-    disabled: nButtonProps.disabled,
-    onClick: nButtonProps.onClick,
+    /**
+     * If set to `true` the icon-button is disabled and no interaction is possible.
+     */
+    disabled: Boolean,
+    /**
+     * This is called when the icon-button is clicked.
+     * It is only called when the `route` prop is not set on the icon-button.
+     */
+    onClick: Function as PropType<() => void>,
 })
 
 /**

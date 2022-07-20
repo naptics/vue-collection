@@ -39,7 +39,7 @@ export const nLinkProps = createProps({
 })
 
 /**
- * The `NLink` is a
+ * The `NLink` is a styled text which can be used as a {@link RouterLink} or a regular button.
  */
 export default createComponent('NLink', nLinkProps, (props, { slots }) => {
     const hoverShade = computed(() => {

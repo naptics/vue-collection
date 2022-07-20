@@ -3,13 +3,22 @@ import { nextTick, ref } from 'vue'
 
 export const nCheckboxProps = createProps({
     ...vModel(Boolean),
+    /**
+     * The color of the checkbox.
+     */
     color: {
         type: String,
         default: 'primary',
     },
+    /**
+     * If set to `true` the checkbox is disabled and no interaction is possible.
+     */
     disabled: Boolean,
 })
 
+/**
+ * The `NCheckbox` is a styled checkbox.
+ */
 export default createComponent('NCheckbox', nCheckboxProps, props => {
     const toggle = () => {
         props.onUpdateValue?.(!props.value)

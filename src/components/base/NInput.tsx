@@ -4,27 +4,62 @@ import { ExclamationCircleIcon } from '@heroicons/vue/solid'
 
 export const nInputProps = createProps({
     ...vModel(String),
+    /**
+     * The name of the input. Is displayed as a label above the input.
+     */
     name: String,
+    /**
+     * The placeholder of the input.
+     */
     placeholder: String,
+    /**
+     * The html autocomplete attribute of the input.
+     */
     autocomplete: {
         type: String,
         default: 'off',
     },
+    /**
+     * The html type attribute of the input.
+     */
     type: {
         type: String,
         default: 'text',
     },
+    /**
+     * The maximum value of the input.
+     */
     max: String,
+    /**
+     * The minimum value of the input.
+     */
     min: String,
+    /**
+     * If set to `true` the input is displayed with a red border.
+     */
     error: Boolean,
+    /**
+     * If set to `true` the input is disabled and no interaction is possible.
+     */
     disabled: Boolean,
-    hideLabel: Boolean,
+    /**
+     * If set to `true` the input is displayed smaller.
+     */
     small: Boolean,
+    /**
+     * This is called when the input reveices focus.
+     */
     onFocus: Function as PropType<() => void>,
+    /**
+     * This is called when the input looses focus.
+     */
     onBlur: Function as PropType<() => void>,
 })
 
 export type NInputExposed = {
+    /**
+     * Request focus on the input.
+     */
     focus(): void
 }
 
@@ -40,7 +75,7 @@ export default createComponent('NInput', nInputProps, (props, context) => {
 
     return () => (
         <div>
-            {!props.hideLabel && (
+            {props.name && (
                 <label
                     for={props.name}
                     class={['block text-sm font-medium mb-1', props.disabled ? 'text-default-300' : 'text-default-700']}
@@ -51,6 +86,7 @@ export default createComponent('NInput', nInputProps, (props, context) => {
             <div class="relative">
                 <input
                     ref={inputRef}
+                    name={props.name}
                     value={props.value}
                     onInput={event => props.onUpdateValue?.((event.target as HTMLInputElement).value)}
                     placeholder={props.placeholder}

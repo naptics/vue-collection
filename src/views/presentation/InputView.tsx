@@ -86,8 +86,8 @@ export default createView('InputView', () => {
                 <NForm>
                     <ComponentGrid cols={2}>
                         <NValInput {...vModel(6)} name="Name" />
-                        <NValInput {...vModel(7)} name="Email" type="email" rules={[email]} />
-                        <NValInput {...vModel(8)} name="Password" type="password" rules={[password]} />
+                        <NValInput {...vModel(7)} name="Email" type="email" rules={email} />
+                        <NValInput {...vModel(8)} name="Password" type="password" rules={password} />
                         <NValInput
                             {...vModel(9)}
                             name="Repeat Password"
@@ -97,7 +97,7 @@ export default createView('InputView', () => {
                         <NValInput
                             {...vModel(10)}
                             name="Regex"
-                            rules={[regex(/^foo.*bar$/)]}
+                            rules={regex(/^foo.*bar$/)}
                             placeholder="Try foo...bar"
                         />
                         <div class="space-y-2">

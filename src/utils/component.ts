@@ -87,7 +87,13 @@ export function extractProps<T extends object>(props: T, ...keys: (keyof T)[]): 
  */
 export function vModel<T>(propType: PropType<T>) {
     return {
+        /**
+         * The value of the component.
+         */
         value: propType as PropType<T>,
+        /**
+         * This will be called, when the value of the component has changed.
+         */
         onUpdateValue: Function as PropType<(newValue: T) => void>,
     }
 }

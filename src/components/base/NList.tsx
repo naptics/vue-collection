@@ -2,17 +2,29 @@ import { createComponent, createProps } from '@/utils/component'
 import type { PropType } from 'vue'
 
 export type ListItem = {
+    /**
+     * The title of the item.
+     */
     title: string
+    /**
+     * The text of the item.
+     */
     text?: string
 }
 
 export const nListProps = createProps({
+    /**
+     * The items which are displayed in the list.
+     */
     items: {
         type: Array as PropType<ListItem[]>,
         default: () => [],
     },
 })
 
+/**
+ * The `NList` displays key-value data in an appealing way.
+ */
 export default createComponent('NList', nListProps, props => {
     return () => (
         <dl>

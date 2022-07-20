@@ -1,38 +1,60 @@
 import { trsl } from '@/i18n'
-import { createComponent, createProps, vModel } from '@/utils/component'
+import { createComponent, createProps } from '@/utils/component'
 import type { Identifiable } from '@/utils/identifiable'
 import { ref, type PropType } from 'vue'
-import NValInput, { type NValInputExposed } from './NValInput'
-import type { ValidatedForm } from './ValidatedForm'
+import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'
 
 export const nSelectProps = createProps({
-    ...vModel(String),
-    name: String,
+    /**
+     * The id of the currently selected option of this input.
+     */
+    value: String,
+    /**
+     * This is called with the newly selected id when the selection has changed.
+     */
+    onUpdateValue: Function as PropType<(newValue: string) => void>,
+    /**
+     * The different options which can be selected.
+     */
     options: {
         type: Array as PropType<SelectionOption[]>,
         default: () => [],
     },
-    optional: Boolean,
-    disabled: Boolean,
     /**
-     * The form, which this input will be added to.
+     * @see {@link nValInputProps.name}
      */
-    form: Object as PropType<ValidatedForm>,
+    name: nValInputProps.name,
+    /**
+     * @see {@link nValInputProps.optional}
+     */
+    optional: nValInputProps.optional,
+    /**
+     * @see {@link nValInputProps.disabled}
+     */
+    disabled: nValInputProps.disabled,
+    /**
+     * @see {@link nValInputProps.form}
+     */
+    form: nValInputProps.form,
 })
 
-export type SelectionOption = Identifiable & {
-    label: string
-}
-
+export type SelectionOption = Identifiable & { label: string }
 export type NSelectExposed = NValInputExposed
 
+/**
+ * The `NSelect` is a styled html select-input.
+ */
 export default createComponent('NSelect', nSelectProps, (props, context) => {
-    const inputRef = ref<NValInputExposed>()
-
-    context.expose({
-        validate: () => inputRef.value?.validate(),
+    const inputRef = ref<NSelectExposed>()
+    const exposed: NSelectExposed = {
+        focus: () => inputRef.value?.focus(),
+        validate: () => {
+            if (inputRef.value == null) throw new Error('Can not validate NSelect as its input was undefined')
+            return inputRef.value.validate()
+        },
         reset: () => inputRef.value?.reset(),
-    })
+    }
+    context.expose(exposed)
 
     return () => (
         <NValInput

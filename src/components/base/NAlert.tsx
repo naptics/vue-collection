@@ -8,15 +8,31 @@ import NLoadingIndicator from './NLoadingIndicator'
 export type AlertVariant = 'success' | 'info' | 'warning' | 'error' | 'loading'
 
 export const nAlertProps = createProps({
+    /**
+     * The variant of the alert. This defines its color and icon.
+     */
     variant: {
         type: String as PropType<AlertVariant>,
         default: 'success',
     },
+    /**
+     * The text of the alert.
+     */
     text: String,
+    /**
+     * If set to `true` the X-button of the alert is hidden.
+     */
     hideX: Boolean,
+    /**
+     * This is called, when the X-button is clicked.
+     */
     onDismiss: Function as PropType<() => void>,
 })
 
+/**
+ * The `NAlert` is a fully styled alert with multiple variants.
+ * It can be used as a normal blocking element or as part of an alert queue.
+ */
 export default createComponent('NAlert', nAlertProps, props => {
     const variant = computed(() => VARIANTS[props.variant])
 

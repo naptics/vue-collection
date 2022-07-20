@@ -37,7 +37,10 @@ export default createView('TableView', () => {
                 <NTable headings={headings} items={data} />
             </VariantSection>
 
-            <VariantSection title="Customization" subtitle="Individual rows can be customized to use other elements.">
+            <VariantSection
+                title="Customization"
+                subtitle="Individual columns can be customized to use other elements."
+            >
                 <NTable
                     headings={headings}
                     items={data.map(item => ({

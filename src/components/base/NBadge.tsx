@@ -1,4 +1,5 @@
 import { createComponent, createProps } from '@/utils/component'
+import type { TWTextSize } from '@/utils/utils'
 import type { PropType } from 'vue'
 
 export const nBadgeProps = createProps({
@@ -10,7 +11,7 @@ export const nBadgeProps = createProps({
      * The text size, a standard tailwind text-size class.
      */
     textSize: {
-        type: String as PropType<'text-xs' | 'text-sm' | 'text-base' | 'text-lg' | 'text-xl' | 'text-2xl'>,
+        type: String as PropType<TWTextSize>,
         default: 'text-sm',
     },
     /**

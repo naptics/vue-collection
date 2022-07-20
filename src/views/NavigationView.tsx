@@ -7,6 +7,7 @@ export default createView('NavigationView', () => {
         { hash: 'alerts', label: 'Alerts' },
         { hash: 'buttons', label: 'Buttons' },
         { hash: 'icon-buttons', label: 'Icon Buttons' },
+        { hash: 'links', label: 'Links' },
         { hash: 'icon-circles', label: 'Icon Circles' },
         { hash: 'badges', label: 'Badges' },
         { hash: 'checkboxes', label: 'Checkboxes' },

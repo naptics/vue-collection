@@ -10,6 +10,7 @@ export default createView('NavigationView', () => {
         { hash: 'links', label: 'Links' },
         { hash: 'icon-circles', label: 'Icon Circles' },
         { hash: 'badges', label: 'Badges' },
+        { hash: 'breadcrumbs', label: 'Breadcrumbs' },
         { hash: 'checkboxes', label: 'Checkboxes' },
         { hash: 'dropdowns', label: 'Dropdowns' },
         { hash: 'inputs', label: 'Inputs and Forms' },

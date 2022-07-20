@@ -19,6 +19,7 @@ import { ChevronDoubleUpIcon } from '@heroicons/vue/solid'
 import { ref, Transition } from 'vue'
 import NBadge from '@/components/base/NBadge'
 import LinkView from './presentation/LinkView'
+import BreadcrumbView from './presentation/BreadcrumbView'
 
 export default createView('HomeView', () => {
     const showButton = ref(false)
@@ -51,6 +52,7 @@ export default createView('HomeView', () => {
                 <LinkView />
                 <IconCircleView />
                 <BadgeView />
+                <BreadcrumbView />
                 <CheckboxView />
                 <DropdownView />
                 <InputView />

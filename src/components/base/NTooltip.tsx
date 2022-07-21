@@ -1,4 +1,5 @@
 import { createComponent, createProps, type ExtractedProps } from '@/utils/component'
+import type { TWMaxWidth } from '@/utils/utils'
 import type { PropType } from 'vue'
 import Popper from 'vue3-popper'
 
@@ -39,6 +40,13 @@ export const nTooltipProps = createProps({
         default: 'auto',
     },
     /**
+     * The maximum width of the tooltip.
+     */
+    maxWidth: {
+        type: String as PropType<TWMaxWidth>,
+        default: 'max-w-xs',
+    },
+    /**
      * If set to `true` the tooltip will show when hovering the content in the default slot.
      * Otherwise it will only show on click of the default slot.
      */
@@ -53,7 +61,6 @@ export const nTooltipProps = createProps({
  * and wants it to be controllable via the own props.
  * e.g. `text` is now called `tooltipText`.
  * They can be mapped to the normal tooltip props with {@link mapTooltipProps}
- *
  */
 export const nToolTipPropsForImplementor = {
     /**
@@ -80,6 +87,10 @@ export const nToolTipPropsForImplementor = {
      */
     tooltipPlacement: nTooltipProps.placement,
     /**
+     * @see {@link nTooltipProps.maxWidth}
+     */
+    tooltipMaxWidth: nTooltipProps.maxWidth,
+    /**
      * @see {@link nTooltipProps.hover}
      */
     tooltipHover: nTooltipProps.hover,
@@ -96,6 +107,7 @@ export function mapTooltipProps(props: ExtractedProps<typeof nToolTipPropsForImp
         implode: props.tooltipHide,
         show: props.tooltipShow,
         placement: props.tooltipPlacement,
+        maxWidth: props.tooltipMaxWidth,
         hover: props.tooltipHover,
     }
 }
@@ -122,7 +134,9 @@ export default createComponent('NTooltip', nTooltipProps, (props, { slots }) => 
                 {{
                     default: () => slots.default?.(),
                     content: () => (
-                        <div class="max-w-sm bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm text-default-700">
+                        <div
+                            class={`bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm text-default-700 ${props.maxWidth}`}
+                        >
                             {props.content?.() || props.text}
                         </div>
                     ),

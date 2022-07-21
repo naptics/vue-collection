@@ -5,6 +5,7 @@ import NButton from './NButton'
 import NIconButton from './NIconButton'
 import { XIcon } from '@heroicons/vue/solid'
 import { trsl } from '@/i18n'
+import type { TWMaxWidth } from '@/utils/utils'
 
 export const nModalProps = createProps({
     ...vModel(Boolean),
@@ -24,7 +25,7 @@ export const nModalProps = createProps({
      * The maximum width of the modal. A regular tailwind class.
      */
     maxWidth: {
-        type: String as PropType<'max-w-sm' | 'max-w-md' | 'max-w-lg' | 'max-w-xl' | 'max-w-2xl'>,
+        type: String as PropType<TWMaxWidth>,
         default: 'max-w-md',
     },
     /**

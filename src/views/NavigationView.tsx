@@ -19,6 +19,7 @@ export default createView('NavigationView', () => {
         { hash: 'modals', label: 'Modals' },
         { hash: 'lists', label: 'Lists' },
         { hash: 'tables', label: 'Tables' },
+        { hash: 'tooltips', label: 'Tooltips' },
         { hash: 'pagination', label: 'Pagination' },
     ]
 

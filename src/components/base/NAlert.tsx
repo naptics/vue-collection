@@ -46,14 +46,8 @@ export default createComponent('NAlert', nAlertProps, props => {
                 </div>
 
                 {!props.hideX && (
-                    <div class="flex-shrink-0 ml-3">
-                        <NIconButton
-                            color={variant.value.color}
-                            size={5}
-                            class="block"
-                            icon={XIcon}
-                            onClick={props.onDismiss}
-                        />
+                    <div class="flex items-center flex-shrink-0 ml-3">
+                        <NIconButton color={variant.value.color} size={5} icon={XIcon} onClick={props.onDismiss} />
                     </div>
                 )}
             </div>

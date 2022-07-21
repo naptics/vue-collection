@@ -73,7 +73,7 @@ export default createComponent('NSelect', nSelectProps, (props, context) => {
                     >
                         {props.name}
                     </label>
-                    <NTooltip {...mapTooltipProps(props)}>
+                    <NTooltip block {...mapTooltipProps(props)}>
                         <select
                             name={props.name}
                             disabled={props.disabled}

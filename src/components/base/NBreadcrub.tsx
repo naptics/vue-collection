@@ -80,7 +80,7 @@ export default createComponent('NBreadcrumb', nBreadcrumbProps, props => {
                     {index < props.items.length - 1 &&
                         (props.seperator?.(item, index) || (
                             <props.icon
-                                class={`w-${props.iconSize} h-${props.iconSize} text-${props.color}-500 mx-2`}
+                                class={`mx-2 w-${props.iconSize} h-${props.iconSize} text-${props.color}-500`}
                             />
                         ))}
                 </>

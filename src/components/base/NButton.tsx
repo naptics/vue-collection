@@ -1,5 +1,6 @@
 import { createComponent, createProps } from '@/utils/component'
 import type { PropType } from 'vue'
+import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 
 export const nButtonProps = createProps({
     /**
@@ -28,6 +29,7 @@ export const nButtonProps = createProps({
      * This is called, when the button is clicked.
      */
     onClick: Function as PropType<() => void>,
+    ...nToolTipPropsForImplementor,
 })
 
 /**
@@ -35,19 +37,21 @@ export const nButtonProps = createProps({
  */
 export default createComponent('NButton', nButtonProps, (props, { slots }) => {
     return () => (
-        <button
-            disabled={props.disabled}
-            type={props.type}
-            class={[
-                `font-medium rounded-md focus:outline-none focus-visible:ring-2 shadow text-${props.color}-900`,
-                !props.disabled
-                    ? `bg-${props.color}-200 hover:bg-${props.color}-300 focus-visible:ring-${props.color}-500`
-                    : `bg-${props.color}-100 text-opacity-20 cursor-default`,
-                props.small ? 'py-1 px-2 text-xs' : 'py-2 px-4 text-sm',
-            ]}
-            onClick={props.onClick}
-        >
-            {slots.default?.()}
-        </button>
+        <NTooltip {...mapTooltipProps(props)}>
+            <button
+                disabled={props.disabled}
+                type={props.type}
+                class={[
+                    `font-medium rounded-md focus:outline-none focus-visible:ring-2 shadow text-${props.color}-900`,
+                    !props.disabled
+                        ? `bg-${props.color}-200 hover:bg-${props.color}-300 focus-visible:ring-${props.color}-500`
+                        : `bg-${props.color}-100 text-opacity-20 cursor-default`,
+                    props.small ? 'py-1 px-2 text-xs' : 'py-2 px-4 text-sm',
+                ]}
+                onClick={props.onClick}
+            >
+                {slots.default?.()}
+            </button>
+        </NTooltip>
     )
 })

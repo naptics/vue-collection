@@ -3,6 +3,7 @@ import { createComponent, createProps } from '@/utils/component'
 import type { PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 import { nButtonProps } from './NButton'
+import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 
 export const nIconButtonProps = createProps({
     /**
@@ -43,6 +44,7 @@ export const nIconButtonProps = createProps({
      * It is only called when the `route` prop is not set on the icon-button.
      */
     onClick: Function as PropType<() => void>,
+    ...nToolTipPropsForImplementor,
 })
 
 /**
@@ -58,14 +60,17 @@ export default createComponent('NIconButton', nIconButtonProps, props => {
 
     const content = () => <props.icon class={`w-${props.size} h-${props.size}`} />
 
-    return () =>
-        props.route ? (
-            <RouterLink to={props.route} class={classes()}>
-                {content()}
-            </RouterLink>
-        ) : (
-            <button type={props.type} disabled={props.disabled} class={classes()} onClick={props.onClick}>
-                {content()}
-            </button>
-        )
+    return () => (
+        <NTooltip {...mapTooltipProps(props)}>
+            {props.route ? (
+                <RouterLink to={props.route} class={classes()}>
+                    {content()}
+                </RouterLink>
+            ) : (
+                <button type={props.type} disabled={props.disabled} class={classes()} onClick={props.onClick}>
+                    {content()}
+                </button>
+            )}
+        </NTooltip>
+    )
 })

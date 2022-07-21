@@ -51,7 +51,7 @@ export default createComponent('NBadge', nBadgeProps, (props, { slots }) => {
     return () => (
         <div
             class={[
-                'px-2 py-1 rounded-md font-semibold shadow',
+                'inline-block px-2 py-1 rounded-md font-semibold shadow',
                 `${props.textSize} bg-${props.color}-${props.shade} text-${props.color}-${props.textShade}`,
                 props.allCaps ? 'uppercase' : '',
             ]}

@@ -50,8 +50,8 @@ export default createView('TooltipView', () => {
                     </div>
 
                     <div class="flex">
-                        <NTooltip text="Hello tooltip!" hover={false}>
-                            <NBadge text="Click me" />
+                        <NTooltip text="I don't go away!" show placement="bottom-start">
+                            <NBadge text="Hover me" />
                         </NTooltip>
                     </div>
                 </ComponentGrid>

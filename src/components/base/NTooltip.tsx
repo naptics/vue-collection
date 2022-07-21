@@ -1,7 +1,8 @@
 import { createComponent, createProps, type ExtractedProps } from '@/utils/component'
-import type { TWMaxWidth } from '@/utils/utils'
-import type { PropType } from 'vue'
-import Popper from 'vue3-popper'
+import { uniqueId, type TWMaxWidth } from '@/utils/utils'
+import { computed, onMounted, ref, watch, type PropType, onUnmounted, Transition } from 'vue'
+import { createPopper, type Instance as PopperInstance } from '@popperjs/core'
+import { watchRef } from '@/utils/vue'
 
 export const nTooltipProps = createProps({
     /**
@@ -12,13 +13,6 @@ export const nTooltipProps = createProps({
      * A slot to replace the content of the tooltip. This will override the `text` prop.
      */
     content: Function as PropType<() => void>,
-    /**
-     * If set to `true` the tooltip will not render itself but only it's default slot.
-     * This results in the same output as if the tooltip would not exist at all.
-     * The property can be used to remove the tooltip conditionally, if it is only available in some states.
-     * Note that the tooltip automatically implodes when neither `text` nor `content` is set.
-     */
-    implode: Boolean,
     /**
      * If set to `true` the tooltip is shown constantly.
      */
@@ -45,14 +39,6 @@ export const nTooltipProps = createProps({
     maxWidth: {
         type: String as PropType<TWMaxWidth>,
         default: 'max-w-xs',
-    },
-    /**
-     * If set to `true` the tooltip will show when hovering the content in the default slot.
-     * Otherwise it will only show on click of the default slot.
-     */
-    hover: {
-        type: Boolean,
-        default: true,
     },
 })
 
@@ -90,10 +76,6 @@ export const nToolTipPropsForImplementor = {
      * @see {@link nTooltipProps.maxWidth}
      */
     tooltipMaxWidth: nTooltipProps.maxWidth,
-    /**
-     * @see {@link nTooltipProps.hover}
-     */
-    tooltipHover: nTooltipProps.hover,
 }
 
 /**
@@ -104,47 +86,108 @@ export function mapTooltipProps(props: ExtractedProps<typeof nToolTipPropsForImp
     return {
         text: props.tooltipText,
         content: props.tooltipContent,
-        implode: props.tooltipHide,
+        hide: props.tooltipHide,
         show: props.tooltipShow,
         placement: props.tooltipPlacement,
         maxWidth: props.tooltipMaxWidth,
-        hover: props.tooltipHover,
     }
 }
 
 /**
  * The `NTooltip` is a wrapper for any component which adds a tooltip to it.
  * Any component can just be passed in the default slot and a tooltip will be added to it.
- * Note that this component completely disappears when neither the `text` nor the `content` prop is passed
- * as the tooltip would then be empty. This behaviour can also be achieved by setting the `implode` prop.
+ * Note that this component completely disappears when neither the `text`
+ * nor the `content` prop is passed as the tooltip would then be empty.
+ * If this is the case, the default slot will just be rendered leaving no traces of the tooltip.
  * @example
- * <NTooltip content="Hello">
+ * <NTooltip text="Hello">
  *      <NButton />
  * </NTooltip>
  */
 export default createComponent('NTooltip', nTooltipProps, (props, { slots }) => {
     return () =>
-        !props.implode && (props.text || props.content) ? (
-            <Popper
-                show={props.show ? true : props.hide ? false : undefined}
-                hover={props.hover}
-                placement={props.placement}
-                class={props.block ? '!block' : ''}
+        props.content || props.text ? <NTooltipBase {...props}>{slots.default?.()}</NTooltipBase> : slots.default?.()
+})
+
+const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { slots }) => {
+    let popperInstance: PopperInstance | null = null
+    const contentId = `content-${uniqueId()}`
+    const tooltipId = `tooltip-${uniqueId()}`
+
+    function createTooltip() {
+        const content = document.getElementById(contentId)
+        const tooltip = document.getElementById(tooltipId)
+        if (content && tooltip) {
+            popperInstance = createPopper(content, tooltip, {
+                placement: props.placement,
+                modifiers: [
+                    {
+                        name: 'offset',
+                        options: {
+                            offset: [0, 8],
+                        },
+                    },
+                ],
+            })
+        } else {
+            console.error('Could not create tooltip. HTML elements for content or tooltip were not found.')
+        }
+    }
+
+    function destroyTooltip() {
+        popperInstance?.destroy()
+        popperInstance = null
+    }
+
+    onMounted(createTooltip)
+    onUnmounted(destroyTooltip)
+
+    watch(
+        () => props.placement,
+        newPlacement => popperInstance?.setOptions({ placement: newPlacement })
+    )
+
+    const isHoveringContent = ref(false)
+    const isHoveringTooltip = ref(false)
+    const isHovering = computed(() => isHoveringContent.value || isHoveringTooltip.value)
+    const showTooltip = computed(() => props.show || (!props.hide && isHovering.value))
+
+    watchRef(showTooltip, () => popperInstance?.update())
+
+    return () => (
+        <>
+            <div
+                class={['p-[10px] -m-[10px]', props.block ? 'block' : 'inline-block']}
+                onMouseleave={() => setTimeout(() => (isHoveringContent.value = false), 10)}
             >
-                {{
-                    default: () => slots.default?.(),
-                    content: () => (
-                        <div
-                            class={`bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm text-default-700 ${props.maxWidth}`}
-                        >
-                            {props.content?.() || props.text}
-                        </div>
-                    ),
-                }}
-            </Popper>
-        ) : (
-            slots.default?.()
-        )
+                <div id={contentId} onMouseenter={() => (isHoveringContent.value = true)}>
+                    {slots.default?.()}
+                </div>
+            </div>
+
+            <Transition
+                enterActiveClass="transition-opacity ease-out duration-100"
+                enterFromClass="opacity-0"
+                enterToClass="opacity-100"
+                leaveActiveClass="transition-opacity ease-in duration-75"
+                leaveFromClass="opacity-100"
+                leaveToClass="opacity-0"
+            >
+                <div
+                    id={tooltipId}
+                    role="tooltip"
+                    onMouseenter={() => (isHoveringTooltip.value = true)}
+                    onMouseleave={() => (isHoveringTooltip.value = false)}
+                    v-show={showTooltip.value}
+                    class={[isHovering.value ? 'z-20' : 'z-10', props.maxWidth]}
+                >
+                    <div class="bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm text-default-700">
+                        {props.content?.() || props.text}
+                    </div>
+                </div>
+            </Transition>
+        </>
+    )
 })
 
 export type TooltipPlacement =

@@ -40,3 +40,11 @@ export type TWMaxWidth =
     | 'max-w-screen-lg'
     | 'max-w-screen-xl'
     | 'max-w-screen-2xl'
+
+let currentId = 1
+/**
+ * Generates and returns a non random but unique id.
+ */
+export function uniqueId(): number {
+    return currentId++
+}

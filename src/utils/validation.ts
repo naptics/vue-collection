@@ -42,7 +42,7 @@ export function validate(input: InputValue, rules: ValidationRule[]): Validation
 // Validation formats
 
 /**
- * This rule expects the input-value to be truthy.
+ * This rule expects the trimmed input-value to be truthy.
  */
 export const required: ValidationRule = input => {
     const trimmed = input?.trim()

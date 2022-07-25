@@ -105,8 +105,15 @@ export function mapTooltipProps(props: ExtractedProps<typeof nToolTipPropsForImp
  * </NTooltip>
  */
 export default createComponent('NTooltip', nTooltipProps, (props, { slots }) => {
-    return () =>
-        props.content || props.text ? <NTooltipBase {...props}>{slots.default?.()}</NTooltipBase> : slots.default?.()
+    return () => (
+        <div class={props.block ? 'block' : 'inline-block'}>
+            {props.content || props.text ? (
+                <NTooltipBase {...props}>{slots.default?.()}</NTooltipBase>
+            ) : (
+                slots.default?.()
+            )}
+        </div>
+    )
 })
 
 const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { slots }) => {
@@ -157,10 +164,14 @@ const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { sl
     return () => (
         <>
             <div
-                class={['p-[10px] -m-[10px]', props.block ? 'block' : 'inline-block']}
+                class="p-[10px] -m-[10px]"
                 onMouseleave={() => setTimeout(() => (isHoveringContent.value = false), 10)}
             >
-                <div id={contentId} onMouseenter={() => (isHoveringContent.value = true)}>
+                <div
+                    id={contentId}
+                    onMouseenter={() => (isHoveringContent.value = true)}
+                    onClick={() => (isHoveringContent.value = !isHoveringContent.value)}
+                >
                     {slots.default?.()}
                 </div>
             </div>

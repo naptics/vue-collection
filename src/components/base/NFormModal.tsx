@@ -1,4 +1,5 @@
 import { createComponent, createProps } from '@/utils/component'
+import type { TWMaxWidth } from '@/utils/utils'
 import { reactive, toRefs, type PropType } from 'vue'
 import NForm from './NForm'
 import NModal, { nModalProps } from './NModal'
@@ -10,7 +11,7 @@ export const nFormModalProps = createProps({
      * The maximum width of the modal. A regular tailwind class.
      */
     maxWidth: {
-        type: nModalProps.maxWidth.type,
+        type: String as PropType<TWMaxWidth>,
         default: 'max-w-lg',
     },
     /**

@@ -1,6 +1,7 @@
 import { createComponent, createProps } from '@/utils/component'
 import type { TWTextSize } from '@/utils/utils'
 import type { PropType } from 'vue'
+import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 
 export const nBadgeProps = createProps({
     /**
@@ -42,6 +43,7 @@ export const nBadgeProps = createProps({
         type: Boolean,
         default: true,
     },
+    ...nToolTipPropsForImplementor,
 })
 
 /**
@@ -49,14 +51,16 @@ export const nBadgeProps = createProps({
  */
 export default createComponent('NBadge', nBadgeProps, (props, { slots }) => {
     return () => (
-        <div
-            class={[
-                'px-2 py-1 rounded-md font-semibold shadow',
-                `${props.textSize} bg-${props.color}-${props.shade} text-${props.color}-${props.textShade}`,
-                props.allCaps ? 'uppercase' : '',
-            ]}
-        >
-            {slots.default?.() || props.text}
-        </div>
+        <NTooltip {...mapTooltipProps(props)}>
+            <div
+                class={[
+                    'px-2 py-1 rounded-md font-semibold shadow',
+                    `${props.textSize} bg-${props.color}-${props.shade} text-${props.color}-${props.textShade}`,
+                    props.allCaps ? 'uppercase' : '',
+                ]}
+            >
+                {slots.default?.() || props.text}
+            </div>
+        </NTooltip>
     )
 })

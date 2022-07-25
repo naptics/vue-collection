@@ -20,6 +20,7 @@ import { ref, Transition } from 'vue'
 import NBadge from '@/components/base/NBadge'
 import LinkView from './presentation/LinkView'
 import BreadcrumbView from './presentation/BreadcrumbView'
+import TooltipView from './presentation/TooltipView'
 
 export default createView('HomeView', () => {
     const showButton = ref(false)
@@ -61,6 +62,7 @@ export default createView('HomeView', () => {
                 <ModalView />
                 <ListView />
                 <TableView />
+                <TooltipView />
                 <PaginationView />
             </div>
 

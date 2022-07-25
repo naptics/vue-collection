@@ -2,6 +2,7 @@ import { trsl } from '@/i18n'
 import { createComponent, createProps } from '@/utils/component'
 import type { Identifiable } from '@/utils/identifiable'
 import { ref, type PropType } from 'vue'
+import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'
 
 export const nSelectProps = createProps({
@@ -36,6 +37,7 @@ export const nSelectProps = createProps({
      * @see {@link nValInputProps.form}
      */
     form: nValInputProps.form,
+    ...nToolTipPropsForImplementor,
 })
 
 export type SelectionOption = Identifiable & { label: string }
@@ -71,29 +73,31 @@ export default createComponent('NSelect', nSelectProps, (props, context) => {
                     >
                         {props.name}
                     </label>
-                    <select
-                        name={props.name}
-                        disabled={props.disabled}
-                        value={props.value}
-                        onChange={event => slotProps.onUpdateValue((event.target as HTMLInputElement).value)}
-                        onBlur={slotProps.onBlur}
-                        class={[
-                            'block w-full py-2 pl-4 pr-10 rounded-md border focus:outline-none focus:ring-1',
-                            props.disabled ? 'text-default-300 ' : 'text-default-900 ',
-                            slotProps.error
-                                ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
-                                : 'border-default-300 focus:border-primary-500 focus:ring-primary-500',
-                        ]}
-                    >
-                        <option disabled={!props.optional} selected={!props.value} value="">
-                            {trsl('general.action.select')}
-                        </option>
-                        {props.options.map(option => (
-                            <option key={option.id} value={option.id} selected={props.value == option.id}>
-                                {option.label}
+                    <NTooltip block {...mapTooltipProps(props)}>
+                        <select
+                            name={props.name}
+                            disabled={props.disabled}
+                            value={props.value}
+                            onChange={event => slotProps.onUpdateValue((event.target as HTMLInputElement).value)}
+                            onBlur={slotProps.onBlur}
+                            class={[
+                                'block w-full py-2 pl-4 pr-10 rounded-md border focus:outline-none focus:ring-1',
+                                props.disabled ? 'text-default-300 ' : 'text-default-900 ',
+                                slotProps.error
+                                    ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
+                                    : 'border-default-300 focus:border-primary-500 focus:ring-primary-500',
+                            ]}
+                        >
+                            <option disabled={!props.optional} selected={!props.value} value="">
+                                {trsl('general.action.select')}
                             </option>
-                        ))}
-                    </select>
+                            {props.options.map(option => (
+                                <option key={option.id} value={option.id} selected={props.value == option.id}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </select>
+                    </NTooltip>
                 </>
             )}
         />

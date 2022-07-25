@@ -17,6 +17,11 @@ type Data = Record<string, unknown>
 export type Props<T = Data> = ComponentObjectPropsOptions<T>
 
 /**
+ * `ExtractedProps` maps a prop object to the props, which are received in the `setup` function of a components.
+ */
+export type ExtractedProps<T extends Props> = Readonly<LooseRequired<Readonly<ExtractPropTypes<T>>>>
+
+/**
  * Components should be created using this helper function.
  * It only takes three arguments, the name and the props of the component and the setup function.
  * All other arguments which the {@link defineComponent} method of vue may provide,
@@ -29,10 +34,7 @@ export type Props<T = Data> = ComponentObjectPropsOptions<T>
 export function createComponent<T extends Props>(
     name: string,
     props: T,
-    setup: (
-        props: Readonly<LooseRequired<Readonly<ExtractPropTypes<T>>>>,
-        context: SetupContext<never[]>
-    ) => RenderFunction | Promise<RenderFunction>
+    setup: (props: ExtractedProps<T>, context: SetupContext<never[]>) => RenderFunction | Promise<RenderFunction>
 ) {
     return defineComponent({ name, props, emits: [], setup })
 }

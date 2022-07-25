@@ -10,7 +10,7 @@ describe('<NButton>', () => {
 
     it('calls onClick when clicked', async () => {
         const onClick = vi.fn()
-        const button = mount(<NButton onClick={onClick} />)
+        const button = mount(<NButton onClick={onClick} />).get('button')
         await button.trigger('click')
         expect(onClick).toHaveBeenCalledOnce()
         await button.trigger('click')
@@ -19,7 +19,7 @@ describe('<NButton>', () => {
 
     it('does not call onClick when disabled', async () => {
         const onClick = vi.fn()
-        const button = mount(<NButton onClick={onClick} disabled={true} />)
+        const button = mount(<NButton onClick={onClick} disabled={true} />).get('button')
         await button.trigger('click')
         expect(onClick).not.toHaveBeenCalled()
     })

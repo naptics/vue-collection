@@ -18,7 +18,7 @@ export default createView('TooltipView', () => {
         >
             <VariantSection
                 title="Customization"
-                subtitle="The content of a tooltip can be a simple text or there is a slot available for customization. More properties like hover-behaviour, placement, maximum width and more can be configured."
+                subtitle="The content of a tooltip can be a simple text or there is a slot available for customization. More properties like placement, maximum width and more can be configured."
             >
                 <ComponentGrid cols={4}>
                     <div class="flex">

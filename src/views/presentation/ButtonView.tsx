@@ -29,8 +29,17 @@ export default createView('ButtonView', () => {
                 <ColorGrid
                     item={color => (
                         <NButton color={color} disabled>
-                            {' '}
-                            Click me{' '}
+                            Click me
+                        </NButton>
+                    )}
+                />
+            </VariantSection>
+
+            <VariantSection title="Loading">
+                <ColorGrid
+                    item={color => (
+                        <NButton color={color} loading>
+                            Click me
                         </NButton>
                     )}
                 />

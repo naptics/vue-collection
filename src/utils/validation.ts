@@ -108,6 +108,12 @@ export function regex(pattern: RegExp): ValidationRule {
     }
 }
 
+/**
+ * This rule can be used if the validation logic happens somwhere else.
+ * When `isValid = true` is passed, the function will return a valid result,
+ * otherwise it will return the invalid result with the passed `errorKey`.
+ * Like always, no input is always valid to not interefere with the {@link required} rule.
+ */
 export function external(isValid: boolean, errorKey: string): ValidationRule {
     return input => (!input || isValid ? validResult() : invalidResult(errorKey))
 }

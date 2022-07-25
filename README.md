@@ -17,7 +17,7 @@ You can take a look at all components on [Gitlab Pages](https://naptx.gitlab.io/
     - When creating the App.css add contents of this repo's `App.css`
 4. Add tailwind forms with `npm install -D @tailwindcss/forms`
 5. Copy the tailwind configuration `tailwind.config.js` to your project.
-6. Add other dependencies with `npm install @headlessui/vue @heroicons/vue vue-i18n awesome-phonenumber vue3-popper`
+6. Add other dependencies with `npm install @headlessui/vue @heroicons/vue vue-i18n awesome-phonenumber @popperjs/core`
 7. Copy files from `.vscode` to your project. Remove `.vscode/settings.json` file from `.gitignore`. Copy `.prettierrc` to your project.
 8. Make sure typescript config is correct. Double check with this repo.
 9. Copy the contents of `src/components/base` (without the tests), `src/i18n` and `src/utils` to your project.

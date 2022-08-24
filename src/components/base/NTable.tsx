@@ -22,6 +22,9 @@ export type TableHeading = {
      * This classes will be directly set to all cells in the column of this heading.
      */
     cellClass?: string
+    /**
+     * If set the heading will become a details entry when the screen is smaller than the specified breakpoint.
+     */
     breakpoint?: TWBreakpoint
 }
 
@@ -44,7 +47,6 @@ export type TableRow = Record<string, TableItem> & {
     action?: TableItem
 }
 const N_TABLE_ACTION_KEY = 'action'
-
 export type TableItem = string | number | (() => JSX.Element)
 
 export const nTableProps = createProps({
@@ -54,6 +56,18 @@ export const nTableProps = createProps({
     headings: {
         type: Array as PropType<TableHeading[]>,
         required: true,
+    },
+    /**
+     * Details can be added additionally to headings.
+     * If details are set a little chevron icon is displayed at the end of each table row
+     * and if clicked on it the data is displayed in a key-value fashion.
+     * The values of the entries should be passed via the `items` prop
+     * in the same way as if the details were normal headings.
+     * Note that details can be added dynamically by adding the `breakpoint` property to the headings.
+     */
+    details: {
+        type: Array as PropType<TableDetail[]>,
+        default: () => [],
     },
     /**
      * The items of the table. They consist of an array of table rows.
@@ -80,21 +94,12 @@ export const nTableProps = createProps({
         type: Array as PropType<TableRow[]>,
         default: () => [],
     },
-    details: {
-        type: Array as PropType<TableDetail[]>,
-        default: () => [],
-    },
 })
 
 /**
  * The `NTable` is a styled html table which accepts data and displays it appropriately.
  */
 export default createComponent('NTable', nTableProps, props => {
-    function buildItem(item: TableItem) {
-        if (typeof item == 'string' || typeof item == 'number') return <>{item}</>
-        else return item()
-    }
-
     const headings = computed(() => {
         const headings = props.headings.filter(
             heading => !heading.breakpoint || isWidthBreakpoint(heading.breakpoint).value
@@ -105,22 +110,27 @@ export default createComponent('NTable', nTableProps, props => {
         if (showDetails.value || props.items.filter(row => row.action != null).length != 0) {
             headings.push({ key: N_TABLE_ACTION_KEY })
         }
+
         return headings
     })
 
     const details = computed(() => {
+        // take all headings which are below the breakpoint
         const details = props.headings.filter(
             heading => heading.breakpoint && !isWidthBreakpoint(heading.breakpoint).value
         )
         details.push(...props.details)
         return details
     })
+
     const showDetails = computed(() => details.value.length > 0)
 
     const detailsOpen = ref<boolean[]>([])
     const isDetailsOpen = (index: number) => detailsOpen.value[index] || false
     const toggleDetailsOpen = (index: number) => (detailsOpen.value[index] = !detailsOpen.value[index])
 
+    // if the items change, reset all open details to closed
+    // and create correct amount of booleans for all items
     watch(
         () => props.items,
         newItems => (detailsOpen.value = Array({ length: newItems.length }).map(() => false)),
@@ -129,11 +139,11 @@ export default createComponent('NTable', nTableProps, props => {
 
     return () => (
         <div class="overflow-x-auto">
-            <table class="min-w-full">
+            <table class="min-w-full text-default-500 text-sm">
                 <thead class="bg-default-50 ">
                     <tr>
                         {headings.value.map(heading => (
-                            <th key={heading.key} scope="col" class="table-padding table-heading">
+                            <th key={heading.key} scope="col" class="p-4 table-heading">
                                 {heading.label}
                             </th>
                         ))}
@@ -143,10 +153,16 @@ export default createComponent('NTable', nTableProps, props => {
                 {props.items.length > 0 &&
                     props.items.map((item, itemIndex) => (
                         <Fragment key={itemIndex}>
-                            <tbody class="text-default-500 text-sm border-default-200 border-t">
-                                <tr class={itemIndex % 2 === 0 ? 'bg-white' : 'bg-default-50'}>
+                            {/* First tbody is the actual table-row with the entries */}
+                            <tbody
+                                class={[
+                                    'border-default-200 border-t',
+                                    itemIndex % 2 === 0 ? 'bg-white' : 'bg-default-50',
+                                ]}
+                            >
+                                <tr>
                                     {headings.value.map(heading => (
-                                        <td key={itemIndex + '-' + heading.key} class="table-padding">
+                                        <td key={itemIndex + '-' + heading.key} class="p-4">
                                             <div
                                                 class={[
                                                     'flex',
@@ -158,6 +174,8 @@ export default createComponent('NTable', nTableProps, props => {
                                                 ]}
                                             >
                                                 {item[heading.key] && buildItem(item[heading.key])}
+
+                                                {/* Add the chevron icon-button if details are present */}
                                                 {heading.key == N_TABLE_ACTION_KEY && showDetails.value && (
                                                     <NIconButton
                                                         icon={
@@ -172,6 +190,7 @@ export default createComponent('NTable', nTableProps, props => {
                                 </tr>
                             </tbody>
 
+                            {/* Second tbody are the details (only shown if present and opened) */}
                             {showDetails.value && isDetailsOpen(itemIndex) && (
                                 <tbody
                                     class={[
@@ -208,3 +227,11 @@ export default createComponent('NTable', nTableProps, props => {
         </div>
     )
 })
+
+/**
+ * Builds a JSX-Element out of the item
+ */
+function buildItem(item: TableItem) {
+    if (typeof item == 'string' || typeof item == 'number') return <>{item}</>
+    else return item()
+}

@@ -1,7 +1,3 @@
-.table-padding {
-    @apply py-4 px-4;
-}
-
 .table-heading {
     @apply text-left text-xs font-medium text-default-500 uppercase tracking-wider;
 }

@@ -11,8 +11,8 @@ export default createView('TableView', () => {
     const headings: TableHeading[] = [
         { key: 'id', label: 'ID' },
         { key: 'username', label: 'Username', emph: true },
-        { key: 'email', label: 'Email', breakpoint: 'sm' },
-        { key: 'phone', label: 'Phone', breakpoint: 'md' },
+        { key: 'email', label: 'Email', breakpoint: 'md' },
+        { key: 'phone', label: 'Phone', breakpoint: 'lg' },
         { key: 'state', label: 'State', breakpoint: 'sm' },
     ]
 
@@ -82,13 +82,6 @@ export default createView('TableView', () => {
             id="tables"
         >
             <VariantSection
-                title="With Details"
-                subtitle="If there is a lot of information to display, a details section can be added."
-            >
-                <NTable headings={headings} items={data} details={details} />
-            </VariantSection>
-
-            <VariantSection
                 title="Basic Table"
                 subtitle="If nothing needs to be customized, the data can be displayed directly as text."
             >
@@ -115,6 +108,13 @@ export default createView('TableView', () => {
                         ),
                     }))}
                 />
+            </VariantSection>
+
+            <VariantSection
+                title="With Details"
+                subtitle="If there is a lot of information to display, a details section can be added."
+            >
+                <NTable headings={headings} items={data} details={details} />
             </VariantSection>
 
             <VariantSection

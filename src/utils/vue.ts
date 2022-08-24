@@ -1,4 +1,4 @@
-import { type Ref, watch } from 'vue'
+import { type Ref, watch, type ComputedRef } from 'vue'
 
 /**
  * Creates a watcher on the updater function, which sets the value of the ref on every change.
@@ -20,6 +20,6 @@ export function updateWith<T>(ref: Ref<T>, updater: () => T): void {
  * @param ref the ref to watch
  * @param onChange the function, which is executed on change of a value
  */
-export function watchRef<T>(ref: Ref<T>, onChange: (newValue: T) => void): void {
+export function watchRef<T>(ref: Ref<T> | ComputedRef<T>, onChange: (newValue: T) => void): void {
     watch(() => ref.value, onChange)
 }

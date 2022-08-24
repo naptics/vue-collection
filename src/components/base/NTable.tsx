@@ -1,5 +1,8 @@
+import { isWidthBreakpoint, type TWBreakpoint } from '@/utils/breakpoints'
 import { createComponent, createProps } from '@/utils/component'
-import type { PropType } from 'vue'
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/solid'
+import { computed, Fragment, ref, type PropType, watch } from 'vue'
+import NIconButton from './NIconButton'
 import './NTable.css'
 
 export type TableHeading = {
@@ -19,6 +22,18 @@ export type TableHeading = {
      * This classes will be directly set to all cells in the column of this heading.
      */
     cellClass?: string
+    breakpoint?: TWBreakpoint
+}
+
+export type TableDetail = {
+    /**
+     * The key of the table details. This should match the key of the items.
+     */
+    key: string
+    /**
+     * The label of the table detail. If not set, no label is displayed.
+     */
+    label?: string
 }
 
 export type TableRow = Record<string, TableItem>
@@ -54,7 +69,13 @@ export const nTableProps = createProps({
         type: Array as PropType<TableRow[]>,
         default: () => [],
     },
+    details: {
+        type: Array as PropType<TableDetail[]>,
+        default: () => [],
+    },
 })
+
+const DETAILS_BUTTON_KEY = 'nTableDetailsButton'
 
 /**
  * The `NTable` is a styled html table which accepts data and displays it appropriately.
@@ -65,47 +86,108 @@ export default createComponent('NTable', nTableProps, props => {
         else return item()
     }
 
+    const headings = computed(() => {
+        const headings = props.headings.filter(
+            heading => !heading.breakpoint || isWidthBreakpoint(heading.breakpoint).value
+        )
+        if (details.value.length > 0) headings.push({ key: DETAILS_BUTTON_KEY, cellClass: 'flex-row-reverse' })
+        return headings
+    })
+
+    const details = computed(() => {
+        const details = props.headings.filter(
+            heading => heading.breakpoint && !isWidthBreakpoint(heading.breakpoint).value
+        )
+        details.push(...props.details)
+        return details
+    })
+    const showDetails = computed(() => details.value.length > 0)
+
+    const detailsOpen = ref<boolean[]>([])
+    const isDetailsOpen = (index: number) => detailsOpen.value[index] || false
+    const toggleDetailsOpen = (index: number) => (detailsOpen.value[index] = !detailsOpen.value[index])
+
+    watch(
+        () => props.items,
+        newItems => (detailsOpen.value = Array({ length: newItems.length }).map(() => false)),
+        { immediate: true }
+    )
+
     return () => (
         <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-default-200">
-                <thead class="bg-default-50">
+            <table class="min-w-full">
+                <thead class="bg-default-50 ">
                     <tr>
-                        {props.headings.map(heading => (
-                            <th
-                                key={heading.key}
-                                scope="col"
-                                class="table-padding text-left text-xs font-medium text-default-500 uppercase tracking-wider"
-                            >
+                        {headings.value.map(heading => (
+                            <th key={heading.key} scope="col" class="table-padding table-heading">
                                 {heading.label}
                             </th>
                         ))}
                     </tr>
                 </thead>
 
-                {props.items.length > 0 && (
-                    <tbody>
-                        {props.items.map((item, itemIndex) => (
-                            <tr key={itemIndex} class={itemIndex % 2 === 0 ? 'bg-white' : 'bg-default-50'}>
-                                {props.headings.map(heading => (
-                                    <td
-                                        key={itemIndex + '-' + heading.key}
-                                        class="table-padding text-sm text-default-500"
-                                    >
-                                        <div
-                                            class={[
-                                                'flex',
-                                                heading.emph ? 'font-medium text-default-900' : '',
-                                                heading.cellClass,
-                                            ]}
-                                        >
-                                            {item[heading.key] && buildItem(item[heading.key])}
-                                        </div>
-                                    </td>
-                                ))}
-                            </tr>
-                        ))}
-                    </tbody>
-                )}
+                {props.items.length > 0 &&
+                    props.items.map((item, itemIndex) => (
+                        <Fragment key={itemIndex}>
+                            <tbody class="text-default-500 text-sm border-default-200 border-t">
+                                <tr class={itemIndex % 2 === 0 ? 'bg-white' : 'bg-default-50'}>
+                                    {headings.value.map(heading => (
+                                        <td key={itemIndex + '-' + heading.key} class="table-padding">
+                                            <div
+                                                class={[
+                                                    'flex',
+                                                    heading.emph ? 'font-medium text-default-900' : '',
+                                                    heading.cellClass,
+                                                ]}
+                                            >
+                                                {heading.key != DETAILS_BUTTON_KEY ? (
+                                                    item[heading.key] && buildItem(item[heading.key])
+                                                ) : (
+                                                    <NIconButton
+                                                        icon={
+                                                            isDetailsOpen(itemIndex) ? ChevronDownIcon : ChevronUpIcon
+                                                        }
+                                                        onClick={() => toggleDetailsOpen(itemIndex)}
+                                                    />
+                                                )}
+                                            </div>
+                                        </td>
+                                    ))}
+                                </tr>
+                            </tbody>
+
+                            {showDetails.value && isDetailsOpen(itemIndex) && (
+                                <tbody
+                                    class={[
+                                        itemIndex % 2 === 0 ? 'bg-white' : 'bg-default-50',
+                                        'text-default-500 text-sm ',
+                                    ]}
+                                >
+                                    {details.value.map((detail, detailIndex) => (
+                                        <tr key={`detail-${detailIndex}`}>
+                                            <td
+                                                class={[
+                                                    'table-heading px-4 py-1',
+                                                    details.value.length - 1 == detailIndex ? 'pb-4' : '',
+                                                ]}
+                                            >
+                                                {detail.label}
+                                            </td>
+                                            <td
+                                                class={[
+                                                    'px-4 py-1',
+                                                    details.value.length - 1 == detailIndex ? 'pb-4' : '',
+                                                ]}
+                                                colspan={headings.value.length - 1}
+                                            >
+                                                {item[detail.key] && buildItem(item[detail.key])}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            )}
+                        </Fragment>
+                    ))}
             </table>
         </div>
     )

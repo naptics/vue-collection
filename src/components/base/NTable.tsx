@@ -36,7 +36,15 @@ export type TableDetail = {
     label?: string
 }
 
-export type TableRow = Record<string, TableItem>
+export type TableRow = Record<string, TableItem> & {
+    /**
+     * The TableItem is used as the last element of the table and
+     * merged together in one cell with the button to toggle the details.
+     */
+    action?: TableItem
+}
+const N_TABLE_ACTION_KEY = 'action'
+
 export type TableItem = string | number | (() => JSX.Element)
 
 export const nTableProps = createProps({
@@ -51,6 +59,9 @@ export const nTableProps = createProps({
      * The items of the table. They consist of an array of table rows.
      * Every tablerow is an object containing elements for the heading keys.
      * The elements can either be a primitive value or a function which returns a {@link JSX.Element}.
+     * If the item should be treated as an action (e.g. icon-button to display at the end of the row)
+     * the dedicated key 'action' can be used.
+     * @see TableRow
      * @example
      * // These headings are defined
      * const headings: TableHeading[] = [
@@ -61,8 +72,8 @@ export const nTableProps = createProps({
      *
      * // Appropriate rows for these headings
      * const items: TableRow[] = [
-     *      { id: 1, name: 'Hubert', status: () => <NBadge ... /> },   // Row 1
-     *      { id: 2, name: 'Franzi', status: () => <NBadge ... /> }    // Row 2
+     *      { id: 1, name: 'Hubert', status: () => <NBadge ... />, action: ... },   // Row 1
+     *      { id: 2, name: 'Franzi', status: () => <NBadge ... />, action: ... }    // Row 2
      * ]
      */
     items: {
@@ -74,8 +85,6 @@ export const nTableProps = createProps({
         default: () => [],
     },
 })
-
-const DETAILS_BUTTON_KEY = 'nTableDetailsButton'
 
 /**
  * The `NTable` is a styled html table which accepts data and displays it appropriately.
@@ -90,7 +99,12 @@ export default createComponent('NTable', nTableProps, props => {
         const headings = props.headings.filter(
             heading => !heading.breakpoint || isWidthBreakpoint(heading.breakpoint).value
         )
-        if (details.value.length > 0) headings.push({ key: DETAILS_BUTTON_KEY, cellClass: 'flex-row-reverse' })
+
+        // The column for actions is shown if there are details
+        // or if any of the items contain an element with the action-key.
+        if (showDetails.value || props.items.filter(row => row.action != null).length != 0) {
+            headings.push({ key: N_TABLE_ACTION_KEY })
+        }
         return headings
     })
 
@@ -138,11 +152,13 @@ export default createComponent('NTable', nTableProps, props => {
                                                     'flex',
                                                     heading.emph ? 'font-medium text-default-900' : '',
                                                     heading.cellClass,
+                                                    heading.key == N_TABLE_ACTION_KEY
+                                                        ? 'justify-end items-center space-x-3'
+                                                        : '',
                                                 ]}
                                             >
-                                                {heading.key != DETAILS_BUTTON_KEY ? (
-                                                    item[heading.key] && buildItem(item[heading.key])
-                                                ) : (
+                                                {item[heading.key] && buildItem(item[heading.key])}
+                                                {heading.key == N_TABLE_ACTION_KEY && showDetails.value && (
                                                     <NIconButton
                                                         icon={
                                                             isDetailsOpen(itemIndex) ? ChevronDownIcon : ChevronUpIcon

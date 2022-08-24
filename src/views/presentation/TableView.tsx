@@ -5,7 +5,7 @@ import NTableAction from '@/components/base/NTableAction'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/component'
-import { PencilIcon } from '@heroicons/vue/solid'
+import { PencilIcon, SearchIcon } from '@heroicons/vue/solid'
 
 export default createView('TableView', () => {
     const headings: TableHeading[] = [
@@ -122,12 +122,21 @@ export default createView('TableView', () => {
                 subtitle="Table Actions can be added to either trigger an action or navigate to a route."
             >
                 <NTable
-                    headings={[...headings.slice(0, 4), { key: 'action', cellClass: 'flex-row-reverse' }]}
+                    headings={headings}
                     items={data.map(item => ({
                         ...item,
                         username: () => <NTableAction route={`/`} text={item.username} />,
                         action: () => (
-                            <NIconButton icon={PencilIcon} onClick={() => alert(`You will edit ${item.username}.`)} />
+                            <>
+                                <NIconButton
+                                    icon={PencilIcon}
+                                    onClick={() => alert(`You will edit ${item.username}.`)}
+                                />
+                                <NIconButton
+                                    icon={SearchIcon}
+                                    onClick={() => alert(`You will lookup ${item.username}.`)}
+                                />
+                            </>
                         ),
                     }))}
                 />

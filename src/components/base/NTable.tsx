@@ -101,6 +101,7 @@ export const nTableProps = createProps({
  */
 export default createComponent('NTable', nTableProps, props => {
     const headings = computed(() => {
+        // remove all headings which are below the breakpoint
         const headings = props.headings.filter(
             heading => !heading.breakpoint || isWidthBreakpoint(heading.breakpoint).value
         )
@@ -192,12 +193,7 @@ export default createComponent('NTable', nTableProps, props => {
 
                             {/* Second tbody are the details (only shown if present and opened) */}
                             {showDetails.value && isDetailsOpen(itemIndex) && (
-                                <tbody
-                                    class={[
-                                        itemIndex % 2 === 0 ? 'bg-white' : 'bg-default-50',
-                                        'text-default-500 text-sm ',
-                                    ]}
-                                >
+                                <tbody class={itemIndex % 2 === 0 ? 'bg-white' : 'bg-default-50'}>
                                     {details.value.map((detail, detailIndex) => (
                                         <tr key={`detail-${detailIndex}`}>
                                             <td

@@ -4,7 +4,7 @@ import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView, refAsVModel } from '@/utils/component'
-import { UserIcon } from '@heroicons/vue/solid'
+import { UserIcon } from '@heroicons/vue/24/solid'
 import { computed, ref } from 'vue'
 
 export default createView('SearchbarView', () => {

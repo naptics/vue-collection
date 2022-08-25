@@ -1,6 +1,6 @@
 import { isWidthBreakpoint, type TWBreakpoint } from '@/utils/breakpoints'
 import { createComponent, createProps } from '@/utils/component'
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/solid'
+import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/24/solid'
 import { computed, Fragment, ref, type PropType, watch } from 'vue'
 import NIconButton from './NIconButton'
 import './NTable.css'

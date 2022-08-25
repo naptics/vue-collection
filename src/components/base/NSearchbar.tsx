@@ -1,6 +1,6 @@
 import { trsl } from '@/i18n'
 import { createComponent, createProps, vModel } from '@/utils/component'
-import { SearchIcon } from '@heroicons/vue/solid'
+import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import { ref, type PropType } from 'vue'
 
 export const nSearchbarProps = createProps({
@@ -56,7 +56,7 @@ export default createComponent('NSearchbar', nSearchbarProps, (props, context) =
             </label>
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <SearchIcon class="h-5 w-5 text-default-400" aria-hidden="true" />
+                    <MagnifyingGlassIcon class="h-5 w-5 text-default-400" aria-hidden="true" />
                 </div>
                 <input
                     ref={inputRef}

@@ -1,5 +1,5 @@
 import { createView, refAsVModel } from '@/utils/component'
-import { BanIcon, SunIcon } from '@heroicons/vue/solid'
+import { NoSymbolIcon, SunIcon } from '@heroicons/vue/24/solid'
 import { ref } from 'vue'
 import NButton from '@/components/base/NButton'
 import NModal from '@/components/base/NModal'
@@ -111,7 +111,7 @@ export default createView('ModalView', () => {
                 title="Custom Footer"
                 footer={({ cancel }) => (
                     <div class="flex justify-center">
-                        <NIconButton icon={BanIcon} color="red" size={7} onClick={cancel} />
+                        <NIconButton icon={NoSymbolIcon} color="red" size={7} onClick={cancel} />
                     </div>
                 )}
             >

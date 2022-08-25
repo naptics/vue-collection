@@ -6,17 +6,17 @@ import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/component'
 import {
     CogIcon,
-    CashIcon,
+    CreditCardIcon,
     EyeIcon,
     KeyIcon,
     PencilIcon,
     RssIcon,
-    ExternalLinkIcon,
+    ArrowTopRightOnSquareIcon,
     ChevronDoubleRightIcon,
-} from '@heroicons/vue/solid'
+} from '@heroicons/vue/24/solid'
 
 export default createView('IconButtonView', () => {
-    const icons = [CogIcon, RssIcon, KeyIcon, CashIcon, PencilIcon, EyeIcon]
+    const icons = [CogIcon, RssIcon, KeyIcon, CreditCardIcon, PencilIcon, EyeIcon]
     const sizes = [4, 5, 6, 7, 8, 10]
 
     return () => (
@@ -40,7 +40,7 @@ export default createView('IconButtonView', () => {
             </VariantSection>
 
             <VariantSection title="Router Links" subtitle="The Icon Button can also be used as a regular router link.">
-                <ColorGrid item={color => <NIconButton icon={ExternalLinkIcon} route="/" color={color} />} />
+                <ColorGrid item={color => <NIconButton icon={ArrowTopRightOnSquareIcon} route="/" color={color} />} />
             </VariantSection>
         </ComponentSection>
     )

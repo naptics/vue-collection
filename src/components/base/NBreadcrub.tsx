@@ -1,6 +1,6 @@
 import { createComponent, createProps } from '@/utils/component'
 import type { HeroIcon, TWTextSize } from '@/utils/utils'
-import { ChevronRightIcon } from '@heroicons/vue/solid'
+import { ChevronRightIcon } from '@heroicons/vue/24/solid'
 import type { PropType } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 import NLink from './NLink'

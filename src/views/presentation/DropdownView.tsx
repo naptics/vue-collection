@@ -4,13 +4,13 @@ import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/component'
 import { MenuButton } from '@headlessui/vue'
-import { SaveIcon, ShareIcon } from '@heroicons/vue/solid'
+import { ArrowDownOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
 
 export default createView('DropdownView', () => {
     const base: DropdownItem[] = [{ label: 'Save File' }, { label: 'Share File' }]
     const multiple: DropdownItem[][] = [base, [{ label: 'Logout', route: '/logout' }, { label: 'Profile' }]]
     const icons: DropdownItem[] = [
-        { label: 'Save File', icon: SaveIcon },
+        { label: 'Save File', icon: ArrowDownOnSquareIcon },
         { label: 'Share File', icon: ShareIcon, route: '/share' },
     ]
 

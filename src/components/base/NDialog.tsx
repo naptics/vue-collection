@@ -1,6 +1,6 @@
 import { deferred, type DeferredPromise } from '@/utils/deferred'
 import { createComponent, createProps, extractProps, refAsVModel } from '@/utils/component'
-import { CheckIcon, ExclamationIcon, LightBulbIcon, TrashIcon } from '@heroicons/vue/outline'
+import { CheckIcon, ExclamationTriangleIcon, LightBulbIcon, TrashIcon } from '@heroicons/vue/24/outline'
 import { computed, ref, type PropType } from 'vue'
 import NIconCircle from './NIconCircle'
 import NModal from './NModal'
@@ -159,13 +159,13 @@ const VARIANT_DEFAULTS = {
         okColor: 'blue',
     },
     warning: {
-        icon: ExclamationIcon,
+        icon: ExclamationTriangleIcon,
         iconColor: 'yellow',
         okText: trsl('general.action.proceed'),
         okColor: 'yellow',
     },
     danger: {
-        icon: ExclamationIcon,
+        icon: ExclamationTriangleIcon,
         iconColor: 'red',
         okText: trsl('general.action.proceed'),
         okColor: 'red',

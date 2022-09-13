@@ -1,6 +1,6 @@
 import type { HeroIcon } from '@/utils/utils'
 import { createComponent, createProps } from '@/utils/component'
-import { CheckCircleIcon, ExclamationCircleIcon, InformationCircleIcon, XIcon } from '@heroicons/vue/solid'
+import { CheckCircleIcon, ExclamationCircleIcon, InformationCircleIcon, XMarkIcon } from '@heroicons/vue/24/solid'
 import { computed, type PropType } from 'vue'
 import NIconButton from './NIconButton'
 import NLoadingIndicator from './NLoadingIndicator'
@@ -47,7 +47,7 @@ export default createComponent('NAlert', nAlertProps, props => {
 
                 {!props.hideX && (
                     <div class="flex items-center flex-shrink-0 ml-3">
-                        <NIconButton color={variant.value.color} size={5} icon={XIcon} onClick={props.onDismiss} />
+                        <NIconButton color={variant.value.color} size={5} icon={XMarkIcon} onClick={props.onDismiss} />
                     </div>
                 )}
             </div>

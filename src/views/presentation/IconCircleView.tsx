@@ -3,7 +3,7 @@ import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/component'
-import { FireIcon } from '@heroicons/vue/solid'
+import { FireIcon } from '@heroicons/vue/24/solid'
 
 export default createView('IconCircleView', () => {
     return () => (

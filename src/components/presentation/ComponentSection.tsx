@@ -1,5 +1,5 @@
 import { createComponent, createProps } from '@/utils/component'
-import { LinkIcon } from '@heroicons/vue/solid'
+import { LinkIcon } from '@heroicons/vue/24/solid'
 import { RouterLink } from 'vue-router'
 
 export const componentSectionProps = createProps({

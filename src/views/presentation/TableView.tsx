@@ -5,7 +5,7 @@ import NTableAction from '@/components/base/NTableAction'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/component'
-import { PencilIcon, SearchIcon } from '@heroicons/vue/solid'
+import { PencilIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 
 export default createView('TableView', () => {
     const headings: TableHeading[] = [
@@ -133,7 +133,7 @@ export default createView('TableView', () => {
                                     onClick={() => alert(`You will edit ${item.username}.`)}
                                 />
                                 <NIconButton
-                                    icon={SearchIcon}
+                                    icon={MagnifyingGlassIcon}
                                     onClick={() => alert(`You will lookup ${item.username}.`)}
                                 />
                             </>

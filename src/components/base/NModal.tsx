@@ -3,7 +3,7 @@ import type { PropType } from 'vue'
 import { Dialog, DialogOverlay, DialogTitle, TransitionRoot, TransitionChild } from '@headlessui/vue'
 import NButton from './NButton'
 import NIconButton from './NIconButton'
-import { XIcon } from '@heroicons/vue/solid'
+import { XMarkIcon } from '@heroicons/vue/24/solid'
 import { trsl } from '@/i18n'
 import type { TWMaxWidth } from '@/utils/utils'
 
@@ -171,7 +171,7 @@ export default createComponent('NModal', nModalProps, (props, { slots }) => {
                                 >
                                     {!props.hideX && (
                                         <div class="sm:block absolute top-0 right-0 mt-3 mr-3">
-                                            <NIconButton icon={XIcon} color="default" size={5} onClick={cancel} />
+                                            <NIconButton icon={XMarkIcon} color="default" size={5} onClick={cancel} />
                                         </div>
                                     )}
 

@@ -1,6 +1,6 @@
 import { createComponent, createProps, vModel } from '@/utils/component'
 import { ref, type PropType } from 'vue'
-import { ExclamationCircleIcon } from '@heroicons/vue/solid'
+import { ExclamationCircleIcon } from '@heroicons/vue/24/solid'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 
 export const nInputProps = createProps({

@@ -7,7 +7,7 @@ import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/component'
-import { ExternalLinkIcon } from '@heroicons/vue/solid'
+import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
 
 export default createView('TooltipView', () => {
     return () => (
@@ -63,7 +63,10 @@ export default createView('TooltipView', () => {
             >
                 <ComponentGrid cols={4}>
                     <div class="flex items-center">
-                        <NIconButton icon={ExternalLinkIcon} tooltipText="Icon Buttons have integrated tooltips." />
+                        <NIconButton
+                            icon={ArrowTopRightOnSquareIcon}
+                            tooltipText="Icon Buttons have integrated tooltips."
+                        />
                     </div>
                     <div class="flex items-center">
                         <NButton tooltipText="Buttons have integrated tooltips."> Button </NButton>

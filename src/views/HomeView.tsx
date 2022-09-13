@@ -21,6 +21,7 @@ import NBadge from '@/components/base/NBadge'
 import LinkView from './presentation/LinkView'
 import BreadcrumbView from './presentation/BreadcrumbView'
 import TooltipView from './presentation/TooltipView'
+import DropzoneView from './presentation/DropzoneView'
 
 export default createView('HomeView', () => {
     const showButton = ref(false)
@@ -47,6 +48,8 @@ export default createView('HomeView', () => {
             </div>
 
             <div class="space-y-10">
+                <DropzoneView />
+                <div class="h-96" />
                 <AlertView />
                 <ButtonView />
                 <IconButtonView />

@@ -3,7 +3,8 @@
     "subtitle": {},
     "text": {
         "loading-search-results": "Ergebnisse werden geladen...",
-        "no-search-results": "Keine Ergebnisse für «{input}»."
+        "no-search-results": "Keine Ergebnisse für «{input}».",
+        "drag-n-drop-files": "Dateien auswählen oder per Drag & Drop hinzufügen. | Eine Datei ausgewählt: | {n} Dateien ausgewählt: "
     },
     "property": {},
     "term": {},

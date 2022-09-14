@@ -25,6 +25,13 @@ export const nIconButtonProps = createProps({
         default: 'default',
     },
     /**
+     * The shade of the icon-button.
+     */
+    shade: {
+        type: Number,
+        default: 500,
+    },
+    /**
      * The size of the icon in tailwind-units.
      */
     size: {
@@ -55,7 +62,7 @@ export default createComponent('NIconButton', nIconButtonProps, props => {
         'block p-0.5 transition rounded-md focus:outline-none focus-visible:ring-2 -m-1',
         props.disabled
             ? `text-${props.color}-200 cursor-default`
-            : `hover:bg-${props.color}-500 hover:bg-opacity-10 text-${props.color}-500 focus-visible:ring-${props.color}-500 cursor-pointer`,
+            : `hover:bg-${props.color}-${props.shade} hover:bg-opacity-10 text-${props.color}-${props.shade} focus-visible:ring-${props.color}-${props.shade} cursor-pointer`,
     ]
 
     const content = () => <props.icon class={`w-${props.size} h-${props.size}`} />

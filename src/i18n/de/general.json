@@ -4,7 +4,7 @@
     "text": {
         "loading-search-results": "Ergebnisse werden geladen...",
         "no-search-results": "Keine Ergebnisse für «{input}».",
-        "drag-n-drop-files": "Dateien auswählen oder per Drag & Drop hinzufügen. | Eine Datei ausgewählt: | {n} Dateien ausgewählt: "
+        "drag-n-drop-files": "Dateien auswählen oder per Drag & Drop hinzufügen."
     },
     "property": {},
     "term": {},
@@ -18,5 +18,7 @@
         "save": "Speichern"
     },
     "enum": {},
-    "error": {}
+    "error": {
+        "could-not-add-file": "The file(s) did not satisfy the requirements."
+    }
 }

@@ -10,7 +10,11 @@ export default createView('DropzoneView', () => {
     return () => (
         <ComponentSection title="Dropzone" id="dropzone">
             <VariantSection title="Normal">
-                <NDropzone {...refAsVModel(files)} />
+                <NDropzone
+                    {...refAsVModel(files)}
+                    description="Image files of type .png, .jpg and .xml are allowed with a max size of 10 MB per file."
+                    maxFiles={4}
+                />
             </VariantSection>
         </ComponentSection>
     )

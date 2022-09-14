@@ -160,9 +160,9 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
 
     return () => (
         <div>
-            <div
+            <button
                 class={[
-                    'rounded-md border-dashed border-2 hover:border-primary-300 hover:bg-primary-50 cursor-pointer',
+                    'block w-full rounded-md border-dashed border-2 hover:border-primary-300 hover:bg-primary-50 focus-visible:border-primary-500 focus:outline-none ',
                     'flex flex-col items-center justify-center text-center text-sm select-none hover:text-primary-700 p-4',
                     isDragOver.value
                         ? 'border-primary-300 bg-primary-50 text-primary-700'
@@ -195,7 +195,7 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
                 <div class="flex-grow mt-2 flex items-end justify-center text-red-500 font-medium">
                     <span>{fileError.value}</span>
                 </div>
-            </div>
+            </button>
 
             <div class="mt-2 space-y-1">
                 <div class="flex flex-wrap gap-2 ">
@@ -213,7 +213,7 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
                         </NBadge>
                     ))}
 
-                    <div class="flex-grow text-sm text-default-500 flex items-end justify-end">
+                    <div class="flex-grow text-sm text-default-500 flex items-end justify-end text-right">
                         <span>
                             <span>
                                 {trslc('general.text.files-selected', files.value.length, {

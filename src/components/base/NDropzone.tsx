@@ -81,7 +81,6 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
 
         // slice down to max amount of files
         const newFiles = currentFiles.slice(0, props.maxFiles)
-        console.log(files)
 
         // error handling
         const fileTypeFilterDiff = files.length - fileTypeFilteredFiles.length

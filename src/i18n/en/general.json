@@ -3,7 +3,9 @@
     "subtitle": {},
     "text": {
         "loading-search-results": "Loading results...",
-        "no-search-results": "No results found for «{input}»."
+        "no-search-results": "No results found for «{input}».",
+        "drag-n-drop-files": "Select a file or add it by drag & drop. | Select up to {n} files or add them by drag & drop.",
+        "files-selected": "No file selected. | One file selected. | {n} files selected."
     },
     "property": {},
     "term": {},
@@ -14,8 +16,13 @@
         "cancel": "Cancel",
         "all-right": "All right",
         "proceed": "Continue",
-        "save": "Save"
+        "save": "Save",
+        "clear-files": "Clear. | Clear all."
     },
     "enum": {},
-    "error": {}
+    "error": {
+        "file-type": "One file has not been added as it is in the wrong format. | {n} files have not been added as they are in the wrong format.",
+        "file-size": "One file has not been added as it exceeds the maximum file size. | {n} files have not been added as they exceed the maximum file size.",
+        "too-many-files": "Only one file can be added. | Can not add more than {max} files."
+    }
 }

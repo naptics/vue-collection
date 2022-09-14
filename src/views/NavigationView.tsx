@@ -21,6 +21,7 @@ export default createView('NavigationView', () => {
         { hash: 'tables', label: 'Tables' },
         { hash: 'tooltips', label: 'Tooltips' },
         { hash: 'pagination', label: 'Pagination' },
+        { hash: 'dropzones', label: 'Dropzones' },
     ]
 
     return () => (

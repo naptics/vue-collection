@@ -48,3 +48,12 @@ let currentId = 1
 export function uniqueId(): number {
     return currentId++
 }
+
+/**
+ * Determines if a value is not null or undefined.
+ * @param value the value to check
+ * @returns `true` if the value is anything but `null` or `undefined`.
+ */
+export function notNull<T>(value: T | null | undefined): value is T {
+    return value !== null && value !== undefined
+}

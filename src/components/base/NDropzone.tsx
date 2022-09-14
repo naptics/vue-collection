@@ -46,7 +46,7 @@ export const nDropzoneProps = createProps({
      */
     maxLengthFileNames: {
         type: Number,
-        default: 30,
+        default: 35,
     },
     /**
      * A tailwind height class, which is applied to the dropzone area.
@@ -200,13 +200,13 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
             <div class="mt-2 space-y-1">
                 <div class="flex flex-wrap gap-2 ">
                     {files.value.map(file => (
-                        <NBadge key={file.index} color="default" allCaps={false}>
+                        <NBadge key={file.index} color="default" allCaps={false} textSize="text-xs">
                             <div class="flex items-center space-x-2">
                                 <span>{file.name}</span>
                                 <NIconButton
                                     icon={XMarkIcon}
                                     shade={900}
-                                    size={4}
+                                    size={3}
                                     onClick={() => removeFile(file.index)}
                                 />
                             </div>

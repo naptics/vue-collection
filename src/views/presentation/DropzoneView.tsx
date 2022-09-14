@@ -14,7 +14,7 @@ export default createView('DropzoneView', () => {
             id="dropzones"
         >
             <VariantSection title="Basic" subtitle="Files can be added by clicking on the area or by dropping them.">
-                <NDropzone {...refAsVModel(fileRefs[0])} />
+                <NDropzone {...refAsVModel(fileRefs[0])} maxLengthFileNames={50} />
             </VariantSection>
 
             <VariantSection title="Multiple files">

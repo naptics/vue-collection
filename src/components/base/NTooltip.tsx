@@ -188,7 +188,7 @@ const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { sl
                     v-show={showTooltip.value}
                     class={[isHovering.value ? 'z-20' : 'z-10', props.maxWidth]}
                 >
-                    <div class="bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm text-default-700">
+                    <div class="bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm font-normal text-default-700">
                         {props.content?.() || props.text}
                     </div>
                 </div>

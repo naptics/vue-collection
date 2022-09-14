@@ -59,6 +59,10 @@ export const nDropzoneProps = createProps({
     },
 })
 
+/**
+ * The `NDropzone` is an area where files can be added by the user by drag & drop.
+ * Files can also be selected with a file chooser by clicking on the dropzone.
+ */
 export default createComponent('NDropzone', nDropzoneProps, props => {
     const fileError = ref<string>()
 

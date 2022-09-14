@@ -37,7 +37,7 @@ export const nDropzoneProps = createProps({
      */
     maxFileSize: {
         type: Number,
-        default: 10 * 1024 * 1024,
+        default: 100 * 1024 * 1024,
     },
     /**
      * The maximum length of the file names.
@@ -62,10 +62,10 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
 
     const filterAndUpdateFiles = (files: File[]) => {
         // filter for mime type and max size
-        const allowedMimeTypesRegex = props.accept ? parseAcceptStringToRegex(props.accept) : null
-        const filteredFiles = files
-            .filter(file => !allowedMimeTypesRegex || allowedMimeTypesRegex.test(file.type))
-            .filter(file => file.size <= props.maxFileSize)
+        const fileTypeFilteredFiles = files.filter(
+            file => !props.accept || testFileWithAcceptString(props.accept, file)
+        )
+        const filteredFiles = fileTypeFilteredFiles.filter(file => file.size <= props.maxFileSize)
 
         // filter for already existing files
         const currentFiles = props.value || []
@@ -75,13 +75,17 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
 
         // slice down to max amount of files
         const newFiles = currentFiles.slice(0, props.maxFiles)
+        console.log(files)
 
         // error handling
-        const filterDiff = files.length - filteredFiles.length
+        const fileTypeFilterDiff = files.length - fileTypeFilteredFiles.length
+        const fileSizeFilterDiff = fileTypeFilteredFiles.length - filteredFiles.length
         if (newFiles.length < currentFiles.length)
             fileError.value = trslc('general.error.too-many-files', props.maxFiles, { max: props.maxFiles })
-        else if (filterDiff > 0)
-            fileError.value = trslc('general.error.file-requirements', filterDiff, { n: filterDiff })
+        else if (fileSizeFilterDiff > 0) {
+            fileError.value = trslc('general.error.file-size', fileSizeFilterDiff, { n: fileSizeFilterDiff })
+        } else if (fileTypeFilterDiff > 0)
+            fileError.value = trslc('general.error.file-type', fileTypeFilterDiff, { n: fileTypeFilterDiff })
         else fileError.value = undefined
 
         // update new value
@@ -99,10 +103,14 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
     const removeFile = (index: number) => {
         const newFiles = [...(props.value || [])]
         newFiles.splice(index, 1)
+        fileError.value = undefined
         props.onUpdateValue?.(newFiles)
     }
 
-    const clearFiles = () => props.onUpdateValue?.([])
+    const clearFiles = () => {
+        fileError.value = undefined
+        props.onUpdateValue?.([])
+    }
 
     const isDragOver = ref(false)
 
@@ -172,7 +180,7 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
                 />
 
                 {/* Counterweight */}
-                <div class="flex-grow" />
+                <div class="flex-grow mb-2" />
 
                 <span class="font-medium">
                     {trslc('general.text.drag-n-drop-files', props.maxFiles, { n: props.maxFiles })}
@@ -228,18 +236,14 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers
 const MIME_FORMAT = /^(image|audio|application|video|text)\/\*$/
 const EXTENSION_FORMAT = /^\.\w{2,20}$/
-function parseAcceptStringToRegex(accept: string): RegExp {
+function testFileWithAcceptString(accept: string, file: File): boolean {
     const splitted = accept.split(',').map(pattern => pattern.trim())
-
-    const regex = splitted
-        .map(pattern => {
-            if (MIME_FORMAT.test(pattern)) return `${pattern.substring(0, pattern.length - 2)}\\/\\w{2,20}`
-            else if (EXTENSION_FORMAT.test(pattern)) return `\\w{2,20}\\/${pattern.substring(1)}`
-            return null
-        })
-        .filter(notNull)
-        .map(pattern => `(^${pattern}$)`)
-        .join('|')
-
-    return RegExp(regex)
+    for (const pattern of splitted) {
+        if (MIME_FORMAT.test(pattern)) {
+            if (RegExp(`^${pattern.substring(0, pattern.length - 2)}\\/.{2,}$`).test(file.type)) return true
+        } else if (EXTENSION_FORMAT.test(pattern)) {
+            if (RegExp(`^.*${pattern}$`).test(file.name)) return true
+        }
+    }
+    return false
 }

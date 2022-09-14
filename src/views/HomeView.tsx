@@ -48,8 +48,6 @@ export default createView('HomeView', () => {
             </div>
 
             <div class="space-y-10">
-                <DropzoneView />
-                <div class="h-96" />
                 <AlertView />
                 <ButtonView />
                 <IconButtonView />
@@ -67,6 +65,7 @@ export default createView('HomeView', () => {
                 <TableView />
                 <TooltipView />
                 <PaginationView />
+                <DropzoneView />
             </div>
 
             <Transition

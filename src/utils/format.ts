@@ -5,7 +5,7 @@
  * @see maxLengthSplitCenter
  */
 export function maxLength(input: string | null, maxLength: number): string {
-    if (input && input.length > maxLength) return `${input.substring(0, maxLength - 3)}...`
+    if (input && input.length > maxLength) return `${input.substring(0, maxLength - 3).trim()}...`
     else return input || ''
 }
 
@@ -20,6 +20,6 @@ export function maxLengthSplitCenter(input: string | null, maxLength: number): s
         const chars = maxLength - 3
         const charsAtStart = Math.ceil(chars / 2)
         const charsAtEnd = Math.floor(chars / 2)
-        return `${input.substring(0, charsAtStart)}...${input.substring(input.length - charsAtEnd)}`
+        return `${input.substring(0, charsAtStart).trim()}...${input.substring(input.length - charsAtEnd).trim()}`
     } else return input || ''
 }

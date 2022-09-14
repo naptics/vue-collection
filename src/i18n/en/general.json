@@ -21,7 +21,8 @@
     },
     "enum": {},
     "error": {
-        "file-requirements": "A file did not satisfy the requirements. | {n} files did not satisfy the requirements.",
+        "file-type": "One file has not been added as it is in the wrong format. | {n} files have not been added as they are in the wrong format.",
+        "file-size": "One file has not been added as it exceeds the maximum file size. | {n} files have not been added as they exceed the maximum file size.",
         "too-many-files": "Only one file can be added. | Can not add more than {max} files."
     }
 }

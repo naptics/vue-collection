@@ -5,15 +5,32 @@ import { createView, refAsVModel } from '@/utils/component'
 import { ref } from 'vue'
 
 export default createView('DropzoneView', () => {
-    const files = ref<File[]>([])
+    const fileRefs = Array.from({ length: 5 }).map(() => ref<File[]>([]))
 
     return () => (
-        <ComponentSection title="Dropzone" id="dropzone">
-            <VariantSection title="Normal">
+        <ComponentSection
+            title="Dropzones"
+            subtitle="Dropzones are a simple way for the user to provide files to the application."
+            id="dropzones"
+        >
+            <VariantSection title="Basic" subtitle="Files can be added by clicking on the area or by dropping them.">
+                <NDropzone {...refAsVModel(fileRefs[0])} />
+            </VariantSection>
+
+            <VariantSection title="Multiple files">
+                <NDropzone {...refAsVModel(fileRefs[1])} maxFiles={10} />
+            </VariantSection>
+
+            <VariantSection
+                title="File Type and Size"
+                subtitle="The allowed file types and their maximum size can be specified."
+            >
                 <NDropzone
-                    {...refAsVModel(files)}
-                    description="Image files of type .png, .jpg and .xml are allowed with a max size of 10 MB per file."
-                    maxFiles={4}
+                    {...refAsVModel(fileRefs[2])}
+                    maxFiles={5}
+                    accept="image/*, .pdf, .zip"
+                    maxFileSize={5 * 1024 * 1024}
+                    description="Files of type .pdf or .zip and all image files with a max size of 5 MB are allowed."
                 />
             </VariantSection>
         </ComponentSection>

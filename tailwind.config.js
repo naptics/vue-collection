@@ -1,6 +1,10 @@
 /* eslint-disable no-undef */
 const colors = require('tailwindcss/colors')
 
+const unresolvedConfig = require('tailwindcss/defaultConfig')
+const resolveConfig = require('tailwindcss/resolveConfig')
+const config = resolveConfig(unresolvedConfig)
+
 const allShades = '50|100|200|300|400|500|600|700|800|900'
 const usedColors = 'default|primary|secondary|green|red|yellow|blue'
 const smallSizes = '1|2|3|4|5|6|7|8|9|10|11|12|14|16|18|20'
@@ -28,6 +32,7 @@ module.exports = {
                 primary: colors.violet,
                 secondary: colors.fuchsia,
             },
+            minHeight: config.theme.spacing,
         },
     },
     plugins: [require('@tailwindcss/forms')],

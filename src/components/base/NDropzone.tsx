@@ -50,10 +50,12 @@ export const nDropzoneProps = createProps({
     },
     /**
      * A tailwind height class, which is applied to the dropzone area.
+     * It is recommended to use `min-h-*` classes,
+     * so the box is always large enough to display it's text.
      */
     height: {
         type: String,
-        default: 'h-36',
+        default: 'min-h-36',
     },
 })
 
@@ -158,7 +160,7 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
             <div
                 class={[
                     'rounded-md border-dashed border-2 hover:border-primary-300 hover:bg-primary-50 cursor-pointer',
-                    'flex flex-col items-center justify-center text-center text-sm hover:text-primary-700 p-4',
+                    'flex flex-col items-center justify-center text-center text-sm select-none hover:text-primary-700 p-4',
                     isDragOver.value
                         ? 'border-primary-300 bg-primary-50 text-primary-700'
                         : 'border-default-300 bg-default-50 text-default-500',

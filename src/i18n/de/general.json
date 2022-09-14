@@ -4,7 +4,8 @@
     "text": {
         "loading-search-results": "Ergebnisse werden geladen...",
         "no-search-results": "Keine Ergebnisse für «{input}».",
-        "drag-n-drop-files": "Dateien auswählen oder per Drag & Drop hinzufügen."
+        "drag-n-drop-files": "Datei auswählen oder per Drag & Drop hinzufügen. | Bis zu {n} Dateien auswählen oder per Drag & Drop hinzufügen.",
+        "files-selected": "Keine Datei ausgewählt. | Eine Datei ausgewählt. | {n} Dateien ausgewählt."
     },
     "property": {},
     "term": {},
@@ -15,10 +16,13 @@
         "cancel": "Abbrechen",
         "all-right": "Alles klar",
         "proceed": "Fortfahren",
-        "save": "Speichern"
+        "save": "Speichern",
+        "clear-files": "Auswahl löschen."
     },
     "enum": {},
     "error": {
-        "could-not-add-file": "The file(s) did not satisfy the requirements."
+        "file-type": "Eine Datei wurde nicht hinzugefügt, da sie im falschen Format ist. | {n} Dateien wurden nicht hinzugefügt, da sie im falschen Format sind.",
+        "file-size": "Eine Datei wurde nicht hinzugefügt, da sie zu gross ist. | {n} Dateien wurden nicht hinzugefügt, da sie zu gross sind.",
+        "too-many-files": "Es kann nur eine Datei hinzugefügt werden. | Es können nicht mehr als {n} Dateien hinzugefügt werden."
     }
 }

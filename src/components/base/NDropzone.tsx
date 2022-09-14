@@ -219,9 +219,7 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
                                 <>
                                     <span> </span>
                                     <NLink color="default" onClick={clearFiles}>
-                                        {trslc('general.action.clear-files', files.value.length, {
-                                            n: files.value.length,
-                                        })}
+                                        {trslc('general.action.clear-files', files.value.length)}
                                     </NLink>
                                 </>
                             )}

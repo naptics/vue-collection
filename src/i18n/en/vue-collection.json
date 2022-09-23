@@ -24,5 +24,23 @@
         "file-type": "One file has not been added as it is in the wrong format. | {n} files have not been added as they are in the wrong format.",
         "file-size": "One file has not been added as it exceeds the maximum file size. | {n} files have not been added as they exceed the maximum file size.",
         "too-many-files": "Only one file can be added. | Can not add more than {max} files."
+    },
+    "validation": {
+        "rules": {
+            "required": "This field is required.",
+            "email": "This field must be a valid email address.",
+            "matches": "The fields don't match.",
+            "regex": "This field does not conform to the required format.",
+            "password": {
+                "to-short": "The password must have at least 8 characters.",
+                "no-lowercase": "The password must contain a lowercase letter.",
+                "no-uppercase": "The password must contain an uppercase letter.",
+                "no-digits": "The password must contain a digit.",
+                "no-special-chars": "The password must contain a special character.",
+                "unknown": "This field does not match the required password format."
+            },
+            "option": "This field has to be an option from the list.",
+            "phone": "This field must be a valid phone number."
+        }
     }
 }

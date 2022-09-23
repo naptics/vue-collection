@@ -192,10 +192,12 @@ export default createComponent('NSuggestionList', nSuggestionListProps, props =>
                                     {props.loading ? (
                                         <div class="flex items-center space-x-2">
                                             <NLoadingIndicator size={6} />
-                                            <span> {trsl('general.text.loading-search-results')}</span>
+                                            <span> {trsl('vue-collection.text.loading-search-results')}</span>
                                         </div>
                                     ) : (
-                                        <div>{trsl('general.text.no-search-results', { input: props.inputValue })}</div>
+                                        <div>
+                                            {trsl('vue-collection.text.no-search-results', { input: props.inputValue })}
+                                        </div>
                                     )}
                                 </div>
                             )}

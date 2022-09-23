@@ -4,7 +4,7 @@ import { email, external, matches, option, password, regex, required } from '../
 
 const expectValid = (test: unknown) => expect(test).toMatchObject({ isValid: true })
 const expectInvalid = (test: unknown, errKey: string) =>
-    expect(test).toMatchObject({ isValid: false, errorMessage: trsl(`validation.rules.${errKey}`) })
+    expect(test).toMatchObject({ isValid: false, errorMessage: trsl(`vue-collection.validation.rules.${errKey}`) })
 
 describe('validation', () => {
     test('required', () => {

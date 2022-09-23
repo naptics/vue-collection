@@ -37,7 +37,7 @@ export const nModalProps = createProps({
      */
     okText: {
         type: String,
-        default: trsl('general.action.save'),
+        default: trsl('vue-collection.action.save'),
     },
     /**
      * The color of the ok-button.
@@ -66,7 +66,7 @@ export const nModalProps = createProps({
      */
     cancelText: {
         type: String,
-        default: trsl('general.action.cancel'),
+        default: trsl('vue-collection.action.cancel'),
     },
     /**
      * The color of the cancel-button.

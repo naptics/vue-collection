@@ -89,7 +89,7 @@ export default createComponent('NSelect', nSelectProps, (props, context) => {
                             ]}
                         >
                             <option disabled={!props.optional} selected={!props.value} value="">
-                                {trsl('general.action.select')}
+                                {trsl('vue-collection.action.select')}
                             </option>
                             {props.options.map(option => (
                                 <option key={option.id} value={option.id} selected={props.value == option.id}>

@@ -86,11 +86,11 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
         const fileTypeFilterDiff = files.length - fileTypeFilteredFiles.length
         const fileSizeFilterDiff = fileTypeFilteredFiles.length - filteredFiles.length
         if (newFiles.length < currentFiles.length)
-            fileError.value = trslc('general.error.too-many-files', props.maxFiles, { max: props.maxFiles })
+            fileError.value = trslc('vue-collection.error.too-many-files', props.maxFiles, { max: props.maxFiles })
         else if (fileSizeFilterDiff > 0) {
-            fileError.value = trslc('general.error.file-size', fileSizeFilterDiff, { n: fileSizeFilterDiff })
+            fileError.value = trslc('vue-collection.error.file-size', fileSizeFilterDiff, { n: fileSizeFilterDiff })
         } else if (fileTypeFilterDiff > 0)
-            fileError.value = trslc('general.error.file-type', fileTypeFilterDiff, { n: fileTypeFilterDiff })
+            fileError.value = trslc('vue-collection.error.file-type', fileTypeFilterDiff, { n: fileTypeFilterDiff })
         else fileError.value = undefined
 
         // update new value
@@ -188,7 +188,7 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
                 <div class="flex-grow mb-2" />
 
                 <span class="font-medium">
-                    {trslc('general.text.drag-n-drop-files', props.maxFiles, { n: props.maxFiles })}
+                    {trslc('vue-collection.text.drag-n-drop-files', props.maxFiles, { n: props.maxFiles })}
                 </span>
                 <span>{props.description}</span>
 
@@ -216,7 +216,7 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
                     <div class="flex-grow text-sm text-default-500 flex items-end justify-end text-right">
                         <span>
                             <span>
-                                {trslc('general.text.files-selected', files.value.length, {
+                                {trslc('vue-collection.text.files-selected', files.value.length, {
                                     n: files.value.length,
                                 })}
                             </span>
@@ -224,7 +224,7 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
                                 <>
                                     <span> </span>
                                     <NLink color="default" onClick={clearFiles}>
-                                        {trslc('general.action.clear-files', files.value.length)}
+                                        {trslc('vue-collection.action.clear-files', files.value.length)}
                                     </NLink>
                                 </>
                             )}

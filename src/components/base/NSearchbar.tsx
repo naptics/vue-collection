@@ -10,7 +10,7 @@ export const nSearchbarProps = createProps({
      */
     placeholder: {
         type: String,
-        default: trsl('general.action.search'),
+        default: trsl('vue-collection.action.search'),
     },
     /**
      * If set to `true` the search-bar is displayed smaller.

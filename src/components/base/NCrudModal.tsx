@@ -13,7 +13,7 @@ export const nCrudModalProps = createProps({
      */
     removeText: {
         type: String,
-        default: trsl('general.action.remove'),
+        default: trsl('vue-collection.action.remove'),
     },
     /**
      * The color of the remove-button.

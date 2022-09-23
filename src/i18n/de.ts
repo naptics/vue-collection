@@ -1,9 +1,7 @@
-import general from './de/general.json'
-import validation from './de/validation.json'
+import vueCollection from './de/vue-collection.json'
 
 const de = {
-    general,
-    validation,
+    ['vue-collection']: vueCollection,
 }
 
 export default de

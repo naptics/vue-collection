@@ -49,7 +49,7 @@ export const nDialogProps = createProps({
      */
     cancelText: {
         type: String,
-        default: trsl('general.action.cancel'),
+        default: trsl('vue-collection.action.cancel'),
     },
     /**
      * The color of the cancel-button.
@@ -149,31 +149,31 @@ const VARIANT_DEFAULTS = {
     success: {
         icon: CheckIcon,
         iconColor: 'green',
-        okText: trsl('general.action.all-right'),
+        okText: trsl('vue-collection.action.all-right'),
         okColor: 'green',
     },
     info: {
         icon: LightBulbIcon,
         iconColor: 'blue',
-        okText: trsl('general.action.all-right'),
+        okText: trsl('vue-collection.action.all-right'),
         okColor: 'blue',
     },
     warning: {
         icon: ExclamationTriangleIcon,
         iconColor: 'yellow',
-        okText: trsl('general.action.proceed'),
+        okText: trsl('vue-collection.action.proceed'),
         okColor: 'yellow',
     },
     danger: {
         icon: ExclamationTriangleIcon,
         iconColor: 'red',
-        okText: trsl('general.action.proceed'),
+        okText: trsl('vue-collection.action.proceed'),
         okColor: 'red',
     },
     remove: {
         icon: TrashIcon,
         iconColor: 'red',
-        okText: trsl('general.action.remove'),
+        okText: trsl('vue-collection.action.remove'),
         okColor: 'red',
     },
 }

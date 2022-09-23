@@ -19,7 +19,7 @@ function validResult(): ValidationResultValid {
 }
 
 function invalidResult(ruleKey: string): ValidationResultInvalid {
-    return { isValid: false, errorMessage: trsl(`validation.rules.${ruleKey}`) }
+    return { isValid: false, errorMessage: trsl(`vue-collection.validation.rules.${ruleKey}`) }
 }
 
 /**

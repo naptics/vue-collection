@@ -1,5 +1,5 @@
-import { isWidthBreakpoint, type TWBreakpoint } from '@/utils/breakpoints'
-import { createComponent, createProps } from '@/utils/component'
+import { isWidthBreakpoint, type TWBreakpoint } from '../../utils/vue-collection/breakpoints'
+import { createComponent, createProps } from '@/utils/vue-collection/component'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/24/solid'
 import { computed, Fragment, ref, type PropType, watch } from 'vue'
 import NIconButton from './NIconButton'

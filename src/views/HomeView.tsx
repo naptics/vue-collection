@@ -1,5 +1,5 @@
 import ModalView from './presentation/ModalView'
-import { createView } from '@/utils/component'
+import { createView } from '@/utils/vue-collection/component'
 import AlertView from './presentation/AlertView'
 import BadgeView from './presentation/BadgeView'
 import ButtonView from './presentation/ButtonView'

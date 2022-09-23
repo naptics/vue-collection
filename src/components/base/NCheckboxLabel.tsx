@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '@/utils/component'
+import { createComponent, createProps } from '@/utils/vue-collection/component'
 import NCheckbox, { nCheckboxProps } from './NCheckbox'
 
 export const nCheckboxLabelProps = createProps({

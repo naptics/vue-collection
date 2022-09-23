@@ -1,5 +1,5 @@
-import { createComponent, createProps } from '@/utils/component'
-import { external } from '@/utils/validation'
+import { createComponent, createProps } from '@/utils/vue-collection/component'
+import { external } from '@/utils/vue-collection/validation'
 import { computed, Suspense } from 'vue'
 import NValInput, { nValInputProps } from './NValInput'
 

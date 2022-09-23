@@ -1,5 +1,5 @@
 import { trsl } from '@/i18n'
-import { createComponent, createProps, vModel } from '@/utils/component'
+import { createComponent, createProps, vModel } from '@/utils/vue-collection/component'
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import { ref, type PropType } from 'vue'
 

@@ -1,7 +1,7 @@
 import NDropzone from '@/components/base/NDropzone'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView, refAsVModel } from '@/utils/component'
+import { createView, refAsVModel } from '@/utils/vue-collection/component'
 import { ref } from 'vue'
 
 export default createView('DropzoneView', () => {

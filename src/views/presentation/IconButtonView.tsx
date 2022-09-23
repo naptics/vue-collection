@@ -3,7 +3,7 @@ import ColorGrid from '@/components/presentation/ColorGrid'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView } from '@/utils/component'
+import { createView } from '@/utils/vue-collection/component'
 import {
     CogIcon,
     CreditCardIcon,

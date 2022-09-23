@@ -1,7 +1,7 @@
 import NBreadcrub, { type BreadcrumbItem } from '@/components/base/NBreadcrub'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView } from '@/utils/component'
+import { createView } from '@/utils/vue-collection/component'
 import { ChevronDoubleRightIcon } from '@heroicons/vue/24/solid'
 
 export default createView('BreadcrumbView', () => {

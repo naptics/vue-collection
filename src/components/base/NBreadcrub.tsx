@@ -1,5 +1,6 @@
-import { createComponent, createProps } from '@/utils/component'
-import type { HeroIcon, TWTextSize } from '@/utils/utils'
+import { createComponent, createProps } from '@/utils/vue-collection/component'
+import type { HeroIcon } from '@/utils/vue-collection/utils'
+import type { TWTextSize } from '@/utils/vue-collection/tailwind'
 import { ChevronRightIcon } from '@heroicons/vue/24/solid'
 import type { PropType } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'

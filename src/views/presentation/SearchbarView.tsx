@@ -3,7 +3,7 @@ import NSearchbarList from '@/components/base/NSearchbarList'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView, refAsVModel } from '@/utils/component'
+import { createView, refAsVModel } from '@/utils/vue-collection/component'
 import { UserIcon } from '@heroicons/vue/24/solid'
 import { computed, ref } from 'vue'
 

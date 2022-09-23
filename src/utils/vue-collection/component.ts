@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import type { LooseRequired } from '@vue/shared'
 import {
     defineComponent,
@@ -75,7 +76,10 @@ export function createProps<T extends Props>(props: T): T {
  * const childProps = extractProps(parentProps, 'title')
  * console.log(childProps) // { title: 'hi' }
  */
-export function extractProps<T extends object>(props: T, ...keys: (keyof T)[]): UnwrapNestedRefs<Partial<ToRefs<T>>> {
+export function extractProps<T extends Record<string, unknown>>(
+    props: T,
+    ...keys: (keyof T)[]
+): UnwrapNestedRefs<Partial<ToRefs<T>>> {
     const partial: Partial<ToRefs<T>> = {}
     for (const key of keys) partial[key] = toRef(props, key)
     return reactive(partial)

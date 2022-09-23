@@ -1,4 +1,4 @@
-import { createView } from './utils/component'
+import { createView } from '@/utils/vue-collection/component'
 import { RouterView } from 'vue-router'
 import './App.css'
 

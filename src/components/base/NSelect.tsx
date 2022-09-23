@@ -1,6 +1,6 @@
 import { trsl } from '@/i18n'
-import { createComponent, createProps } from '@/utils/component'
-import type { Identifiable } from '@/utils/identifiable'
+import { createComponent, createProps } from '@/utils/vue-collection/component'
+import type { Identifiable } from '@/utils/vue-collection/identifiable'
 import { ref, type PropType } from 'vue'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'

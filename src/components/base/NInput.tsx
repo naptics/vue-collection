@@ -1,4 +1,4 @@
-import { createComponent, createProps, vModel } from '@/utils/component'
+import { createComponent, createProps, vModel } from '@/utils/vue-collection/component'
 import { ref, type PropType } from 'vue'
 import { ExclamationCircleIcon } from '@heroicons/vue/24/solid'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'

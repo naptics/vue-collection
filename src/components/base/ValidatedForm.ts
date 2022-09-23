@@ -1,4 +1,4 @@
-import type { ValidationResult } from '@/utils/validation'
+import type { ValidationResult } from '@/utils/vue-collection/validation'
 import type { NValInputExposed } from './NValInput'
 
 /**

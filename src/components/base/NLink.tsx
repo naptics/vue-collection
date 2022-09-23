@@ -1,5 +1,5 @@
-import { createComponent, createProps } from '@/utils/component'
-import type { TWTextSize } from '@/utils/utils'
+import { createComponent, createProps } from '@/utils/vue-collection/component'
+import type { TWTextSize } from '@/utils/vue-collection/tailwind'
 import { computed, type PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 

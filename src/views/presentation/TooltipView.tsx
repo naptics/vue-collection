@@ -6,7 +6,7 @@ import NTooltip from '@/components/base/NTooltip'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView } from '@/utils/component'
+import { createView } from '@/utils/vue-collection/component'
 import { ArrowTopRightOnSquareIcon } from '@heroicons/vue/24/solid'
 
 export default createView('TooltipView', () => {

@@ -20,7 +20,7 @@ You can take a look at all components on [Gitlab Pages](https://naptx.gitlab.io/
 6. Add other dependencies with `npm install @headlessui/vue @heroicons/vue vue-i18n awesome-phonenumber @popperjs/core`
 7. Copy files from `.vscode` to your project. Remove `.vscode/settings.json` file from `.gitignore`. Copy `.prettierrc` to your project.
 8. Make sure typescript config is correct. Double check with this repo.
-9. Copy the contents of `src/components/base` (without the tests), `src/i18n` and `src/utils` to your project.
+9. Copy the contents of `src/components/base` (without the tests), `src/i18n` and `src/utils/vue-collection` to your project.
 10. Create your `App.tsx` file (you probably deleted earlier) and add a router view to the app. Link the `App.css` to it. Then you're ready to add a `HomeView` and link it to the router. Make sure to always use the `createView` and `createComponent` functions defined in the `src/utils/vue` file.
 11. Close your project and reopen it again. Now all weird warnings should go away.
 12. You're ready to go: Run your app with `npm run dev`.

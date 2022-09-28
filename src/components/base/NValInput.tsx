@@ -1,5 +1,5 @@
 import { createComponent, createProps } from '@/utils/vue-collection/component'
-import { computed } from '@vue/reactivity'
+import { computed } from 'vue'
 import { ref, reactive, type PropType, watch } from 'vue'
 import NInput, { nInputProps, type NInputExposed } from './NInput'
 import {

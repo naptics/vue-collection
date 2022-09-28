@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+// eslint-disable @typescript-eslint/explicit-module-boundary-types
+// eslint-disable-next-line vue/prefer-import-from-vue
 import type { LooseRequired } from '@vue/shared'
 import {
     defineComponent,

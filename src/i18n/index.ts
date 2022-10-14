@@ -23,12 +23,15 @@ export function trsl(key: string, params?: Record<string, unknown>): string {
 
 /**
  * Translates the specified key using pluralization.
+ * The provided `count`is automatically passed as the parameter `n` to the translation library.
  * @param key the key to translate.
  * @param count the count used for the pluralization.
  * @param params formatting parameters for the message.
  * @returns the translated message.
  * @see trsl
  */
-export function trslc(key: string, count: number | null, params?: Record<string, unknown>): string {
-    return i18n.global.t(key, params == null ? {} : params, { plural: count == null ? 0 : count }) as string
+export function trslc(key: string, count: number | null | undefined, params?: Record<string, unknown>): string {
+    const newCount = count ?? 0
+    const newParams = { n: newCount, ...params }
+    return i18n.global.t(key, newParams, { plural: newCount })
 }

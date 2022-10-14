@@ -3,6 +3,7 @@ import de from './de'
 import { createI18n } from 'vue-i18n'
 
 const i18n = createI18n({
+    legacy: false,
     locale: 'en',
     messages: {
         en,
@@ -29,5 +30,5 @@ export function trsl(key: string, params?: Record<string, unknown>): string {
  * @see trsl
  */
 export function trslc(key: string, count: number | null, params?: Record<string, unknown>): string {
-    return i18n.global.tc(key, count == null ? 0 : count, params == null ? {} : params) as string
+    return i18n.global.t(key, params == null ? {} : params, { plural: count == null ? 0 : count }) as string
 }

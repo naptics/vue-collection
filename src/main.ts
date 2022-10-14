@@ -6,7 +6,6 @@ import { addDocumentResizeEventListener } from './utils/vue-collection/breakpoin
 addDocumentResizeEventListener()
 
 const app = createApp(App)
-
 app.use(router)
 
 app.mount('#app')

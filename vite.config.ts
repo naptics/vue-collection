@@ -12,7 +12,7 @@ export default defineConfig({
         vueJsx(),
         vueI18n({
             compositionOnly: true,
-            runtimeOnly: true,
+            runtimeOnly: false,
             fullInstall: false,
             include: resolve(__dirname, 'src/i18n/*'),
         }),

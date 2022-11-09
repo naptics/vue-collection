@@ -27,10 +27,21 @@
     },
     "validation": {
         "rules": {
-            "required": "This field is required.",
             "email": "This field must be a valid email address.",
+            "integer": "This field must be an integer.",
+            "length": {
+                "min": "The text must not have less than {min} characters.",
+                "max": "The text must not have more than {max} characters.",
+                "min-max": "The text must have a length between {min} and {max} characters."
+            },
             "matches": "The fields don't match.",
-            "regex": "This field does not conform to the required format.",
+            "number-range": {
+                "nan": "This filed must be a number.",
+                "min": "The number must not be smaller than {min}.",
+                "max": "The number must not be bigger than {max}.",
+                "min-max": "The number must be in the range from {min} to {max}."
+            },
+            "option": "This field has to be an option from the list.",
             "password": {
                 "to-short": "The password must have at least 8 characters.",
                 "no-lowercase": "The password must contain a lowercase letter.",
@@ -39,8 +50,9 @@
                 "no-special-chars": "The password must contain a special character.",
                 "unknown": "This field does not match the required password format."
             },
-            "option": "This field has to be an option from the list.",
-            "phone": "This field must be a valid phone number."
+            "phone": "This field must be a valid phone number.",
+            "required": "This field is required.",
+            "regex": "This field does not conform to the required format."
         }
     }
 }

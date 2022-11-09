@@ -27,10 +27,21 @@
     },
     "validation": {
         "rules": {
-            "required": "Dieses Feld ist ein Pflichtfeld.",
             "email": "Dieses Feld muss eine gültige Email-Adresse sein.",
+            "integer": "Dieses Feld muss eine Ganzzahl sein.",
+            "length": {
+                "min": "Der Text darf nicht weniger als {min} Zeichen enthalten.",
+                "max": "Der Text darf nicht mehr als {max} Zeichen enthalten.",
+                "min-max": "Der Text muss zwischen {min} und {max} Zeichen enthalten."
+            },
             "matches": "Die Felder stimmen nicht überein.",
-            "regex": "Dieses Feld entspricht nicht dem geforderten Format.",
+            "number-range": {
+                "nan": "Dieses Feld muss eine Zahl sein.",
+                "min": "Die Zahl darf nicht kleiner als {min} sein.",
+                "max": "Die Zahl darf nicht grösser als {max} sein.",
+                "min-max": "Die Zahl muss im Bereich von {min} bis {max} liegen."
+            },
+            "option": "Dieses Feld muss eine Option aus der Liste sein.",
             "password": {
                 "to-short": "Das Passwort muss aus mindestens 8 Zeichen bestehen.",
                 "no-lowercase": "Das Passwort muss einen Kleinbuchstaben enthalten.",
@@ -39,8 +50,9 @@
                 "no-special-chars": "Das Passwort muss ein Sonderzeichen enthalten.",
                 "unknown": "Dieses Feld erfüllt nicht die Anforderungen für ein Passwort."
             },
-            "option": "Dieses Feld muss eine Option aus der Liste sein.",
-            "phone": "Dieses Feld muss eine gültige Telefonnummer sein."
+            "phone": "Dieses Feld muss eine gültige Telefonnummer sein.",
+            "required": "Dieses Feld ist ein Pflichtfeld.",
+            "regex": "Dieses Feld entspricht nicht dem geforderten Format."
         }
     }
 }

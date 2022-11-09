@@ -7,7 +7,7 @@ import { createValidatedForm } from '@/components/base/ValidatedForm'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { email, matches, password, regex } from '@/utils/vue-collection/validation'
+import { email, matches, password, regex, integer, numberRange, length } from '@/utils/vue-collection/validation'
 import { createView, refAsVModel } from '@/utils/vue-collection/component'
 import { ref } from 'vue'
 import NInputSelect from '@/components/base/NInputSelect'
@@ -26,7 +26,7 @@ export default createView('InputView', () => {
         { id: '8', label: 'Angela Merkel' },
     ]
 
-    const refs = Array.from({ length: 15 }, () => ref(''))
+    const refs = Array.from({ length: 20 }, () => ref(''))
     const inputSelectRef = ref({
         id: '',
         label: '',
@@ -85,7 +85,9 @@ export default createView('InputView', () => {
             >
                 <NForm>
                     <ComponentGrid cols={2}>
-                        <NValInput {...vModel(6)} name="Name" />
+                        <NValInput {...vModel(15)} name="First Name" />
+                        <NValInput {...vModel(16)} name="Last Name" rules={length(2, undefined)} />
+                        <NValInput {...vModel(6)} name="Age" type="number" rules={[integer, numberRange(0, 120)]} />
                         <NValInput {...vModel(7)} name="Email" type="email" rules={email} />
                         <NValInput {...vModel(8)} name="Password" type="password" rules={password} />
                         <NValInput

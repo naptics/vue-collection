@@ -25,8 +25,8 @@ export function validResult(): ValidationResultValid {
     return { isValid: true }
 }
 
-export function invalidResult(ruleKey: string): ValidationResultInvalid {
-    return { isValid: false, errorMessage: trsl(`vue-collection.validation.rules.${ruleKey}`) }
+export function invalidResult(ruleKey: string, params?: Record<string, unknown>): ValidationResultInvalid {
+    return { isValid: false, errorMessage: trsl(`vue-collection.validation.rules.${ruleKey}`, params) }
 }
 
 /**
@@ -55,6 +55,54 @@ export const required: ValidationRule = input => {
     const trimmed = input?.trim()
     if (trimmed) return validResult()
     else return invalidResult('required')
+}
+
+/**
+ * This rule expects the input to be an integer.
+ */
+export const integer: ValidationRule = input => {
+    if (!input || Number.isInteger(+input)) return validResult()
+    else return invalidResult('integer')
+}
+
+/**
+ * This rule expects the input to be in the specified length range. An empty input
+ * will always be allowed by this rule to not interefere with the {@link required} rule.
+ * @param min The minimum length of the string.
+ * @param max The maximum length of the string.
+ */
+export function length(min: number | undefined, max: number | undefined): ValidationRule {
+    return input => {
+        if (!input) return validResult()
+
+        if (min !== undefined && max !== undefined && !(min <= input.length && input.length <= max))
+            return invalidResult('length.min-max', { min, max })
+        else if (min !== undefined && !(min <= input.length)) return invalidResult('length.min', { min })
+        else if (max !== undefined && !(input.length <= max)) return invalidResult('length.max', { max })
+
+        return validResult()
+    }
+}
+
+/**
+ * This rule expects the input to be a number in the specified range.
+ * @param min the lower bound, if `undefined` there is no lower bound.
+ * @param max the upper bound, if `undefined` there is no upper bound.
+ */
+export function numberRange(min: number | undefined, max: number | undefined): ValidationRule {
+    return input => {
+        if (!input) return validResult()
+
+        const parsed = Number.parseFloat(input)
+        if (Number.isNaN(parsed)) return invalidResult('number-range.nan')
+
+        if (min !== undefined && max !== undefined && !(min <= parsed && parsed <= max))
+            return invalidResult('number-range.min-max', { min, max })
+        else if (min !== undefined && !(min <= parsed)) return invalidResult('number-range.min', { min })
+        else if (max !== undefined && !(parsed <= max)) return invalidResult('number-range.max', { max })
+
+        return validResult()
+    }
 }
 
 export const VALIDATION_FORMAT_EMAIL = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/

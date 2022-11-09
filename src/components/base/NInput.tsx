@@ -2,6 +2,7 @@ import { createComponent, createProps, vModel } from '@/utils/vue-collection/com
 import { ref, type PropType } from 'vue'
 import { ExclamationCircleIcon } from '@heroicons/vue/24/solid'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
+import './NInput.css'
 
 export const nInputProps = createProps({
     ...vModel(String),
@@ -104,6 +105,7 @@ export default createComponent('NInput', nInputProps, (props, context) => {
                         disabled={props.disabled}
                         onFocus={() => props.onFocus?.()}
                         onBlur={() => props.onBlur?.()}
+                        onInvalid={event => event.preventDefault()}
                         class={[
                             'block w-full rounded-md border focus:outline-none focus:ring-1 ',
                             props.small ? 'text-xs py-0.5 px-2' : 'py-2 px-4',

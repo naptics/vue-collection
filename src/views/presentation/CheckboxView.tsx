@@ -32,7 +32,7 @@ export default createView('CheckboxView', () => {
                             color={color}
                             {...refAsVModel(refs[idx])}
                             title="Choose Option"
-                            description="This option will provide many advantages."
+                            description="This option will provide many advantages. For example the checkbox will be very beautifully enlightened."
                         />
                     )}
                 />

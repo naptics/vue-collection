@@ -48,6 +48,10 @@ export const nInputProps = createProps({
      */
     small: Boolean,
     /**
+     * If set to `true` the input's label is hidden.
+     */
+    hideLabel: Boolean,
+    /**
      * This is called when the input reveices focus.
      */
     onFocus: Function as PropType<() => void>,
@@ -77,7 +81,7 @@ export default createComponent('NInput', nInputProps, (props, context) => {
 
     return () => (
         <div>
-            {props.name && (
+            {props.name && !props.hideLabel && (
                 <label
                     for={props.name}
                     class={['block text-sm font-medium mb-1', props.disabled ? 'text-default-300' : 'text-default-700']}

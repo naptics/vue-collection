@@ -12,13 +12,20 @@ export type ValidationResultInvalid = {
 
 export type InputValue = string | null | undefined
 export type ValidationResult = ValidationResultValid | ValidationResultInvalid
+
+/**
+ * A `ValidationRule` checks an input for a criteria and returns either
+ * a {@link ValidationResultValid} or a {@link ValidationResultInvalid}.
+ * A falsy input-value should always return a valid result to not interfere
+ * with the {@link required} rule.
+ */
 export type ValidationRule = (input: InputValue) => ValidationResult
 
-function validResult(): ValidationResultValid {
+export function validResult(): ValidationResultValid {
     return { isValid: true }
 }
 
-function invalidResult(ruleKey: string): ValidationResultInvalid {
+export function invalidResult(ruleKey: string): ValidationResultInvalid {
     return { isValid: false, errorMessage: trsl(`vue-collection.validation.rules.${ruleKey}`) }
 }
 
@@ -77,11 +84,13 @@ export const password: ValidationRule = input => {
 
 /**
  * This rule expects the input-value to match another (input-) value.
+ * In difference to most other rules, this rule does not always return a valid result,
+ * when the input is falsy. The input is always required to match the other value.
  * @param other the other value to match
  */
 export function matches(other: string | null | undefined): ValidationRule {
     return input => {
-        if (!input || input === other) return validResult()
+        if (input === other) return validResult()
         else return invalidResult('matches')
     }
 }
@@ -112,7 +121,7 @@ export function regex(pattern: RegExp): ValidationRule {
  * This rule can be used if the validation logic happens somwhere else.
  * When `isValid = true` is passed, the function will return a valid result,
  * otherwise it will return the invalid result with the passed `errorKey`.
- * Like always, no input is always valid to not interefere with the {@link required} rule.
+ * Like always, a falsy input is always valid to not interefere with the {@link required} rule.
  */
 export function external(isValid: boolean, errorKey: string): ValidationRule {
     return input => (!input || isValid ? validResult() : invalidResult(errorKey))

@@ -41,6 +41,11 @@ export const nValInputProps = createProps({
      */
     errorMessage: String,
     /**
+     * If set to `true` the error message is not shown.
+     * However, the input is still marked red if it is in an error state.
+     */
+    hideErrorMessage: Boolean,
+    /**
      * A slot to replace the input.
      */
     input: Function as PropType<(props: InputSlotProps) => JSX.Element>,
@@ -87,6 +92,7 @@ export default createComponent('NValInput', nValInputProps, (props, context) => 
     }
 
     const showError = computed(() => props.error || (validationResult.value != null && !validationResult.value.isValid))
+    const showErrorMessage = computed(() => !props.hideErrorMessage && showError.value)
     const errorMessage = computed(() => props.errorMessage || validationResult.value?.errorMessage)
 
     const validateIfError = (value = props.value) => {
@@ -131,7 +137,7 @@ export default createComponent('NValInput', nValInputProps, (props, context) => 
     return () => (
         <div>
             {props.input?.(inputSlotProps) || <NInput ref={inputRef} {...{ ...props, ...inputSlotProps }} />}
-            {showError.value && <p class="text-red-500 text-xs mt-1">{errorMessage.value}</p>}
+            {showErrorMessage.value && <p class="text-red-500 text-xs mt-1">{errorMessage.value}</p>}
         </div>
     )
 })

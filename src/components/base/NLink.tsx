@@ -49,7 +49,7 @@ export default createComponent('NLink', nLinkProps, (props, { slots }) => {
     })
 
     const classes = computed(() => [
-        'font-medium focus:outline-none focus-visible:ring-2 rounded-sm ring-offset-2 hover:underline',
+        'font-medium focus:outline-none focus-visible:ring-2 rounded-sm ring-offset-2 hover:underline text-left',
         `${props.textSize} text-${props.color}-${props.shade} hover:text-${props.color}-${hoverShade.value} focus-visible:ring-${props.color}-${props.shade}`,
     ])
 

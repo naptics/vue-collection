@@ -59,7 +59,7 @@ export const nIconButtonProps = createProps({
  */
 export default createComponent('NIconButton', nIconButtonProps, props => {
     const classes = () => [
-        'block p-0.5 transition rounded-md focus:outline-none focus-visible:ring-2 -m-1',
+        'block p-0.5 rounded-md focus:outline-none focus-visible:ring-2 -m-1',
         props.disabled
             ? `text-${props.color}-200 cursor-default`
             : `hover:bg-${props.color}-${props.shade} hover:bg-opacity-10 text-${props.color}-${props.shade} focus-visible:ring-${props.color}-${props.shade} cursor-pointer`,

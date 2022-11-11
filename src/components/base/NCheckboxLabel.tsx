@@ -11,6 +11,10 @@ export const nCheckboxLabelProps = createProps({
      * The description of the checkbox.
      */
     description: String,
+    /**
+     * If set to `true`, a smaller margin is applied between the label and the checkbox.
+     */
+    compact: Boolean,
 })
 
 /**
@@ -24,7 +28,7 @@ export default createComponent('NCheckboxLabel', nCheckboxLabelProps, props => {
     return () => (
         <div class="flex items-center">
             <NCheckbox {...props} />
-            <div class="ml-3 text-sm">
+            <div class={`${props.compact ? 'ml-2' : 'ml-3'} text-sm`}>
                 <label
                     onClick={toggleValue}
                     class={[

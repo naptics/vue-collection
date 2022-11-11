@@ -1,4 +1,4 @@
-import { createComponent, createProps, vModel } from '@/utils/vue-collection/component'
+import { createComponent, createProps } from '@/utils/vue-collection/component'
 import { findId, type Identifiable } from '@/utils/vue-collection/identifiable'
 import { option } from '@/utils/vue-collection/validation'
 import { watchRef } from '@/utils/vue-collection/vue'
@@ -6,6 +6,7 @@ import { computed, ref, type PropType } from 'vue'
 import { nInputProps } from './NInput'
 import NSuggestionList, { nSuggestionListProps } from './NSuggestionList'
 import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'
+import { vModel } from '@/utils/vue-collection/vModel'
 
 export const nInputSelectProps = createProps({
     ...nInputProps,

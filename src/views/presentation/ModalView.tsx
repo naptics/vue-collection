@@ -1,4 +1,5 @@
-import { createView, refAsVModel } from '@/utils/vue-collection/component'
+import { createView } from '@/utils/vue-collection/component'
+import { refAsVModel } from '@/utils/vue-collection/vModel'
 import { NoSymbolIcon, SunIcon } from '@heroicons/vue/24/solid'
 import { ref } from 'vue'
 import NButton from '@/components/base/NButton'

@@ -1,5 +1,6 @@
 import type { FunctionalComponent, HTMLAttributes, VNodeProps } from 'vue'
 
+export type AnyObject = Record<string | number | symbol, unknown>
 export type EmptyObject = Record<string, never>
 export type HeroIcon = FunctionalComponent<HTMLAttributes & VNodeProps>
 

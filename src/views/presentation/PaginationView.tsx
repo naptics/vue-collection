@@ -1,7 +1,8 @@
 import NPagination from '@/components/base/NPagination'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView, refAsVModel } from '@/utils/vue-collection/component'
+import { createView } from '@/utils/vue-collection/component'
+import { refAsVModel } from '@/utils/vue-collection/vModel'
 import { ref } from 'vue'
 
 export default createView('PaginationView', () => {

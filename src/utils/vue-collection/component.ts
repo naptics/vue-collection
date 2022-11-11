@@ -85,36 +85,3 @@ export function extractProps<T extends Record<string, unknown>>(
     for (const key of keys) partial[key] = toRef(props, key)
     return reactive(partial)
 }
-
-/**
- * Creates a v-model of the given type.
- * A v-model consits of a value-property and a update-function.
- * @param propType the propType of the v-model.
- * @returns an object containing the value-property and the update-function.
- */
-export function vModel<T>(propType: PropType<T>) {
-    return {
-        /**
-         * The value of the component.
-         */
-        value: propType as PropType<T>,
-        /**
-         * This will be called, when the value of the component has changed.
-         */
-        onUpdateValue: Function as PropType<(newValue: T) => void>,
-    }
-}
-
-/**
- * Uses the given ref as a vmodel, assigning the value property and updating the ref from the update function.
- * @param ref the ref which should be used as the v-model
- * @returns an object containing the `value` and the `onUpdateValue` function.
- */
-export function refAsVModel<T>(ref: Ref<T>) {
-    return {
-        value: ref.value,
-        onUpdateValue: (newValue: T) => {
-            ref.value = newValue
-        },
-    }
-}

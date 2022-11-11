@@ -8,11 +8,12 @@ import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { email, matches, password, regex, integer, numberRange, length } from '@/utils/vue-collection/validation'
-import { createView, refAsVModel } from '@/utils/vue-collection/component'
+import { createView } from '@/utils/vue-collection/component'
 import { ref } from 'vue'
 import NInputSelect from '@/components/base/NInputSelect'
 import NInputSuggestion from '@/components/base/NInputSuggestion'
 import NInputPhone from '@/components/base/NInputPhone'
+import { refAsVModel } from '@/utils/vue-collection/vModel'
 
 export default createView('InputView', () => {
     const suggestions = [

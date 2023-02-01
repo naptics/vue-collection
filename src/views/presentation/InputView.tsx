@@ -118,13 +118,13 @@ export default createView('InputView', () => {
             >
                 <div class="space-y-4">
                     <NTextArea
-                        {...vModel(15)}
+                        {...vModel(17)}
                         name="Resizable Text Area"
                         placeholder="This text area can be resized with the handle with max 100 characters, which is required to fill out."
                         maxLength={100}
                     />
                     <NTextArea
-                        {...vModel(16)}
+                        {...vModel(18)}
                         name="Larger Text Area"
                         placeholder="This is a larger non-resizable optional text area."
                         rows={5}

@@ -78,4 +78,7 @@ function areSameArrays(first: Identifiable[], second: Identifiable[]): boolean {
     return true
 }
 
+/**
+ * This object contains utility functions to deal with {@link Identifiable} objects.
+ */
 export const Id = markReadonly({ find, contains, insert, remove, areSameArrays })

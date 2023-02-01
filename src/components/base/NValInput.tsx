@@ -11,8 +11,7 @@ import {
 } from '@/utils/vue-collection/validation'
 import type { ValidatedForm } from './ValidatedForm'
 
-export const nValInputProps = createProps({
-    ...nInputProps,
+export const validationProps = createProps({
     /**
      * If set to `true` this input is always valid when its value is empty.
      * If set to `false` the input receives the {@link required} rule. Default is `false`.
@@ -46,13 +45,18 @@ export const nValInputProps = createProps({
      */
     hideErrorMessage: Boolean,
     /**
-     * A slot to replace the input.
-     */
-    input: Function as PropType<(props: InputSlotProps) => JSX.Element>,
-    /**
      * Disables the validation on blur. Should only be used in special occasions.
      */
     disableBlurValidation: Boolean,
+})
+
+export const nValInputProps = createProps({
+    ...nInputProps,
+    ...validationProps,
+    /**
+     * A slot to replace the input.
+     */
+    input: Function as PropType<(props: InputSlotProps) => JSX.Element>,
 })
 
 export type InputSlotProps = {

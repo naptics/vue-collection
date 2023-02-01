@@ -14,6 +14,7 @@ import NInputSelect from '@/components/base/NInputSelect'
 import NInputSuggestion from '@/components/base/NInputSuggestion'
 import NInputPhone from '@/components/base/NInputPhone'
 import { refAsVModel } from '@/utils/vue-collection/vModel'
+import NTextArea from '@/components/base/NTextArea'
 
 export default createView('InputView', () => {
     const suggestions = [
@@ -109,6 +110,28 @@ export default createView('InputView', () => {
                         </div>
                     </ComponentGrid>
                 </NForm>
+            </VariantSection>
+
+            <VariantSection
+                title="Text Areas"
+                subtitle="If longer text is needed, the text area can be used. It provides most of the feature of a validated input."
+            >
+                <div class="space-y-4">
+                    <NTextArea
+                        {...vModel(15)}
+                        name="Resizable Text Area"
+                        placeholder="This text area can be resized with the handle with max 100 characters, which is required to fill out."
+                        maxLength={100}
+                    />
+                    <NTextArea
+                        {...vModel(16)}
+                        name="Larger Text Area"
+                        placeholder="This is a larger non-resizable optional text area."
+                        rows={5}
+                        resizable={false}
+                        optional
+                    />
+                </div>
             </VariantSection>
 
             <VariantSection

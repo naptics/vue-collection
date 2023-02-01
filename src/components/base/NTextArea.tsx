@@ -36,8 +36,8 @@ const nTextAreaBaseProps = createProps({
      */
     rows: Number,
     /**
-     * The maximum length of the input string. Entering longer strings will simply
-     * be prevented, but no error message is shown to the user.
+     * The maximum length of the input string. Entering longer strings are simply
+     * prevented, but no error message is shown to the user.
      */
     maxLength: Number,
     /**

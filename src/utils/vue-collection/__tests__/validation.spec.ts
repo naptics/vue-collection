@@ -55,11 +55,9 @@ describe('validation', () => {
             expectValid(matches(value)(value))
         })
 
-        expectValid(matches('definetly-not-null')(''))
-        expectValid(matches('definetly-not-null')(null))
-
-        const testInvalid = ['', '1', 'hi', 'noice']
-        const checkInvalid = ['ho', '11', 'HI', 'noices']
+        // This rule does not allow the input to be falsy, always has to match.
+        const testInvalid = ['', '1', 'hi', 'noice', 'not-null', 'not-null', 'not-null']
+        const checkInvalid = ['ho', '11', 'HI', 'noices', '', null, undefined]
 
         testInvalid.forEach((value, index) => {
             expectInvalid(matches(value)(checkInvalid[index]), 'matches')

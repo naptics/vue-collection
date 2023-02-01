@@ -1,7 +1,7 @@
 import { trslc } from '@/i18n'
 import { createComponent, createProps } from '@/utils/vue-collection/component'
 import { maxLengthSplitCenter } from '../../utils/vue-collection/stringMaxLength'
-import { notNull } from '@/utils/vue-collection/utils'
+import { notNullish } from '@/utils/vue-collection/utils'
 import { XMarkIcon } from '@heroicons/vue/24/solid'
 import { computed, ref } from 'vue'
 import NBadge from './NBadge'
@@ -129,7 +129,7 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
 
         if (transfer.items.length > 0) {
             const items = [...transfer.items]
-            const files = items.map(item => (item.kind === 'file' ? item.getAsFile() : null)).filter(notNull)
+            const files = items.map(item => (item.kind === 'file' ? item.getAsFile() : null)).filter(notNullish)
             filterAndUpdateFiles(files)
         } else {
             filterAndUpdateFiles([...transfer.files])

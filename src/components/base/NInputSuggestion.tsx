@@ -1,5 +1,5 @@
 import { createComponent, createProps } from '@/utils/vue-collection/component'
-import { findId } from '@/utils/vue-collection/identifiable'
+import { Id } from '@/utils/vue-collection/identifiable'
 import { computed, ref, type PropType } from 'vue'
 import NSuggestionList, { nSuggestionListProps } from './NSuggestionList'
 import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'
@@ -38,7 +38,7 @@ export default createComponent('NInputSuggestion', nInputSuggestionProps, props 
             }))
     )
 
-    const select = (id: string) => props.onUpdateValue?.(findId(suggestionItems.value, id)?.label || '')
+    const select = (id: string) => props.onUpdateValue?.(Id.find(suggestionItems.value, id)?.label || '')
 
     const hideList = computed(
         () =>

@@ -1,5 +1,5 @@
 import { createComponent, createProps } from '@/utils/vue-collection/component'
-import { findId, type Identifiable } from '@/utils/vue-collection/identifiable'
+import { Id, type Identifiable } from '@/utils/vue-collection/identifiable'
 import { option } from '@/utils/vue-collection/validation'
 import { watchRef } from '@/utils/vue-collection/vue'
 import { computed, ref, type PropType } from 'vue'
@@ -72,7 +72,7 @@ export default createComponent('NInputSelect', nInputSelectProps, props => {
     const updateId = (id: string) => props.onUpdateValue?.({ id, label: props.value?.label || '' })
     const updateLabel = (label: string) => props.onUpdateValue?.({ label, id: props.value?.id || '' })
     const selectId = (id: string) => {
-        const selected = findId(props.options, id)
+        const selected = Id.find(props.options, id)
         if (selected != null) props.onUpdateValue?.(selected)
     }
 

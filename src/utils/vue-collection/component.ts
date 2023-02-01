@@ -7,8 +7,6 @@ import {
     toRef,
     type ComponentObjectPropsOptions,
     type ExtractPropTypes,
-    type PropType,
-    type Ref,
     type RenderFunction,
     type SetupContext,
     type ToRefs,

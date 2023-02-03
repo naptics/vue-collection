@@ -12,6 +12,8 @@ export const nSelectProps = createProps({
     value: String,
     /**
      * This is called with the newly selected id when the selection has changed.
+     * If no id is selected, the empty string is passed, in order to
+     * match the API of all other inputs who never pass `undefined`.
      */
     onUpdateValue: Function as PropType<(newValue: string) => void>,
     /**

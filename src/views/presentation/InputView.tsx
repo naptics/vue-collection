@@ -29,10 +29,6 @@ export default createView('InputView', () => {
     ]
 
     const refs = Array.from({ length: 20 }, () => ref(''))
-    const inputSelectRef = ref({
-        id: '',
-        label: '',
-    })
 
     function vModel(n: number) {
         return vModelForRef(refs[n])
@@ -148,10 +144,8 @@ export default createView('InputView', () => {
                         <p class="text-xs text-default-500">{`Value of the field: ${vModel(12).value}`}</p>
                     </div>
                     <div class="space-y-2">
-                        <NInputSelect {...vModelForRef(inputSelectRef)} options={suggestions} name="Choose Person" />
-                        <p class="text-xs text-default-500">{`Value of the field: ${JSON.stringify(
-                            inputSelectRef.value
-                        )}`}</p>
+                        <NInputSelect {...vModel(19)} options={suggestions} name="Choose Person" />
+                        <p class="text-xs text-default-500">{`Value of the field: ${vModel(19).value}`}</p>
                     </div>
                 </ComponentGrid>
             </VariantSection>

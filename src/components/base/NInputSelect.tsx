@@ -1,16 +1,27 @@
 import { createComponent, createProps } from '@/utils/vue-collection/component'
 import { Id, type Identifiable } from '@/utils/vue-collection/identifiable'
 import { option } from '@/utils/vue-collection/validation'
+import { vModelForRef } from '@/utils/vue-collection/vModel'
 import { watchRef } from '@/utils/vue-collection/vue'
-import { computed, ref, type PropType } from 'vue'
+import { computed, ref, watch, type PropType } from 'vue'
 import { nInputProps } from './NInput'
 import NSuggestionList, { nSuggestionListProps } from './NSuggestionList'
 import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'
-import { vModelProps } from '@/utils/vue-collection/vModel'
 
 export const nInputSelectProps = createProps({
     ...nInputProps,
-    ...vModelProps<InputSelectOption>(Object),
+    /**
+     * The id of the currently selected option of this input.
+     */
+    value: String,
+    /**
+     * This is called with the newly selected id when the selection has changed.
+     * This happens, when an item from the suggestion list is selected or the
+     * input matches a selection option exactly.
+     * If no id is selected, the empty string is passed, in order to
+     * match the API of all other inputs who never pass `undefined`.
+     */
+    onUpdateValue: Function as PropType<(newValue: string) => void>,
     /**
      * The options which are allowed and suggested for this input.
      * The options are filtered based on the user input.
@@ -59,36 +70,40 @@ export type InputSelectOption = Identifiable & { label: string } & Record<string
 export default createComponent('NInputSelect', nInputSelectProps, props => {
     const inputRef = ref<NValInputExposed>()
 
+    const inputValue = ref('')
+    watch(
+        () => props.value,
+        newValue => {
+            if (newValue) {
+                const chosenOption = Id.find(props.options, newValue)
+                if (chosenOption) inputValue.value = chosenOption.label
+            }
+        },
+        { immediate: true }
+    )
+
     const filteredOptions = computed(() =>
-        props.options.filter(option => option.label.includes(props.value?.label || ''))
+        props.options.filter(option => option.label.includes(inputValue.value || ''))
     )
 
     const matchedOption = computed(() => {
-        const matches = props.options.filter(option => option.label === props.value?.label)
+        const matches = props.options.filter(option => option.label === inputValue.value)
         return matches.length > 0 ? matches[0] : null
     })
-    watchRef(matchedOption, newOption => updateId(newOption?.id || ''))
-
-    const updateId = (id: string) => props.onUpdateValue?.({ id, label: props.value?.label || '' })
-    const updateLabel = (label: string) => props.onUpdateValue?.({ label, id: props.value?.id || '' })
-    const selectId = (id: string) => {
-        const selected = Id.find(props.options, id)
-        if (selected != null) props.onUpdateValue?.(selected)
-    }
+    watchRef(matchedOption, newOption => props.onUpdateValue?.(newOption?.id || ''))
 
     return () => (
         <NSuggestionList
             items={filteredOptions.value}
-            onSelect={selectId}
-            inputValue={props.value?.label || ''}
+            onSelect={props.onUpdateValue}
+            inputValue={inputValue.value}
             hideList={props.hideList || matchedOption.value != null || filteredOptions.value.length == 0}
             maxItems={props.maxItems}
             listItem={props.listItem}
             input={({ onFocus, onBlur }) => (
                 <NValInput
                     ref={inputRef}
-                    {...{ ...props, onUpdateValue: updateLabel }}
-                    value={props.value?.label}
+                    {...{ ...props, ...vModelForRef(inputValue) }}
                     rules={option(props.options.map(opt => opt.label))}
                     onFocus={() => {
                         onFocus()

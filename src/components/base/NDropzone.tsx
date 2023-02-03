@@ -7,10 +7,10 @@ import { computed, ref } from 'vue'
 import NBadge from './NBadge'
 import NIconButton from './NIconButton'
 import NLink from './NLink'
-import { vModel } from '@/utils/vue-collection/vModel'
+import { vModelProps } from '@/utils/vue-collection/vModel'
 
 export const nDropzoneProps = createProps({
-    ...vModel<File[]>(Array),
+    ...vModelProps<File[]>(Array),
     /**
      * A description which files are allowed for this dropzone.
      * This should include everything the user needs to know about

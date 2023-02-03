@@ -6,10 +6,10 @@ import NIconButton from './NIconButton'
 import { XMarkIcon } from '@heroicons/vue/24/solid'
 import { trsl } from '@/i18n'
 import type { TWMaxWidth } from '@/utils/vue-collection/tailwind'
-import { vModel } from '@/utils/vue-collection/vModel'
+import { vModelProps } from '@/utils/vue-collection/vModel'
 
 export const nModalProps = createProps({
-    ...vModel(Boolean),
+    ...vModelProps(Boolean),
     /**
      * If set to `true` the header of the modal is hidden.
      */

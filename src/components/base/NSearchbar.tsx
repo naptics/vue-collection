@@ -2,10 +2,10 @@ import { trsl } from '@/i18n'
 import { createComponent, createProps } from '@/utils/vue-collection/component'
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import { ref, type PropType } from 'vue'
-import { vModel } from '@/utils/vue-collection/vModel'
+import { vModelProps } from '@/utils/vue-collection/vModel'
 
 export const nSearchbarProps = createProps({
-    ...vModel(String),
+    ...vModelProps(String),
     /**
      * The placeholder of the search-bar.
      */

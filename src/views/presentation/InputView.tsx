@@ -13,7 +13,7 @@ import { ref } from 'vue'
 import NInputSelect from '@/components/base/NInputSelect'
 import NInputSuggestion from '@/components/base/NInputSuggestion'
 import NInputPhone from '@/components/base/NInputPhone'
-import { refAsVModel } from '@/utils/vue-collection/vModel'
+import { vModelForRef } from '@/utils/vue-collection/vModel'
 import NTextArea from '@/components/base/NTextArea'
 
 export default createView('InputView', () => {
@@ -35,7 +35,7 @@ export default createView('InputView', () => {
     })
 
     function vModel(n: number) {
-        return refAsVModel(refs[n])
+        return vModelForRef(refs[n])
     }
 
     const form = createValidatedForm()
@@ -148,7 +148,7 @@ export default createView('InputView', () => {
                         <p class="text-xs text-default-500">{`Value of the field: ${vModel(12).value}`}</p>
                     </div>
                     <div class="space-y-2">
-                        <NInputSelect {...refAsVModel(inputSelectRef)} options={suggestions} name="Choose Person" />
+                        <NInputSelect {...vModelForRef(inputSelectRef)} options={suggestions} name="Choose Person" />
                         <p class="text-xs text-default-500">{`Value of the field: ${JSON.stringify(
                             inputSelectRef.value
                         )}`}</p>

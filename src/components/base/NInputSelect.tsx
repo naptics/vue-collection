@@ -6,11 +6,11 @@ import { computed, ref, type PropType } from 'vue'
 import { nInputProps } from './NInput'
 import NSuggestionList, { nSuggestionListProps } from './NSuggestionList'
 import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'
-import { vModel } from '@/utils/vue-collection/vModel'
+import { vModelProps } from '@/utils/vue-collection/vModel'
 
 export const nInputSelectProps = createProps({
     ...nInputProps,
-    ...vModel<InputSelectOption>(Object),
+    ...vModelProps<InputSelectOption>(Object),
     /**
      * The options which are allowed and suggested for this input.
      * The options are filtered based on the user input.

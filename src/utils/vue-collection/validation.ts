@@ -46,7 +46,9 @@ export function validate(input: InputValue, rules: ValidationRule[]): Validation
     return validResult()
 }
 
-// Validation formats
+/*
+ * ---------- Validation Rules ----------
+ */
 
 /**
  * This rule expects the trimmed input-value to be truthy.

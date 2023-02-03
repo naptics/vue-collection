@@ -4,7 +4,7 @@ import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/vue-collection/component'
-import { refAsVModel } from '@/utils/vue-collection/vModel'
+import { vModelForRef } from '@/utils/vue-collection/vModel'
 import { UserIcon } from '@heroicons/vue/24/solid'
 import { computed, ref } from 'vue'
 
@@ -31,7 +31,7 @@ export default createView('SearchbarView', () => {
     }
 
     function vModel(n: number) {
-        return refAsVModel(refs[n])
+        return vModelForRef(refs[n])
     }
 
     return () => (

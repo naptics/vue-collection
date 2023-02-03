@@ -1,5 +1,5 @@
 import { createView } from '@/utils/vue-collection/component'
-import { refAsVModel } from '@/utils/vue-collection/vModel'
+import { vModelForRef } from '@/utils/vue-collection/vModel'
 import { NoSymbolIcon, SunIcon } from '@heroicons/vue/24/solid'
 import { ref } from 'vue'
 import NButton from '@/components/base/NButton'
@@ -29,7 +29,7 @@ export default createView('ModalView', () => {
     }
 
     function vModel(n: number) {
-        return refAsVModel(refs[n])
+        return vModelForRef(refs[n])
     }
 
     const form1 = createValidatedForm()
@@ -134,8 +134,8 @@ export default createView('ModalView', () => {
 
             {/* Form Modal */}
             <NFormModal {...vModel(4)} title="Form Modal" form={form1}>
-                <NValInput {...refAsVModel(inputRefs[0])} form={form1} name="Name" />
-                <NValInput {...refAsVModel(inputRefs[1])} form={form1} rules={email} name="Email" />
+                <NValInput {...vModelForRef(inputRefs[0])} form={form1} name="Name" />
+                <NValInput {...vModelForRef(inputRefs[1])} form={form1} rules={email} name="Email" />
             </NFormModal>
 
             {/** Crud Modal */}
@@ -146,8 +146,8 @@ export default createView('ModalView', () => {
                 removeDialogTitle="Remove this item"
                 removeDialogText="Are you really really really sure?"
             >
-                <NValInput {...refAsVModel(inputRefs[2])} form={form2} name="Name" />
-                <NValInput {...refAsVModel(inputRefs[3])} form={form2} rules={email} name="Email" />
+                <NValInput {...vModelForRef(inputRefs[2])} form={form2} name="Name" />
+                <NValInput {...vModelForRef(inputRefs[3])} form={form2} rules={email} name="Email" />
             </NCrudModal>
 
             {/* Dialogs */}

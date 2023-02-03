@@ -3,10 +3,10 @@ import { ref, type PropType } from 'vue'
 import { ExclamationCircleIcon } from '@heroicons/vue/24/solid'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 import './NInput.css'
-import { vModel } from '@/utils/vue-collection/vModel'
+import { vModelProps } from '@/utils/vue-collection/vModel'
 
 export const nInputProps = createProps({
-    ...vModel(String),
+    ...vModelProps(String),
     /**
      * The name of the input. Is displayed as a label above the input.
      */

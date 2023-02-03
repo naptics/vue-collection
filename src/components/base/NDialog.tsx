@@ -7,7 +7,7 @@ import NModal from './NModal'
 import { DialogTitle } from '@headlessui/vue'
 import type { HeroIcon } from '@/utils/vue-collection/utils'
 import { trsl } from '@/i18n'
-import { refAsVModel } from '@/utils/vue-collection/vModel'
+import { vModelForRef } from '@/utils/vue-collection/vModel'
 
 export type DialogVariant = 'success' | 'info' | 'warning' | 'danger' | 'remove'
 
@@ -117,7 +117,7 @@ export default createComponent('NDialog', nDialogProps, (props, context) => {
 
     return () => (
         <NModal
-            {...refAsVModel(showDialog)}
+            {...vModelForRef(showDialog)}
             {...extractProps(props, 'cancelColor', 'cancelText', 'hideCancel')}
             onOk={ok}
             onCancel={cancel}

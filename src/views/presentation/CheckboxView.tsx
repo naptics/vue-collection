@@ -5,7 +5,7 @@ import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/vue-collection/component'
 import { ref } from 'vue'
-import { refAsVModel } from '@/utils/vue-collection/vModel'
+import { vModelForRef } from '@/utils/vue-collection/vModel'
 
 export default createView('CheckboxView', () => {
     const refs = Array.from({ length: 6 }, () => ref(true))
@@ -17,11 +17,11 @@ export default createView('CheckboxView', () => {
             id="checkboxes"
         >
             <VariantSection title="On their own">
-                <ColorGrid item={(color, idx) => <NCheckbox color={color} {...refAsVModel(refs[idx])} />} />
+                <ColorGrid item={(color, idx) => <NCheckbox color={color} {...vModelForRef(refs[idx])} />} />
             </VariantSection>
 
             <VariantSection title="Disabled">
-                <ColorGrid item={(color, idx) => <NCheckbox color={color} {...refAsVModel(refs[idx])} disabled />} />
+                <ColorGrid item={(color, idx) => <NCheckbox color={color} {...vModelForRef(refs[idx])} disabled />} />
             </VariantSection>
 
             <VariantSection title="With labels" subtitle="Checkboxes can also be toggled by clicking on the texts.">
@@ -31,7 +31,7 @@ export default createView('CheckboxView', () => {
                     item={(color, idx) => (
                         <NCheckboxLabel
                             color={color}
-                            {...refAsVModel(refs[idx])}
+                            {...vModelForRef(refs[idx])}
                             title="Choose Option"
                             description="This option will provide many advantages. For example the checkbox will be very beautifully enlightened."
                         />
@@ -46,7 +46,7 @@ export default createView('CheckboxView', () => {
                     item={(color, idx) => (
                         <NCheckboxLabel
                             color={color}
-                            {...refAsVModel(refs[idx])}
+                            {...vModelForRef(refs[idx])}
                             title="Choose Option"
                             description="This option will provide many advantages."
                             disabled

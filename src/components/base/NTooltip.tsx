@@ -4,6 +4,7 @@ import type { TWMaxWidth } from '@/utils/vue-collection/tailwind'
 import { computed, onMounted, ref, watch, type PropType, onUnmounted, Transition } from 'vue'
 import { createPopper, type Instance as PopperInstance } from '@popperjs/core'
 import { watchRef } from '@/utils/vue-collection/vue'
+import './NTooltip.css'
 
 export const nTooltipProps = createProps({
     /**
@@ -97,9 +98,9 @@ export function mapTooltipProps(props: ExtractedProps<typeof nToolTipPropsForImp
 /**
  * The `NTooltip` is a wrapper for any component which adds a tooltip to it.
  * Any component can just be passed in the default slot and a tooltip will be added to it.
- * Note that this component completely disappears when neither the `text`
- * nor the `content` prop is passed as the tooltip would then be empty.
- * If this is the case, the default slot will just be rendered leaving no traces of the tooltip.
+ * Note that this component disappears when neither the `text` nor the `content`
+ * prop is passed as the tooltip would then be empty.
+ * If this is the case, the default slot will just be rendered inside a div.
  * @example
  * <NTooltip text="Hello">
  *      <NButton />
@@ -187,11 +188,12 @@ const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { sl
                     onMouseenter={() => (isHoveringTooltip.value = true)}
                     onMouseleave={() => (isHoveringTooltip.value = false)}
                     v-show={showTooltip.value}
-                    class={[isHovering.value ? 'z-20' : 'z-10', props.maxWidth]}
+                    class={[isHovering.value ? 'z-20' : 'z-10', props.maxWidth, 'tooltip']}
                 >
                     <div class="bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm font-normal text-default-700">
                         {props.content?.() || props.text}
                     </div>
+                    <div data-popper-arrow class="arrow" />
                 </div>
             </Transition>
         </>

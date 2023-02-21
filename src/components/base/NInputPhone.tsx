@@ -22,9 +22,10 @@ const NPhoneInput = createComponent('NInputPhone', nInputPhoneProps, async props
     const { parsePhoneNumber } = await import('awesome-phonenumber')
     const DEFAULT_COUNTRY_CODE = 'CH'
 
-    const formattedToPlain = (number: string) => parsePhoneNumber(number, DEFAULT_COUNTRY_CODE).getNumber('e164')
+    const formattedToPlain = (number: string) =>
+        parsePhoneNumber(number, { regionCode: DEFAULT_COUNTRY_CODE }).number?.e164
     const plainToFormatted = (number: string) =>
-        parsePhoneNumber(number, DEFAULT_COUNTRY_CODE).getNumber('international')
+        parsePhoneNumber(number, { regionCode: DEFAULT_COUNTRY_CODE }).number?.international
 
     const onUpdateValue = (newValue: string) => {
         const plain = formattedToPlain(newValue)
@@ -36,7 +37,7 @@ const NPhoneInput = createComponent('NInputPhone', nInputPhoneProps, async props
         return formatted || props.value
     })
 
-    const isValid = computed(() => parsePhoneNumber(props.value || '').isValid())
+    const isValid = computed(() => parsePhoneNumber(props.value || '').valid)
 
     return () => (
         <NValInput

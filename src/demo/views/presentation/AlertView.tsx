@@ -1,5 +1,5 @@
-import type { AlertVariant } from '../../../lib/components/NAlert'
-import NAlert from '../../../lib/components/NAlert'
+import type { AlertVariant } from '@/lib/components/NAlert'
+import NAlert from '@/lib/components/NAlert'
 import ComponentGrid from '@/demo/components/ComponentGrid'
 import ComponentSection from '@/demo/components/ComponentSection'
 import VariantSection from '@/demo/components/VariantSection'

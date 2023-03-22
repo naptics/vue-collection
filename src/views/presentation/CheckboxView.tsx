@@ -1,5 +1,5 @@
-import NCheckbox from '@/components/base/NCheckbox'
-import NCheckboxLabel from '@/components/base/NCheckboxLabel'
+import NCheckbox from '@/lib/components/NCheckbox'
+import NCheckboxLabel from '@/lib/components/NCheckboxLabel'
 import ColorGrid from '@/components/presentation/ColorGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'

@@ -1,4 +1,4 @@
-import NBadge from '@/components/base/NBadge'
+import NBadge from '@/lib/components/NBadge'
 import { createView } from '@/utils/vue-collection/component'
 import { RouterLink } from 'vue-router'
 

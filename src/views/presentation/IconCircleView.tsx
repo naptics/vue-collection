@@ -1,4 +1,4 @@
-import NIconCircle from '@/components/base/NIconCircle'
+import NIconCircle from '@/lib/components/NIconCircle'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'

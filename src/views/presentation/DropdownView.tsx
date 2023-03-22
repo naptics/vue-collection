@@ -1,4 +1,4 @@
-import NDropdown, { type DropdownItem } from '@/components/base/NDropdown'
+import NDropdown, { type DropdownItem } from '@/lib/components/NDropdown'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'

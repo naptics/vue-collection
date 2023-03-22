@@ -1,4 +1,4 @@
-import NIconButton from '@/components/base/NIconButton'
+import NIconButton from '@/lib/components/NIconButton'
 import ColorGrid from '@/components/presentation/ColorGrid'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'

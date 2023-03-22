@@ -1,5 +1,5 @@
 import { createView } from '@/utils/vue-collection/component'
-import NButton from '@/components/base/NButton'
+import NButton from '@/lib/components/NButton'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import ColorGrid from '@/components/presentation/ColorGrid'

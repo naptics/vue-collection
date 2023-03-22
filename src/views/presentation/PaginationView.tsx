@@ -1,4 +1,4 @@
-import NPagination from '@/components/base/NPagination'
+import NPagination from '@/lib/components/NPagination'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/vue-collection/component'

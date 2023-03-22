@@ -1,4 +1,4 @@
-import NLoadingIndicator from '@/components/base/NLoadingIndicator'
+import NLoadingIndicator from '@/lib/components/NLoadingIndicator'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'

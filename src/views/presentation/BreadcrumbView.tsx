@@ -1,4 +1,4 @@
-import NBreadcrub, { type BreadcrumbItem } from '@/components/base/NBreadcrub'
+import NBreadcrub, { type BreadcrumbItem } from '@/lib/components/NBreadcrub'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/vue-collection/component'

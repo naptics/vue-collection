@@ -1,5 +1,5 @@
-import NSearchbar from '@/components/base/NSearchbar'
-import NSearchbarList from '@/components/base/NSearchbarList'
+import NSearchbar from '@/lib/components/NSearchbar'
+import NSearchbarList from '@/lib/components/NSearchbarList'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'

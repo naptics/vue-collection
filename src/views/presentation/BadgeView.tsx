@@ -1,4 +1,4 @@
-import NBadge from '@/components/base/NBadge'
+import NBadge from '@/lib/components/NBadge'
 import ColorGrid from '@/components/presentation/ColorGrid'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'

@@ -1,4 +1,4 @@
-import NLink from '@/components/base/NLink'
+import NLink from '@/lib/components/NLink'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'

@@ -1,4 +1,4 @@
-import NDropzone from '@/components/base/NDropzone'
+import NDropzone from '@/lib/components/NDropzone'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
 import { createView } from '@/utils/vue-collection/component'

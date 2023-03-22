@@ -1,13 +1,13 @@
-import { deferred, type DeferredPromise } from '@/lib/utils/deferred'
-import { createComponent, createProps, extractProps } from '@/lib/utils/component'
+import { deferred, type DeferredPromise } from '../utils/deferred'
+import { createComponent, createProps, extractProps } from '../utils/component'
 import { CheckIcon, ExclamationTriangleIcon, LightBulbIcon, TrashIcon } from '@heroicons/vue/24/outline'
 import { computed, ref, type PropType } from 'vue'
 import NIconCircle from './NIconCircle'
 import NModal from './NModal'
 import { DialogTitle } from '@headlessui/vue'
-import type { HeroIcon } from '@/lib/utils/utils'
+import type { HeroIcon } from '../utils/utils'
 import { trsl } from '../i18n'
-import { vModelForRef } from '@/lib/utils/vModel'
+import { vModelForRef } from '../utils/vModel'
 
 export type DialogVariant = 'success' | 'info' | 'warning' | 'danger' | 'remove'
 

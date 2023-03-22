@@ -1,5 +1,5 @@
-import { createComponent, createProps } from '@/lib/utils/component'
-import type { TWTextSize } from '@/lib/utils/tailwind'
+import { createComponent, createProps } from '../utils/component'
+import type { TWTextSize } from '../utils/tailwind'
 import type { PropType } from 'vue'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 

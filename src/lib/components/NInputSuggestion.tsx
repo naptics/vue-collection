@@ -1,5 +1,5 @@
-import { createComponent, createProps } from '@/lib/utils/component'
-import { Id } from '@/lib/utils/identifiable'
+import { createComponent, createProps } from '../utils/component'
+import { Id } from '../utils/identifiable'
 import { computed, ref, type PropType } from 'vue'
 import NSuggestionList, { nSuggestionListProps } from './NSuggestionList'
 import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'

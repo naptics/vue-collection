@@ -1,5 +1,5 @@
-import { createComponent, createProps } from '@/lib/utils/component'
-import { external } from '@/lib/utils/validation'
+import { createComponent, createProps } from '../utils/component'
+import { external } from '../utils/validation'
 import { computed, Suspense } from 'vue'
 import NValInput, { nValInputProps } from './NValInput'
 

@@ -1,5 +1,5 @@
-import type { HeroIcon } from '@/lib/utils/utils'
-import { createComponent, createProps } from '@/lib/utils/component'
+import type { HeroIcon } from '../utils/utils'
+import { createComponent, createProps } from '../utils/component'
 import type { PropType } from 'vue'
 
 export const nIconCircleProps = createProps({

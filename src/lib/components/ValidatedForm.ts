@@ -1,4 +1,4 @@
-import type { ValidationResult } from '@/lib/utils/validation'
+import type { ValidationResult } from '../utils/validation'
 import type { NValInputExposed } from './NValInput'
 
 /**

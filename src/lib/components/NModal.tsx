@@ -1,12 +1,12 @@
-import { createComponent, createProps } from '@/lib/utils/component'
+import { createComponent, createProps } from '../utils/component'
 import type { PropType } from 'vue'
 import { Dialog, DialogOverlay, DialogTitle, TransitionRoot, TransitionChild } from '@headlessui/vue'
 import NButton from './NButton'
 import NIconButton from './NIconButton'
 import { XMarkIcon } from '@heroicons/vue/24/solid'
 import { trsl } from '../i18n'
-import type { TWMaxWidth } from '@/lib/utils/tailwind'
-import { vModelProps } from '@/lib/utils/vModel'
+import type { TWMaxWidth } from '../utils/tailwind'
+import { vModelProps } from '../utils/vModel'
 
 export const nModalProps = createProps({
     ...vModelProps(Boolean),

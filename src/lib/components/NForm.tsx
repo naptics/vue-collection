@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '@/lib/utils/component'
+import { createComponent, createProps } from '../utils/component'
 import type { PropType } from 'vue'
 import type { ValidatedForm } from './ValidatedForm'
 

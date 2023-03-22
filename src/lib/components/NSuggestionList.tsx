@@ -1,6 +1,6 @@
 import { trsl } from '../i18n'
-import type { Identifiable } from '@/lib/utils/identifiable'
-import { createComponent, createProps } from '@/lib/utils/component'
+import type { Identifiable } from '../utils/identifiable'
+import { createComponent, createProps } from '../utils/component'
 import { computed, ref, type PropType } from 'vue'
 import NLoadingIndicator from './NLoadingIndicator'
 

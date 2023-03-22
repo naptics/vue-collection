@@ -1,8 +1,8 @@
-import { createComponent, createProps } from '@/lib/utils/component'
+import { createComponent, createProps } from '../utils/component'
 import { computed } from 'vue'
 import { ref, reactive, type PropType, watch } from 'vue'
 import NInput, { nInputProps, type NInputExposed } from './NInput'
-import { type ValidationRule, type ValidationResult, validate, type InputValue, required } from '@/lib/utils/validation'
+import { type ValidationRule, type ValidationResult, validate, type InputValue, required } from '../utils/validation'
 import type { ValidatedForm } from './ValidatedForm'
 
 export const validationProps = createProps({

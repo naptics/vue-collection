@@ -1,9 +1,9 @@
-import { createComponent, createProps } from '@/lib/utils/component'
+import { createComponent, createProps } from '../utils/component'
 import { computed, Transition, type PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/24/solid'
-import type { HeroIcon } from '@/lib/utils/utils'
+import type { HeroIcon } from '../utils/utils'
 
 export const nDropdownProps = createProps({
     /**

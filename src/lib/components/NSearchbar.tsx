@@ -1,8 +1,8 @@
 import { trsl } from '../i18n'
-import { createComponent, createProps } from '@/lib/utils/component'
+import { createComponent, createProps } from '../utils/component'
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import { ref, type PropType } from 'vue'
-import { vModelProps } from '@/lib/utils/vModel'
+import { vModelProps } from '../utils/vModel'
 
 export const nSearchbarProps = createProps({
     ...vModelProps(String),

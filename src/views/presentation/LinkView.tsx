@@ -2,7 +2,7 @@ import NLink from '@/lib/components/NLink'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView } from '@/utils/vue-collection/component'
+import { createView } from '@/lib/utils/component'
 
 export default createView('LinkView', () => {
     const hi = () => window.alert('hello')

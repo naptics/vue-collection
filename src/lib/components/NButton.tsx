@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '@/utils/vue-collection/component'
+import { createComponent, createProps } from '@/lib/utils/component'
 import { computed, type PropType } from 'vue'
 import NLoadingIndicator from './NLoadingIndicator'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'

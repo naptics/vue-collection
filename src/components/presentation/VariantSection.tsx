@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '@/utils/vue-collection/component'
+import { createComponent, createProps } from '@/lib/utils/component'
 
 export const variantSectionProps = createProps({
     title: String,

@@ -1,5 +1,5 @@
 import NBadge from '@/lib/components/NBadge'
-import { createView } from '@/utils/vue-collection/component'
+import { createView } from '@/lib/utils/component'
 import { RouterLink } from 'vue-router'
 
 export default createView('NavigationView', () => {

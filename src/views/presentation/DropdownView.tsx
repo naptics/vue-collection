@@ -2,7 +2,7 @@ import NDropdown, { type DropdownItem } from '@/lib/components/NDropdown'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView } from '@/utils/vue-collection/component'
+import { createView } from '@/lib/utils/component'
 import { MenuButton } from '@headlessui/vue'
 import { ArrowDownOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
 

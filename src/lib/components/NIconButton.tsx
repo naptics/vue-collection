@@ -1,5 +1,5 @@
-import type { HeroIcon } from '@/utils/vue-collection/utils'
-import { createComponent, createProps } from '@/utils/vue-collection/component'
+import type { HeroIcon } from '@/lib/utils/utils'
+import { createComponent, createProps } from '@/lib/utils/component'
 import type { PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 import { nButtonProps } from './NButton'

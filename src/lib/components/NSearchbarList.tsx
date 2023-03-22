@@ -1,6 +1,6 @@
-import { createComponent, createProps } from '@/utils/vue-collection/component'
+import { createComponent, createProps } from '@/lib/utils/component'
 import { ref } from 'vue'
-import { vModelProps } from '@/utils/vue-collection/vModel'
+import { vModelProps } from '@/lib/utils/vModel'
 
 import NSearchbar, { nSearchbarProps, type NSearchbarExposed } from './NSearchbar'
 import NSuggestionList, { nSuggestionListPropsForConfig } from './NSuggestionList'

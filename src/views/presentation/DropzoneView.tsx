@@ -1,9 +1,9 @@
 import NDropzone from '@/lib/components/NDropzone'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView } from '@/utils/vue-collection/component'
+import { createView } from '@/lib/utils/component'
 import { ref } from 'vue'
-import { vModelForRef } from '@/utils/vue-collection/vModel'
+import { vModelForRef } from '@/lib/utils/vModel'
 
 export default createView('DropzoneView', () => {
     const fileRefs = Array.from({ length: 5 }).map(() => ref<File[]>([]))

@@ -2,7 +2,7 @@ import NLoadingIndicator from '@/lib/components/NLoadingIndicator'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView } from '@/utils/vue-collection/component'
+import { createView } from '@/lib/utils/component'
 
 export default createView('NLoadingIndicator', () => {
     const sizes = [4, 6, 8, 10, 12, 14]

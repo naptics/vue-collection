@@ -1,9 +1,9 @@
-import { createComponent, createProps, type ExtractedProps } from '@/utils/vue-collection/component'
-import { uniqueId } from '@/utils/vue-collection/utils'
-import type { TWMaxWidth } from '@/utils/vue-collection/tailwind'
+import { createComponent, createProps, type ExtractedProps } from '@/lib/utils/component'
+import { uniqueId } from '@/lib/utils/utils'
+import type { TWMaxWidth } from '@/lib/utils/tailwind'
 import { computed, onMounted, ref, watch, type PropType, onUnmounted, Transition } from 'vue'
 import { createPopper, type Instance as PopperInstance } from '@popperjs/core'
-import { watchRef } from '@/utils/vue-collection/vue'
+import { watchRef } from '@/lib/utils/vue'
 import './NTooltip.css'
 
 export const nTooltipProps = createProps({

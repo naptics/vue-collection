@@ -2,7 +2,7 @@ import type { ListItem } from '@/lib/components/NList'
 import NList from '@/lib/components/NList'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView } from '@/utils/vue-collection/component'
+import { createView } from '@/lib/utils/component'
 
 export default createView('ListView', () => {
     const items: ListItem[] = [

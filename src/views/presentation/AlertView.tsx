@@ -3,7 +3,7 @@ import NAlert from '../../lib/components/NAlert'
 import ComponentGrid from '@/components/presentation/ComponentGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView } from '@/utils/vue-collection/component'
+import { createView } from '@/lib/utils/component'
 
 export default createView('AlertView', () => {
     const variants: AlertVariant[] = ['success', 'info', 'warning', 'error']

@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App'
 import router from './router'
-import { addDocumentResizeEventListener } from './utils/vue-collection/breakpoints'
+import { addDocumentResizeEventListener } from '@/lib/utils/breakpoints'
 
 addDocumentResizeEventListener()
 

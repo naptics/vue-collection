@@ -1,5 +1,5 @@
-import { createComponent, createProps } from '@/utils/vue-collection/component'
-import type { TWMaxWidth } from '@/utils/vue-collection/tailwind'
+import { createComponent, createProps } from '@/lib/utils/component'
+import type { TWMaxWidth } from '@/lib/utils/tailwind'
 import { reactive, toRefs, type PropType } from 'vue'
 import NForm from './NForm'
 import NModal, { nModalProps } from './NModal'

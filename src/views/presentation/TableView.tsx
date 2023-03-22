@@ -4,7 +4,7 @@ import NTable, { type TableDetail, type TableHeading } from '@/lib/components/NT
 import NTableAction from '@/lib/components/NTableAction'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView } from '@/utils/vue-collection/component'
+import { createView } from '@/lib/utils/component'
 import { PencilIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 
 export default createView('TableView', () => {

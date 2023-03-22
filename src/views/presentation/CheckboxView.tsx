@@ -3,9 +3,9 @@ import NCheckboxLabel from '@/lib/components/NCheckboxLabel'
 import ColorGrid from '@/components/presentation/ColorGrid'
 import ComponentSection from '@/components/presentation/ComponentSection'
 import VariantSection from '@/components/presentation/VariantSection'
-import { createView } from '@/utils/vue-collection/component'
+import { createView } from '@/lib/utils/component'
 import { ref } from 'vue'
-import { vModelForRef } from '@/utils/vue-collection/vModel'
+import { vModelForRef } from '@/lib/utils/vModel'
 
 export default createView('CheckboxView', () => {
     const refs = Array.from({ length: 6 }, () => ref(true))

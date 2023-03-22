@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '@/utils/vue-collection/component'
+import { createComponent, createProps } from '@/lib/utils/component'
 import { LinkIcon } from '@heroicons/vue/24/solid'
 import { RouterLink } from 'vue-router'
 

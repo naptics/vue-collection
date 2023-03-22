@@ -1,13 +1,13 @@
 import { trslc } from '@/i18n'
-import { createComponent, createProps } from '@/utils/vue-collection/component'
-import { maxLengthSplitCenter } from '../../utils/vue-collection/stringMaxLength'
-import { notNullish } from '@/utils/vue-collection/utils'
+import { createComponent, createProps } from '@/lib/utils/component'
+import { maxLengthSplitCenter } from '@/lib/utils/stringMaxLength'
+import { notNullish } from '@/lib/utils/utils'
 import { XMarkIcon } from '@heroicons/vue/24/solid'
 import { computed, ref } from 'vue'
 import NBadge from './NBadge'
 import NIconButton from './NIconButton'
 import NLink from './NLink'
-import { vModelProps } from '@/utils/vue-collection/vModel'
+import { vModelProps } from '@/lib/utils/vModel'
 
 export const nDropzoneProps = createProps({
     ...vModelProps<File[]>(Array),

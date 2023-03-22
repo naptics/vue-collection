@@ -1,6 +1,6 @@
 import { createComponent, createProps } from '@/lib/utils/component'
 import { computed, type PropType } from 'vue'
-import ComponentGrid, { componentGridProps } from './ComponentGrid'
+import ComponentGrid, { componentGridProps } from '@/demo/components/ComponentGrid'
 
 export const colorGridProps = createProps({
     ...componentGridProps,

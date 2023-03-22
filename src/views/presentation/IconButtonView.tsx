@@ -1,8 +1,8 @@
 import NIconButton from '@/lib/components/NIconButton'
-import ColorGrid from '@/components/presentation/ColorGrid'
-import ComponentGrid from '@/components/presentation/ComponentGrid'
-import ComponentSection from '@/components/presentation/ComponentSection'
-import VariantSection from '@/components/presentation/VariantSection'
+import ColorGrid from '@/demo/components/ColorGrid'
+import ComponentGrid from '@/demo/components/ComponentGrid'
+import ComponentSection from '@/demo/components/ComponentSection'
+import VariantSection from '@/demo/components/VariantSection'
 import { createView } from '@/lib/utils/component'
 import {
     CogIcon,

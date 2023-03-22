@@ -1,6 +1,6 @@
 import NDropzone from '@/lib/components/NDropzone'
-import ComponentSection from '@/components/presentation/ComponentSection'
-import VariantSection from '@/components/presentation/VariantSection'
+import ComponentSection from '@/demo/components/ComponentSection'
+import VariantSection from '@/demo/components/VariantSection'
 import { createView } from '@/lib/utils/component'
 import { ref } from 'vue'
 import { vModelForRef } from '@/lib/utils/vModel'

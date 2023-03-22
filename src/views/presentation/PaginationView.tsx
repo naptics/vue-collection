@@ -1,6 +1,6 @@
 import NPagination from '@/lib/components/NPagination'
-import ComponentSection from '@/components/presentation/ComponentSection'
-import VariantSection from '@/components/presentation/VariantSection'
+import ComponentSection from '@/demo/components/ComponentSection'
+import VariantSection from '@/demo/components/VariantSection'
 import { createView } from '@/lib/utils/component'
 import { vModelForRef } from '@/lib/utils/vModel'
 import { ref } from 'vue'

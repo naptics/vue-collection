@@ -1,8 +1,8 @@
 import { createView } from '@/lib/utils/component'
 import NButton from '@/lib/components/NButton'
-import ComponentSection from '@/components/presentation/ComponentSection'
-import VariantSection from '@/components/presentation/VariantSection'
-import ColorGrid from '@/components/presentation/ColorGrid'
+import ComponentSection from '@/demo/components/ComponentSection'
+import VariantSection from '@/demo/components/VariantSection'
+import ColorGrid from '@/demo/components/ColorGrid'
 
 export default createView('ButtonView', () => {
     return () => (

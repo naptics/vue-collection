@@ -1,7 +1,7 @@
 import NIconCircle from '@/lib/components/NIconCircle'
-import ComponentGrid from '@/components/presentation/ComponentGrid'
-import ComponentSection from '@/components/presentation/ComponentSection'
-import VariantSection from '@/components/presentation/VariantSection'
+import ComponentGrid from '@/demo/components/ComponentGrid'
+import ComponentSection from '@/demo/components/ComponentSection'
+import VariantSection from '@/demo/components/VariantSection'
 import { createView } from '@/lib/utils/component'
 import { FireIcon } from '@heroicons/vue/24/solid'
 

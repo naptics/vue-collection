@@ -1,4 +1,4 @@
-import { trsl } from '@/i18n'
+import { trsl } from '../i18n'
 
 export type ValidationResultValid = {
     isValid: true

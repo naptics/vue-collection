@@ -1,4 +1,4 @@
-import { trsl } from '@/i18n'
+import { trsl } from '../i18n'
 import type { Identifiable } from '@/lib/utils/identifiable'
 import { createComponent, createProps } from '@/lib/utils/component'
 import { computed, ref, type PropType } from 'vue'

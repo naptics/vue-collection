@@ -6,7 +6,7 @@ import NIconCircle from './NIconCircle'
 import NModal from './NModal'
 import { DialogTitle } from '@headlessui/vue'
 import type { HeroIcon } from '@/lib/utils/utils'
-import { trsl } from '@/i18n'
+import { trsl } from '../i18n'
 import { vModelForRef } from '@/lib/utils/vModel'
 
 export type DialogVariant = 'success' | 'info' | 'warning' | 'danger' | 'remove'

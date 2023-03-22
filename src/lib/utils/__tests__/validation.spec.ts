@@ -1,4 +1,4 @@
-import { trsl } from '@/i18n'
+import { trsl } from '../../i18n'
 import { describe, expect, test } from 'vitest'
 import { email, external, matches, option, password, regex, required } from '../validation'
 

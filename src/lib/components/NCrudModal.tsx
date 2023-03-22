@@ -1,4 +1,4 @@
-import { trsl } from '@/i18n'
+import { trsl } from '../i18n'
 import { createComponent, createProps } from '@/lib/utils/component'
 import { ref, type PropType } from 'vue'
 import NButton from './NButton'

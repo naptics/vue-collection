@@ -1,4 +1,4 @@
-import { trsl } from '@/i18n'
+import { trsl } from '../i18n'
 import { createComponent, createProps } from '@/lib/utils/component'
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import { ref, type PropType } from 'vue'

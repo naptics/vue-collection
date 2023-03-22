@@ -1,4 +1,4 @@
-import { trslc } from '@/i18n'
+import { trslc } from '../i18n'
 import { createComponent, createProps } from '@/lib/utils/component'
 import { maxLengthSplitCenter } from '@/lib/utils/stringMaxLength'
 import { notNullish } from '@/lib/utils/utils'

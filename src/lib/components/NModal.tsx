@@ -4,7 +4,7 @@ import { Dialog, DialogOverlay, DialogTitle, TransitionRoot, TransitionChild } f
 import NButton from './NButton'
 import NIconButton from './NIconButton'
 import { XMarkIcon } from '@heroicons/vue/24/solid'
-import { trsl } from '@/i18n'
+import { trsl } from '../i18n'
 import type { TWMaxWidth } from '@/lib/utils/tailwind'
 import { vModelProps } from '@/lib/utils/vModel'
 

@@ -5,7 +5,9 @@
     "scripts": {
         "dev": "vite",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-        "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+        "type-check": "run-p type-check-lib type-check-demo",
+        "type-check-demo": "vue-tsc --noEmit -p tsconfig.demo.json --composite false",
+        "type-check-lib": "vue-tsc --noEmit -p tsconfig.lib.json --composite false",
         "test": "vitest --environment jsdom",
         "build-demo": "run-p type-check build-demo-only",
         "build-lib": "run-p type-check build-lib-only",

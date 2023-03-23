@@ -1,0 +1,19 @@
+name: Lint, Build, Test & Analyse
+
+on: push
+
+jobs:
+    build:
+        name: Lint, Build, Test & Analyse
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: '17'
+            - run: npm ci
+            - run: npm run lint
+            - run: npm run type-check
+            - run: npm run build-demo-only
+            - run: npm run build-lib-only
+            - run: npm run test

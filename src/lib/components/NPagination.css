@@ -1,0 +1,15 @@
+.pagination-item {
+    @apply h-9 w-9 text-sm inline-flex items-center justify-center border font-medium border-default-300 text-default-500;
+}
+
+.pagination-item.not-small {
+    @apply sm:w-11;
+}
+
+.pagination-item.selectable {
+    @apply hover:bg-default-50 focus:outline-none focus-visible:border-primary-500 focus-visible:ring-primary-500 focus-visible:ring-1 focus-visible:z-[2];
+}
+
+.pagination-item.selectable.selected {
+    @apply border-primary-500 bg-primary-100 hover:bg-primary-100 text-primary-600 z-[1];
+}

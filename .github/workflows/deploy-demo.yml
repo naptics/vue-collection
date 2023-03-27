@@ -27,6 +27,7 @@ jobs:
           path: 'dist'
   deploy:
     name: Deploy Demo App
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to GitHub Pages

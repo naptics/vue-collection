@@ -9,10 +9,10 @@
         "type-check-demo": "vue-tsc --noEmit -p tsconfig.demo.json --composite false",
         "type-check-lib": "vue-tsc --noEmit -p tsconfig.lib.json --composite false",
         "test": "vitest --environment jsdom",
-        "build-demo": "run-p type-check build-demo-only",
-        "build-lib": "run-p type-check build-lib-only",
-        "build-demo-only": "vite build",
-        "build-lib-only": "rm -rf ./lib && tsc --project tsconfig.lib.json && mv ./lib/src/lib/* ./lib && rm -rf ./lib/src && rm ./lib/tsconfig.lib.tsbuildinfo && cp ./src/lib/components/*.css ./lib/components"
+        "build-demo": "run-p type-check-demo build-only-demo",
+        "build-lib": "run-p type-check-lib build-only-lib",
+        "build-only-demo": "vite build",
+        "build-only-lib": "rm -rf ./lib && tsc --project tsconfig.lib.json && mv ./lib/src/lib/* ./lib && rm -rf ./lib/src && rm ./lib/tsconfig.lib.tsbuildinfo && cp ./src/lib/components/*.css ./lib/components"
     },
     "dependencies": {
         "@headlessui/vue": "^1.7.10",

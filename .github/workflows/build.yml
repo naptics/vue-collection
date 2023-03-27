@@ -1,16 +1,16 @@
-name: Lint, Build, Test & Analyse
+name: Lint, Type-Check, Build & Test
 
 on: push
 
 jobs:
     build:
-        name: Lint, Build, Test & Analyse
+        name: Lint, Type-Check, Build & Test
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
             - uses: actions/setup-node@v3
               with:
-                  node-version: '17'
+                  node-version: 'latest'
             - run: npm ci
             - run: npm run lint
             - run: npm run type-check

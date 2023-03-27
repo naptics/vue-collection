@@ -3,23 +3,23 @@ name: Lint, Type-Check, Build & Test
 on: push
 
 jobs:
-    build:
-        name: Lint, Type-Check, Build & Test
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout repository
-              uses: actions/checkout@v3
-            - name: Setup node environment
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 'latest'
-            - run: npm ci
-            - run: npm run lint
-            - run: npm run build-lib
-            - run: npm run build-demo
-            - run: npm run test
-            # - name: Upload lib as artifact
-            #   uses: actions/upload-artifact@v3
-            #   with:
-            #       name: vue-collection-lib
-            #       path: lib
+  build:
+    name: Lint, Type-Check, Build & Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup node environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 'latest'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run build-lib
+      - run: npm run build-demo
+      - run: npm run test
+      # - name: Upload lib as artifact
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #       name: vue-collection-lib
+      #       path: lib

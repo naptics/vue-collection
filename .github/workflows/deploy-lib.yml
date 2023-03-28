@@ -35,10 +35,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 'latest'
+          registry-url: https://registry.npmjs.org/
       - name: Download library artifact
         uses: actions/download-artifact@v3
         with:
           name: vue-collection-lib
           path: lib
       - run: npm publish --access=restricted
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
        

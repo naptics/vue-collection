@@ -2,6 +2,7 @@ import { createComponent, createProps } from '../utils/component'
 import { external } from '../utils/validation'
 import { computed, Suspense } from 'vue'
 import NValInput, { nValInputProps } from './NValInput'
+import { trsl } from '../i18n'
 
 export const nInputPhoneProps = createProps(nValInputProps)
 
@@ -43,7 +44,7 @@ const NPhoneInput = createComponent('NInputPhone', nInputPhoneProps, async props
         <NValInput
             {...{ ...props, onUpdateValue }}
             value={value.value}
-            rules={external(isValid.value, 'vue-collection.validation.rules.phone')}
+            rules={external(isValid.value, trsl('vue-collection.validation.rules.phone'))}
             type="tel"
         />
     )

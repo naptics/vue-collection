@@ -21,17 +21,23 @@ export type ValidationResult = ValidationResultValid | ValidationResultInvalid
  */
 export type ValidationRule = (input: InputValue) => ValidationResult
 
+/**
+ * Creates a valid result.
+ */
 export function validResult(): ValidationResultValid {
     return { isValid: true }
 }
 
-export function invalidResult(ruleTranslationKey: string, params?: Record<string, unknown>): ValidationResultInvalid {
-    return { isValid: false, errorMessage: trsl(ruleTranslationKey, params) }
+/**
+ * Creates an invalid result with the provided error message.
+ */
+export function invalidResult(errorMessage: string): ValidationResultInvalid {
+    return { isValid: false, errorMessage }
 }
 
 const TRANSLATION_KEY_BASE = 'vue-collection.validation.rules'
 function invalidResultInternal(key: string, params?: Record<string, unknown>): ValidationResultInvalid {
-    return invalidResult(`${TRANSLATION_KEY_BASE}.${key}`, params)
+    return invalidResult(trsl(`${TRANSLATION_KEY_BASE}.${key}`, params))
 }
 
 /**
@@ -173,11 +179,11 @@ export function regex(pattern: RegExp): ValidationRule {
 }
 
 /**
- * This rule can be used if the validation logic happens somwhere else.
+ * This rule can be used if the validation logic happens somewhere else.
  * When `isValid = true` is passed, the function will return a valid result,
  * otherwise it will return the invalid result with the passed `errorKey`.
  * Like always, a falsy input is always valid to not interefere with the {@link required} rule.
  */
-export function external(isValid: boolean, errorKey: string): ValidationRule {
-    return input => (!input || isValid ? validResult() : invalidResultInternal(errorKey))
+export function external(isValid: boolean, errorMessage: string): ValidationRule {
+    return input => (!input || isValid ? validResult() : invalidResult(errorMessage))
 }

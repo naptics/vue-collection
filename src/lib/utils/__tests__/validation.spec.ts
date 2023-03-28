@@ -85,8 +85,8 @@ describe('validation', () => {
     })
 
     test('external', () => {
-        expectValid(external(true, 'vue-collection.validation.rules.phone')('hi'))
-        expectValid(external(false, 'vue-collection.validation.rules.phone')(null))
-        expectInvalid(external(false, 'vue-collection.validation.rules.phone')('hi'), 'phone')
+        expectValid(external(true, trsl('vue-collection.validation.rules.phone'))('hi'))
+        expectValid(external(false, trsl('vue-collection.validation.rules.phone'))(null))
+        expectInvalid(external(false, trsl('vue-collection.validation.rules.phone'))('hi'), 'phone')
     })
 })

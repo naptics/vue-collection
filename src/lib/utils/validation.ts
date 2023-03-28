@@ -25,8 +25,13 @@ export function validResult(): ValidationResultValid {
     return { isValid: true }
 }
 
-export function invalidResult(ruleKey: string, params?: Record<string, unknown>): ValidationResultInvalid {
-    return { isValid: false, errorMessage: trsl(`vue-collection.validation.rules.${ruleKey}`, params) }
+export function invalidResult(ruleTranslationKey: string, params?: Record<string, unknown>): ValidationResultInvalid {
+    return { isValid: false, errorMessage: trsl(ruleTranslationKey, params) }
+}
+
+const TRANSLATION_KEY_BASE = 'vue-collection.validation.rules'
+function invalidResultInternal(key: string, params?: Record<string, unknown>): ValidationResultInvalid {
+    return invalidResult(`${TRANSLATION_KEY_BASE}.${key}`, params)
 }
 
 /**
@@ -56,7 +61,7 @@ export function validate(input: InputValue, rules: ValidationRule[]): Validation
 export const required: ValidationRule = input => {
     const trimmed = input?.trim()
     if (trimmed) return validResult()
-    else return invalidResult('required')
+    else return invalidResultInternal('required')
 }
 
 /**
@@ -64,7 +69,7 @@ export const required: ValidationRule = input => {
  */
 export const integer: ValidationRule = input => {
     if (!input || Number.isInteger(+input)) return validResult()
-    else return invalidResult('integer')
+    else return invalidResultInternal('integer')
 }
 
 /**
@@ -78,9 +83,9 @@ export function length(min: number | undefined, max: number | undefined): Valida
         if (!input) return validResult()
 
         if (min !== undefined && max !== undefined && !(min <= input.length && input.length <= max))
-            return invalidResult('length.min-max', { min, max })
-        else if (min !== undefined && !(min <= input.length)) return invalidResult('length.min', { min })
-        else if (max !== undefined && !(input.length <= max)) return invalidResult('length.max', { max })
+            return invalidResultInternal('length.min-max', { min, max })
+        else if (min !== undefined && !(min <= input.length)) return invalidResultInternal('length.min', { min })
+        else if (max !== undefined && !(input.length <= max)) return invalidResultInternal('length.max', { max })
 
         return validResult()
     }
@@ -96,12 +101,12 @@ export function numberRange(min: number | undefined, max: number | undefined): V
         if (!input) return validResult()
 
         const parsed = Number.parseFloat(input)
-        if (Number.isNaN(parsed)) return invalidResult('number-range.nan')
+        if (Number.isNaN(parsed)) return invalidResultInternal('number-range.nan')
 
         if (min !== undefined && max !== undefined && !(min <= parsed && parsed <= max))
-            return invalidResult('number-range.min-max', { min, max })
-        else if (min !== undefined && !(min <= parsed)) return invalidResult('number-range.min', { min })
-        else if (max !== undefined && !(parsed <= max)) return invalidResult('number-range.max', { max })
+            return invalidResultInternal('number-range.min-max', { min, max })
+        else if (min !== undefined && !(min <= parsed)) return invalidResultInternal('number-range.min', { min })
+        else if (max !== undefined && !(parsed <= max)) return invalidResultInternal('number-range.max', { max })
 
         return validResult()
     }
@@ -114,7 +119,7 @@ export const VALIDATION_FORMAT_EMAIL = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3}
  */
 export const email: ValidationRule = input => {
     if (!input || VALIDATION_FORMAT_EMAIL.test(input)) return validResult()
-    else return invalidResult('email')
+    else return invalidResultInternal('email')
 }
 
 export const VALIDATION_FORMAT_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+\-=!*()@%&?]).{8,}$/
@@ -124,12 +129,12 @@ export const VALIDATION_FORMAT_PASSWORD = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[
  */
 export const password: ValidationRule = input => {
     if (!input || VALIDATION_FORMAT_PASSWORD.test(input)) return validResult()
-    else if (input.length < 8) return invalidResult('password.to-short')
-    else if (!/[a-z]+/.test(input)) return invalidResult('password.no-lowercase')
-    else if (!/[A-Z]+/.test(input)) return invalidResult('password.no-uppercase')
-    else if (!/\d+/.test(input)) return invalidResult('password.no-digits')
-    else if (!/[#$^+\-=!*()@%&?]+/.test(input)) return invalidResult('password.no-special-chars')
-    else return invalidResult('password.unknown')
+    else if (input.length < 8) return invalidResultInternal('password.to-short')
+    else if (!/[a-z]+/.test(input)) return invalidResultInternal('password.no-lowercase')
+    else if (!/[A-Z]+/.test(input)) return invalidResultInternal('password.no-uppercase')
+    else if (!/\d+/.test(input)) return invalidResultInternal('password.no-digits')
+    else if (!/[#$^+\-=!*()@%&?]+/.test(input)) return invalidResultInternal('password.no-special-chars')
+    else return invalidResultInternal('password.unknown')
 }
 
 /**
@@ -141,7 +146,7 @@ export const password: ValidationRule = input => {
 export function matches(other: string | null | undefined): ValidationRule {
     return input => {
         if (input === other) return validResult()
-        else return invalidResult('matches')
+        else return invalidResultInternal('matches')
     }
 }
 
@@ -152,7 +157,7 @@ export function matches(other: string | null | undefined): ValidationRule {
 export function option(options: string[]): ValidationRule {
     return input => {
         if (!input || options.includes(input || '')) return validResult()
-        else return invalidResult('option')
+        else return invalidResultInternal('option')
     }
 }
 
@@ -163,7 +168,7 @@ export function option(options: string[]): ValidationRule {
 export function regex(pattern: RegExp): ValidationRule {
     return input => {
         if (!input || pattern.test(input || '')) return validResult()
-        else return invalidResult('regex')
+        else return invalidResultInternal('regex')
     }
 }
 
@@ -174,5 +179,5 @@ export function regex(pattern: RegExp): ValidationRule {
  * Like always, a falsy input is always valid to not interefere with the {@link required} rule.
  */
 export function external(isValid: boolean, errorKey: string): ValidationRule {
-    return input => (!input || isValid ? validResult() : invalidResult(errorKey))
+    return input => (!input || isValid ? validResult() : invalidResultInternal(errorKey))
 }

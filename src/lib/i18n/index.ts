@@ -1,15 +1,34 @@
-import en from './en'
-import de from './de'
-import { createI18n } from 'vue-i18n'
+import type { Nullish } from '../utils/utils'
 
-const i18n = createI18n({
-    legacy: false,
-    locale: 'en',
-    messages: {
-        en,
-        de,
-    },
-})
+/**
+ * @see {@link trsl}
+ */
+export type TranslationFunction = typeof trsl
+
+/**
+ * @see {@link trslc}
+ */
+export type TranslationCountFunction = typeof trslc
+
+/**
+ * A `TranslationProvider` has to implement the two functions `trsl` and `trslc`.
+ */
+export type TranslationProvider = {
+    trsl: TranslationFunction
+    trslc: TranslationCountFunction
+}
+
+let provider: TranslationProvider | undefined = undefined
+
+/**
+ * Registeres a new translation provider for vue-collection.
+ * The translation provider should contain all vue-collection
+ * texts located under `i18n/<lang>/vue-collection.json`.
+ * @param newProvider
+ */
+export function registerTranslationProvider(newProvider: TranslationProvider): void {
+    provider = newProvider
+}
 
 /**
  * Translates the specified key with the according message.
@@ -18,7 +37,8 @@ const i18n = createI18n({
  * @returns the translated message.
  */
 export function trsl(key: string, params?: Record<string, unknown>): string {
-    return i18n.global.t(key, params == null ? {} : params)
+    if (!provider) console.warn('Vue Collection: No translation provider has been registered!')
+    return provider?.trsl(key, params) ?? key
 }
 
 /**
@@ -30,8 +50,7 @@ export function trsl(key: string, params?: Record<string, unknown>): string {
  * @returns the translated message.
  * @see trsl
  */
-export function trslc(key: string, count: number | null | undefined, params?: Record<string, unknown>): string {
-    const newCount = count ?? 0
-    const newParams = { n: newCount, ...params }
-    return i18n.global.t(key, newParams, { plural: newCount })
+export function trslc(key: string, count: Nullish<number>, params?: Record<string, unknown>): string {
+    if (!provider) console.warn('Vue Collection: No translation provider has been registered!')
+    return provider?.trslc(key, count, params) ?? key
 }

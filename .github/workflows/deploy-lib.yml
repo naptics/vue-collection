@@ -39,5 +39,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: vue-collection-lib
+          path: lib
       - run: npm publish --access=restricted
        

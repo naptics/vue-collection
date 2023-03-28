@@ -8,7 +8,7 @@ You can take a look at all components on [GitHub Pages](https://naptics.github.i
 
 ## Project setup 🚧
 
-This section shows how to create a new vue project with the recommended tech-stack to be ready to install vue-collection afterwards.
+This section shows how to create a new Vue project with the recommended tech-stack to be ready to install Vue-Collection afterwards.
 
 1. Create a new vue-project with `npm init vue@latest`. Add at least typescript, jsx, vue-router, eslint and prettier.
 2. Remove boilerplate code.
@@ -34,7 +34,8 @@ This section shows how to create a new vue project with the recommended tech-sta
 4. Add tailwind config -> See below
 5. Register i18n provider -> See below
 
-## Tailwind Config
+## Tailwind Config
+
 With this tailwind config file, vue-collection works as expected. Feel free to change the `default`, `primary` and `secondary` colors and add whatever is needed in your project.
 
 ```js

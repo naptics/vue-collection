@@ -2,7 +2,6 @@ name: Deploy Library to npm
 
 on: 
   push: 
-    branches: main
     tags: v*
 
 jobs:
@@ -24,6 +23,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
             name: vue-collection-lib
+            path: .
   deploy:
     name: Deploy Library to npm
     needs: build

@@ -38,7 +38,7 @@ These are the steps to add Vue Collection to an existing project. You may have t
 
 ## Tailwind Config
 
-With this tailwind config file, vue-collection works as expected. Feel free to change the `default`, `primary` and `secondary` colors and add whatever is needed in your project.
+With this tailwind config file, Vue Collection works as expected. Feel free to change the `default`, `primary` and `secondary` colors and add whatever is needed in your project.
 
 ```js
 // tailwind.config.js

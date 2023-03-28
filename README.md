@@ -84,7 +84,7 @@ module.exports = {
 
 ## Register i18n Provider
 
-These are two sample files, how the i18n provider can be registered by using `vue-i18n`.
+These are two sample files, how the i18n provider can be registered by using `vue-i18n`. The translation files of Vue-Collection have to be added to the i18n provider in order for the Vue-Collection components to work properly.
 
 ```ts
 // src/i18n/index.ts

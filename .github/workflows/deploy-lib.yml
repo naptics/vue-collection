@@ -23,12 +23,14 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
             name: vue-collection-lib
-            path: .
+            path: lib
   deploy:
     name: Deploy Library to npm
     needs: build
     runs-on: ubuntu-latest
     steps: 
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - name: Setup node environment
         uses: actions/setup-node@v3
         with:

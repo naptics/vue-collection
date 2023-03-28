@@ -6,7 +6,7 @@ Vue Collection is a collection of styled and fully functional Vue components whi
 
 You can take a look at all components on [GitHub Pages](https://naptics.github.io/vue-collection/).
 
-## Project setup 🚧
+## Project Setup 🚧
 
 This section shows how to create a new Vue project with the recommended tech-stack to be ready to install Vue-Collection afterwards.
 
@@ -22,6 +22,8 @@ This section shows how to create a new Vue project with the recommended tech-sta
 7. Make sure typescript config is correct. Double check with this repo.
 
 ## Installation Guide 🔨
+
+These are the steps to add Vue-Collection to an existing project. You may have to go through the steps of `Project Setup` and check if you have the neccesary (peer-)dependencies installed.
 
 1. Go to [npmjs.com](https://npmjs.com), sign in with naptics and create a new read-only classic access token.
 2. Save your access token under `~/.npmrc` with the following content, replacing `YOUR_TOKEN` with the access token.

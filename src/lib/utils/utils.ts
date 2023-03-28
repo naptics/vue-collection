@@ -10,8 +10,12 @@ export type Nullish<T> = T | null | undefined
 export type HeroIcon = FunctionalComponent<HTMLAttributes & VNodeProps>
 
 export type ReadonlyObject<T extends AnyObject> = {
-    readonly // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    [P in keyof T]: T[P] extends ReadonlyObject<infer _U> ? T[P] : T[P] extends AnyObject ? ReadonlyObject<T[P]> : T[P]
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    readonly [P in keyof T]: T[P] extends ReadonlyObject<infer _U>
+        ? T[P]
+        : T[P] extends AnyObject
+        ? ReadonlyObject<T[P]>
+        : T[P]
 }
 
 export function markReadonly<T extends AnyObject>(object: T): ReadonlyObject<T> {

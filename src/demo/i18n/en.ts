@@ -1,4 +1,4 @@
-import vueCollection from './en/vue-collection.json'
+import vueCollection from '@/lib/i18n/en/vue-collection.json'
 
 const en = {
     ['vue-collection']: vueCollection,

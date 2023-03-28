@@ -95,3 +95,6 @@ export { NValInput }
 
 import { type ValidatedForm, createValidatedForm } from './components/ValidatedForm'
 export { ValidatedForm, createValidatedForm }
+
+import { createComponent, createView, createProps } from './utils/component'
+export { createComponent, createView, createProps }

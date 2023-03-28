@@ -8,7 +8,7 @@ You can take a look at all components on [GitHub Pages](https://naptics.github.i
 
 ## Project Setup 🚧
 
-This section shows how to create a new Vue project with the recommended tech-stack to be ready to install Vue-Collection afterwards.
+This section shows how to create a new Vue project with the recommended tech-stack to be ready to install Vue Collection afterwards.
 
 1. Create a new vue-project with `npm init vue@latest`. Add at least typescript, jsx, vue-router, eslint and prettier.
 2. Remove boilerplate code.
@@ -23,7 +23,7 @@ This section shows how to create a new Vue project with the recommended tech-sta
 
 ## Installation Guide 🔨
 
-These are the steps to add Vue-Collection to an existing project. You may have to go through the steps of `Project Setup` and check if you have the neccesary (peer-)dependencies installed.
+These are the steps to add Vue Collection to an existing project. You may have to go through the steps of `Project Setup` and check if you have the neccesary (peer-)dependencies installed.
 
 1. Go to [npmjs.com](https://npmjs.com), sign in with naptics and create a new read-only classic access token.
 2. Save your access token under `~/.npmrc` with the following content, replacing `YOUR_TOKEN` with the access token.
@@ -32,7 +32,7 @@ These are the steps to add Vue-Collection to an existing project. You may have t
 //registry.npmjs.org/:_authToken=YOUR_TOKEN
 ```
 
-3. Install Vue-Collection with `npm i @naptics/vue-collection`.
+3. Install Vue Collection with `npm i @naptics/vue-collection`.
 4. Add tailwind config -> See below
 5. Register i18n provider -> See below
 
@@ -86,7 +86,7 @@ module.exports = {
 
 ## Register i18n Provider
 
-These are two sample files, how the i18n provider can be registered by using `vue-i18n`. The translation files of Vue-Collection have to be added to the i18n provider in order for the Vue-Collection components to work properly.
+These are two sample files, how the i18n provider can be registered by using `vue-i18n`. The translation files of Vue Collection have to be added to the i18n provider in order for the Vue Collection components to work properly.
 
 ```ts
 // src/i18n/index.ts

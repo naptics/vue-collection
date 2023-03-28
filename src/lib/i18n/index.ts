@@ -37,7 +37,6 @@ export function registerTranslationProvider(newProvider: TranslationProvider): v
  * @returns the translated message.
  */
 export function trsl(key: string, params?: Record<string, unknown>): string {
-    if (!provider) console.warn('Vue Collection: No translation provider has been registered!')
     return provider?.trsl(key, params) ?? key
 }
 
@@ -51,6 +50,5 @@ export function trsl(key: string, params?: Record<string, unknown>): string {
  * @see trsl
  */
 export function trslc(key: string, count: Nullish<number>, params?: Record<string, unknown>): string {
-    if (!provider) console.warn('Vue Collection: No translation provider has been registered!')
     return provider?.trslc(key, count, params) ?? key
 }

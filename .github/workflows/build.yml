@@ -1,6 +1,7 @@
 name: Lint, Type-Check, Build & Test
 
-on: push
+on: 
+  push: branches
 
 jobs:
   build:

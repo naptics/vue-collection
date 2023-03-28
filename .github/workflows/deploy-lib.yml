@@ -25,6 +25,7 @@ jobs:
             name: vue-collection-lib
             path: |
               lib
+              .npmrc
               package.json
               README.md
   deploy:

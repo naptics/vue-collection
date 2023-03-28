@@ -23,14 +23,15 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
             name: vue-collection-lib
-            path: lib
+            path: |
+              lib
+              package.json
+              README.md
   deploy:
     name: Deploy Library to npm
     needs: build
     runs-on: ubuntu-latest
     steps: 
-      - name: Checkout repository
-        uses: actions/checkout@v3
       - name: Setup node environment
         uses: actions/setup-node@v3
         with:
@@ -40,7 +41,8 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: vue-collection-lib
-          path: lib
+      - name: Prepare folder structure
+        run: mv ./lib/* .
       - run: npm publish --access=restricted
         env:
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}

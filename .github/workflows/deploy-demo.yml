@@ -9,6 +9,9 @@ permissions:
   pages: write
   id-token: write
 
+env:
+  VITE_BASE_PATH: vue-collection/
+
 jobs:
   build:
     name: Lint, Type-Check, Build & Test
@@ -16,6 +19,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
       - name: Setup node environment
         uses: actions/setup-node@v3
         with:
@@ -24,8 +29,6 @@ jobs:
       - run: npm run lint
       - run: npm run build-demo
       - run: npm run test
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
       - name: Upload demo as artifact
         uses: actions/upload-pages-artifact@v1
         with:

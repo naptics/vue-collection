@@ -2,6 +2,10 @@
     "name": "@naptics/vue-collection",
     "version": "0.0.3",
     "main": "./index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/naptics/vue-collection"
+    },
     "scripts": {
         "dev": "vite",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",

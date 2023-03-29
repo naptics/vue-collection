@@ -16,10 +16,11 @@ mv ./lib/src/lib/* ./lib
 rm -rf ./lib/src 
 rm ./lib/tsconfig.lib.tsbuildinfo 
 
-# Move all css files to lib
-echo "Copying .css files."
+# Move all css files from components to lib
+echo "Copying .css files from the components folder."
 cp ./src/lib/components/*.css ./lib/components
 
-# Transpile jsx file to js with babel
+# Transpile jsx files to js with babel
 echo "Using Babel to transpile jsx."
-./node_modules/.bin/babel lib --out-dir lib
+./node_modules/.bin/babel lib/components --out-dir lib/components
+find ./lib -name "*.jsx" -type f -delete

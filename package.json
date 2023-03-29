@@ -2,6 +2,10 @@
     "name": "@naptics/vue-collection",
     "version": "0.0.3",
     "main": "./index.js",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/naptics/vue-collection"
+    },
     "scripts": {
         "dev": "vite",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
@@ -12,7 +16,7 @@
         "build-demo": "run-p type-check-demo build-only-demo",
         "build-lib": "run-p type-check-lib build-only-lib",
         "build-only-demo": "vite build",
-        "build-only-lib": "rm -rf ./lib && tsc --project tsconfig.lib.json && mv ./lib/src/lib/* ./lib && rm -rf ./lib/src && rm ./lib/tsconfig.lib.tsbuildinfo && cp ./src/lib/components/*.css ./lib/components"
+        "build-only-lib": "bash ./scripts/build-lib.sh"
     },
     "dependencies": {
         "@headlessui/vue": "^1.7.10",
@@ -24,6 +28,8 @@
         "vue": "^3.2.36"
     },
     "devDependencies": {
+        "@babel/cli": "^7.21.0",
+        "@babel/core": "^7.21.3",
         "@intlify/unplugin-vue-i18n": "^0.8.2",
         "@rushstack/eslint-patch": "^1.2.0",
         "@tailwindcss/forms": "^0.5.3",
@@ -31,6 +37,7 @@
         "@types/node": "^18.14.0",
         "@vitejs/plugin-vue": "^4.0.0",
         "@vitejs/plugin-vue-jsx": "^3.0.0",
+        "@vue/babel-plugin-jsx": "^1.1.1",
         "@vue/eslint-config-prettier": "^7.1.0",
         "@vue/eslint-config-typescript": "^11.0.2",
         "@vue/test-utils": "^2.3.0",

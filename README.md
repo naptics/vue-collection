@@ -10,7 +10,7 @@ You can take a look at all components on [GitHub Pages](https://naptics.github.i
 
 This section shows how to create a new Vue project with the recommended tech-stack to be ready to install Vue Collection afterwards.
 
-1. Create a new vue-project with `npm init vue@latest`. Add at least typescript, jsx, vue-router, eslint and prettier.
+1. Create a new vue-project with `npm init vue@latest`. Add at least typescript, jsx, eslint and prettier.
 2. Remove boilerplate code.
 3. Follow the instructions to [install tailwind](https://tailwindcss.com/docs/installation/using-postcss).
     - `npm install -D tailwindcss postcss autoprefixer`
@@ -35,6 +35,10 @@ These are the steps to add Vue Collection to an existing project. You may have t
 3. Install Vue Collection with `npm i @naptics/vue-collection`.
 4. Add tailwind config -> See below
 5. Register i18n provider -> See below
+
+## Create new components
+
+After you have installed Vue Collection, you can start building components using the `createComponent` and the `createView` funcitions, which are exported by Vue Collection. They enforce you to only use the neccesary API provided by Vue and create components in a uniform way.
 
 ## Tailwind Config
 

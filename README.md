@@ -36,6 +36,10 @@ These are the steps to add Vue Collection to an existing project. You may have t
 4. Add tailwind config -> See below
 5. Register i18n provider -> See below
 
+## Create new components
+
+After you have installed Vue Collection, you can start building components using the `createComponent` and the `createView` funcitions, which are exported by Vue Collection. They enforce you to only use the neccesary API provided by Vue and create components in a uniform way.
+
 ## Tailwind Config
 
 With this tailwind config file, Vue Collection works as expected. Feel free to change the `default`, `primary` and `secondary` colors and add whatever is needed in your project.

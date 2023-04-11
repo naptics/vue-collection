@@ -50,7 +50,10 @@ export default createView('TooltipView', () => {
                     </div>
 
                     <div class="flex">
-                        <NTooltip text="I don't go away!" show placement="bottom-start">
+                        <NTooltip
+                            text="I don't go away, but I am a multiline text in a tooltip. I wrap around multiple lines."
+                            placement="bottom-start"
+                        >
                             <NBadge text="Hover me" />
                         </NTooltip>
                     </div>

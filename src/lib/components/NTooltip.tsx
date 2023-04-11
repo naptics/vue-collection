@@ -14,7 +14,7 @@ export const nTooltipProps = {
     /**
      * A slot to replace the content of the tooltip. This will override the `text` prop.
      */
-    content: Function as PropType<() => void>,
+    content: Function as PropType<() => JSX.Element>,
     /**
      * If set to `true` the tooltip is shown constantly.
      */
@@ -190,7 +190,7 @@ const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { sl
                     v-show={showTooltip.value}
                     class={[isHovering.value ? 'z-20' : 'z-10', props.maxWidth, 'tooltip']}
                 >
-                    <div class="bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm font-normal text-default-700">
+                    <div class="bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm whitespace-normal font-normal text-default-700">
                         {props.content?.() || props.text}
                     </div>
                     <div data-popper-arrow class="arrow" />

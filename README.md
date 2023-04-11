@@ -26,15 +26,17 @@ This section shows how to create a new Vue project with the recommended tech-sta
 These are the steps to add Vue Collection to an existing project. You may have to go through the steps of `Project Setup` and check if you have the neccesary (peer-)dependencies installed.
 
 1. Go to [npmjs.com](https://npmjs.com), sign in with naptics and create a new read-only classic access token.
-2. Save your access token under `~/.npmrc` with the following content, replacing `YOUR_TOKEN` with the access token.
+2. Add a `.npmrc` file in your repository and add the following contents.
 
 ```
-//registry.npmjs.org/:_authToken=YOUR_TOKEN
+//registry.npmjs.org/:_authToken=${NPM_TOKEN}
 ```
 
-3. Install Vue Collection with `npm i @naptics/vue-collection`.
-4. Add tailwind config -> See below
-5. Register i18n provider -> See below
+3. Add the created token to your environment with the key `NPM_TOKEN` (e.g., by modifing `~/.zshrc`).
+4. If the project also uses pipelines to build, make sure to create a second read-only token and add it to the build environment secrets.
+5. Install Vue Collection with `npm i @naptics/vue-collection`.
+6. Add tailwind config -> See below
+7. Register i18n provider -> See below
 
 ## Create new components
 

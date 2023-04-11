@@ -1,11 +1,11 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { computed, Transition, type PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/24/solid'
-import type { HeroIcon } from '../utils/utils'
+import type { HeroIcon } from '../utils/tailwind'
 
-export const nDropdownProps = createProps({
+export const nDropdownProps = {
     /**
      * The title of the dropdown-button.
      */
@@ -31,7 +31,7 @@ export const nDropdownProps = createProps({
      * A slot to replace the button of the dropdown.
      */
     button: Function as PropType<() => JSX.Element>,
-})
+} as const
 
 export type DropdownItem = {
     /**

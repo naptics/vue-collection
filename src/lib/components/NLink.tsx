@@ -1,9 +1,9 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import type { TWTextSize } from '../utils/tailwind'
 import { computed, type PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 
-export const nLinkProps = createProps({
+export const nLinkProps = {
     /**
      * The text of the link. Can also be set in the default slot.
      */
@@ -36,7 +36,7 @@ export const nLinkProps = createProps({
      * If the `route` prop is not set, the link will act as a regular button.
      */
     onClick: Function as PropType<() => void>,
-})
+} as const
 
 /**
  * The `NLink` is a styled text which can be used as a {@link RouterLink} or a regular button.

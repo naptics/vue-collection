@@ -1,11 +1,11 @@
-import type { HeroIcon } from '../utils/utils'
-import { createComponent, createProps } from '../utils/component'
+import type { HeroIcon } from '../utils/tailwind'
+import { createComponent } from '../utils/component'
 import type { PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 import { nButtonProps } from './NButton'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 
-export const nIconButtonProps = createProps({
+export const nIconButtonProps = {
     /**
      * The icon of the icon-button.
      */
@@ -52,7 +52,7 @@ export const nIconButtonProps = createProps({
      */
     onClick: Function as PropType<() => void>,
     ...nToolTipPropsForImplementor,
-})
+} as const
 
 /**
  * The `NIconButton` is a regular button which does not have any text but an icon instead.

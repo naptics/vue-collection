@@ -1,9 +1,9 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import type { PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 import { nButtonProps } from './NButton'
 
-export const nTableActionProps = createProps({
+export const nTableActionProps = {
     /**
      * The route of the action. If set the component will be a {@link RouterLink}.
      */
@@ -21,7 +21,7 @@ export const nTableActionProps = createProps({
      * It is only called when the `route` prop is not set on the action.
      */
     onClick: Function as PropType<() => void>,
-})
+} as const
 
 /**
  * The `NTableAction` is a button or {@link RouterLink} which is styled to fit into a table.

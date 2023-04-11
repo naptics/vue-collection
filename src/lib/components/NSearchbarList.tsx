@@ -1,18 +1,18 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { ref } from 'vue'
 import { vModelProps } from '../utils/vModel'
 
 import NSearchbar, { nSearchbarProps, type NSearchbarExposed } from './NSearchbar'
 import NSuggestionList, { nSuggestionListPropsForConfig } from './NSuggestionList'
 
-export const nSearchbarListProps = createProps({
+export const nSearchbarListProps = {
     ...nSuggestionListPropsForConfig,
     ...vModelProps(String),
     /**
      * @see {@link nSearchbarProps.placeholder}
      */
     placeholder: nSearchbarProps.placeholder,
-})
+} as const
 
 /**
  * The `NSearchbarList` is a {@link NSearchbar} with a {@link NSuggestionList}.

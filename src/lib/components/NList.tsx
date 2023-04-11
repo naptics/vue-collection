@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import type { PropType } from 'vue'
 
 export type ListItem = {
@@ -12,7 +12,7 @@ export type ListItem = {
     text?: string
 }
 
-export const nListProps = createProps({
+export const nListProps = {
     /**
      * The items which are displayed in the list.
      */
@@ -20,7 +20,7 @@ export const nListProps = createProps({
         type: Array as PropType<ListItem[]>,
         default: () => [],
     },
-})
+} as const
 
 /**
  * The `NList` displays key-value data in an appealing way.

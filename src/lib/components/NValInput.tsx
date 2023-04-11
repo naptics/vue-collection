@@ -1,11 +1,11 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { computed } from 'vue'
 import { ref, reactive, type PropType, watch } from 'vue'
 import NInput, { nInputProps, type NInputExposed } from './NInput'
 import { type ValidationRule, type ValidationResult, validate, type InputValue, required } from '../utils/validation'
 import type { ValidatedForm } from './ValidatedForm'
 
-export const validationProps = createProps({
+export const validationProps = {
     /**
      * If set to `true` this input is always valid when its value is empty.
      * If set to `false` the input receives the {@link required} rule. Default is `false`.
@@ -42,16 +42,16 @@ export const validationProps = createProps({
      * Disables the validation on blur. Should only be used in special occasions.
      */
     disableBlurValidation: Boolean,
-})
+} as const
 
-export const nValInputProps = createProps({
+export const nValInputProps = {
     ...nInputProps,
     ...validationProps,
     /**
      * A slot to replace the input.
      */
     input: Function as PropType<(props: InputSlotProps) => JSX.Element>,
-})
+} as const
 
 export type InputSlotProps = {
     onBlur(): void

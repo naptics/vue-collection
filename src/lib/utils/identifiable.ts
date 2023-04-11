@@ -1,4 +1,4 @@
-import { markReadonly, type Nullish } from './utils'
+import { isNullish, type Nullish } from './utils'
 
 type IdType = string
 
@@ -11,7 +11,8 @@ export type MaybeIdentifiable = Readonly<{ id?: Nullish<IdType> }>
  * @param id The `id` of the desired item.
  * @returns The first item with the specified `id` or `undefined` if none exists.
  */
-function find<T extends Identifiable>(array: T[], id: IdType): T | undefined {
+function find<T extends Identifiable>(array: Nullish<T[]>, id: IdType): T | undefined {
+    if (isNullish(array)) return undefined
     const filtered = array.filter(item => item.id === id)
     if (filtered.length > 0) return filtered[0]
     else return undefined
@@ -81,4 +82,4 @@ function areSameArrays(first: Identifiable[], second: Identifiable[]): boolean {
 /**
  * This object contains utility functions to deal with {@link Identifiable} objects.
  */
-export const Id = markReadonly({ find, contains, insert, remove, areSameArrays })
+export const Id = { find, contains, insert, remove, areSameArrays } as const

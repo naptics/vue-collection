@@ -1,5 +1,5 @@
 import { isWidthBreakpoint, type TWBreakpoint } from '../utils/breakpoints'
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/24/solid'
 import { computed, Fragment, ref, type PropType, watch } from 'vue'
 import NIconButton from './NIconButton'
@@ -49,7 +49,7 @@ export type TableRow = Record<string, TableItem> & {
 const N_TABLE_ACTION_KEY = 'action'
 export type TableItem = string | number | (() => JSX.Element)
 
-export const nTableProps = createProps({
+export const nTableProps = {
     /**
      * The headings of the table. These define which columns are shown in the table and in which order.
      */
@@ -94,7 +94,7 @@ export const nTableProps = createProps({
         type: Array as PropType<TableRow[]>,
         default: () => [],
     },
-})
+} as const
 
 /**
  * The `NTable` is a styled html table which accepts data and displays it appropriately.

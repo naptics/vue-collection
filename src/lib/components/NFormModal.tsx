@@ -1,11 +1,11 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import type { TWMaxWidth } from '../utils/tailwind'
 import { reactive, toRefs, type PropType } from 'vue'
 import NForm from './NForm'
 import NModal, { nModalProps } from './NModal'
 import type { ValidatedForm } from './ValidatedForm'
 
-export const nFormModalProps = createProps({
+export const nFormModalProps = {
     ...nModalProps,
     /**
      * The maximum width of the modal. A regular tailwind class.
@@ -27,7 +27,7 @@ export const nFormModalProps = createProps({
      * All inputs should be added to the form.
      */
     form: Object as PropType<ValidatedForm>,
-})
+} as const
 
 /**
  * The `NFormModal` is a {@link NModal} with an integrated form.

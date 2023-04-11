@@ -1,4 +1,4 @@
-import { createComponent, createProps, type ExtractedProps } from '../utils/component'
+import { createComponent, type ExtractedProps } from '../utils/component'
 import { uniqueId } from '../utils/utils'
 import type { TWMaxWidth } from '../utils/tailwind'
 import { computed, onMounted, ref, watch, type PropType, onUnmounted, Transition } from 'vue'
@@ -6,7 +6,7 @@ import { createPopper, type Instance as PopperInstance } from '@popperjs/core'
 import { watchRef } from '../utils/vue'
 import './NTooltip.css'
 
-export const nTooltipProps = createProps({
+export const nTooltipProps = {
     /**
      * The text content of the tooltip.
      */
@@ -42,7 +42,7 @@ export const nTooltipProps = createProps({
         type: String as PropType<TWMaxWidth>,
         default: 'max-w-xs',
     },
-})
+} as const
 
 /**
  * These props are made to use on a component which implements the tooltip

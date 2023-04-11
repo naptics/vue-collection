@@ -1,9 +1,9 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { computed, type PropType } from 'vue'
 import NLoadingIndicator from './NLoadingIndicator'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 
-export const nButtonProps = createProps({
+export const nButtonProps = {
     /**
      * The color of the button.
      */
@@ -36,7 +36,7 @@ export const nButtonProps = createProps({
      */
     onClick: Function as PropType<() => void>,
     ...nToolTipPropsForImplementor,
-})
+} as const
 
 /**
  * The `NButton` is a styled button.

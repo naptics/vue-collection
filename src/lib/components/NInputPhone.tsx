@@ -1,10 +1,10 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { external } from '../utils/validation'
 import { computed, Suspense } from 'vue'
 import NValInput, { nValInputProps } from './NValInput'
 import { trsl } from '../i18n'
 
-export const nInputPhoneProps = createProps(nValInputProps)
+export const nInputPhoneProps = nValInputProps
 
 /**
  * The `NInputPhone` autoformats phone numbers and checks if they are valid.

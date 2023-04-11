@@ -1,9 +1,9 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import type { TWTextSize } from '../utils/tailwind'
 import type { PropType } from 'vue'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 
-export const nBadgeProps = createProps({
+export const nBadgeProps = {
     /**
      * The text of the badge. Can alternatively be passed in the default slot.
      */
@@ -44,7 +44,7 @@ export const nBadgeProps = createProps({
         default: true,
     },
     ...nToolTipPropsForImplementor,
-})
+} as const
 
 /**
  * The `NBadge` is a styled element to wrap a text.

@@ -1,5 +1,5 @@
 import { trslc } from '../i18n'
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { maxLengthSplitCenter } from '../utils/stringMaxLength'
 import { notNullish } from '../utils/utils'
 import { XMarkIcon } from '@heroicons/vue/24/solid'
@@ -9,7 +9,7 @@ import NIconButton from './NIconButton'
 import NLink from './NLink'
 import { vModelProps } from '../utils/vModel'
 
-export const nDropzoneProps = createProps({
+export const nDropzoneProps = {
     ...vModelProps<File[]>(Array),
     /**
      * A description which files are allowed for this dropzone.
@@ -58,7 +58,7 @@ export const nDropzoneProps = createProps({
         type: String,
         default: 'min-h-36',
     },
-})
+} as const
 
 /**
  * The `NDropzone` is an area where files can be added by the user by drag & drop.

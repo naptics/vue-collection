@@ -1,8 +1,8 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { vModelProps } from '../utils/vModel'
 import { nextTick, ref } from 'vue'
 
-export const nCheckboxProps = createProps({
+export const nCheckboxProps = {
     ...vModelProps(Boolean),
     /**
      * The color of the checkbox.
@@ -15,7 +15,7 @@ export const nCheckboxProps = createProps({
      * If set to `true` the checkbox is disabled and no interaction is possible.
      */
     disabled: Boolean,
-})
+} as const
 
 /**
  * The `NCheckbox` is a styled checkbox.

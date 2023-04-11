@@ -1,8 +1,8 @@
-import type { HeroIcon } from '../utils/utils'
-import { createComponent, createProps } from '../utils/component'
+import type { HeroIcon } from '../utils/tailwind'
+import { createComponent } from '../utils/component'
 import type { PropType } from 'vue'
 
-export const nIconCircleProps = createProps({
+export const nIconCircleProps = {
     /**
      * The icon of the icon-circle.
      */
@@ -43,7 +43,7 @@ export const nIconCircleProps = createProps({
         type: Number,
         default: 100,
     },
-})
+} as const
 
 const DEFAULT_CIRCLE_SIZE = 16
 const SCALING_FACTOR = 0.55

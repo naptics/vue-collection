@@ -1,10 +1,10 @@
 import { trsl } from '../i18n'
 import type { Identifiable } from '../utils/identifiable'
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { computed, ref, type PropType } from 'vue'
 import NLoadingIndicator from './NLoadingIndicator'
 
-export const nSuggestionListPropsForConfig = createProps({
+export const nSuggestionListPropsForConfig = {
     /**
      * The items which are available to show in the list. The first `maxItems` will be displayed.
      */
@@ -41,9 +41,9 @@ export const nSuggestionListPropsForConfig = createProps({
      * but the focus has completely disappeared from the input and the list.
      */
     onRealBlur: Function as PropType<() => void>,
-})
+} as const
 
-export const nSuggestionListPropsForInput = createProps({
+export const nSuggestionListPropsForInput = {
     /**
      * The slot for the input, which will be enhanced with the suggestion list.
      */
@@ -66,12 +66,12 @@ export const nSuggestionListPropsForInput = createProps({
         type: String,
         required: true,
     },
-})
+} as const
 
-export const nSuggestionListProps = createProps({
+export const nSuggestionListProps = {
     ...nSuggestionListPropsForConfig,
     ...nSuggestionListPropsForInput,
-})
+} as const
 
 export type InputSlotProps = {
     /**

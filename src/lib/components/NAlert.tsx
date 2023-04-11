@@ -1,5 +1,5 @@
-import type { HeroIcon } from '../utils/utils'
-import { createComponent, createProps } from '../utils/component'
+import type { HeroIcon } from '../utils/tailwind'
+import { createComponent } from '../utils/component'
 import { CheckCircleIcon, ExclamationCircleIcon, InformationCircleIcon, XMarkIcon } from '@heroicons/vue/24/solid'
 import { computed, type PropType } from 'vue'
 import NIconButton from './NIconButton'
@@ -7,7 +7,7 @@ import NLoadingIndicator from './NLoadingIndicator'
 
 export type AlertVariant = 'success' | 'info' | 'warning' | 'error' | 'loading'
 
-export const nAlertProps = createProps({
+export const nAlertProps = {
     /**
      * The variant of the alert. This defines its color and icon.
      */
@@ -27,7 +27,7 @@ export const nAlertProps = createProps({
      * This is called, when the X-button is clicked.
      */
     onDismiss: Function as PropType<() => void>,
-})
+} as const
 
 /**
  * The `NAlert` is a fully styled alert with multiple variants.

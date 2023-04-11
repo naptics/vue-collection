@@ -1,3 +1,5 @@
+import type { FunctionalComponent, HTMLAttributes, VNodeProps } from 'vue'
+
 export type TWTextSize =
     | 'text-xs'
     | 'text-sm'
@@ -35,3 +37,5 @@ export type TWMaxWidth =
     | 'max-w-screen-lg'
     | 'max-w-screen-xl'
     | 'max-w-screen-2xl'
+
+export type HeroIcon = FunctionalComponent<HTMLAttributes & VNodeProps>

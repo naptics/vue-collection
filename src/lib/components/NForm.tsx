@@ -1,8 +1,8 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import type { PropType } from 'vue'
 import type { ValidatedForm } from './ValidatedForm'
 
-export const nFormProps = createProps({
+export const nFormProps = {
     /**
      * The {@link ValidatedForm} which will be used to validate the inputs.
      * All inputs in this forms hierarchy should be added to the {@link ValidatedForm}.
@@ -13,7 +13,7 @@ export const nFormProps = createProps({
      * and when the validation of the `form` was successful.
      */
     onSubmit: Function as PropType<() => void>,
-})
+} as const
 
 /**
  * The `NForm` should be used to wrap multiple inputs.

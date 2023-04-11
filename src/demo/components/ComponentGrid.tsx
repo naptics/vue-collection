@@ -1,12 +1,12 @@
-import { createComponent, createProps } from '@/lib/utils/component'
+import { createComponent } from '@/lib/utils/component'
 import { computed, type PropType } from 'vue'
 
-export const componentGridProps = createProps({
+export const componentGridProps = {
     cols: {
         type: Number as PropType<2 | 4 | 6>,
         default: 6,
     },
-})
+} as const
 
 export default createComponent('ComponentGrid', componentGridProps, (props, { slots }) => {
     const classes = computed(() => {

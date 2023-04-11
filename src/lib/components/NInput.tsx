@@ -1,11 +1,11 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { ref, type PropType } from 'vue'
 import { ExclamationCircleIcon } from '@heroicons/vue/24/solid'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 import './NInput.css'
 import { vModelProps } from '../utils/vModel'
 
-export const nInputProps = createProps({
+export const nInputProps = {
     ...vModelProps(String),
     /**
      * The name of the input. Is displayed as a label above the input.
@@ -62,7 +62,7 @@ export const nInputProps = createProps({
      */
     onBlur: Function as PropType<() => void>,
     ...nToolTipPropsForImplementor,
-})
+} as const
 
 export type NInputExposed = {
     /**

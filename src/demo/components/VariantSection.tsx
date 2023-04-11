@@ -1,9 +1,9 @@
-import { createComponent, createProps } from '@/lib/utils/component'
+import { createComponent } from '@/lib/utils/component'
 
-export const variantSectionProps = createProps({
+export const variantSectionProps = {
     title: String,
     subtitle: String,
-})
+} as const
 
 export default createComponent('VariantSection', variantSectionProps, (props, { slots }) => {
     return () => (

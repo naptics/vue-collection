@@ -1,10 +1,10 @@
 import { trsl } from '../i18n'
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { MagnifyingGlassIcon } from '@heroicons/vue/24/solid'
 import { ref, type PropType } from 'vue'
 import { vModelProps } from '../utils/vModel'
 
-export const nSearchbarProps = createProps({
+export const nSearchbarProps = {
     ...vModelProps(String),
     /**
      * The placeholder of the search-bar.
@@ -29,7 +29,7 @@ export const nSearchbarProps = createProps({
      * This is called when the search-bar looses focus.
      */
     onBlur: Function as PropType<() => void>,
-})
+} as const
 
 export type NSearchbarExposed = {
     /**

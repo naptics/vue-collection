@@ -1,10 +1,10 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { Id } from '../utils/identifiable'
 import { computed, ref, type PropType } from 'vue'
 import NSuggestionList, { nSuggestionListProps } from './NSuggestionList'
 import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'
 
-export const nInputSuggestionProps = createProps({
+export const nInputSuggestionProps = {
     ...nValInputProps,
     /**
      * If set to `true` the list is hidden even if there are still matching items in the list.
@@ -22,7 +22,7 @@ export const nInputSuggestionProps = createProps({
         type: Array as PropType<string[]>,
         default: () => [],
     },
-})
+} as const
 
 /**
  * `NInputSuggestion` is an input, which shows a list of possible suggestions to the user

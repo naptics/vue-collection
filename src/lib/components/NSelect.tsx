@@ -1,11 +1,11 @@
 import { trsl } from '../i18n'
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import type { Identifiable } from '../utils/identifiable'
 import { ref, type PropType } from 'vue'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'
 
-export const nSelectProps = createProps({
+export const nSelectProps = {
     /**
      * The id of the currently selected option of this input.
      */
@@ -40,7 +40,7 @@ export const nSelectProps = createProps({
      */
     form: nValInputProps.form,
     ...nToolTipPropsForImplementor,
-})
+} as const
 
 export type SelectionOption = Identifiable & { label: string }
 export type NSelectExposed = NValInputExposed

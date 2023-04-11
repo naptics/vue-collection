@@ -55,17 +55,6 @@ export function createView(
 }
 
 /**
- * If props are specified outside of the {@link createComponent}
- * function - e.g. to export them or for better code style -
- * this helper function can be used to ensure strict typing.
- * @param props the props which should be created.
- * @returns the created props, with correct typing.
- */
-export function createProps<T extends Props>(props: T): T {
-    return props
-}
-
-/**
  * Extracts props from another prop object and returns a reactive object with the specified props.
  * @param props the props to extract from
  * @param keys the keys to extract from the props

@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import type { PropType } from 'vue'
 import { Dialog, DialogOverlay, DialogTitle, TransitionRoot, TransitionChild } from '@headlessui/vue'
 import NButton from './NButton'
@@ -8,7 +8,7 @@ import { trsl } from '../i18n'
 import type { TWMaxWidth } from '../utils/tailwind'
 import { vModelProps } from '../utils/vModel'
 
-export const nModalProps = createProps({
+export const nModalProps = {
     ...vModelProps(Boolean),
     /**
      * If set to `true` the header of the modal is hidden.
@@ -109,7 +109,7 @@ export const nModalProps = createProps({
      * A slot to replace the whole footer section.
      */
     footer: Function as PropType<(props: ModalSlotProps) => JSX.Element>,
-})
+} as const
 
 export type ModalSlotProps = { ok: () => void; cancel: () => void }
 

@@ -1,12 +1,12 @@
-import { createComponent, createProps } from '../utils/component'
-import type { HeroIcon } from '../utils/utils'
+import { createComponent } from '../utils/component'
+import type { HeroIcon } from '../utils/tailwind'
 import type { TWTextSize } from '../utils/tailwind'
 import { ChevronRightIcon } from '@heroicons/vue/24/solid'
 import type { PropType } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 import NLink from './NLink'
 
-export const nBreadcrumbProps = createProps({
+export const nBreadcrumbProps = {
     /**
      * The items of the breadcrumb.
      */
@@ -51,7 +51,7 @@ export const nBreadcrumbProps = createProps({
      * The passsed item is the item before the seperator.
      */
     seperator: Function as PropType<(item: BreadcrumbItem, index: number) => JSX.Element>,
-})
+} as const
 
 export type BreadcrumbItem = {
     /**

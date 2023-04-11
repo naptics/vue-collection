@@ -1,15 +1,15 @@
-import { createComponent, createProps } from '@/lib/utils/component'
+import { createComponent } from '@/lib/utils/component'
 import { computed, type PropType } from 'vue'
 import ComponentGrid, { componentGridProps } from '@/demo/components/ComponentGrid'
 
-export const colorGridProps = createProps({
+export const colorGridProps = {
     ...componentGridProps,
     colors: {
         type: Number,
         default: 6,
     },
     item: Function as PropType<(color: string, index: number) => JSX.Element>,
-})
+} as const
 
 export default createComponent('ColorGrid', colorGridProps, props => {
     const colors = ['primary', 'secondary', 'green', 'red', 'yellow', 'default']

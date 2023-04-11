@@ -1,9 +1,9 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/vue/24/solid'
 import { computed, watch, type ComputedRef, type PropType } from 'vue'
 import './NPagination.css'
 
-export const nPaginationProps = createProps({
+export const nPaginationProps = {
     /**
      * The page number which is currently selected.
      */
@@ -32,7 +32,7 @@ export const nPaginationProps = createProps({
      * This information can be useful for prefetching.
      */
     onVisiblePagesChanged: Function as PropType<(visiblePages: number[]) => void>,
-})
+} as const
 
 /**
  * The `NPagination` is a styled pagination component.

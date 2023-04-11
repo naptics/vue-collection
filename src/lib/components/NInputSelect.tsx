@@ -1,4 +1,4 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { Id, type Identifiable } from '../utils/identifiable'
 import { option } from '../utils/validation'
 import { vModelForRef } from '../utils/vModel'
@@ -8,7 +8,7 @@ import { nInputProps } from './NInput'
 import NSuggestionList, { nSuggestionListProps } from './NSuggestionList'
 import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'
 
-export const nInputSelectProps = createProps({
+export const nInputSelectProps = {
     ...nInputProps,
     /**
      * The id of the currently selected option of this input.
@@ -58,7 +58,7 @@ export const nInputSelectProps = createProps({
      * @see {@link nSuggestionListProps.listItem}
      */
     listItem: nSuggestionListProps.listItem,
-})
+} as const
 
 export type InputSelectOption = Identifiable & { label: string } & Record<string, unknown>
 

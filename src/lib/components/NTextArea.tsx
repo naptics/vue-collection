@@ -1,11 +1,11 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { ref, type PropType } from 'vue'
 import { ExclamationCircleIcon } from '@heroicons/vue/24/solid'
 import NTooltip, { mapTooltipProps, nToolTipPropsForImplementor } from './NTooltip'
 import { vModelProps } from '../utils/vModel'
 import NValInput, { validationProps } from './NValInput'
 
-const nTextAreaBaseProps = createProps({
+const nTextAreaBaseProps = {
     ...vModelProps(String),
     /**
      * The name of the text area. Is displayed as a label above the text area.
@@ -61,12 +61,12 @@ const nTextAreaBaseProps = createProps({
      */
     onBlur: Function as PropType<() => void>,
     ...nToolTipPropsForImplementor,
-})
+} as const
 
-export const nTextAreaProps = createProps({
+export const nTextAreaProps = {
     ...nTextAreaBaseProps,
     ...validationProps,
-})
+} as const
 
 export type NTextAreaExposed = {
     /**

@@ -1,34 +1,12 @@
-import type { FunctionalComponent, HTMLAttributes, VNodeProps } from 'vue'
+/*
+ * ---------- Null and Undefined ----------
+ */
 
-export type AnyObject = Record<string | number | symbol, unknown>
-export type EmptyObject = Record<string, never>
+import type { Ref } from 'vue'
 
 export type Optional<T> = T | undefined
 export type Nullable<T> = T | null
 export type Nullish<T> = T | null | undefined
-
-export type HeroIcon = FunctionalComponent<HTMLAttributes & VNodeProps>
-
-export type ReadonlyObject<T extends AnyObject> = {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    readonly [P in keyof T]: T[P] extends ReadonlyObject<infer _U>
-        ? T[P]
-        : T[P] extends AnyObject
-        ? ReadonlyObject<T[P]>
-        : T[P]
-}
-
-export function markReadonly<T extends AnyObject>(object: T): ReadonlyObject<T> {
-    return object as ReadonlyObject<T>
-}
-
-let currentId = 1
-/**
- * Generates and returns a non random but unique id.
- */
-export function uniqueId(): number {
-    return currentId++
-}
 
 /**
  * Determines if a value is not null or undefined.
@@ -46,4 +24,51 @@ export function notNullish<T>(value: Nullish<T>): value is T {
  */
 export function isNullish(value: Nullish<unknown>): value is null | undefined {
     return value === null || value === undefined
+}
+
+/**
+ * Determines if the value of a ref is not nullish.
+ * @param ref the ref to check
+ * @returns `true` if the value of the ref is not nullish.
+ * @see notNullish
+ */
+export function notNullishRef<T>(ref: Ref<T>): ref is Ref<NonNullable<T>> {
+    return notNullish(ref.value)
+}
+
+/*
+ * ---------- Objects ----------
+ */
+
+export type AnyObject = Record<string | number | symbol, unknown>
+export type EmptyObject = Record<string, never>
+
+export function isAnyObject(object: unknown): object is AnyObject {
+    return typeof object === 'object' && !Array.isArray(object)
+}
+
+export type ReadonlyObject<T extends AnyObject> = {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    readonly [P in keyof T]: T[P] extends ReadonlyObject<infer _U>
+        ? T[P]
+        : T[P] extends AnyObject
+        ? ReadonlyObject<T[P]>
+        : T[P]
+}
+
+export function markReadonly<T extends AnyObject>(object: T): ReadonlyObject<T> {
+    return object as ReadonlyObject<T>
+}
+
+/*
+ * ---------- Unique Id ----------
+ */
+
+let currentId = 1
+
+/**
+ * Generates and returns a non random but unique id.
+ */
+export function uniqueId(): number {
+    return currentId++
 }

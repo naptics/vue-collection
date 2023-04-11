@@ -1,17 +1,17 @@
 import { deferred, type DeferredPromise } from '../utils/deferred'
-import { createComponent, createProps, extractProps } from '../utils/component'
+import { createComponent, extractProps } from '../utils/component'
 import { CheckIcon, ExclamationTriangleIcon, LightBulbIcon, TrashIcon } from '@heroicons/vue/24/outline'
 import { computed, ref, type PropType } from 'vue'
 import NIconCircle from './NIconCircle'
 import NModal from './NModal'
 import { DialogTitle } from '@headlessui/vue'
-import type { HeroIcon } from '../utils/utils'
+import type { HeroIcon } from '../utils/tailwind'
 import { trsl } from '../i18n'
 import { vModelForRef } from '../utils/vModel'
 
 export type DialogVariant = 'success' | 'info' | 'warning' | 'danger' | 'remove'
 
-export const nDialogProps = createProps({
+export const nDialogProps = {
     /**
      * The title of the dialog.
      */
@@ -63,7 +63,7 @@ export const nDialogProps = createProps({
      * If set to `true` the cancel-button is hidden.
      */
     hideCancel: Boolean,
-})
+}
 
 export type NDialogExposed = {
     /**

@@ -1,12 +1,12 @@
 import { trsl } from '../i18n'
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { ref, type PropType } from 'vue'
 import NButton from './NButton'
 import type { DialogVariant, NDialogExposed } from './NDialog'
 import NDialog from './NDialog'
 import NFormModal, { nFormModalProps } from './NFormModal'
 
-export const nCrudModalProps = createProps({
+export const nCrudModalProps = {
     ...nFormModalProps,
     /**
      * The text of the remove-button.
@@ -22,6 +22,14 @@ export const nCrudModalProps = createProps({
         type: String,
         default: 'red',
     },
+    /**
+     * If set to `true` the ok-button is hidden.
+     */
+    hideRemove: Boolean,
+    /**
+     * If set to `true` the ok-button is disabled.
+     */
+    okDisabled: Boolean,
     /**
      * The title of the dialog which appears when clicking on the remove-button.
      */
@@ -52,7 +60,7 @@ export const nCrudModalProps = createProps({
      * This is called, when the remove-button has been clicked and the dialog has been accepted.
      */
     onRemove: Function as PropType<() => void>,
-})
+} as const
 
 /**
  * The `NCrudModal` is a {@link NFormModal} which has some convenience features for a CRUD-scenario.

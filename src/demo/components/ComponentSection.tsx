@@ -1,12 +1,12 @@
-import { createComponent, createProps } from '@/lib/utils/component'
+import { createComponent } from '@/lib/utils/component'
 import { LinkIcon } from '@heroicons/vue/24/solid'
 import { RouterLink } from 'vue-router'
 
-export const componentSectionProps = createProps({
+export const componentSectionProps = {
     id: String,
     title: String,
     subtitle: String,
-})
+} as const
 
 export default createComponent('ComponentSection', componentSectionProps, (props, { slots }) => {
     return () => (

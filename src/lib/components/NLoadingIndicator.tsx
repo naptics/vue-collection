@@ -1,8 +1,8 @@
-import { createComponent, createProps } from '../utils/component'
+import { createComponent } from '../utils/component'
 import { computed, useCssVars } from 'vue'
 import './NLoadingIndicator.css'
 
-export const nLoadingIndicator = createProps({
+export const nLoadingIndicator = {
     /**
      * The color of the loading-indicator.
      */
@@ -24,7 +24,7 @@ export const nLoadingIndicator = createProps({
         type: Number,
         default: 10,
     },
-})
+} as const
 
 /**
  * The `NLoadingIndicator` is a styled loading indicator.

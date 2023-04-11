@@ -3,7 +3,7 @@ import de from './de'
 import { createI18n } from 'vue-i18n'
 import { registerTranslationProvider } from '@/lib/i18n'
 
-const i18n = createI18n({
+export const i18n = createI18n({
     legacy: false,
     locale: 'en',
     messages: {

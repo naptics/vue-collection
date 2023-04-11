@@ -1,4 +1,4 @@
-import { isNullish, markReadonly, type Nullish } from './utils'
+import { isNullish, type Nullish } from './utils'
 
 type IdType = string
 
@@ -82,4 +82,4 @@ function areSameArrays(first: Identifiable[], second: Identifiable[]): boolean {
 /**
  * This object contains utility functions to deal with {@link Identifiable} objects.
  */
-export const Id = markReadonly({ find, contains, insert, remove, areSameArrays })
+export const Id = { find, contains, insert, remove, areSameArrays } as const

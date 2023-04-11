@@ -47,6 +47,9 @@ export function isAnyObject(object: unknown): object is AnyObject {
     return typeof object === 'object' && !Array.isArray(object)
 }
 
+/**
+ * Marks all properties of an object (including sub-objects) as readonly.
+ */
 export type ReadonlyObject<T extends AnyObject> = {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     readonly [P in keyof T]: T[P] extends ReadonlyObject<infer _U>
@@ -56,7 +59,10 @@ export type ReadonlyObject<T extends AnyObject> = {
         : T[P]
 }
 
-export function markReadonly<T extends AnyObject>(object: T): ReadonlyObject<T> {
+/**
+ * Returns the same object casted to a {@link ReadonlyObject}.
+ */
+export function readonlyObject<T extends AnyObject>(object: T): ReadonlyObject<T> {
     return object as ReadonlyObject<T>
 }
 

@@ -23,6 +23,10 @@ export const nCrudModalProps = {
         default: 'red',
     },
     /**
+     * If set to `true` the remove-button is disabled.
+     */
+    removeDisabled: Boolean,
+    /**
      * If set to `true` the ok-button is hidden.
      */
     hideRemove: Boolean,
@@ -87,7 +91,7 @@ export default createComponent('NCrudModal', nCrudModalProps, (props, { slots })
                 (({ ok, cancel }) => (
                     <div class="flex justify-between">
                         <div>
-                            <NButton color={props.removeColor} onClick={remove}>
+                            <NButton color={props.removeColor} onClick={remove} disabled={props.removeDisabled}>
                                 {props.removeText}
                             </NButton>
                         </div>

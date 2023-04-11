@@ -22,6 +22,9 @@ export function addDocumentResizeEventListener(): void {
     }
 }
 
+/**
+ * Returns a ref whose value is `true` as long as the `document.body.clientWitdh` is above the specified breakpoint.
+ */
 export function isWidthBreakpoint(breakpoint: TWBreakpoint): ComputedRef<boolean> {
     switch (breakpoint) {
         case 'sm':

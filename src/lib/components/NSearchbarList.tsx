@@ -12,6 +12,14 @@ export const nSearchbarListProps = {
      * @see {@link nSearchbarProps.placeholder}
      */
     placeholder: nSearchbarProps.placeholder,
+    /**
+     * Adds the classes directly to the input (e.g. for shadow).
+     */
+    inputClass: String,
+    /**
+     * Adds the classes to the top-level element.
+     */
+    addClass: String,
 } as const
 
 /**
@@ -30,7 +38,8 @@ export default createComponent('NSearchbarList', nSearchbarListProps, props => {
                     value={props.value}
                     onUpdateValue={props.onUpdateValue}
                     placeholder={props.placeholder}
-                    inputClass="shadow-lg"
+                    inputClass={`shadow-lg ${props.inputClass}`}
+                    addClass={props.addClass}
                     onFocus={onFocus}
                     onBlur={onBlur}
                 />

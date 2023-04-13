@@ -24,6 +24,10 @@ export const nLoadingIndicator = {
         type: Number,
         default: 10,
     },
+    /**
+     * Adds the classes to the top-level element.
+     */
+    addClass: String,
 } as const
 
 /**
@@ -39,7 +43,7 @@ export default createComponent('NLoadingIndicator', nLoadingIndicator, props => 
     }))
 
     return () => (
-        <div class="lds-ellipsis" style={`height:${props.size}px;width:${totalWidth.value}px`}>
+        <div class={`lds-ellipsis ${props.addClass}`} style={`height:${props.size}px;width:${totalWidth.value}px`}>
             <div
                 class={`bg-${props.color}-${props.shade}`}
                 style={`height:${props.size}px;width:${props.size}px;left:0px`}

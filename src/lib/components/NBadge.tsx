@@ -43,6 +43,10 @@ export const nBadgeProps = {
         type: Boolean,
         default: true,
     },
+    /**
+     * Adds the classes to the top-level element.
+     */
+    addClass: String,
     ...nToolTipPropsForImplementor,
 } as const
 
@@ -57,6 +61,7 @@ export default createComponent('NBadge', nBadgeProps, (props, { slots }) => {
                     'px-2 py-1 rounded-md font-semibold shadow',
                     `${props.textSize} bg-${props.color}-${props.shade} text-${props.color}-${props.textShade}`,
                     props.allCaps ? 'uppercase' : '',
+                    props.addClass,
                 ]}
             >
                 {slots.default?.() || props.text}

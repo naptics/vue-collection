@@ -20,6 +20,10 @@ export const nListProps = {
         type: Array as PropType<ListItem[]>,
         default: () => [],
     },
+    /**
+     * Adds the classes to the top-level element.
+     */
+    addClass: String,
 } as const
 
 /**
@@ -27,7 +31,7 @@ export const nListProps = {
  */
 export default createComponent('NList', nListProps, props => {
     return () => (
-        <dl>
+        <dl class={props.addClass}>
             {props.items.map((item, index) => (
                 <div
                     key={index}

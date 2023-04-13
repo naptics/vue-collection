@@ -94,6 +94,10 @@ export const nTableProps = {
         type: Array as PropType<TableRow[]>,
         default: () => [],
     },
+    /**
+     * Adds the classes to the top-level element.
+     */
+    addClass: String,
 } as const
 
 /**
@@ -139,7 +143,7 @@ export default createComponent('NTable', nTableProps, props => {
     )
 
     return () => (
-        <div class="overflow-x-auto">
+        <div class={`overflow-x-auto ${props.addClass}`}>
             <table class="min-w-full text-default-500 text-sm">
                 <thead class="bg-default-50 ">
                     <tr>

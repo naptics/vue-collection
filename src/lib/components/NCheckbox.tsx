@@ -15,6 +15,10 @@ export const nCheckboxProps = {
      * If set to `true` the checkbox is disabled and no interaction is possible.
      */
     disabled: Boolean,
+    /**
+     * Adds the classes to the top-level element.
+     */
+    addClass: String,
 } as const
 
 /**
@@ -47,6 +51,7 @@ export default createComponent('NCheckbox', nCheckboxProps, props => {
                 props.disabled
                     ? `cursor-default bg-default-100 text-${props.color}-200`
                     : `cursor-pointer text-${props.color}-400`,
+                props.addClass,
             ]}
         />
     )

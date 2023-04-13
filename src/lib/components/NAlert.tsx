@@ -24,6 +24,10 @@ export const nAlertProps = {
      */
     hideX: Boolean,
     /**
+     * Adds the classes to the top-level element.
+     */
+    addClass: String,
+    /**
      * This is called, when the X-button is clicked.
      */
     onDismiss: Function as PropType<() => void>,
@@ -37,7 +41,7 @@ export default createComponent('NAlert', nAlertProps, props => {
     const variant = computed(() => VARIANTS[props.variant])
 
     return () => (
-        <div class={`rounded-md p-3 shadow-lg bg-${variant.value.color}-50`}>
+        <div class={`rounded-md p-3 shadow-lg bg-${variant.value.color}-50 ${props.addClass}`}>
             <div class="flex items-center">
                 <div class="flex flex-shrink-0 items-center">{variant.value.icon()}</div>
 

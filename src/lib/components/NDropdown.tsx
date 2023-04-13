@@ -31,6 +31,10 @@ export const nDropdownProps = {
      * A slot to replace the button of the dropdown.
      */
     button: Function as PropType<() => JSX.Element>,
+    /**
+     * Adds the classes to the top-level element.
+     */
+    addClass: String,
 } as const
 
 export type DropdownItem = {
@@ -77,7 +81,7 @@ export default createComponent('NDropdown', nDropdownProps, (props, { slots }) =
     )
 
     return () => (
-        <Menu as="div" class="relative inline-block text-left">
+        <Menu as="div" class={`relative inline-block text-left ${props.addClass}`}>
             <div class="flex">
                 {props.button?.() || (
                     <MenuButton

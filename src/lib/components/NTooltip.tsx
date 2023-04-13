@@ -42,6 +42,14 @@ export const nTooltipProps = {
         type: String as PropType<TWMaxWidth>,
         default: 'max-w-xs',
     },
+    /**
+     * Adds the classes to the (invisible) wrapper element.
+     */
+    wrapperAddClass: String,
+    /**
+     * Adds the classes to the container of the tooltips content.
+     */
+    contentAddClass: String,
 } as const
 
 /**
@@ -78,6 +86,14 @@ export const nToolTipPropsForImplementor = {
      * @see {@link nTooltipProps.maxWidth}
      */
     tooltipMaxWidth: nTooltipProps.maxWidth,
+    /**
+     * @see {@link nTooltipProps.wrapperAddClass}
+     */
+    tooltipWrapperAddClass: nTooltipProps.wrapperAddClass,
+    /**
+     * @see {@link nTooltipProps.contentAddClass}
+     */
+    tooltipContentAddClass: nTooltipProps.contentAddClass,
 }
 
 /**
@@ -92,6 +108,8 @@ export function mapTooltipProps(props: ExtractedProps<typeof nToolTipPropsForImp
         show: props.tooltipShow,
         placement: props.tooltipPlacement,
         maxWidth: props.tooltipMaxWidth,
+        wrapperAddClass: props.tooltipWrapperAddClass,
+        contentAddClass: props.tooltipContentAddClass,
     }
 }
 
@@ -108,7 +126,7 @@ export function mapTooltipProps(props: ExtractedProps<typeof nToolTipPropsForImp
  */
 export default createComponent('NTooltip', nTooltipProps, (props, { slots }) => {
     return () => (
-        <div class={props.block ? 'block' : 'inline-block'}>
+        <div class={[props.block ? 'block' : 'inline-block', props.wrapperAddClass]}>
             {props.content || props.text ? (
                 <NTooltipBase {...props}>{slots.default?.()}</NTooltipBase>
             ) : (
@@ -190,7 +208,9 @@ const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { sl
                     v-show={showTooltip.value}
                     class={[isHovering.value ? 'z-20' : 'z-10', props.maxWidth, 'tooltip']}
                 >
-                    <div class="bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm whitespace-normal font-normal text-default-700">
+                    <div
+                        class={`bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm whitespace-normal font-normal text-default-700 ${props.contentAddClass}`}
+                    >
                         {props.content?.() || props.text}
                     </div>
                     <div data-popper-arrow class="arrow" />

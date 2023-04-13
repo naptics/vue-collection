@@ -54,6 +54,14 @@ export const nInputProps = {
      */
     hideLabel: Boolean,
     /**
+     * Adds the classes directly to the input (e.g. for shadow).
+     */
+    inputClass: String,
+    /**
+     * Adds the classes to the top-level element.
+     */
+    addClass: String,
+    /**
      * This is called when the input reveices focus.
      */
     onFocus: Function as PropType<() => void>,
@@ -82,7 +90,7 @@ export default createComponent('NInput', nInputProps, (props, context) => {
     context.expose(exposed)
 
     return () => (
-        <div>
+        <div class={props.addClass}>
             {props.name && !props.hideLabel && (
                 <label
                     for={props.name}
@@ -116,6 +124,7 @@ export default createComponent('NInput', nInputProps, (props, context) => {
                             props.error
                                 ? 'border-red-500 focus:border-red-500 focus:ring-red-500 pr-10'
                                 : 'border-default-300 focus:border-primary-500 focus:ring-primary-500',
+                            props.inputClass,
                         ]}
                     />
 

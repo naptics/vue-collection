@@ -32,6 +32,10 @@ export const nButtonProps = {
      */
     small: Boolean,
     /**
+     * Adds the classes to the top-level element.
+     */
+    addClass: String,
+    /**
      * This is called, when the button is clicked.
      */
     onClick: Function as PropType<() => void>,
@@ -56,6 +60,7 @@ export default createComponent('NButton', nButtonProps, (props, { slots }) => {
                         : `bg-${props.color}-200 hover:bg-${props.color}-300 focus-visible:ring-${props.color}-500`,
 
                     props.small ? 'py-1 px-2 text-xs' : 'py-2 px-4 text-sm',
+                    props.addClass,
                 ]}
                 onClick={props.onClick}
             >

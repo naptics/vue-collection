@@ -39,6 +39,14 @@ export const nSelectProps = {
      * @see {@link nValInputProps.form}
      */
     form: nValInputProps.form,
+    /**
+     * @see {@link nValInputProps.inputClass}
+     */
+    inputClass: nValInputProps.inputClass,
+    /**
+     * @see {@link nValInputProps.addClass}
+     */
+    addClass: nValInputProps.addClass,
     ...nToolTipPropsForImplementor,
 } as const
 
@@ -88,6 +96,7 @@ export default createComponent('NSelect', nSelectProps, (props, context) => {
                                 slotProps.error
                                     ? 'border-red-500 focus:border-red-500 focus:ring-red-500'
                                     : 'border-default-300 focus:border-primary-500 focus:ring-primary-500',
+                                props.inputClass,
                             ]}
                         >
                             <option disabled={!props.optional} selected={!props.value} value="">

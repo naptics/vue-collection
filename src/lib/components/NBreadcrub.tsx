@@ -43,6 +43,10 @@ export const nBreadcrumbProps = {
         default: 5,
     },
     /**
+     * Adds the classes to the top-level element.
+     */
+    addClass: String,
+    /**
      * A slot the replace the breadcrumb labels.
      */
     item: Function as PropType<(item: BreadcrumbItem, index: number) => JSX.Element>,
@@ -69,7 +73,7 @@ export type BreadcrumbItem = {
  */
 export default createComponent('NBreadcrumb', nBreadcrumbProps, props => {
     return () => (
-        <div class="flex flex-wrap items-center">
+        <div class={`flex flex-wrap items-center ${props.addClass}`}>
             {props.items.map((item, index) => (
                 <>
                     {props.item?.(item, index) || (

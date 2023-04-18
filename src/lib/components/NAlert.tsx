@@ -37,7 +37,7 @@ export const nAlertProps = {
  * The `NAlert` is a fully styled alert with multiple variants.
  * It can be used as a normal blocking element or as part of an alert queue.
  */
-export default createComponent('NAlert', nAlertProps, props => {
+export default createComponent('NAlert', nAlertProps, (props, { slots }) => {
     const variant = computed(() => VARIANTS[props.variant])
 
     return () => (
@@ -46,7 +46,9 @@ export default createComponent('NAlert', nAlertProps, props => {
                 <div class="flex flex-shrink-0 items-center">{variant.value.icon()}</div>
 
                 <div class="ml-3 flex-grow">
-                    <p class={`text-sm font-medium text-${variant.value.color}-900`}>{props.text}</p>
+                    <p class={`text-sm font-medium text-${variant.value.color}-900`}>
+                        {slots.default?.() ?? props.text}
+                    </p>
                 </div>
 
                 {!props.hideX && (

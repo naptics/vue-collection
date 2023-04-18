@@ -1,6 +1,6 @@
 import { trsl } from '../i18n'
 import type { Identifiable } from '../utils/identifiable'
-import { createComponent } from '../utils/component'
+import { createComponentWithSlots } from '../utils/component'
 import { computed, ref, type PropType } from 'vue'
 import NLoadingIndicator from './NLoadingIndicator'
 
@@ -100,7 +100,7 @@ export type SuggestionItem = Identifiable & { label?: string } & Record<string, 
 /**
  * The `NSuggestionList` can be added to an input and adds a list below it which is shown when the input is focused.
  */
-export default createComponent('NSuggestionList', nSuggestionListProps, props => {
+export default createComponentWithSlots('NSuggestionList', nSuggestionListProps, ['input', 'listItem'], props => {
     const selectedIndex = ref<number | null>(null)
     const displayItems = computed(() => props.items.slice(0, props.maxItems))
 

@@ -12,6 +12,8 @@ import {
     type ToRefs,
     type UnwrapNestedRefs,
     type Slots,
+    toRefs,
+    ref,
 } from 'vue'
 import type { AnyObject } from './utils'
 
@@ -111,14 +113,15 @@ type FilterObject<T, K> = {
 
 type SlotPropsKeys<T extends AnyObject> = (keyof FilterObject<T, SlotFunction | undefined>)[]
 
-// operates on same reference of props to not break reactivity
 function createSlotProps<T extends AnyObject, U extends SlotPropsKeys<T>>(props: T, slots: Slots, ...keys: U): T {
-    const newProps = props
+    // create refs, don't touch all props which are not slots
+    const newProps = toRefs(props)
     keys.forEach(key => {
-        // if a slot is set once, it is basically always set. The changing content is not a problem.
+        // if a slot is set once, it is basically always set. The changing content is not a problem as it is inside the function.
         const slot = slots[key as string]
+        // if the slot is set, overwrite the props
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         if (slot) newProps[key] = ((...args: any) => <>{slot?.(...args)}</>) as any
     })
-    return newProps
+    return ref(newProps).value
 }

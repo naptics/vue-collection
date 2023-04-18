@@ -1,6 +1,6 @@
 import { createComponentWithSlots } from '../utils/component'
 import type { TWMaxWidth } from '../utils/tailwind'
-import { reactive, toRefs, type PropType } from 'vue'
+import { type PropType, computed } from 'vue'
 import NForm from './NForm'
 import NModal, { nModalProps } from './NModal'
 import type { ValidatedForm } from './ValidatedForm'
@@ -39,8 +39,8 @@ export default createComponentWithSlots(
     nFormModalProps,
     ['modal', 'header', 'footer'],
     (props, { slots }) => {
-        const childProps = reactive({
-            ...toRefs(props),
+        const childProps = computed(() => ({
+            ...props,
             onOk: () => {
                 if (!props.form || props.form.validate().isValid) {
                     props.onOk?.()
@@ -48,10 +48,10 @@ export default createComponentWithSlots(
                 }
             },
             closeOnOk: false,
-        })
+        }))
 
         return () => (
-            <NModal {...childProps}>
+            <NModal {...childProps.value}>
                 <NForm form={props.form}>{slots.default?.()}</NForm>
             </NModal>
         )

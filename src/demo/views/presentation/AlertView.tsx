@@ -32,7 +32,7 @@ export default createView('AlertView', () => {
 
             <VariantSection title="Loading Alert">
                 <ComponentGrid cols={2}>
-                    <NAlert variant="loading" text="The file is currently downloading..." />
+                    <NAlert variant="loading">The file is currently downloading...</NAlert>
                 </ComponentGrid>
             </VariantSection>
         </ComponentSection>

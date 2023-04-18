@@ -2,7 +2,7 @@
     "name": "@naptics/vue-collection",
     "author": "Timo Siegenthaler",
     "description": "Vue Collection is a collection of styled and fully functional Vue components which can easily be integrated into our projects.",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "main": "./index.js",
     "repository": {
         "type": "git",

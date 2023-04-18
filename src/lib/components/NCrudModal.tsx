@@ -95,17 +95,23 @@ export default createComponentWithSlots(
                     (({ ok, cancel }) => (
                         <div class="flex justify-between">
                             <div>
-                                <NButton color={props.removeColor} onClick={remove} disabled={props.removeDisabled}>
-                                    {props.removeText}
-                                </NButton>
+                                {!props.hideRemove && (
+                                    <NButton color={props.removeColor} onClick={remove} disabled={props.removeDisabled}>
+                                        {props.removeText}
+                                    </NButton>
+                                )}
                             </div>
-                            <div>
-                                <NButton color={props.cancelColor} onClick={cancel}>
-                                    {props.cancelText}
-                                </NButton>
-                                <NButton color={props.okColor} onClick={ok} class="ml-2" disabled={props.okDisabled}>
-                                    {props.okText}
-                                </NButton>
+                            <div class="flex justify-end space-x-2">
+                                {!props.hideCancel && (
+                                    <NButton color={props.cancelColor} onClick={cancel}>
+                                        {props.cancelText}
+                                    </NButton>
+                                )}
+                                {!props.hideOk && (
+                                    <NButton color={props.okColor} onClick={ok} disabled={props.okDisabled}>
+                                        {props.okText}
+                                    </NButton>
+                                )}
                             </div>
                         </div>
                     ))

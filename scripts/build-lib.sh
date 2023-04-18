@@ -22,5 +22,5 @@ cp ./src/lib/components/*.css ./lib/components
 
 # Transpile jsx files to js with babel
 echo "Using Babel to transpile jsx."
-./node_modules/.bin/babel lib/components --out-dir lib/components
+./node_modules/.bin/babel lib --out-dir lib
 find ./lib -name "*.jsx" -type f -delete

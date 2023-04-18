@@ -1,4 +1,4 @@
-import { createComponent } from '../utils/component'
+import { createComponentWithSlots } from '../utils/component'
 import type { TWMaxWidth } from '../utils/tailwind'
 import { reactive, toRefs, type PropType } from 'vue'
 import NForm from './NForm'
@@ -34,21 +34,26 @@ export const nFormModalProps = {
  * When submitting a `NFormModal` the form is first validated and
  * only if the validation is succesful the `onOk` event is called.
  */
-export default createComponent('NFormModal', nFormModalProps, (props, { slots }) => {
-    const childProps = reactive({
-        ...toRefs(props),
-        onOk: () => {
-            if (!props.form || props.form.validate().isValid) {
-                props.onOk?.()
-                if (props.closeOnOk) props.onUpdateValue?.(false)
-            }
-        },
-        closeOnOk: false,
-    })
+export default createComponentWithSlots(
+    'NFormModal',
+    nFormModalProps,
+    ['modal', 'header', 'footer'],
+    (props, { slots }) => {
+        const childProps = reactive({
+            ...toRefs(props),
+            onOk: () => {
+                if (!props.form || props.form.validate().isValid) {
+                    props.onOk?.()
+                    if (props.closeOnOk) props.onUpdateValue?.(false)
+                }
+            },
+            closeOnOk: false,
+        })
 
-    return () => (
-        <NModal {...childProps}>
-            <NForm form={props.form}>{slots.default?.()}</NForm>
-        </NModal>
-    )
-})
+        return () => (
+            <NModal {...childProps}>
+                <NForm form={props.form}>{slots.default?.()}</NForm>
+            </NModal>
+        )
+    }
+)

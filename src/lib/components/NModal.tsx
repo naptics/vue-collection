@@ -1,4 +1,4 @@
-import { createComponent } from '../utils/component'
+import { createComponentWithSlots } from '../utils/component'
 import type { PropType } from 'vue'
 import { Dialog, DialogOverlay, DialogTitle, TransitionRoot, TransitionChild } from '@headlessui/vue'
 import NButton from './NButton'
@@ -117,7 +117,7 @@ export type ModalSlotProps = { ok: () => void; cancel: () => void }
  * The `NModal` is the base component for all modals and dialogs.
  * It provides the core mechanics to display a window in front of everything else.
  */
-export default createComponent('NModal', nModalProps, (props, { slots }) => {
+export default createComponentWithSlots('NModal', nModalProps, ['modal', 'header', 'footer'], (props, { slots }) => {
     const ok = () => {
         props.onOk?.()
         if (props.closeOnOk) props.onUpdateValue?.(false)

@@ -1,5 +1,5 @@
 import { trsl } from '../i18n'
-import { createComponent } from '../utils/component'
+import { createComponentWithSlots } from '../utils/component'
 import { ref, type PropType } from 'vue'
 import NButton from './NButton'
 import type { DialogVariant, NDialogExposed } from './NDialog'
@@ -71,50 +71,55 @@ export const nCrudModalProps = {
  * It has an integrated remove-button with a user-dialog to remove the editing element.
  * When the dialog is accepted `onRemove` is called.
  */
-export default createComponent('NCrudModal', nCrudModalProps, (props, { slots }) => {
-    const removeDialog = ref<NDialogExposed>()
+export default createComponentWithSlots(
+    'NCrudModal',
+    nCrudModalProps,
+    ['modal', 'footer', 'header'],
+    (props, { slots }) => {
+        const removeDialog = ref<NDialogExposed>()
 
-    const remove = () => {
-        removeDialog.value?.show().then(result => {
-            if (result) {
-                props.onRemove?.()
-                if (props.closeOnRemove) props.onUpdateValue?.(false)
-            }
-        })
+        const remove = () => {
+            removeDialog.value?.show().then(result => {
+                if (result) {
+                    props.onRemove?.()
+                    if (props.closeOnRemove) props.onUpdateValue?.(false)
+                }
+            })
+        }
+
+        return () => (
+            <NFormModal
+                {...props}
+                footer={
+                    props.footer ||
+                    (({ ok, cancel }) => (
+                        <div class="flex justify-between">
+                            <div>
+                                <NButton color={props.removeColor} onClick={remove} disabled={props.removeDisabled}>
+                                    {props.removeText}
+                                </NButton>
+                            </div>
+                            <div>
+                                <NButton color={props.cancelColor} onClick={cancel}>
+                                    {props.cancelText}
+                                </NButton>
+                                <NButton color={props.okColor} onClick={ok} class="ml-2" disabled={props.okDisabled}>
+                                    {props.okText}
+                                </NButton>
+                            </div>
+                        </div>
+                    ))
+                }
+            >
+                {slots.default?.()}
+                <NDialog
+                    ref={removeDialog}
+                    variant={props.removeDialogVariant}
+                    title={props.removeDialogTitle}
+                    text={props.removeDialogText}
+                    okText={props.removeDialogOkText}
+                />
+            </NFormModal>
+        )
     }
-
-    return () => (
-        <NFormModal
-            {...props}
-            footer={
-                props.footer ||
-                (({ ok, cancel }) => (
-                    <div class="flex justify-between">
-                        <div>
-                            <NButton color={props.removeColor} onClick={remove} disabled={props.removeDisabled}>
-                                {props.removeText}
-                            </NButton>
-                        </div>
-                        <div>
-                            <NButton color={props.cancelColor} onClick={cancel}>
-                                {props.cancelText}
-                            </NButton>
-                            <NButton color={props.okColor} onClick={ok} class="ml-2" disabled={props.okDisabled}>
-                                {props.okText}
-                            </NButton>
-                        </div>
-                    </div>
-                ))
-            }
-        >
-            {slots.default?.()}
-            <NDialog
-                ref={removeDialog}
-                variant={props.removeDialogVariant}
-                title={props.removeDialogTitle}
-                text={props.removeDialogText}
-                okText={props.removeDialogOkText}
-            />
-        </NFormModal>
-    )
-})
+)

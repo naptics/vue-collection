@@ -1,4 +1,4 @@
-import { createComponent } from '../utils/component'
+import { createComponentWithSlots } from '../utils/component'
 import { computed } from 'vue'
 import { ref, reactive, type PropType, watch } from 'vue'
 import NInput, { nInputProps, type NInputExposed } from './NInput'
@@ -76,7 +76,7 @@ export type NValInputExposed = {
 /**
  * The `NValInput` is a `NInput` with custom validation.
  */
-export default createComponent('NValInput', nValInputProps, (props, context) => {
+export default createComponentWithSlots('NValInput', nValInputProps, ['input'], (props, context) => {
     const rules = computed(() => {
         const otherRules = Array.isArray(props.rules) ? props.rules : [props.rules]
         return props.optional ? otherRules : [required, ...otherRules]

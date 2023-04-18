@@ -1,4 +1,4 @@
-import { createComponent } from '../utils/component'
+import { createComponentWithSlots } from '../utils/component'
 import { computed, Transition, type PropType } from 'vue'
 import { RouterLink, type RouteLocationRaw } from 'vue-router'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
@@ -66,7 +66,7 @@ export type DropdownItem = {
  * The `NDropdown` consists of a button and a panel with multiple actions.
  * It is useful to group multiple actions together in one place.
  */
-export default createComponent('NDropdown', nDropdownProps, (props, { slots }) => {
+export default createComponentWithSlots('NDropdown', nDropdownProps, ['button'], (props, { slots }) => {
     const items = computed<DropdownItem[][]>(() => {
         if (props.items.length == 0) return []
         if (Array.isArray(props.items[0])) return props.items as DropdownItem[][]

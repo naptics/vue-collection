@@ -1,10 +1,10 @@
-import { createComponent } from '../utils/component'
+import { createComponentWithSlots } from '../utils/component'
 import type { HeroIcon } from '../utils/tailwind'
 import type { TWTextSize } from '../utils/tailwind'
 import { ChevronRightIcon } from '@heroicons/vue/24/solid'
-import type { PropType } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 import NLink from './NLink'
+import type { PropType } from 'vue'
 
 export const nBreadcrumbProps = {
     /**
@@ -47,6 +47,10 @@ export const nBreadcrumbProps = {
      */
     addClass: String,
     /**
+     * Adds the classes to the separator icons.
+     */
+    addIconClass: String,
+    /**
      * A slot the replace the breadcrumb labels.
      */
     item: Function as PropType<(item: BreadcrumbItem, index: number) => JSX.Element>,
@@ -71,7 +75,7 @@ export type BreadcrumbItem = {
 /**
  * The `NBreadcrumb` is a styled breadcrumb which can be used as a navigation in hierarchical views.
  */
-export default createComponent('NBreadcrumb', nBreadcrumbProps, props => {
+export default createComponentWithSlots('NBreadcrumb', nBreadcrumbProps, ['seperator', 'item'], props => {
     return () => (
         <div class={`flex flex-wrap items-center ${props.addClass}`}>
             {props.items.map((item, index) => (
@@ -85,7 +89,7 @@ export default createComponent('NBreadcrumb', nBreadcrumbProps, props => {
                     {index < props.items.length - 1 &&
                         (props.seperator?.(item, index) || (
                             <props.icon
-                                class={`mx-2 w-${props.iconSize} h-${props.iconSize} text-${props.color}-500`}
+                                class={`mx-2 w-${props.iconSize} h-${props.iconSize} text-${props.color}-500 ${props.addIconClass}`}
                             />
                         ))}
                 </>

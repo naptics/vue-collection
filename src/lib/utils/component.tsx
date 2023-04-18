@@ -11,10 +11,12 @@ import {
     type SetupContext,
     type ToRefs,
     type UnwrapNestedRefs,
+    type Slots,
 } from 'vue'
+import type { AnyObject } from './utils'
 
 type Data = Record<string, unknown>
-export type Props<T = Data> = ComponentObjectPropsOptions<T>
+export type Props<T extends Data = Data> = ComponentObjectPropsOptions<T>
 
 /**
  * `ExtractedProps` maps a prop object to the props, which are received in the `setup` function of a components.
@@ -37,6 +39,26 @@ export function createComponent<T extends Props>(
     setup: (props: ExtractedProps<T>, context: SetupContext<never[]>) => RenderFunction | Promise<RenderFunction>
 ) {
     return defineComponent({ name, props, emits: [], setup })
+}
+
+/**
+ * When using this function, the created component will make available all props
+ * specifiedin `slotPropKeys` as slot. In this way, they can be used by either setting
+ * the prop directly or by using a slot with the same name. This is useful for older
+ * components (in `.vue` files), because they are dependent on slots.
+ * @see {@link createComponent}
+ */
+export function createComponentWithSlots<T extends Props>(
+    name: string,
+    props: T,
+    slotPropKeys: SlotPropsKeys<ExtractedProps<T>>,
+    setup: (props: ExtractedProps<T>, context: SetupContext<never[]>) => RenderFunction | Promise<RenderFunction>
+) {
+    const newSetup: typeof setup = (props, context) => {
+        const slottedProps = createSlotProps(props, context.slots, ...slotPropKeys)
+        return setup(slottedProps, context)
+    }
+    return createComponent(name, props, newSetup)
 }
 
 /**
@@ -71,4 +93,30 @@ export function extractProps<T extends Record<string, unknown>>(
     const partial: Partial<ToRefs<T>> = {}
     for (const key of keys) partial[key] = toRef(props, key)
     return reactive(partial)
+}
+
+/*
+ * ---------- Slot Helpers ----------
+ */
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SlotFunction<Args extends any[] = any[]> = (...args: Args) => JSX.Element
+
+/**
+ * Filters object T to only have properties of type K.
+ */
+type FilterObject<T, K> = {
+    [P in keyof T as T[P] extends K ? P : never]: T[P]
+}
+
+type SlotPropsKeys<T extends AnyObject> = (keyof FilterObject<T, SlotFunction | undefined>)[]
+
+function createSlotProps<T extends AnyObject, U extends SlotPropsKeys<T>>(props: T, slots: Slots, ...keys: U): T {
+    const newProps = { ...props }
+    keys.forEach(key => {
+        const slot = slots[key as string]
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if (slot) newProps[key] = ((...args: any) => <>{slot?.(...args)}</>) as any
+    })
+    return newProps
 }

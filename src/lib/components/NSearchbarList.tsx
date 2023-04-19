@@ -1,4 +1,4 @@
-import { createComponent } from '../utils/component'
+import { createComponentWithSlots } from '../utils/component'
 import { ref } from 'vue'
 import { vModelProps } from '../utils/vModel'
 
@@ -25,7 +25,7 @@ export const nSearchbarListProps = {
 /**
  * The `NSearchbarList` is a {@link NSearchbar} with a {@link NSuggestionList}.
  */
-export default createComponent('NSearchbarList', nSearchbarListProps, props => {
+export default createComponentWithSlots('NSearchbarList', nSearchbarListProps, ['listItem'], props => {
     const searchbarRef = ref<NSearchbarExposed>()
 
     return () => (

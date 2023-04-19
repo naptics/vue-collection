@@ -1,4 +1,4 @@
-import { createComponent } from '../utils/component'
+import { createComponentWithSlots } from '../utils/component'
 import { Id, type Identifiable } from '../utils/identifiable'
 import { option } from '../utils/validation'
 import { vModelForRef } from '../utils/vModel'
@@ -67,7 +67,7 @@ export type InputSelectOption = Identifiable & { label: string } & Record<string
  * The user is forced to use a value from the specified options of the input.
  * While they type, the list of options is shown to them and filtered based on their input.
  */
-export default createComponent('NInputSelect', nInputSelectProps, props => {
+export default createComponentWithSlots('NInputSelect', nInputSelectProps, ['listItem'], props => {
     const inputRef = ref<NValInputExposed>()
 
     const inputValue = ref('')

@@ -7,6 +7,7 @@ import { computed, ref, watch, type PropType } from 'vue'
 import { nInputProps } from './NInput'
 import NSuggestionList, { nSuggestionListProps } from './NSuggestionList'
 import NValInput, { nValInputProps, type NValInputExposed } from './NValInput'
+import type { AnyObject } from '../utils/utils'
 
 export const nInputSelectProps = {
     ...nInputProps,
@@ -60,7 +61,7 @@ export const nInputSelectProps = {
     listItem: nSuggestionListProps.listItem,
 } as const
 
-export type InputSelectOption = Identifiable & { label: string } & Record<string, unknown>
+export type InputSelectOption = Identifiable & { label: string } & AnyObject
 
 /**
  * The `NInputSelect` is very similar to the {@link NSelect}, but instead of a select input it is a regular input.

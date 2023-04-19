@@ -3,6 +3,7 @@ import type { Identifiable } from '../utils/identifiable'
 import { createComponentWithSlots } from '../utils/component'
 import { computed, ref, type PropType } from 'vue'
 import NLoadingIndicator from './NLoadingIndicator'
+import type { AnyObject } from '../utils/utils'
 
 export const nSuggestionListPropsForConfig = {
     /**
@@ -95,7 +96,7 @@ export type ItemSlotProps<T extends Identifiable = SuggestionItem> = {
     highlighted: boolean
 }
 
-export type SuggestionItem = Identifiable & { label?: string } & Record<string, unknown>
+export type SuggestionItem = Identifiable & { label?: string } & AnyObject
 
 /**
  * The `NSuggestionList` can be added to an input and adds a list below it which is shown when the input is focused.

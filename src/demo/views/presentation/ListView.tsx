@@ -9,7 +9,10 @@ export default createView('ListView', () => {
         { title: 'Name', text: 'Michael Scott' },
         { title: 'Profession', text: 'Nerd' },
         { title: 'Title', text: 'Dr. phil.' },
-        { title: 'Date Of Birth', text: '14.10.1982' },
+        {
+            title: () => <span class="font-extrabold">Date Of Birth</span>,
+            text: () => <span class="text-primary-500">14.10.1982</span>,
+        },
     ]
 
     return () => (

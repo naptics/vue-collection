@@ -41,7 +41,7 @@ export function notNullishRef<T>(ref: Ref<T>): ref is Ref<NonNullable<T>> {
  */
 
 export type AnyObject = Record<string | number | symbol, unknown>
-export type EmptyObject = Record<string, never>
+export type EmptyObject = Record<string | number | symbol, never>
 
 export function isAnyObject(object: unknown): object is AnyObject {
     return typeof object === 'object' && !Array.isArray(object)

@@ -3,13 +3,13 @@ import type { PropType } from 'vue'
 
 export type ListItem = {
     /**
-     * The title of the item.
+     * The title of the item. Accepts either string or a function returning a JSX element.
      */
-    title: string
+    title: string | (() => JSX.Element)
     /**
-     * The text of the item.
+     * The text of the item. Accepts either string or a function returning a JSX element.
      */
-    text?: string
+    text?: string | (() => JSX.Element)
 }
 
 export const nListProps = {
@@ -40,10 +40,15 @@ export default createComponent('NList', nListProps, props => {
                         index % 2 === 1 ? 'bg-white' : 'bg-default-50',
                     ]}
                 >
-                    <dt class="text-sm font-medium text-default-500">{item.title}</dt>
-                    <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2">{item.text}</dd>
+                    <dt class="text-sm font-medium text-default-500">{buildElement(item.title)}</dt>
+                    <dd class="mt-1 text-sm sm:mt-0 sm:col-span-2">{buildElement(item.text)}</dd>
                 </div>
             ))}
         </dl>
     )
 })
+
+function buildElement(element: string | undefined | (() => JSX.Element)): JSX.Element {
+    if (typeof element === 'function') return element()
+    else return <>{element}</>
+}

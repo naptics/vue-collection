@@ -43,13 +43,9 @@ export const nBreadcrumbProps = {
         default: 5,
     },
     /**
-     * Adds the classes to the top-level element.
-     */
-    addClass: String,
-    /**
      * Adds the classes to the separator icons.
      */
-    addIconClass: String,
+    iconClass: String,
     /**
      * A slot the replace the breadcrumb labels.
      */
@@ -77,7 +73,7 @@ export type BreadcrumbItem = {
  */
 export default createComponentWithSlots('NBreadcrumb', nBreadcrumbProps, ['seperator', 'item'], props => {
     return () => (
-        <div class={`flex flex-wrap items-center ${props.addClass}`}>
+        <div class={`flex flex-wrap items-center`}>
             {props.items.map((item, index) => (
                 <>
                     {props.item?.(item, index) || (
@@ -89,7 +85,7 @@ export default createComponentWithSlots('NBreadcrumb', nBreadcrumbProps, ['seper
                     {index < props.items.length - 1 &&
                         (props.seperator?.(item, index) || (
                             <props.icon
-                                class={`mx-2 w-${props.iconSize} h-${props.iconSize} text-${props.color}-500 ${props.addIconClass}`}
+                                class={`mx-2 w-${props.iconSize} h-${props.iconSize} text-${props.color}-500 ${props.iconClass}`}
                             />
                         ))}
                 </>

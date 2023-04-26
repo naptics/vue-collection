@@ -1,4 +1,3 @@
-import { computed } from 'vue'
 import { createComponent } from '../utils/component'
 import NCheckbox, { nCheckboxProps } from './NCheckbox'
 
@@ -26,12 +25,9 @@ export default createComponent('NCheckboxLabel', nCheckboxLabelProps, props => {
         if (!props.disabled) props.onUpdateValue?.(!props.value)
     }
 
-    // addClass is not passed as it is used on the top-level element.
-    const childProps = computed(() => ({ ...props, addClass: undefined }))
-
     return () => (
-        <div class={`flex items-center ${props.addClass}`}>
-            <NCheckbox {...childProps.value} />
+        <div class={`flex items-center`}>
+            <NCheckbox {...props} />
             <div class={`${props.compact ? 'ml-2' : 'ml-3'} text-sm`}>
                 <label
                     onClick={toggleValue}

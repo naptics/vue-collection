@@ -23,6 +23,10 @@ export type TableHeading = {
      */
     cellClass?: string
     /**
+     * This classes will be directly set on all cells of this heading, when they show up in the details.
+     */
+    detailsClass?: string
+    /**
      * If set the heading will become a details entry when the screen is smaller than the specified breakpoint.
      */
     breakpoint?: TWBreakpoint
@@ -94,10 +98,6 @@ export const nTableProps = {
         type: Array as PropType<TableRow[]>,
         default: () => [],
     },
-    /**
-     * Adds the classes to the top-level element.
-     */
-    addClass: String,
 } as const
 
 /**
@@ -143,7 +143,7 @@ export default createComponent('NTable', nTableProps, props => {
     )
 
     return () => (
-        <div class={`overflow-x-auto ${props.addClass}`}>
+        <div class="overflow-x-auto">
             <table class="min-w-full text-default-500 text-sm">
                 <thead class="bg-default-50 ">
                     <tr>
@@ -211,6 +211,7 @@ export default createComponent('NTable', nTableProps, props => {
                                             <td
                                                 class={[
                                                     'px-4 py-1',
+                                                    details.value[detailIndex].detailsClass,
                                                     details.value.length - 1 == detailIndex ? 'pb-4' : '',
                                                 ]}
                                                 colspan={headings.value.length - 1}

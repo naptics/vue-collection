@@ -43,10 +43,6 @@ export const nSelectProps = {
      * @see {@link nValInputProps.inputClass}
      */
     inputClass: nValInputProps.inputClass,
-    /**
-     * @see {@link nValInputProps.addClass}
-     */
-    addClass: nValInputProps.addClass,
     ...nToolTipPropsForImplementor,
 } as const
 

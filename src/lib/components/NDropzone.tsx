@@ -58,10 +58,6 @@ export const nDropzoneProps = {
         type: String,
         default: 'min-h-36',
     },
-    /**
-     * Adds the classes to the top-level element.
-     */
-    addClass: String,
 } as const
 
 /**
@@ -173,7 +169,6 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
                         ? 'border-primary-300 bg-primary-50 text-primary-700'
                         : 'border-default-300 bg-default-50 text-default-500',
                     props.height,
-                    props.addClass,
                 ]}
                 onDrop={onDrop}
                 onDragover={onDragOver}

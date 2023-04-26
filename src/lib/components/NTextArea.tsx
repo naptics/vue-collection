@@ -57,10 +57,6 @@ const nTextAreaBaseProps = {
      */
     inputClass: String,
     /**
-     * Adds the classes to the top-level element.
-     */
-    addClass: String,
-    /**
      * This is called when the text area reveices focus.
      */
     onFocus: Function as PropType<() => void>,

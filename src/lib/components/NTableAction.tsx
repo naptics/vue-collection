@@ -17,10 +17,6 @@ export const nTableActionProps = {
      */
     type: nButtonProps.type,
     /**
-     * Adds the classes to the top-level element.
-     */
-    addClass: String,
-    /**
      * This is called when the action is clicked.
      * It is only called when the `route` prop is not set on the action.
      */
@@ -36,7 +32,6 @@ export default createComponent('NTableAction', nTableActionProps, (props, { slot
 
     const classes = [
         'text-left font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-default-900 rounded-sm ring-offset-2 text-default-900 hover:underline hover:text-default-700',
-        props.addClass,
     ]
 
     return () =>

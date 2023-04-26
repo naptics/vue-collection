@@ -27,10 +27,6 @@ export const nPaginationProps = {
      */
     small: Boolean,
     /**
-     * Adds the classes to the top-level element.
-     */
-    addClass: String,
-    /**
      * This is called, when the visible pages, which are selectable in the pagination, have changed.
      * This is useful as only these pages can be navigated to on the next click.
      * This information can be useful for prefetching.
@@ -90,7 +86,7 @@ export default createComponent('NPagination', nPaginationProps, props => {
     ]
 
     return () => (
-        <nav class={['inline-flex rounded-md shadow -space-x-px', props.addClass]}>
+        <nav class="inline-flex rounded-md shadow -space-x-px">
             <button
                 class={['pagination-item selectable rounded-l-md', props.small ? '' : 'not-small']}
                 onClick={previous}

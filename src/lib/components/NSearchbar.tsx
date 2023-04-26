@@ -22,10 +22,6 @@ export const nSearchbarProps = {
      */
     inputClass: String,
     /**
-     * Adds the classes to the top-level element.
-     */
-    addClass: String,
-    /**
      * This is called when the search-bar receives focus.
      */
     onFocus: Function as PropType<() => void>,
@@ -55,7 +51,7 @@ export default createComponent('NSearchbar', nSearchbarProps, (props, context) =
     context.expose(exposed)
 
     return () => (
-        <div class={props.addClass}>
+        <div>
             <label for="search" class="sr-only">
                 {props.placeholder}
             </label>

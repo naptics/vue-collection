@@ -5,6 +5,8 @@ import { computed, Fragment, ref, type PropType, watch } from 'vue'
 import NIconButton from './NIconButton'
 import './NTable.css'
 
+export type TableItem = string | number | (() => JSX.Element)
+
 export type TableHeading = {
     /**
      * The key of the table heading. This should match the key of the items.
@@ -13,7 +15,7 @@ export type TableHeading = {
     /**
      * The label of the table heading. If not set, no label is displayed.
      */
-    label?: string
+    label?: TableItem
     /**
      * If set to `true` the whole column of this heading will be emphasized.
      */
@@ -30,17 +32,11 @@ export type TableHeading = {
      * If set the heading will become a details entry when the screen is smaller than the specified breakpoint.
      */
     breakpoint?: TWBreakpoint
-}
-
-export type TableDetail = {
     /**
-     * The key of the table details. This should match the key of the items.
+     * If set to `true`, this heading will always show up inside the details. If this is set the `breakpoint`
+     * property has no effect, because the items always show up as details ignoring the breakpoint.
      */
-    key: string
-    /**
-     * The label of the table detail. If not set, no label is displayed.
-     */
-    label?: string
+    isDetail?: boolean
 }
 
 export type TableRow = Record<string, TableItem> & {
@@ -51,7 +47,6 @@ export type TableRow = Record<string, TableItem> & {
     action?: TableItem
 }
 const N_TABLE_ACTION_KEY = 'action'
-export type TableItem = string | number | (() => JSX.Element)
 
 export const nTableProps = {
     /**
@@ -62,17 +57,13 @@ export const nTableProps = {
         required: true,
     },
     /**
-     * Details can be added additionally to headings.
-     * If details are set a little chevron icon is displayed at the end of each table row
-     * and if clicked on it the data is displayed in a key-value fashion.
-     * The values of the entries should be passed via the `items` prop
-     * in the same way as if the details were normal headings.
-     * Note that details can be added dynamically by adding the `breakpoint` property to the headings.
+     * Adds the classes to all headings at the top of the table.
      */
-    details: {
-        type: Array as PropType<TableDetail[]>,
-        default: () => [],
-    },
+    headingsClass: String,
+    /**
+     * Adds the classes to all headings in the details of the table.
+     */
+    headingDetailsClass: String,
     /**
      * The items of the table. They consist of an array of table rows.
      * Every tablerow is an object containing elements for the heading keys.
@@ -94,6 +85,7 @@ export const nTableProps = {
      *      { id: 2, name: 'Franzi', status: () => <NBadge ... />, action: ... }    // Row 2
      * ]
      */
+
     items: {
         type: Array as PropType<TableRow[]>,
         default: () => [],
@@ -105,10 +97,8 @@ export const nTableProps = {
  */
 export default createComponent('NTable', nTableProps, props => {
     const headings = computed(() => {
-        // remove all headings which are below the breakpoint
-        const headings = props.headings.filter(
-            heading => !heading.breakpoint || isWidthBreakpoint(heading.breakpoint).value
-        )
+        // filter out details headings
+        const headings = props.headings.filter(heading => !isHeadingDetail(heading))
 
         // The column for actions is shown if there are details
         // or if any of the items contain an element with the action-key.
@@ -119,14 +109,7 @@ export default createComponent('NTable', nTableProps, props => {
         return headings
     })
 
-    const details = computed(() => {
-        // take all headings which are below the breakpoint
-        const details = props.headings.filter(
-            heading => heading.breakpoint && !isWidthBreakpoint(heading.breakpoint).value
-        )
-        details.push(...props.details)
-        return details
-    })
+    const details = computed(() => props.headings.filter(isHeadingDetail))
 
     const showDetails = computed(() => details.value.length > 0)
 
@@ -148,8 +131,8 @@ export default createComponent('NTable', nTableProps, props => {
                 <thead class="bg-default-50 ">
                     <tr>
                         {headings.value.map(heading => (
-                            <th key={heading.key} scope="col" class="p-4 table-heading">
-                                {heading.label}
+                            <th key={heading.key} scope="col" class={`p-4 table-heading ${props.headingsClass}`}>
+                                {buildItem(heading.label)}
                             </th>
                         ))}
                     </tr>
@@ -203,10 +186,11 @@ export default createComponent('NTable', nTableProps, props => {
                                             <td
                                                 class={[
                                                     'table-heading px-4 py-1',
+                                                    props.headingDetailsClass,
                                                     details.value.length - 1 == detailIndex ? 'pb-4' : '',
                                                 ]}
                                             >
-                                                {detail.label}
+                                                {buildItem(detail.label)}
                                             </td>
                                             <td
                                                 class={[
@@ -232,7 +216,13 @@ export default createComponent('NTable', nTableProps, props => {
 /**
  * Builds a JSX-Element out of the item
  */
-function buildItem(item: TableItem) {
-    if (typeof item == 'string' || typeof item == 'number') return <>{item}</>
+function buildItem(item: TableItem | undefined) {
+    if (item === undefined) return undefined
+    else if (typeof item == 'string' || typeof item == 'number') return <>{item}</>
     else return item()
+}
+
+function isHeadingDetail(heading: TableHeading): boolean {
+    // take all headings which are details or below the breakpoint
+    return heading.isDetail || (heading.breakpoint !== undefined && !isWidthBreakpoint(heading.breakpoint).value)
 }

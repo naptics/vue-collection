@@ -28,13 +28,15 @@ export const nDropdownProps = {
      */
     disabled: Boolean,
     /**
-     * A slot to replace the button of the dropdown.
+     * Adds the classes to the Button of the dropdown.
      */
-    button: Function as PropType<() => JSX.Element>,
+    buttonClass: String,
     /**
-     * Adds the classes to the top-level element.
+     * A slot to replace the button of the dropdown.
+     * The passed parameter is the HeadlessUI `MenuButton` which should be
+     * used to create the button for the Dropdown to work properly.
      */
-    addClass: String,
+    button: Function as PropType<(button: typeof MenuButton) => JSX.Element>,
 } as const
 
 export type DropdownItem = {
@@ -81,14 +83,15 @@ export default createComponentWithSlots('NDropdown', nDropdownProps, ['button'],
     )
 
     return () => (
-        <Menu as="div" class={`relative inline-block text-left ${props.addClass}`}>
+        <Menu as="div" class={`relative inline-block text-left`}>
             <div class="flex">
-                {props.button?.() || (
+                {props.button?.(MenuButton) || (
                     <MenuButton
                         disabled={props.disabled}
                         class={[
                             'shadow w-full flex justify-between items-center text-default-700 rounded-md border bg-white border-default-300 px-4 py-2 text-sm font-medium focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500',
                             props.disabled ? 'text-opacity-20 cursor-default' : 'hover:bg-default-100',
+                            props.buttonClass,
                         ]}
                     >
                         <span>{props.title}</span>

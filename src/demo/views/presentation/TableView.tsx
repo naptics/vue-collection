@@ -1,6 +1,6 @@
 import NBadge from '@/lib/components/NBadge'
 import NIconButton from '@/lib/components/NIconButton'
-import NTable, { type TableDetail, type TableHeading } from '@/lib/components/NTable'
+import NTable, { type TableHeading } from '@/lib/components/NTable'
 import NTableAction from '@/lib/components/NTableAction'
 import ComponentSection from '@/demo/components/ComponentSection'
 import VariantSection from '@/demo/components/VariantSection'
@@ -16,10 +16,10 @@ export default createView('TableView', () => {
         { key: 'state', label: 'State', breakpoint: 'sm' },
     ]
 
-    const details: TableDetail[] = [
-        { key: 'address', label: 'Addresse' },
-        { key: 'zip', label: 'PLZ' },
-        { key: 'place', label: 'Ort' },
+    const details: TableHeading[] = [
+        { key: 'address', label: 'Addresse', isDetail: true },
+        { key: 'zip', label: 'PLZ', isDetail: true },
+        { key: 'place', label: 'Ort', isDetail: true },
     ]
 
     const data = [
@@ -114,7 +114,7 @@ export default createView('TableView', () => {
                 title="With Details"
                 subtitle="If there is a lot of information to display, a details section can be added."
             >
-                <NTable headings={headings} items={data} details={details} />
+                <NTable headings={[...headings, ...details]} items={data} />
             </VariantSection>
 
             <VariantSection

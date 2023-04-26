@@ -3,7 +3,6 @@ import ComponentGrid from '@/demo/components/ComponentGrid'
 import ComponentSection from '@/demo/components/ComponentSection'
 import VariantSection from '@/demo/components/VariantSection'
 import { createView } from '@/lib/utils/component'
-import { MenuButton } from '@headlessui/vue'
 import { ArrowDownOnSquareIcon, ShareIcon } from '@heroicons/vue/24/solid'
 
 export default createView('DropdownView', () => {
@@ -48,7 +47,10 @@ export default createView('DropdownView', () => {
                     <NDropdown title="Disabled" disabled />
                     <NDropdown title="Right Aligned" right items={base} />
                     <div class="flex items-center justify-center">
-                        <NDropdown items={base} button={() => <MenuButton> Custom Button</MenuButton>} />
+                        <NDropdown
+                            items={base}
+                            button={HeadlessButton => <HeadlessButton> Custom Button</HeadlessButton>}
+                        />
                     </div>
                 </ComponentGrid>
             </VariantSection>

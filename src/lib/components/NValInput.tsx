@@ -132,16 +132,9 @@ export default createComponentWithSlots('NValInput', nValInputProps, ['input'], 
     context.expose(expose)
     props.form?.addInput(expose)
 
-    const childProps = computed(() => ({
-        ...props,
-        // We should not pass this property to the child, as the class is applied on this element.
-        addClass: undefined,
-        ...inputSlotProps,
-    }))
-
     return () => (
-        <div class={props.addClass}>
-            {props.input?.(inputSlotProps) || <NInput ref={inputRef} {...childProps.value} />}
+        <div>
+            {props.input?.(inputSlotProps) || <NInput ref={inputRef} {...{ ...props, ...inputSlotProps }} />}
             {showErrorMessage.value && <p class="text-red-500 text-xs mt-1">{errorMessage.value}</p>}
         </div>
     )

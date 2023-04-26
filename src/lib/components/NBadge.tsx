@@ -44,9 +44,11 @@ export const nBadgeProps = {
         default: true,
     },
     /**
-     * Adds the classes to the top-level element.
+     * Adds the classes to the badge.
+     * Use this instead of `class` to style the button, because the button is wrapped inside
+     * a div for the tooltip and `class` would be applied to the wrapping div.
      */
-    addClass: String,
+    badgeClass: String,
     ...nToolTipPropsForImplementor,
 } as const
 
@@ -61,7 +63,7 @@ export default createComponent('NBadge', nBadgeProps, (props, { slots }) => {
                     'px-2 py-1 rounded-md font-semibold shadow',
                     `${props.textSize} bg-${props.color}-${props.shade} text-${props.color}-${props.textShade}`,
                     props.allCaps ? 'uppercase' : '',
-                    props.addClass,
+                    props.badgeClass,
                 ]}
             >
                 {slots.default?.() || props.text}

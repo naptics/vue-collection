@@ -16,10 +16,6 @@ export const nSearchbarListProps = {
      * Adds the classes directly to the input (e.g. for shadow).
      */
     inputClass: String,
-    /**
-     * Adds the classes to the top-level element.
-     */
-    addClass: String,
 } as const
 
 /**
@@ -39,7 +35,6 @@ export default createComponentWithSlots('NSearchbarList', nSearchbarListProps, [
                     onUpdateValue={props.onUpdateValue}
                     placeholder={props.placeholder}
                     inputClass={`shadow-lg ${props.inputClass}`}
-                    addClass={props.addClass}
                     onFocus={onFocus}
                     onBlur={onBlur}
                 />

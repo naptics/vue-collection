@@ -47,9 +47,11 @@ export const nIconButtonProps = {
      */
     disabled: Boolean,
     /**
-     * Adds the classes to the top-level element.
+     * Adds the classes to the icon-button.
+     * Use this instead of `class` to style the button, because the button is wrapped inside
+     * a div for the tooltip and `class` would be applied to the wrapping div.
      */
-    addClass: String,
+    buttonClass: String,
     /**
      * This is called when the icon-button is clicked.
      * It is only called when the `route` prop is not set on the icon-button.
@@ -67,7 +69,7 @@ export default createComponent('NIconButton', nIconButtonProps, props => {
         props.disabled
             ? `text-${props.color}-200 cursor-default`
             : `hover:bg-${props.color}-${props.shade} hover:bg-opacity-10 text-${props.color}-${props.shade} focus-visible:ring-${props.color}-${props.shade} cursor-pointer`,
-        props.addClass,
+        props.buttonClass,
     ]
 
     const content = () => <props.icon class={`w-${props.size} h-${props.size}`} />

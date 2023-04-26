@@ -58,10 +58,6 @@ export const nInputProps = {
      */
     inputClass: String,
     /**
-     * Adds the classes to the top-level element.
-     */
-    addClass: String,
-    /**
      * This is called when the input reveices focus.
      */
     onFocus: Function as PropType<() => void>,
@@ -90,7 +86,7 @@ export default createComponent('NInput', nInputProps, (props, context) => {
     context.expose(exposed)
 
     return () => (
-        <div class={props.addClass}>
+        <div>
             {props.name && !props.hideLabel && (
                 <label
                     for={props.name}

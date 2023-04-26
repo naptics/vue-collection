@@ -43,10 +43,6 @@ export const nIconCircleProps = {
         type: Number,
         default: 100,
     },
-    /**
-     * Adds the classes to the top-level element.
-     */
-    addClass: String,
 } as const
 
 const DEFAULT_CIRCLE_SIZE = 16
@@ -69,11 +65,7 @@ export default createComponent('NIconCircle', nIconCircleProps, props => {
 
     return () => (
         <div
-            class={[
-                'flex items-center justify-center rounded-full',
-                `bg-${props.color}-${props.bgShade}`,
-                props.addClass,
-            ]}
+            class={['flex items-center justify-center rounded-full', `bg-${props.color}-${props.bgShade}`]}
             style={`width: ${circleSize}px; height: ${circleSize}px`}
         >
             <div class={`text-${props.color}-${props.iconShade}`} style={`width: ${iconSize}px; height: ${iconSize}px`}>

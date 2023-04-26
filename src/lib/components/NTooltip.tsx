@@ -45,11 +45,16 @@ export const nTooltipProps = {
     /**
      * Adds the classes to the (invisible) wrapper element.
      */
-    wrapperAddClass: String,
+    wrapperClass: String,
     /**
      * Adds the classes to the container of the tooltips content.
      */
-    contentAddClass: String,
+    contentClass: String,
+    /**
+     * Adds the classes to the tooltip arrow. Make sure to use `before:` classes
+     * to target the arrow (which is the before element).
+     */
+    arrowClass: String,
 } as const
 
 /**
@@ -87,13 +92,17 @@ export const nToolTipPropsForImplementor = {
      */
     tooltipMaxWidth: nTooltipProps.maxWidth,
     /**
-     * @see {@link nTooltipProps.wrapperAddClass}
+     * @see {@link nTooltipProps.wrapperClass}
      */
-    tooltipWrapperAddClass: nTooltipProps.wrapperAddClass,
+    tooltipWrapperClass: nTooltipProps.wrapperClass,
     /**
-     * @see {@link nTooltipProps.contentAddClass}
+     * @see {@link nTooltipProps.contentClass}
      */
-    tooltipContentAddClass: nTooltipProps.contentAddClass,
+    tooltipContentClass: nTooltipProps.contentClass,
+    /**
+     * @see {@link nTooltipProps.arrowClass}
+     */
+    tooltipArrowClass: nTooltipProps.arrowClass,
 }
 
 /**
@@ -108,8 +117,9 @@ export function mapTooltipProps(props: ExtractedProps<typeof nToolTipPropsForImp
         show: props.tooltipShow,
         placement: props.tooltipPlacement,
         maxWidth: props.tooltipMaxWidth,
-        wrapperAddClass: props.tooltipWrapperAddClass,
-        contentAddClass: props.tooltipContentAddClass,
+        wrapperClass: props.tooltipWrapperClass,
+        contentClass: props.tooltipContentClass,
+        arrowClass: props.tooltipArrowClass,
     }
 }
 
@@ -126,7 +136,7 @@ export function mapTooltipProps(props: ExtractedProps<typeof nToolTipPropsForImp
  */
 export default createComponent('NTooltip', nTooltipProps, (props, { slots }) => {
     return () => (
-        <div class={[props.block ? 'block' : 'inline-block', props.wrapperAddClass]}>
+        <div class={[props.block ? 'block' : 'inline-block', props.wrapperClass]}>
             {props.content || props.text ? (
                 <NTooltipBase {...props}>{slots.default?.()}</NTooltipBase>
             ) : (
@@ -209,11 +219,11 @@ const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { sl
                     class={[isHovering.value ? 'z-20' : 'z-10', props.maxWidth, 'tooltip']}
                 >
                     <div
-                        class={`bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm whitespace-normal font-normal text-default-700 ${props.contentAddClass}`}
+                        class={`bg-white rounded-md py-2 px-4 shadow-lg border-default-200 border text-sm whitespace-normal font-normal text-default-700 ${props.contentClass}`}
                     >
                         {props.content?.() || props.text}
                     </div>
-                    <div data-popper-arrow class="arrow" />
+                    <div data-popper-arrow class={`arrow ${props.arrowClass}`} />
                 </div>
             </Transition>
         </>

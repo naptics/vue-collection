@@ -28,10 +28,6 @@ export const nListProps = {
      * Adds the classese to all text elements (on the right side).
      */
     textClass: String,
-    /**
-     * Adds the classes to the top-level element.
-     */
-    addClass: String,
 } as const
 
 /**
@@ -39,7 +35,7 @@ export const nListProps = {
  */
 export default createComponent('NList', nListProps, props => {
     return () => (
-        <dl class={props.addClass}>
+        <dl>
             {props.items.map((item, index) => (
                 <div
                     key={index}

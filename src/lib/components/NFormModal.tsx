@@ -39,15 +39,20 @@ export default createComponentWithSlots(
     nFormModalProps,
     ['modal', 'header', 'footer'],
     (props, { slots }) => {
+        const onOk = () => {
+            if (!props.form || props.form.validate().isValid) {
+                props.onOk?.()
+                if (props.closeOnOk) props.onUpdateValue?.(false)
+            }
+        }
+
         const childProps = computed(() => ({
             ...props,
-            onOk: () => {
-                if (!props.form || props.form.validate().isValid) {
-                    props.onOk?.()
-                    if (props.closeOnOk) props.onUpdateValue?.(false)
-                }
-            },
+            onOk,
             closeOnOk: false,
+            onKeydown: (event: KeyboardEvent) => {
+                if (event.metaKey && event.key === 'Enter') onOk()
+            },
         }))
 
         return () => (

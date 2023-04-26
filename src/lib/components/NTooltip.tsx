@@ -50,6 +50,11 @@ export const nTooltipProps = {
      * Adds the classes to the container of the tooltips content.
      */
     contentClass: String,
+    /**
+     * Adds the classes to the tooltip arrow. Make sure to use `before:` classes
+     * to target the arrow (which is the before element).
+     */
+    arrowClass: String,
 } as const
 
 /**
@@ -94,6 +99,10 @@ export const nToolTipPropsForImplementor = {
      * @see {@link nTooltipProps.contentClass}
      */
     tooltipContentClass: nTooltipProps.contentClass,
+    /**
+     * @see {@link nTooltipProps.arrowClass}
+     */
+    tooltipArrowClass: nTooltipProps.arrowClass,
 }
 
 /**
@@ -110,6 +119,7 @@ export function mapTooltipProps(props: ExtractedProps<typeof nToolTipPropsForImp
         maxWidth: props.tooltipMaxWidth,
         wrapperClass: props.tooltipWrapperClass,
         contentClass: props.tooltipContentClass,
+        arrowClass: props.tooltipArrowClass,
     }
 }
 
@@ -213,7 +223,7 @@ const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { sl
                     >
                         {props.content?.() || props.text}
                     </div>
-                    <div data-popper-arrow class="arrow" />
+                    <div data-popper-arrow class={`arrow ${props.arrowClass}`} />
                 </div>
             </Transition>
         </>

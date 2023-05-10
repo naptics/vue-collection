@@ -36,6 +36,16 @@ export function notNullishRef<T>(ref: Ref<T>): ref is Ref<NonNullable<T>> {
     return notNullish(ref.value)
 }
 
+/**
+ * Determines if the value of a ref is null or undefined.
+ * @param ref the ref to check
+ * @returns `true` if the value of the ref is `null` or `undefined`.
+ * @see isNullish
+ */
+export function isNullishRef(ref: Ref<Nullish<unknown>>): ref is Ref<null | undefined> {
+    return isNullish(ref.value)
+}
+
 /*
  * ---------- Objects ----------
  */

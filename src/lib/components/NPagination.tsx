@@ -91,7 +91,6 @@ export default createComponent('NPagination', nPaginationProps, props => {
                 class={['pagination-item selectable rounded-l-md', props.small ? '' : 'not-small']}
                 onClick={previous}
             >
-                <span class="sr-only">Previous</span>
                 <ChevronLeftIcon class="h-5 w-5" aria-hidden="true" />
             </button>
 
@@ -108,7 +107,6 @@ export default createComponent('NPagination', nPaginationProps, props => {
             )}
 
             <button class={['pagination-item selectable rounded-r-md', props.small ? '' : 'not-small']} onClick={next}>
-                <span class="sr-only">Next</span>
                 <ChevronRightIcon class="h-5 w-5" aria-hidden="true" />
             </button>
         </nav>

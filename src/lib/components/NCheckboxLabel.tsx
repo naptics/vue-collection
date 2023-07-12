@@ -26,8 +26,8 @@ export default createComponent('NCheckboxLabel', nCheckboxLabelProps, props => {
     }
 
     return () => (
-        <div class={`flex items-center`}>
-            <NCheckbox {...props} />
+        <div class={`flex ${props.description ? 'items-start' : 'items-center'}`}>
+            <NCheckbox {...props} class={props.description ? 'mt-1' : ''}/>
             <div class={`${props.compact ? 'ml-2' : 'ml-3'} text-sm`}>
                 <label
                     onClick={toggleValue}

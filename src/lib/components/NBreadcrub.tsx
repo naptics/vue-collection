@@ -71,7 +71,7 @@ export type BreadcrumbItem = {
 /**
  * The `NBreadcrumb` is a styled breadcrumb which can be used as a navigation in hierarchical views.
  */
-export default createComponentWithSlots('NBreadcrumb', nBreadcrumbProps, ['seperator', 'item'], props => {
+const Component = createComponentWithSlots('NBreadcrumb', nBreadcrumbProps, ['seperator', 'item'], props => {
     return () => (
         <div class={`flex flex-wrap items-center`}>
             {props.items.map((item, index) => (
@@ -93,3 +93,5 @@ export default createComponentWithSlots('NBreadcrumb', nBreadcrumbProps, ['seper
         </div>
     )
 })
+
+export { Component as NBreadcrumb, Component as default }

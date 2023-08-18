@@ -9,7 +9,7 @@ export const nInputPhoneProps = nValInputProps
 /**
  * The `NInputPhone` autoformats phone numbers and checks if they are valid.
  */
-export default createComponent('NInputPhoneSuspended', nInputPhoneProps, props => {
+const Component = createComponent('NInputPhoneSuspended', nInputPhoneProps, props => {
     // Async components have to be wrapped in a suspense component.
     return () => (
         <Suspense>
@@ -17,6 +17,8 @@ export default createComponent('NInputPhoneSuspended', nInputPhoneProps, props =
         </Suspense>
     )
 })
+
+export { Component as NInputPhone, Component as default }
 
 const NPhoneInput = createComponent('NInputPhone', nInputPhoneProps, async props => {
     // import dynamically for better codesplitting as the library is pretty large

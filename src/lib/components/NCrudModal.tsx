@@ -71,7 +71,7 @@ export const nCrudModalProps = {
  * It has an integrated remove-button with a user-dialog to remove the editing element.
  * When the dialog is accepted `onRemove` is called.
  */
-export default createComponentWithSlots(
+const Component = createComponentWithSlots(
     'NCrudModal',
     nCrudModalProps,
     ['modal', 'footer', 'header'],
@@ -129,3 +129,5 @@ export default createComponentWithSlots(
         )
     }
 )
+
+export { Component as NCrudModal, Component as default }

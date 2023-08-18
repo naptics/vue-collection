@@ -51,7 +51,7 @@ const SCALING_FACTOR = 0.55
 /**
  * The `NIconCircle` is an icon with a colored circle around it.
  */
-export default createComponent('NIconCircle', nIconCircleProps, props => {
+const Component = createComponent('NIconCircle', nIconCircleProps, props => {
     let circleSize = props.circleSize
     let iconSize = props.iconSize
     if (circleSize == null) {
@@ -74,3 +74,5 @@ export default createComponent('NIconCircle', nIconCircleProps, props => {
         </div>
     )
 })
+
+export { Component as NIconCircle, Component as default }

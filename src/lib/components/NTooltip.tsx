@@ -134,7 +134,7 @@ export function mapTooltipProps(props: ExtractedProps<typeof nToolTipPropsForImp
  *      <NButton />
  * </NTooltip>
  */
-export default createComponent('NTooltip', nTooltipProps, (props, { slots }) => {
+const Component = createComponent('NTooltip', nTooltipProps, (props, { slots }) => {
     return () => (
         <div class={[props.block ? 'block' : 'inline-block', props.wrapperClass]}>
             {props.content || props.text ? (
@@ -145,6 +145,8 @@ export default createComponent('NTooltip', nTooltipProps, (props, { slots }) => 
         </div>
     )
 })
+
+export { Component as NTooltip, Component as default }
 
 const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { slots }) => {
     let popperInstance: PopperInstance | null = null

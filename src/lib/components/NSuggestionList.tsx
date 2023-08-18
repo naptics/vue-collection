@@ -101,7 +101,7 @@ export type SuggestionItem = Identifiable & { label?: string } & AnyObject
 /**
  * The `NSuggestionList` can be added to an input and adds a list below it which is shown when the input is focused.
  */
-export default createComponentWithSlots('NSuggestionList', nSuggestionListProps, ['input', 'listItem'], props => {
+const Component = createComponentWithSlots('NSuggestionList', nSuggestionListProps, ['input', 'listItem'], props => {
     const selectedIndex = ref<number | null>(null)
     const displayItems = computed(() => props.items.slice(0, props.maxItems))
 
@@ -209,3 +209,5 @@ export default createComponentWithSlots('NSuggestionList', nSuggestionListProps,
         </div>
     )
 })
+
+export { Component as NSuggestionList, Component as default }

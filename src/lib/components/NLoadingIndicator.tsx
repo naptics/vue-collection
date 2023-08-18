@@ -29,7 +29,7 @@ export const nLoadingIndicator = {
 /**
  * The `NLoadingIndicator` is a styled loading indicator.
  */
-export default createComponent('NLoadingIndicator', nLoadingIndicator, props => {
+const Component = createComponent('NLoadingIndicator', nLoadingIndicator, props => {
     const gap = computed(() => (props.size / 13) * 24)
 
     const totalWidth = computed(() => gap.value * 2 + props.size)
@@ -59,3 +59,5 @@ export default createComponent('NLoadingIndicator', nLoadingIndicator, props => 
         </div>
     )
 })
+
+export { Component as NLoadingIndicator, Component as default }

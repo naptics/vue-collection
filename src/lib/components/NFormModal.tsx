@@ -34,7 +34,7 @@ export const nFormModalProps = {
  * When submitting a `NFormModal` the form is first validated and
  * only if the validation is succesful the `onOk` event is called.
  */
-export default createComponentWithSlots(
+const Component = createComponentWithSlots(
     'NFormModal',
     nFormModalProps,
     ['modal', 'header', 'footer'],
@@ -62,3 +62,5 @@ export default createComponentWithSlots(
         )
     }
 )
+
+export { Component as NFormModal, Component as default }

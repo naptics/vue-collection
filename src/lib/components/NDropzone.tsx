@@ -64,7 +64,7 @@ export const nDropzoneProps = {
  * The `NDropzone` is an area where files can be added by the user by drag & drop.
  * Files can also be selected with a file chooser by clicking on the dropzone.
  */
-export default createComponent('NDropzone', nDropzoneProps, props => {
+const Component = createComponent('NDropzone', nDropzoneProps, props => {
     const fileError = ref<string>()
 
     const filterAndUpdateFiles = (files: File[]) => {
@@ -236,6 +236,8 @@ export default createComponent('NDropzone', nDropzoneProps, props => {
         </div>
     )
 })
+
+export { Component as NDropzone, Component as default }
 
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file#unique_file_type_specifiers
 const MIME_FORMAT = /^(image|audio|application|video|text)\/\*$/

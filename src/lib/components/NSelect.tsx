@@ -52,7 +52,7 @@ export type NSelectExposed = NValInputExposed
 /**
  * The `NSelect` is a styled html select-input.
  */
-export default createComponent('NSelect', nSelectProps, (props, context) => {
+const Component = createComponent('NSelect', nSelectProps, (props, context) => {
     const inputRef = ref<NSelectExposed>()
     const exposed: NSelectExposed = {
         focus: () => inputRef.value?.focus(),
@@ -110,3 +110,5 @@ export default createComponent('NSelect', nSelectProps, (props, context) => {
         />
     )
 })
+
+export { Component as NSelect, Component as default }

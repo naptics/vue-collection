@@ -21,7 +21,7 @@ export const nSearchbarListProps = {
 /**
  * The `NSearchbarList` is a {@link NSearchbar} with a {@link NSuggestionList}.
  */
-export default createComponentWithSlots('NSearchbarList', nSearchbarListProps, ['listItem'], props => {
+const Component = createComponentWithSlots('NSearchbarList', nSearchbarListProps, ['listItem'], props => {
     const searchbarRef = ref<NSearchbarExposed>()
 
     return () => (
@@ -43,3 +43,5 @@ export default createComponentWithSlots('NSearchbarList', nSearchbarListProps, [
         />
     )
 })
+
+export { Component as NSearchbarList, Component as default }

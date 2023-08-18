@@ -79,7 +79,7 @@ export type NTextAreaExposed = {
     focus(): void
 }
 
-export default createComponent('NTextArea', nTextAreaProps, (props, context) => {
+const Component = createComponent('NTextArea', nTextAreaProps, (props, context) => {
     const textAreaRef = ref<NTextAreaExposed>()
     const exposed: NTextAreaExposed = {
         focus: () => textAreaRef.value?.focus(),
@@ -95,6 +95,8 @@ export default createComponent('NTextArea', nTextAreaProps, (props, context) => 
         />
     )
 })
+
+export { Component as NTextArea, Component as default }
 
 /**
  * The `NTextArea` wraps the html text area with all the features from {@link NInput} and {@link NValInput}.

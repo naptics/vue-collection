@@ -95,7 +95,7 @@ export const nTableProps = {
 /**
  * The `NTable` is a styled html table which accepts data and displays it appropriately.
  */
-export default createComponent('NTable', nTableProps, props => {
+const Component = createComponent('NTable', nTableProps, props => {
     const headings = computed(() => {
         // filter out details headings
         const headings = props.headings.filter(heading => !isHeadingDetail(heading))
@@ -212,6 +212,8 @@ export default createComponent('NTable', nTableProps, props => {
         </div>
     )
 })
+
+export { Component as NTable, Component as default }
 
 /**
  * Builds a JSX-Element out of the item

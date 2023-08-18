@@ -20,7 +20,7 @@ export const nCheckboxProps = {
 /**
  * The `NCheckbox` is a styled checkbox.
  */
-export default createComponent('NCheckbox', nCheckboxProps, props => {
+const Component = createComponent('NCheckbox', nCheckboxProps, props => {
     const toggle = () => {
         props.onUpdateValue?.(!props.value)
         forceUpdate()
@@ -51,3 +51,5 @@ export default createComponent('NCheckbox', nCheckboxProps, props => {
         />
     )
 })
+
+export { Component as NCheckbox, Component as default }

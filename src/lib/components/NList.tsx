@@ -33,7 +33,7 @@ export const nListProps = {
 /**
  * The `NList` displays key-value data in an appealing way.
  */
-export default createComponent('NList', nListProps, props => {
+const Component = createComponent('NList', nListProps, props => {
     return () => (
         <dl>
             {props.items.map((item, index) => (
@@ -53,6 +53,8 @@ export default createComponent('NList', nListProps, props => {
         </dl>
     )
 })
+
+export { Component as NList, Component as default }
 
 function buildElement(element: string | undefined | (() => JSX.Element)): JSX.Element {
     if (typeof element === 'function') return element()

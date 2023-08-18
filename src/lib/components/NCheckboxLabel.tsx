@@ -20,7 +20,7 @@ export const nCheckboxLabelProps = {
 /**
  * The `NCheckboxLabel` is a checkbox with a title and a description.
  */
-export default createComponent('NCheckboxLabel', nCheckboxLabelProps, props => {
+const Component = createComponent('NCheckboxLabel', nCheckboxLabelProps, props => {
     const toggleValue = () => {
         if (!props.disabled) props.onUpdateValue?.(!props.value)
     }
@@ -47,3 +47,5 @@ export default createComponent('NCheckboxLabel', nCheckboxLabelProps, props => {
         </div>
     )
 })
+
+export { Component as NCheckboxLabel, Component as default }

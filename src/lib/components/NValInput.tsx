@@ -76,7 +76,7 @@ export type NValInputExposed = {
 /**
  * The `NValInput` is a `NInput` with custom validation.
  */
-export default createComponentWithSlots('NValInput', nValInputProps, ['input'], (props, context) => {
+const Component = createComponentWithSlots('NValInput', nValInputProps, ['input'], (props, context) => {
     const rules = computed(() => {
         const otherRules = Array.isArray(props.rules) ? props.rules : [props.rules]
         return props.optional ? otherRules : [required, ...otherRules]
@@ -139,3 +139,5 @@ export default createComponentWithSlots('NValInput', nValInputProps, ['input'], 
         </div>
     )
 })
+
+export { Component as NValInput, Component as default }

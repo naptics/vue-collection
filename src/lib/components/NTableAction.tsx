@@ -27,7 +27,7 @@ export const nTableActionProps = {
  * The `NTableAction` is a button or {@link RouterLink} which is styled to fit into a table.
  * It is basically styled as an emphasized text in the table.
  */
-export default createComponent('NTableAction', nTableActionProps, (props, { slots }) => {
+const Component = createComponent('NTableAction', nTableActionProps, (props, { slots }) => {
     const content = () => slots.default?.() || <>{props.text}</>
 
     const classes = [
@@ -45,3 +45,5 @@ export default createComponent('NTableAction', nTableActionProps, (props, { slot
             </button>
         )
 })
+
+export { Component as NTableAction, Component as default }

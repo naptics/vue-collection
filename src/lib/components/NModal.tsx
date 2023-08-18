@@ -117,7 +117,7 @@ export type ModalSlotProps = { ok: () => void; cancel: () => void }
  * The `NModal` is the base component for all modals and dialogs.
  * It provides the core mechanics to display a window in front of everything else.
  */
-export default createComponentWithSlots('NModal', nModalProps, ['modal', 'header', 'footer'], (props, { slots }) => {
+const Component = createComponentWithSlots('NModal', nModalProps, ['modal', 'header', 'footer'], (props, { slots }) => {
     const ok = () => {
         props.onOk?.()
         if (props.closeOnOk) props.onUpdateValue?.(false)
@@ -219,3 +219,5 @@ export default createComponentWithSlots('NModal', nModalProps, ['modal', 'header
         </TransitionRoot>
     )
 })
+
+export { Component as NModal, Component as default }

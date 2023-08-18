@@ -20,7 +20,7 @@ export const nFormProps = {
  * If it contains a button of type `submit` in it's hierarchy,
  * it catches the submit event and passes it to the {@link ValidatedForm} in its `form` prop.
  */
-export default createComponent('NForm', nFormProps, (props, context) => {
+const Component = createComponent('NForm', nFormProps, (props, context) => {
     const onSubmit = (event: Event) => {
         event.preventDefault()
         if (!props.form || props.form.validate().isValid) props.onSubmit?.()
@@ -28,3 +28,5 @@ export default createComponent('NForm', nFormProps, (props, context) => {
 
     return () => <form onSubmit={onSubmit}>{context.slots.default?.()}</form>
 })
+
+export { Component as NForm, Component as default }

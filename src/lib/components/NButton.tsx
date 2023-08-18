@@ -47,7 +47,7 @@ export const nButtonProps = {
 /**
  * The `NButton` is a styled button.
  */
-export default createComponent('NButton', nButtonProps, (props, { slots }) => {
+const Component = createComponent('NButton', nButtonProps, (props, { slots }) => {
     const isDisabled = computed(() => props.loading || props.disabled)
 
     return () => (
@@ -76,3 +76,5 @@ export default createComponent('NButton', nButtonProps, (props, { slots }) => {
         </NTooltip>
     )
 })
+
+export { Component as NButton, Component as default }

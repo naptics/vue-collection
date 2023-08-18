@@ -89,7 +89,7 @@ export type NDialogExposed = {
  * ...
  * <NDialog ref={dialogRef} />
  */
-export default createComponent('NDialog', nDialogProps, (props, context) => {
+const Component = createComponent('NDialog', nDialogProps, (props, context) => {
     const showDialog = ref(false)
 
     let deferredPromise: DeferredPromise<boolean> | null = null
@@ -178,3 +178,5 @@ const VARIANT_DEFAULTS = {
         okColor: 'red',
     },
 }
+
+export { Component as NDialog, Component as default }

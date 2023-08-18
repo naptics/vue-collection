@@ -63,7 +63,7 @@ export const nIconButtonProps = {
 /**
  * The `NIconButton` is a regular button which does not have any text but an icon instead.
  */
-export default createComponent('NIconButton', nIconButtonProps, props => {
+const Component = createComponent('NIconButton', nIconButtonProps, props => {
     const classes = () => [
         'block p-0.5 rounded-md focus:outline-none focus-visible:ring-2 -m-1',
         props.disabled
@@ -88,3 +88,5 @@ export default createComponent('NIconButton', nIconButtonProps, props => {
         </NTooltip>
     )
 })
+
+export { Component as NIconButton, Component as default }

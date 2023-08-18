@@ -41,7 +41,7 @@ export type NSearchbarExposed = {
 /**
  * The `NSearchbar` is a styled input with a search icon.
  */
-export default createComponent('NSearchbar', nSearchbarProps, (props, context) => {
+const Component = createComponent('NSearchbar', nSearchbarProps, (props, context) => {
     const inputRef = ref<HTMLInputElement>()
     const exposed: NSearchbarExposed = {
         focus: () => {
@@ -74,3 +74,5 @@ export default createComponent('NSearchbar', nSearchbarProps, (props, context) =
         </div>
     )
 })
+
+export { Component as NSearchbar, Component as default }

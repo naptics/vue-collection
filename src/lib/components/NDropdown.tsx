@@ -68,7 +68,7 @@ export type DropdownItem = {
  * The `NDropdown` consists of a button and a panel with multiple actions.
  * It is useful to group multiple actions together in one place.
  */
-export default createComponentWithSlots('NDropdown', nDropdownProps, ['button'], (props, { slots }) => {
+const Component = createComponentWithSlots('NDropdown', nDropdownProps, ['button'], (props, { slots }) => {
     const items = computed<DropdownItem[][]>(() => {
         if (props.items.length == 0) return []
         if (Array.isArray(props.items[0])) return props.items as DropdownItem[][]
@@ -163,3 +163,5 @@ export default createComponentWithSlots('NDropdown', nDropdownProps, ['button'],
         </Menu>
     )
 })
+
+export { Component as NDropdown, Component as default }

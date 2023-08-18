@@ -68,7 +68,7 @@ export type InputSelectOption = Identifiable & { label: string } & AnyObject
  * The user is forced to use a value from the specified options of the input.
  * While they type, the list of options is shown to them and filtered based on their input.
  */
-export default createComponentWithSlots('NInputSelect', nInputSelectProps, ['listItem'], props => {
+const Component = createComponentWithSlots('NInputSelect', nInputSelectProps, ['listItem'], props => {
     const inputRef = ref<NValInputExposed>()
 
     const inputValue = ref('')
@@ -122,3 +122,5 @@ export default createComponentWithSlots('NInputSelect', nInputSelectProps, ['lis
         />
     )
 })
+
+export { Component as NInputSelect, Component as default }

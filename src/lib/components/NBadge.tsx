@@ -55,7 +55,7 @@ export const nBadgeProps = {
 /**
  * The `NBadge` is a styled element to wrap a text.
  */
-export default createComponent('NBadge', nBadgeProps, (props, { slots }) => {
+const Component = createComponent('NBadge', nBadgeProps, (props, { slots }) => {
     return () => (
         <NTooltip {...mapTooltipProps(props)}>
             <div
@@ -71,3 +71,5 @@ export default createComponent('NBadge', nBadgeProps, (props, { slots }) => {
         </NTooltip>
     )
 })
+
+export { Component as NBadge, Component as default }

@@ -37,7 +37,7 @@ export const nPaginationProps = {
 /**
  * The `NPagination` is a styled pagination component.
  */
-export default createComponent('NPagination', nPaginationProps, props => {
+const Component = createComponent('NPagination', nPaginationProps, props => {
     const numbers = computed(() => {
         if (props.total <= 7) {
             return range(1, props.total)
@@ -112,6 +112,8 @@ export default createComponent('NPagination', nPaginationProps, props => {
         </nav>
     )
 })
+
+export { Component as NPagination, Component as default }
 
 type PaginationItem = {
     label: string

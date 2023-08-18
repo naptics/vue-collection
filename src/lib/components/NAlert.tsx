@@ -33,7 +33,7 @@ export const nAlertProps = {
  * The `NAlert` is a fully styled alert with multiple variants.
  * It can be used as a normal blocking element or as part of an alert queue.
  */
-export default createComponent('NAlert', nAlertProps, (props, { slots }) => {
+const Component = createComponent('NAlert', nAlertProps, (props, { slots }) => {
     const variant = computed(() => VARIANTS[props.variant])
 
     return () => (
@@ -81,3 +81,5 @@ const VARIANTS = {
         color: 'blue',
     },
 }
+
+export { Component as NAlert, Component as default }

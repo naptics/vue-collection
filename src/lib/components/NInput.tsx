@@ -78,7 +78,7 @@ export type NInputExposed = {
 /**
  * The base class of inputs. A styled input with a lot of configuration possibilities but no validation.
  */
-export default createComponent('NInput', nInputProps, (props, context) => {
+const Component = createComponent('NInput', nInputProps, (props, context) => {
     const inputRef = ref<HTMLInputElement>()
     const exposed: NInputExposed = {
         focus: () => inputRef.value?.focus(),
@@ -135,3 +135,5 @@ export default createComponent('NInput', nInputProps, (props, context) => {
         </div>
     )
 })
+
+export { Component as NInput, Component as default }

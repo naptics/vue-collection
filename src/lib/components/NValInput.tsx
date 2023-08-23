@@ -2,10 +2,22 @@ import { createComponentWithSlots } from '../utils/component'
 import { computed } from 'vue'
 import { ref, reactive, type PropType, watch } from 'vue'
 import NInput, { nInputProps, type NInputExposed } from './NInput'
-import { type ValidationRule, type ValidationResult, validate, type InputValue, required } from '../utils/validation'
+import {
+    type ValidationRule,
+    type ValidationResult,
+    validate,
+    type InputValue,
+    required,
+    validResult,
+} from '../utils/validation'
 import type { ValidatedForm } from './ValidatedForm'
 
 export const validationProps = {
+    /**
+     * If set to `true` this inputs validation will always succeed and all validation
+     * rules are ignored. Default is `false`.
+     */
+    disableValidation: Boolean,
     /**
      * If set to `true` this input is always valid when its value is empty.
      * If set to `false` the input receives the {@link required} rule. Default is `false`.
@@ -84,7 +96,7 @@ const Component = createComponentWithSlots('NValInput', nValInputProps, ['input'
 
     const validationResult = ref<ValidationResult>()
     const validateRules = (input: InputValue) => {
-        const result = validate(input, rules.value)
+        const result = props.disableValidation ? validResult() : validate(input, rules.value)
         validationResult.value = result
         return result
     }
@@ -104,6 +116,11 @@ const Component = createComponentWithSlots('NValInput', nValInputProps, ['input'
 
     watch(
         () => rules.value,
+        () => validateIfError()
+    )
+
+    watch(
+        () => props.disableValidation,
         () => validateIfError()
     )
 

@@ -24,6 +24,14 @@ export const nSelectProps = {
         default: () => [],
     },
     /**
+     * The value which is shown in the empty state.
+     * The "nothing-option" will be called like this.
+     */
+    placeholder: {
+        type: String,
+        default: () => trsl('vue-collection.action.select'),
+    },
+    /**
      * @see {@link nValInputProps.name}
      */
     name: nValInputProps.name,
@@ -102,7 +110,7 @@ const Component = createComponent('NSelect', nSelectProps, (props, context) => {
                             ]}
                         >
                             <option disabled={!props.optional} selected={!props.value} value="">
-                                {trsl('vue-collection.action.select')}
+                                {props.placeholder}
                             </option>
                             {props.options.map(option => (
                                 <option key={option.id} value={option.id} selected={props.value == option.id}>

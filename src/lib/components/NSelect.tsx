@@ -40,6 +40,10 @@ export const nSelectProps = {
      */
     form: nValInputProps.form,
     /**
+     * @see {@link nValInputProps.hideLabel}
+     */
+    hideLabel: nValInputProps.hideLabel,
+    /**
      * @see {@link nValInputProps.inputClass}
      */
     inputClass: nValInputProps.inputClass,
@@ -70,15 +74,17 @@ const Component = createComponent('NSelect', nSelectProps, (props, context) => {
             {...props}
             input={slotProps => (
                 <>
-                    <label
-                        for={props.name}
-                        class={[
-                            'block text-sm font-medium mb-1',
-                            props.disabled ? 'text-default-300' : 'text-default-700',
-                        ]}
-                    >
-                        {props.name}
-                    </label>
+                    {props.name && !props.hideLabel && (
+                        <label
+                            for={props.name}
+                            class={[
+                                'block text-sm font-medium mb-1',
+                                props.disabled ? 'text-default-300' : 'text-default-700',
+                            ]}
+                        >
+                            {props.name}
+                        </label>
+                    )}
                     <NTooltip block {...mapTooltipProps(props)}>
                         <select
                             name={props.name}

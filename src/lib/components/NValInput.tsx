@@ -1,5 +1,5 @@
 import { createComponentWithSlots } from '../utils/component'
-import { computed } from 'vue'
+import { computed, onMounted, onUnmounted } from 'vue'
 import { ref, reactive, type PropType, watch } from 'vue'
 import NInput, { nInputProps, type NInputExposed } from './NInput'
 import {
@@ -147,7 +147,10 @@ const Component = createComponentWithSlots('NValInput', nValInputProps, ['input'
         focus: () => inputRef.value?.focus(),
     }
     context.expose(expose)
-    props.form?.addInput(expose)
+
+    let assignedId: string | undefined = undefined
+    onMounted(() => (assignedId = props.form?.addInput(expose)))
+    onUnmounted(() => assignedId && props.form?.removeInput(assignedId))
 
     return () => (
         <div>

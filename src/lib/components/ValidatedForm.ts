@@ -1,3 +1,5 @@
+import { Id, type Identifiable } from '../utils/identifiable'
+import { uniqueId } from '../utils/utils'
 import type { ValidationResult } from '../utils/validation'
 import type { NValInputExposed } from './NValInput'
 
@@ -12,12 +14,17 @@ import type { NValInputExposed } from './NValInput'
  */
 export type ValidatedForm = {
     /**
-     * Adds the input to the list of this form.
+     * Adds the input to the list of this form and returns the assigned `id`.
      * If this form is passed to a `<NValInput />` via the props, will add itself to this form.
+     * @returns the newly assigned `id` of the added input.
      * @example
      * <NValInput ... form={form} />
      */
-    addInput(input: NValInputExposed): void
+    addInput(input: NValInputExposed): string
+    /**
+     * Removes the input with the given `id` from this form.
+     */
+    removeInput(id: string): void
     /**
      * Validates all inputs of the form. If inputs are invalid they will show it visually.
      * The first invalid validation result is returned.
@@ -38,10 +45,16 @@ export function createValidatedForm(): ValidatedForm {
 }
 
 class ValidatedFormImpl implements ValidatedForm {
-    inputs: NValInputExposed[] = []
+    inputs: (NValInputExposed & Identifiable)[] = []
 
-    addInput(input: NValInputExposed): void {
-        this.inputs.push(input)
+    addInput(input: NValInputExposed): string {
+        const id = `input-${uniqueId()}`
+        this.inputs.push({ id, ...input })
+        return id
+    }
+
+    removeInput(id: string): void {
+        Id.remove(this.inputs, id)
     }
 
     validate(): ValidationResult {

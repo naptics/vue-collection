@@ -28,7 +28,7 @@ export default createView('InputView', () => {
         { id: '8', label: 'Angela Merkel' },
     ]
 
-    const refs = Array.from({ length: 20 }, () => ref(''))
+    const refs = Array.from({ length: 21 }, () => ref(''))
 
     function vModel(n: number) {
         return vModelForRef(refs[n])
@@ -36,6 +36,8 @@ export default createView('InputView', () => {
 
     const form = createValidatedForm()
     const onSubmit = () => alert('Form was submitted!')
+
+    const showDynamicInput = ref(true)
 
     return () => (
         <ComponentSection
@@ -158,7 +160,15 @@ export default createView('InputView', () => {
                     <ComponentGrid cols={2}>
                         <NValInput name="First Name" form={form} {...vModel(13)} />
                         <NValInput name="Last name" form={form} {...vModel(14)} />
-                        <div class="flex ">
+                        {showDynamicInput.value && <NValInput name="Hello World" form={form} {...vModel(20)} />}
+
+                        <div class="flex space-x-2 items-end">
+                            <NButton
+                                color="secondary"
+                                onClick={() => (showDynamicInput.value = !showDynamicInput.value)}
+                            >
+                                Toggle Input
+                            </NButton>
                             <NButton type="submit">Submit Form</NButton>
                         </div>
                     </ComponentGrid>

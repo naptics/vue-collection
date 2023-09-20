@@ -58,6 +58,10 @@ export const nDropzoneProps = {
         type: String,
         default: 'min-h-36',
     },
+    /**
+     * If set to `true`, the dropzone is disabled and does not accept input anymore.
+     */
+    disabled: Boolean,
 } as const
 
 /**
@@ -124,6 +128,7 @@ const Component = createComponent('NDropzone', nDropzoneProps, props => {
         event.preventDefault()
         isDragOver.value = false
 
+        if (props.disabled) return
         const transfer = event.dataTransfer
         if (transfer == null) return
 
@@ -163,9 +168,12 @@ const Component = createComponent('NDropzone', nDropzoneProps, props => {
         <div>
             <button
                 class={[
-                    'block w-full rounded-md border-dashed border-2 hover:border-primary-300 hover:bg-primary-50 focus-visible:border-primary-500 focus:outline-none ',
-                    'flex flex-col items-center justify-center text-center text-sm select-none hover:text-primary-700 p-4',
-                    isDragOver.value
+                    'block w-full rounded-md border-dashed border-2  focus-visible:border-primary-500 focus:outline-none ',
+                    'flex flex-col items-center justify-center text-center text-sm select-none p-4',
+                    !props.disabled ? 'hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700' : '',
+                    props.disabled
+                        ? 'border-default-300 bg-default-50/50 text-default-500/30'
+                        : isDragOver.value
                         ? 'border-primary-300 bg-primary-50 text-primary-700'
                         : 'border-default-300 bg-default-50 text-default-500',
                     props.height,
@@ -174,6 +182,8 @@ const Component = createComponent('NDropzone', nDropzoneProps, props => {
                 onDragover={onDragOver}
                 onDragleave={onDragLeave}
                 onClick={onClick}
+                type="button"
+                disabled={props.disabled}
             >
                 <input
                     type="file"

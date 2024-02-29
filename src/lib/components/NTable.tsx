@@ -49,6 +49,10 @@ export type TableRow = Record<string, TableItem> & {
      * This classes will be applied to the whole table row.
      */
     rowClass?: string
+    /**
+     * This classes will be applied to the whole details section of the row.
+     */
+    detailsClass?: string
 }
 const N_TABLE_ACTION_KEY = 'action'
 
@@ -185,7 +189,7 @@ const Component = createComponent('NTable', nTableProps, props => {
 
                             {/* Second tbody are the details (only shown if present and opened) */}
                             {showDetails.value && isDetailsOpen(itemIndex) && (
-                                <tbody class={itemIndex % 2 === 0 ? 'bg-white' : 'bg-default-50'}>
+                                <tbody class={[itemIndex % 2 === 0 ? 'bg-white' : 'bg-default-50', item.detailsClass]}>
                                     {details.value.map((detail, detailIndex) => (
                                         <tr key={`detail-${detailIndex}`}>
                                             <td

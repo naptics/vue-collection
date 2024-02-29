@@ -45,6 +45,10 @@ export type TableRow = Record<string, TableItem> & {
      * merged together in one cell with the button to toggle the details.
      */
     action?: TableItem
+    /**
+     * This classes will be applied to the whole table row.
+     */
+    rowClass?: string
 }
 const N_TABLE_ACTION_KEY = 'action'
 
@@ -146,6 +150,7 @@ const Component = createComponent('NTable', nTableProps, props => {
                                 class={[
                                     'border-default-200 border-t',
                                     itemIndex % 2 === 0 ? 'bg-white' : 'bg-default-50',
+                                    item.rowClass,
                                 ]}
                             >
                                 <tr>

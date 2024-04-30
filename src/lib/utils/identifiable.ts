@@ -1,9 +1,7 @@
 import { isNullish, type Nullish } from './utils'
 
-type IdType = string
-
-export type Identifiable = Readonly<{ id: IdType }>
-export type MaybeIdentifiable = Readonly<{ id?: Nullish<IdType> }>
+export type Identifiable<Id = string> = Readonly<{ id: Id }>
+export type MaybeIdentifiable<Id = string> = Readonly<{ id?: Nullish<Id> }>
 
 /**
  * Looks for the `id` in the given array of `Identifiables`.
@@ -11,7 +9,7 @@ export type MaybeIdentifiable = Readonly<{ id?: Nullish<IdType> }>
  * @param id The `id` of the desired item.
  * @returns The first item with the specified `id` or `undefined` if none exists.
  */
-function find<T extends Identifiable>(array: Nullish<T[]>, id: IdType): T | undefined {
+function find<Id, Item extends Identifiable<Id>>(array: Nullish<Item[]>, id: Id): Item | undefined {
     if (isNullish(array)) return undefined
     const filtered = array.filter(item => item.id === id)
     if (filtered.length > 0) return filtered[0]
@@ -24,11 +22,11 @@ function find<T extends Identifiable>(array: Nullish<T[]>, id: IdType): T | unde
  * @param id The `id` to check the array for.
  * @returns `true` if there is at least one item in the array with the given `id`.
  */
-function contains<T extends Identifiable>(array: T[], id: IdType): boolean {
+function contains<Id, Item extends Identifiable<Id>>(array: Item[], id: Id): boolean {
     return find(array, id) !== undefined
 }
 
-function insertSingle<T extends Identifiable>(baseArray: T[], insertItem: T) {
+function insertSingle<Id, Item extends Identifiable<Id>>(baseArray: Item[], insertItem: Item) {
     const index = baseArray.findIndex(item => item.id === insertItem.id)
     index === -1 ? baseArray.push(insertItem) : baseArray.splice(index, 1, insertItem)
 }
@@ -41,7 +39,7 @@ function insertSingle<T extends Identifiable>(baseArray: T[], insertItem: T) {
  * @param insertItems The items to insert into the array.
  * @returns The reference to the same array, which was passed.
  */
-function insert<T extends Identifiable>(array: T[], ...insertItems: T[]): T[] {
+function insert<Id, Item extends Identifiable<Id>>(array: Item[], ...insertItems: Item[]): Item[] {
     insertItems.forEach(item => insertSingle(array, item))
     return array
 }
@@ -52,7 +50,7 @@ function insert<T extends Identifiable>(array: T[], ...insertItems: T[]): T[] {
  * @param ids The `ids` of the items which should be removed.
  * @returns The reference to the same array, which was passed.
  */
-function remove<T extends Identifiable>(array: T[], ...ids: IdType[]): T[] {
+function remove<Id, Item extends Identifiable>(array: Item[], ...ids: Id[]): Item[] {
     ids.forEach(id => {
         let noMatches = false
         while (!noMatches) {
@@ -71,7 +69,7 @@ function remove<T extends Identifiable>(array: T[], ...ids: IdType[]): T[] {
  * @param second The second array to compare.
  * @returns `true` if the arrays contain item with the same `ids` in the same order.
  */
-function areSameArrays(first: Identifiable[], second: Identifiable[]): boolean {
+function areSameArrays<Id>(first: Identifiable<Id>[], second: Identifiable<Id>[]): boolean {
     if (first.length != second.length) return false
     for (let i = 0; i < first.length; i++) {
         if (first[i]?.id !== second[i]?.id) return false

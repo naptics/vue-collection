@@ -102,6 +102,10 @@ export const nModalProps = {
      */
     modal: Function as PropType<(props: ModalSlotProps) => JSX.Element>,
     /**
+     * A slot to replace the whole content section, i.e. everything between the header and the footer.
+     */
+    content: Function as PropType<(props: ModalSlotProps) => JSX.Element>,
+    /**
      * A slot to replace the whole header section (excluding the x).
      */
     header: Function as PropType<() => JSX.Element>,
@@ -186,7 +190,9 @@ const Component = createComponentWithSlots('NModal', nModalProps, ['modal', 'hea
                                         </div>
                                     )}
 
-                                    <div class="px-4 sm:px-6 py-4 rounded-lg">{slots.default?.()}</div>
+                                    {props.content?.({ ok, cancel }) || (
+                                        <div class="px-4 sm:px-6 py-4 rounded-lg">{slots.default?.()}</div>
+                                    )}
 
                                     {!props.hideFooter && (
                                         <div class="px-4 sm:px-6 pb-4 pt-2 bg-default-50 rounded-b-lg">

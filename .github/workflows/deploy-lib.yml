@@ -36,6 +36,8 @@ jobs:
     steps: 
       - name: Setup node environment
         uses: actions/setup-node@v4
+        env: 
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         with:
           node-version: 'latest'
           registry-url: https://registry.npmjs.org/
@@ -46,6 +48,4 @@ jobs:
       - name: Prepare folder structure
         run: mv ./lib/* .
       - run: npm publish --access=restricted
-        env:
-          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
        

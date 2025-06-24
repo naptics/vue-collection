@@ -25,9 +25,13 @@ export const nListProps = {
      */
     titleClass: String,
     /**
-     * Adds the classese to all text elements (on the right side).
+     * Adds the classes to all text elements (on the right side).
      */
     textClass: String,
+    /**
+     * Adds the classes to each row.
+     */
+    rowClass: String,
 } as const
 
 /**
@@ -42,6 +46,7 @@ const Component = createComponent('NList', nListProps, props => {
                     class={[
                         'py-5 px-4 sm:grid sm:grid-cols-3 sm:gap-4',
                         index % 2 === 1 ? 'bg-white' : 'bg-default-50',
+                        props.rowClass,
                     ]}
                 >
                     <dt class={`text-sm font-medium text-default-500 ${props.titleClass}`}>

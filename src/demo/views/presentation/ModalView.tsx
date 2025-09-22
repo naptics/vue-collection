@@ -1,6 +1,17 @@
 import { createView } from '@/lib/utils/component'
 import { vModelForRef } from '@/lib/utils/vModel'
-import { NoSymbolIcon, SunIcon } from '@heroicons/vue/24/solid'
+import {
+    ArrowDownIcon,
+    ArrowDownRightIcon,
+    ArrowDownLeftIcon,
+    ArrowLeftIcon,
+    ArrowRightIcon,
+    ArrowUpIcon,
+    ArrowUpLeftIcon,
+    ArrowUpRightIcon,
+    NoSymbolIcon,
+    SunIcon,
+} from '@heroicons/vue/24/solid'
 import { ref } from 'vue'
 import NButton from '@/lib/components/NButton'
 import NModal from '@/lib/components/NModal'
@@ -16,7 +27,7 @@ import NCrudModal from '@/lib/components/NCrudModal'
 import NDialog, { type NDialogExposed } from '@/lib/components/NDialog'
 
 export default createView('ModalView', () => {
-    const refs = Array.from({ length: 6 }, () => ref(false))
+    const refs = Array.from({ length: 14 }, () => ref(false))
     const dialogRefs = Array.from({ length: 5 }, () => ref<NDialogExposed>())
     const inputRefs = Array.from({ length: 4 }, () => ref(''))
 
@@ -92,6 +103,19 @@ export default createView('ModalView', () => {
                         <NButton color="green" onClick={openDialog(0)}>
                             Success Dialog
                         </NButton>
+                    </ComponentGrid>
+                </VariantSection>
+
+                <VariantSection title="Positioning" subtitle="Modals can be positioned vertically and horizontally.">
+                    <ComponentGrid cols={8}>
+                        <NIconButton icon={ArrowUpLeftIcon} onClick={openModal(6)} />
+                        <NIconButton icon={ArrowUpIcon} onClick={openModal(7)} />
+                        <NIconButton icon={ArrowUpRightIcon} onClick={openModal(8)} />
+                        <NIconButton icon={ArrowRightIcon} onClick={openModal(9)} />
+                        <NIconButton icon={ArrowDownRightIcon} onClick={openModal(10)} />
+                        <NIconButton icon={ArrowDownIcon} onClick={openModal(11)} />
+                        <NIconButton icon={ArrowDownLeftIcon} onClick={openModal(12)} />
+                        <NIconButton icon={ArrowLeftIcon} onClick={openModal(13)} />
                     </ComponentGrid>
                 </VariantSection>
             </ComponentSection>
@@ -171,6 +195,16 @@ export default createView('ModalView', () => {
                 title="Delete user"
                 text="Are you sure you want to delete the user?"
             />
+
+            {/* Positioned Modals */}
+            <NModal {...vModel(6)} title="Top Left" verticalPosition="start" horizontalPosition="start" />
+            <NModal {...vModel(7)} title="Top Center" verticalPosition="start" horizontalPosition="center" />
+            <NModal {...vModel(8)} title="Top Right" verticalPosition="start" horizontalPosition="end" />
+            <NModal {...vModel(9)} title="Center Right" verticalPosition="center" horizontalPosition="end" />
+            <NModal {...vModel(10)} title="Bottom Right" verticalPosition="end" horizontalPosition="end" />
+            <NModal {...vModel(11)} title="Bottom Center" verticalPosition="end" horizontalPosition="center" />
+            <NModal {...vModel(12)} title="Bottom Left" verticalPosition="end" horizontalPosition="start" />
+            <NModal {...vModel(13)} title="Center Left" verticalPosition="center" horizontalPosition="start" />
         </>
     )
 })

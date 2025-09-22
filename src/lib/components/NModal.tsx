@@ -54,6 +54,16 @@ export const nModalProps = {
         type: Boolean,
         default: true,
     },
+
+    verticalPosition: {
+        type: String as PropType<'start' | 'center' | 'end'>,
+        default: 'center',
+    },
+
+    horizontalPosition: {
+        type: String as PropType<'start' | 'center' | 'end'>,
+        default: 'center',
+    },
     /**
      * If set to `true` the ok-button is hidden.
      */
@@ -135,7 +145,7 @@ const Component = createComponentWithSlots('NModal', nModalProps, ['modal', 'hea
     return () => (
         <TransitionRoot as="template" show={props.value}>
             <Dialog as="div" static class="fixed z-40 inset-0 overflow-y-auto" onClose={cancel} open={props.value}>
-                <div class="flex items-center justify-center min-h-screen">
+                <div class={`flex items-${props.verticalPosition} justify-${props.horizontalPosition} min-h-screen`}>
                     <TransitionChild
                         as="template"
                         enter="ease-out duration-300"

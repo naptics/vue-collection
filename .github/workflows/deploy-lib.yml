@@ -1,51 +1,50 @@
 name: Deploy Library to npm
 
-on: 
-  push: 
-    tags: 
-      - v*
+on:
+    push:
+        tags:
+            - v*
 
 jobs:
-  build: 
-    name: Lint, Type-Check, Build & Test
-    runs-on: ubuntu-latest
-    steps: 
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Setup node environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: 'latest'
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run build-lib
-      - run: npm run test
-      - name: Upload library as artifact
-        uses: actions/upload-artifact@v4
-        with:
-            name: vue-collection-lib
-            path: |
-              lib
-              .npmrc
-              package.json
-              README.md
-  deploy:
-    name: Deploy Library to npm
-    needs: build
-    runs-on: ubuntu-latest
-    steps: 
-      - name: Setup node environment
-        uses: actions/setup-node@v4
-        env: 
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        with:
-          node-version: 'latest'
-          registry-url: https://registry.npmjs.org/
-      - name: Download library artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: vue-collection-lib
-      - name: Prepare folder structure
-        run: mv ./lib/* .
-      - run: npm publish --access=restricted
-       
+    build:
+        name: Lint, Type-Check, Build & Test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+            - name: Setup node environment
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 'latest'
+            - run: npm ci
+            - run: npm run lint
+            - run: npm run build-lib
+            - run: npm run test
+            - name: Upload library as artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: vue-collection-lib
+                  path: |
+                      lib
+                      .npmrc
+                      package.json
+                      README.md
+    deploy:
+        name: Deploy Library to npm
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Setup node environment
+              uses: actions/setup-node@v4
+              env:
+                  NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+              with:
+                  node-version: 'latest'
+                  registry-url: https://registry.npmjs.org/
+            - name: Download library artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: vue-collection-lib
+            - name: Prepare folder structure
+              run: mv ./lib/* .
+            - run: npm publish --access=public

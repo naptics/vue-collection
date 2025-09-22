@@ -30,6 +30,20 @@ export const nModalProps = {
         default: 'max-w-md',
     },
     /**
+     * The vertical position of the modal. Default is `center`.
+     */
+    verticalPosition: {
+        type: String as PropType<'start' | 'center' | 'end'>,
+        default: 'center',
+    },
+    /**
+     * The horizontal position of the modal. Default is `center`.
+     */
+    horizontalPosition: {
+        type: String as PropType<'start' | 'center' | 'end'>,
+        default: 'center',
+    },
+    /**
      * The title of the modal which is displayed in the header.
      */
     title: String,
@@ -53,16 +67,6 @@ export const nModalProps = {
     closeOnOk: {
         type: Boolean,
         default: true,
-    },
-
-    verticalPosition: {
-        type: String as PropType<'start' | 'center' | 'end'>,
-        default: 'center',
-    },
-
-    horizontalPosition: {
-        type: String as PropType<'start' | 'center' | 'end'>,
-        default: 'center',
     },
     /**
      * If set to `true` the ok-button is hidden.

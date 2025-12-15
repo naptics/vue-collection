@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import type { PropType, Ref } from 'vue'
 import type { AnyObject } from './utils'
 
@@ -167,7 +166,7 @@ export function vModelForObjectProperty<T extends AnyObject, K extends keyof T>(
 export function vModelForVModelProperty<
     Model extends VModel<ModelValue>,
     Key extends keyof ModelValue,
-    ModelValue extends AnyObject = Model['value']
+    ModelValue extends AnyObject = Model['value'],
 >(vModel: Model, key: Key): VModel<ModelValue[Key]> {
     return {
         value: vModel.value[key],
@@ -211,7 +210,7 @@ export function vModelForVModelPropertyMapType<
     Model extends VModel<ModelValue>,
     Key extends keyof ModelValue,
     UpdateValue,
-    ModelValue extends AnyObject = Model['value']
+    ModelValue extends AnyObject = Model['value'],
 >(vModel: Model, key: Key, mapType: (value: UpdateValue) => ModelValue[Key]): VModel<ModelValue[Key], UpdateValue> {
     return {
         value: vModel.value[key],

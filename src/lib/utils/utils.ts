@@ -65,8 +65,8 @@ export type ReadonlyObject<T extends AnyObject> = {
     readonly [P in keyof T]: T[P] extends ReadonlyObject<infer _U>
         ? T[P]
         : T[P] extends AnyObject
-        ? ReadonlyObject<T[P]>
-        : T[P]
+          ? ReadonlyObject<T[P]>
+          : T[P]
 }
 
 /**

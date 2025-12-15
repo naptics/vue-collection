@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const colors = require('tailwindcss/colors')
 
 const unresolvedConfig = require('tailwindcss/defaultConfig')

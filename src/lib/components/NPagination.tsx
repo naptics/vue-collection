@@ -123,7 +123,7 @@ type PaginationItem = {
 }
 
 function range(from: number, to: number): number[] {
-    const array = []
+    const array: number[] = []
     for (let i = from; i <= to; i++) {
         array.push(i)
     }

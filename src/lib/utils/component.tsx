@@ -40,7 +40,11 @@ export function createComponent<T extends Props>(
     props: T,
     setup: (props: ExtractedProps<T>, context: SetupContext<never[]>) => RenderFunction | Promise<RenderFunction>
 ) {
-    return defineComponent({ name, props, emits: [], setup })
+    // Vue 3.5's defineComponent has strict type requirements that don't align with our simplified API.
+    // The type assertion is necessary because the generic setup function signature doesn't match
+    // Vue's complex overloaded defineComponent types, even though the runtime behavior is correct.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return defineComponent({ name, props, emits: [], setup } as any)
 }
 
 /**

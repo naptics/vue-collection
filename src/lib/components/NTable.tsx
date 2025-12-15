@@ -204,7 +204,7 @@ const Component = createComponent('NTable', nTableProps, props => {
                                             <td
                                                 class={[
                                                     'px-4 py-1',
-                                                    details.value[detailIndex].detailsClass,
+                                                    details.value[detailIndex]?.detailsClass,
                                                     details.value.length - 1 == detailIndex ? 'pb-4' : '',
                                                 ]}
                                                 colspan={headings.value.length - 1}

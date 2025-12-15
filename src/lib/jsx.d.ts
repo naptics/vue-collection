@@ -1,5 +1,3 @@
-/// <reference types="vite/client" />
-
 import type { VNode } from 'vue'
 
 declare global {

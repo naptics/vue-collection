@@ -1,11 +1,16 @@
 {
-    "extends": "@vue/tsconfig/tsconfig.web.json",
+    "extends": "@vue/tsconfig/tsconfig.dom.json",
     "include": ["src/lib/**/*", "src/lib/**/*.json"],
     "exclude": ["src/**/__tests__/*"],
     "compilerOptions": {
         "composite": true,
         // don't allow @ alias inside library
         "paths": {},
-        "outDir": "lib"
+        "outDir": "lib",
+        "jsx": "preserve",
+        "jsxImportSource": "vue",
+        "noImplicitAny": false,
+        "downlevelIteration": true,
+        "skipLibCheck": true
     }
 }

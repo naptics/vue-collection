@@ -1,5 +1,5 @@
 {
-    "extends": "@vue/tsconfig/tsconfig.web.json",
+    "extends": "@vue/tsconfig/tsconfig.dom.json",
     // all files must be included, because demo uses lib.
     "include": ["env.d.ts", "src/**/*", "src/**/*.json"],
     "exclude": ["src/**/__tests__/*"],
@@ -8,6 +8,11 @@
         "baseUrl": ".",
         "paths": {
             "@/*": ["./src/*"]
-        }
+        },
+        "jsx": "preserve",
+        "jsxImportSource": "vue",
+        "noImplicitAny": false,
+        "noUncheckedIndexedAccess": false,
+        "skipLibCheck": true
     }
 }

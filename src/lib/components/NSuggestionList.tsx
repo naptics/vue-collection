@@ -138,7 +138,10 @@ const Component = createComponentWithSlots('NSuggestionList', nSuggestionListPro
             event.preventDefault()
             const index = selectedIndex.value
             if (index != null && index < displayItems.value.length) {
-                onSelect(displayItems.value[index].id)
+                const item = displayItems.value[index]
+                if (item) {
+                    onSelect(item.id)
+                }
             }
         }
     }

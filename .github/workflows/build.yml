@@ -12,10 +12,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Read .nvmrc
+        run: echo ::set-output name=NVMRC::$(cat .nvmrc)
+        id: nvm
       - name: Setup node environment
         uses: actions/setup-node@v4
         with:
-          node-version: 'latest'
+          node-version: ${{ steps.nvm.outputs.NVMRC }}
       - run: npm ci
       - run: npm run lint
       - run: npm run build-lib

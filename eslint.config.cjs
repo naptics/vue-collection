@@ -7,7 +7,7 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = defineConfigWithVueTs(
     {
-        ignores: ['node_modules/**', 'dist/**', 'dist-ssr/**', 'lib/**', 'coverage/**'],
+        ignores: ['node_modules/**', 'dist/**', 'dist-ssr/**', 'lib/**', 'coverage/**', 'scripts/*.js'],
     },
     js.configs.recommended,
     pluginVue.configs['flat/essential'],

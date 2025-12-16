@@ -5,10 +5,6 @@ on:
     tags:
       - v*
 
-permissions:
-  id-token: write  # Required for OIDC
-  contents: read
-
 jobs:
   build:
     name: Lint, Type-Check, Build & Test
@@ -40,6 +36,9 @@ jobs:
     name: Deploy Library to npm
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write  # Required for OIDC
+      contents: read
     steps:
       - name: Read .nvmrc
         run: echo "NVMRC=$(cat .nvmrc)" >> $GITHUB_OUTPUT
@@ -51,6 +50,9 @@ jobs:
         with:
           node-version: ${{ steps.nvm.outputs.NVMRC }}
           registry-url: https://registry.npmjs.org/
+      # Ensure npm 11.5.1 or later for trusted publishing
+      - name: Ensure latest npm version
+        run: npm install -g npm@latest
       - name: Download library artifact
         uses: actions/download-artifact@v4
         with:

@@ -1,6 +1,6 @@
 import { isWidthBreakpoint, type TWBreakpoint } from '../utils/breakpoints'
 import { createComponent } from '../utils/component'
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/vue/24/solid'
+import { ChevronLeftIcon } from '@heroicons/vue/24/solid'
 import { computed, Fragment, ref, type PropType, watch } from 'vue'
 import NIconButton from './NIconButton'
 import './NTable.css'
@@ -174,12 +174,20 @@ const Component = createComponent('NTable', nTableProps, props => {
 
                                                 {/* Add the chevron icon-button if details are present */}
                                                 {heading.key == N_TABLE_ACTION_KEY && showDetails.value && (
-                                                    <NIconButton
-                                                        icon={
-                                                            isDetailsOpen(itemIndex) ? ChevronDownIcon : ChevronUpIcon
-                                                        }
-                                                        onClick={() => toggleDetailsOpen(itemIndex)}
-                                                    />
+                                                    <div
+                                                        class="inline-flex transition-transform duration-200"
+                                                        style={{
+                                                            transform: isDetailsOpen(itemIndex)
+                                                                ? 'rotate(-90deg)'
+                                                                : 'rotate(0deg)',
+                                                            transformOrigin: 'center center',
+                                                        }}
+                                                    >
+                                                        <NIconButton
+                                                            icon={ChevronLeftIcon}
+                                                            onClick={() => toggleDetailsOpen(itemIndex)}
+                                                        />
+                                                    </div>
                                                 )}
                                             </div>
                                         </td>

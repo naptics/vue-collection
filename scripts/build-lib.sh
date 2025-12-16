@@ -32,11 +32,18 @@ fi
 # Transpile jsx files to js with babel
 echo "Using Babel to transpile jsx."
 BABEL_OUTPUT=$(./node_modules/.bin/babel lib --out-dir lib 2>&1)
+BABEL_EXIT_CODE=$?
 echo "$BABEL_OUTPUT"
 
-# Check if babel transpiled any files
-if echo "$BABEL_OUTPUT" | grep -q " 0 files"; then
-    echo "Error: Babel transpiled 0 files - build failed"
+# Check if Babel command succeeded
+if [ $BABEL_EXIT_CODE -ne 0 ]; then
+    echo "Error: Babel transpilation failed with exit code $BABEL_EXIT_CODE"
+    exit $BABEL_EXIT_CODE
+fi
+
+# Optionally, check if any .js files were produced
+if ! find ./lib -name "*.js" -type f | grep -q .; then
+    echo "Error: No .js files produced by Babel transpilation"
     exit 1
 fi
 

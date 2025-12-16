@@ -13,6 +13,7 @@
         "jsxImportSource": "vue",
         "noImplicitAny": false,
         "noUncheckedIndexedAccess": false,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "noEmit": false
     }
 }

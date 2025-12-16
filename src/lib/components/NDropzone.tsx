@@ -174,8 +174,8 @@ const Component = createComponent('NDropzone', nDropzoneProps, props => {
                     props.disabled
                         ? 'border-default-300 bg-default-50/50 text-default-500/30'
                         : isDragOver.value
-                        ? 'border-primary-300 bg-primary-50 text-primary-700'
-                        : 'border-default-300 bg-default-50 text-default-500',
+                          ? 'border-primary-300 bg-primary-50 text-primary-700'
+                          : 'border-default-300 bg-default-50 text-default-500',
                     props.height,
                 ]}
                 onDrop={onDrop}

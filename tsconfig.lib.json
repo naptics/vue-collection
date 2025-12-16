@@ -11,6 +11,8 @@
         "jsxImportSource": "vue",
         "noImplicitAny": false,
         "downlevelIteration": true,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "noEmit": false,
+        "declaration": true
     }
 }

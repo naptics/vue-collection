@@ -28,7 +28,11 @@ function contains<Id, Item extends Identifiable<Id>>(array: Item[], id: Id): boo
 
 function insertSingle<Id, Item extends Identifiable<Id>>(baseArray: Item[], insertItem: Item) {
     const index = baseArray.findIndex(item => item.id === insertItem.id)
-    index === -1 ? baseArray.push(insertItem) : baseArray.splice(index, 1, insertItem)
+    if (index === -1) {
+        baseArray.push(insertItem)
+    } else {
+        baseArray.splice(index, 1, insertItem)
+    }
 }
 
 /**

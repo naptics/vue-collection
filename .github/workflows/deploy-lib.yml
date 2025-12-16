@@ -47,15 +47,9 @@ jobs:
         id: nvm
       - name: Setup node environment
         uses: actions/setup-node@v4
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         with:
           node-version: ${{ steps.nvm.outputs.NVMRC }}
           registry-url: https://registry.npmjs.org/
-      # Ensure npm 11.5.1 or later for trusted publishing
-      - name: Ensure latest npm version
-        run: npm --version
-      - run: npm install -g npm@latest --no-man
       - name: Download library artifact
         uses: actions/download-artifact@v4
         with:

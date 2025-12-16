@@ -47,8 +47,6 @@ jobs:
         id: nvm
       - name: Setup node environment
         uses: actions/setup-node@v4
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         with:
           node-version: ${{ steps.nvm.outputs.NVMRC }}
           registry-url: https://registry.npmjs.org/

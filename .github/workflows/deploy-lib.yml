@@ -40,6 +40,8 @@ jobs:
       id-token: write  # Required for OIDC
       contents: read
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Read .nvmrc
         run: echo "NVMRC=$(cat .nvmrc)" >> $GITHUB_OUTPUT
         id: nvm

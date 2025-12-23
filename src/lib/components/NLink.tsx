@@ -31,6 +31,12 @@ export const nLinkProps = {
         type: Number,
         default: 500,
     },
+
+    /**
+     * If set to `true` the link is disabled and no interaction is possible.
+     * Note: If the `route` prop is set, the link will still be clickable, because it becomes a {@link RouterLink}.
+     */
+    disabled: Boolean,
     /**
      * This is called when the link is clicked but only, if the `route` prop is not set.
      * If the `route` prop is not set, the link will act as a regular button.
@@ -52,6 +58,10 @@ const Component = createComponent('NLink', nLinkProps, (props, { slots }) => {
         'font-medium focus:outline-none focus-visible:ring-2 rounded-sm ring-offset-2 hover:underline text-left',
         `${props.textSize} text-${props.color}-${props.shade} hover:text-${props.color}-${hoverShade.value} focus-visible:ring-${props.color}-${props.shade}`,
     ])
+    const disabledClasses = computed(() => [
+        'font-medium text-left cursor-not-allowed',
+        `${props.textSize} text-${props.color}-200`,
+    ])
 
     return () =>
         props.route ? (
@@ -59,7 +69,11 @@ const Component = createComponent('NLink', nLinkProps, (props, { slots }) => {
                 {slots.default?.() || props.text}
             </RouterLink>
         ) : (
-            <button onClick={props.onClick} class={classes.value}>
+            <button
+                onClick={props.onClick}
+                class={props.disabled ? disabledClasses.value : classes.value}
+                disabled={props.disabled}
+            >
                 {slots.default?.() || props.text}
             </button>
         )

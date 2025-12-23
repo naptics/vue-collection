@@ -45,6 +45,16 @@ export default createView('LinkView', () => {
                     </div>
                 </ComponentGrid>
             </VariantSection>
+            <VariantSection title="Disabled Links">
+                <ComponentGrid cols={4}>
+                    <div>
+                        <NLink text="Disabled Link" disabled />
+                    </div>
+                    <div>
+                        <NLink text="Disabled Link" onClick={hi} color="secondary" disabled />
+                    </div>
+                </ComponentGrid>
+            </VariantSection>
         </ComponentSection>
     )
 })

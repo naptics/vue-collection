@@ -55,6 +55,14 @@ export const nTooltipProps = {
      * to target the arrow (which is the before element).
      */
     arrowClass: String,
+    /**
+     * The delay in milliseconds before the tooltip is shown.
+     * @default 0
+     */
+    delay: {
+        type: Number,
+        default: 0,
+    },
 } as const
 
 /**
@@ -103,6 +111,10 @@ export const nToolTipPropsForImplementor = {
      * @see {@link nTooltipProps.arrowClass}
      */
     tooltipArrowClass: nTooltipProps.arrowClass,
+    /**
+     * @see {@link nTooltipProps.delay}
+     */
+    tooltipDelay: nTooltipProps.delay,
 }
 
 /**
@@ -120,6 +132,7 @@ export function mapTooltipProps(props: ExtractedProps<typeof nToolTipPropsForImp
         wrapperClass: props.tooltipWrapperClass,
         contentClass: props.tooltipContentClass,
         arrowClass: props.tooltipArrowClass,
+        delay: props.tooltipDelay,
     }
 }
 
@@ -179,7 +192,12 @@ const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { sl
     }
 
     onMounted(createTooltip)
-    onUnmounted(destroyTooltip)
+    onUnmounted(() => {
+        if (hoverTimeout) {
+            clearTimeout(hoverTimeout)
+        }
+        destroyTooltip()
+    })
 
     watch(
         () => props.placement,
@@ -189,7 +207,28 @@ const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { sl
     const isHoveringContent = ref(false)
     const isHoveringTooltip = ref(false)
     const isHovering = computed(() => isHoveringContent.value || isHoveringTooltip.value)
-    const showTooltip = computed(() => props.show || (!props.hide && isHovering.value))
+    const delayedIsHovering = ref(false)
+    let hoverTimeout: ReturnType<typeof setTimeout> | null = null
+
+    const showTooltip = computed(
+        () => props.show || (!props.hide && (props.delay > 0 ? delayedIsHovering.value : isHovering.value))
+    )
+
+    watch(isHovering, hovering => {
+        if (hoverTimeout) {
+            clearTimeout(hoverTimeout)
+            hoverTimeout = null
+        }
+
+        if (hovering && props.delay > 0) {
+            hoverTimeout = setTimeout(() => {
+                delayedIsHovering.value = true
+                hoverTimeout = null
+            }, props.delay)
+        } else {
+            delayedIsHovering.value = hovering
+        }
+    })
 
     watchRef(showTooltip, () => popperInstance?.update())
 

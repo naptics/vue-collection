@@ -20,7 +20,7 @@ export default createView('TooltipView', () => {
                 title="Customization"
                 subtitle="The content of a tooltip can be a simple text or there is a slot available for customization. More properties like placement, maximum width and more can be configured."
             >
-                <ComponentGrid cols={4}>
+                <ComponentGrid cols={5}>
                     <div class="flex">
                         <NTooltip text="Hello tooltip!">
                             <NBadge text="Hover me" />
@@ -55,6 +55,12 @@ export default createView('TooltipView', () => {
                             placement="bottom-start"
                         >
                             <NBadge text="Hover me" />
+                        </NTooltip>
+                    </div>
+
+                    <div class="flex">
+                        <NTooltip text="I'm delayed 500ms, sorry." delay={500}>
+                            <NBadge text="Delay" />
                         </NTooltip>
                     </div>
                 </ComponentGrid>

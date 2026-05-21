@@ -90,7 +90,9 @@ const Component = createComponentWithSlots('NDropdown', nDropdownProps, ['button
                         disabled={props.disabled}
                         class={[
                             'shadow-sm w-full flex justify-between items-center rounded-md border bg-white border-default-300 px-4 py-2 text-sm font-medium focus:outline-hidden focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500',
-                            props.disabled ? 'text-default-700/20 cursor-default' : 'hover:bg-default-100 text-default-700 cursor-pointer',
+                            props.disabled
+                                ? 'text-default-700/20 cursor-default'
+                                : 'hover:bg-default-100 text-default-700 cursor-pointer',
                             props.buttonClass,
                         ]}
                     >

@@ -61,13 +61,14 @@ const Component = createComponent('NButton', nButtonProps, (props, { slots }) =>
                         ? `bg-${props.color}-100 cursor-default`
                         : `bg-${props.color}-200 hover:bg-${props.color}-300 focus-visible:ring-${props.color}-500 cursor-pointer`,
 
-
                     props.small ? 'py-1 px-2 text-xs' : 'py-2 px-4 text-sm',
                     props.buttonClass,
                 ]}
                 onClick={props.onClick}
             >
-                <span class={props.loading ? 'opacity-0' : isDisabled.value ? 'opacity-20' : undefined}>{slots.default?.()}</span>
+                <span class={props.loading ? 'opacity-0' : isDisabled.value ? 'opacity-20' : undefined}>
+                    {slots.default?.()}
+                </span>
                 {props.loading && (
                     <div class="absolute inset-0 flex items-center justify-center opacity-50">
                         <NLoadingIndicator color={props.color} size={props.small ? 4 : 6} shade={600} />

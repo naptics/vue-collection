@@ -12,6 +12,7 @@
         "noImplicitAny": false,
         "downlevelIteration": true,
         "skipLibCheck": true,
+        "allowImportingTsExtensions": false,
         "noEmit": false,
         "declaration": true
     }

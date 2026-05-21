@@ -86,7 +86,7 @@ const Component = createComponent('NPagination', nPaginationProps, props => {
     ]
 
     return () => (
-        <nav class="inline-flex rounded-md shadow -space-x-px">
+        <nav class="inline-flex rounded-md shadow-sm -space-x-px">
             <button
                 class={['pagination-item selectable rounded-l-md', props.small ? '' : 'not-small']}
                 onClick={previous}

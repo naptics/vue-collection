@@ -22,7 +22,7 @@ export default createView('TooltipView', () => {
             >
                 <ComponentGrid cols={5}>
                     <div class="flex">
-                        <NTooltip text="Hello tooltip!">
+                        <NTooltip text="Hello tooltip!" placement="bottom">
                             <NBadge text="Hover me" />
                         </NTooltip>
                     </div>

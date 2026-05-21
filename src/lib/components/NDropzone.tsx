@@ -168,7 +168,7 @@ const Component = createComponent('NDropzone', nDropzoneProps, props => {
         <div>
             <button
                 class={[
-                    'block w-full rounded-md border-dashed border-2  focus-visible:border-primary-500 focus:outline-none ',
+                    'block w-full rounded-md border-dashed border-2  focus-visible:border-primary-500 focus:outline-hidden ',
                     'flex flex-col items-center justify-center text-center text-sm select-none p-4',
                     !props.disabled ? 'hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700' : '',
                     props.disabled
@@ -196,14 +196,14 @@ const Component = createComponent('NDropzone', nDropzoneProps, props => {
                 />
 
                 {/* Counterweight */}
-                <div class="flex-grow mb-2" />
+                <div class="grow mb-2" />
 
                 <span class="font-medium">
                     {trslc('vue-collection.text.drag-n-drop-files', props.maxFiles, { n: props.maxFiles })}
                 </span>
                 <span>{props.description}</span>
 
-                <div class="flex-grow mt-2 flex items-end justify-center text-red-500 font-medium">
+                <div class="grow mt-2 flex items-end justify-center text-red-500 font-medium">
                     <span>{fileError.value}</span>
                 </div>
             </button>
@@ -224,7 +224,7 @@ const Component = createComponent('NDropzone', nDropzoneProps, props => {
                         </NBadge>
                     ))}
 
-                    <div class="flex-grow text-sm text-default-500 flex items-end justify-end text-right">
+                    <div class="grow text-sm text-default-500 flex items-end justify-end text-right">
                         <span>
                             <span>
                                 {trslc('vue-collection.text.files-selected', files.value.length, {

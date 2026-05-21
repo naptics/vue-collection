@@ -127,7 +127,7 @@ const Component = createComponent('NDialog', nDialogProps, (props, context) => {
             hideHeader
         >
             <div class="flex space-x-4 py-2">
-                <div class="flex-grow-0">
+                <div class="grow-0">
                     <NIconCircle
                         icon={props.icon || defaults.value.icon}
                         iconSize={6}
@@ -135,7 +135,7 @@ const Component = createComponent('NDialog', nDialogProps, (props, context) => {
                     />
                 </div>
 
-                <div class="flex-grow">
+                <div class="grow">
                     <DialogTitle as="h4" class="font-medium text-lg text-default-700 mb-1">
                         {props.title}
                     </DialogTitle>

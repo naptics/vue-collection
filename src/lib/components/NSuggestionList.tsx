@@ -179,7 +179,7 @@ const Component = createComponentWithSlots('NSuggestionList', nSuggestionListPro
                                 <li
                                     key={item.id}
                                     class={[
-                                        'focus:outline-none hover:bg-default-50 rounded-md select-none p-2 cursor-pointer',
+                                        'focus:outline-hidden hover:bg-default-50 rounded-md select-none p-2 cursor-pointer',
                                         selectedIndex.value === index ? 'bg-default-50' : '',
                                     ]}
                                     onMousedown={onListMouseDown}

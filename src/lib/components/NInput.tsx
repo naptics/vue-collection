@@ -112,7 +112,7 @@ const Component = createComponent('NInput', nInputProps, (props, context) => {
                         onBlur={() => props.onBlur?.()}
                         onInvalid={event => event.preventDefault()}
                         class={[
-                            'block w-full rounded-md border focus:outline-none focus:ring-1 ',
+                            'block w-full rounded-md border focus:outline-hidden focus:ring-1 ',
                             props.small ? 'text-xs py-0.5 px-2' : 'py-2 px-4',
                             props.disabled
                                 ? 'text-default-500 placeholder-default-300 bg-default-50'

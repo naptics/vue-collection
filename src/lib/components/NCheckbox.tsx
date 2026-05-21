@@ -43,9 +43,9 @@ const Component = createComponent('NCheckbox', nCheckboxProps, props => {
             onClick={toggle}
             key={updateKey.value}
             class={[
-                `h-5 w-5 border-default-300 rounded focus:outline-none focus:ring-0 focus-visible:ring-2 focus-visible:ring-${props.color}-500`,
+                `h-5 w-5 border-default-300 rounded-sm focus:outline-hidden focus:ring-0 focus-visible:ring-2 focus-visible:ring-${props.color}-500`,
                 props.disabled
-                    ? `cursor-default bg-default-100 text-${props.color}-200`
+                    ? `cursor-default opacity-50 bg-default-100 checked:bg-current text-${props.color}-400`
                     : `cursor-pointer text-${props.color}-400`,
             ]}
         />

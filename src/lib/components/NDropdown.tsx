@@ -102,11 +102,11 @@ const Component = createComponentWithSlots('NDropdown', nDropdownProps, ['button
 
             <Transition
                 enterActiveClass="transition ease-out duration-100"
-                enterFromClass="transform opacity-0 scale-95"
-                enterToClass="transform opacity-100 scale-100"
+                enterFromClass="opacity-0 scale-95"
+                enterToClass="opacity-100 scale-100"
                 leaveActiveClass="transition ease-in duration-75"
-                leaveFromClass="transform opacity-100 scale-100"
-                leaveToClass="transform opacity-0 scale-95"
+                leaveFromClass="opacity-100 scale-100"
+                leaveToClass="opacity-0 scale-95"
             >
                 <MenuItems
                     class={[

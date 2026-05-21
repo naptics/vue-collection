@@ -235,7 +235,7 @@ const NTooltipBase = createComponent('NTooltipBase', nTooltipProps, (props, { sl
     return () => (
         <>
             <div
-                class="p-[10px] -m-[10px]"
+                class="p-[10px] m-[-10px]"
                 onMouseleave={() => setTimeout(() => (isHoveringContent.value = false), 10)}
             >
                 <div id={contentId} onMouseenter={() => (isHoveringContent.value = true)}>

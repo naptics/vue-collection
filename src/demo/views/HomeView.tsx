@@ -1,5 +1,6 @@
 import ModalView from './presentation/ModalView'
 import { createView } from '@/lib/utils/component'
+import { version } from '../../../package.json'
 import AlertView from './presentation/AlertView'
 import BadgeView from './presentation/BadgeView'
 import ButtonView from './presentation/ButtonView'
@@ -42,6 +43,7 @@ export default createView('HomeView', () => {
                         <p class="text-3xl font-light text-default-500">
                             Styled and fully functional components created by naptics.
                         </p>
+                        <p class="mt-4 text-sm text-default-400">v{version}</p>
                         <NavigationView class="mt-16" />
                     </div>
                 </div>

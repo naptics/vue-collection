@@ -1,59 +1,59 @@
 name: Deploy Library to npm
 
 on:
-  push:
-    tags:
-      - v*
+    push:
+        tags:
+            - v*
 
 jobs:
-  build:
-    name: Lint, Type-Check, Build & Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Read .nvmrc
-        run: echo "NVMRC=$(cat .nvmrc)" >> $GITHUB_OUTPUT
-        id: nvm
-      - name: Setup node environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ steps.nvm.outputs.NVMRC }}
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run build-lib
-      - run: npm run test
-      - name: Upload library as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: vue-collection-lib
-          path: |
-            lib
-            .npmrc
-            package.json
-            README.md
-  deploy:
-    name: Deploy Library to npm
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write  # Required for OIDC
-      contents: read
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Read .nvmrc
-        run: echo "NVMRC=$(cat .nvmrc)" >> $GITHUB_OUTPUT
-        id: nvm
-      - name: Setup node environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ steps.nvm.outputs.NVMRC }}
-          registry-url: https://registry.npmjs.org/
-      - name: Download library artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: vue-collection-lib
-      - name: Prepare folder structure
-        run: mv ./lib/* .
-      - run: npm publish --access=public
+    build:
+        name: Lint, Type-Check, Build & Test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6
+            - name: Read .nvmrc
+              run: echo "NVMRC=$(cat .nvmrc)" >> $GITHUB_OUTPUT
+              id: nvm
+            - name: Setup node environment
+              uses: actions/setup-node@v6
+              with:
+                  node-version: ${{ steps.nvm.outputs.NVMRC }}
+            - run: npm ci
+            - run: npm run lint
+            - run: npm run build-lib
+            - run: npm run test
+            - name: Upload library as artifact
+              uses: actions/upload-artifact@v7
+              with:
+                  name: vue-collection-lib
+                  path: |
+                      lib
+                      .npmrc
+                      package.json
+                      README.md
+    deploy:
+        name: Deploy Library to npm
+        needs: build
+        runs-on: ubuntu-latest
+        permissions:
+            id-token: write # Required for OIDC
+            contents: read
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6
+            - name: Read .nvmrc
+              run: echo "NVMRC=$(cat .nvmrc)" >> $GITHUB_OUTPUT
+              id: nvm
+            - name: Setup node environment
+              uses: actions/setup-node@v6
+              with:
+                  node-version: ${{ steps.nvm.outputs.NVMRC }}
+                  registry-url: https://registry.npmjs.org/
+            - name: Download library artifact
+              uses: actions/download-artifact@v8
+              with:
+                  name: vue-collection-lib
+            - name: Prepare folder structure
+              run: mv ./lib/* .
+            - run: npm publish --access=public

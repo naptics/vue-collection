@@ -2,13 +2,17 @@
     "name": "@naptics/vue-collection",
     "author": "Timo Siegenthaler and Jonas Schoch",
     "description": "Vue Collection is a collection of styled and fully functional Vue components which can easily be integrated into our projects.",
-    "version": "1.0.0-beta.1",
-    "main": "./index.js",
+    "version": "1.0.0-beta.2",
+    "main": "./lib/index.js",
+    "files": [
+        "lib/"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/naptics/vue-collection"
     },
     "scripts": {
+        "prepack": "npm run build-lib",
         "dev": "vite",
         "lint": "eslint . --fix --ignore-pattern=.gitignore",
         "type-check": "run-p type-check-lib type-check-demo",

@@ -21,10 +21,12 @@ mv ./lib/src/lib/* ./lib
 rm -rf ./lib/src
 rm -f ./lib/tsconfig.lib.tsbuildinfo 
 
-# Move all css files from components to lib
+# Copy css files from components to lib, rewriting the dev-only @reference path
 echo "Copying .css files from the components folder."
 if ls ./src/lib/components/*.css 1> /dev/null 2>&1; then
-    cp ./src/lib/components/*.css ./lib/components
+    for css_file in ./src/lib/components/*.css; do
+        sed 's|@reference "../../demo/App.css";|@reference "tailwindcss";|g' "$css_file" > "./lib/components/$(basename "$css_file")"
+    done
 else
     echo "Warning: No CSS files found in ./src/lib/components/"
 fi

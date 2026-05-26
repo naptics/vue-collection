@@ -1,26 +1,26 @@
 name: Lint, Type-Check, Build & Test
 
-on: 
-  push: 
-    branches: 
-      - '**' 
+on:
+    push:
+        branches:
+            - '**'
 
 jobs:
-  build:
-    name: Lint, Type-Check, Build & Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Read .nvmrc
-        run: echo "NVMRC=$(cat .nvmrc)" >> $GITHUB_OUTPUT
-        id: nvm
-      - name: Setup node environment
-        uses: actions/setup-node@v4
-        with:
-          node-version: ${{ steps.nvm.outputs.NVMRC }}
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run build-lib
-      - run: npm run build-demo
-      - run: npm run test
+    build:
+        name: Lint, Type-Check, Build & Test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v6
+            - name: Read .nvmrc
+              run: echo "NVMRC=$(cat .nvmrc)" >> $GITHUB_OUTPUT
+              id: nvm
+            - name: Setup node environment
+              uses: actions/setup-node@v6
+              with:
+                  node-version: ${{ steps.nvm.outputs.NVMRC }}
+            - run: npm ci
+            - run: npm run lint
+            - run: npm run build-lib
+            - run: npm run build-demo
+            - run: npm run test

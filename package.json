@@ -4,7 +4,6 @@
     "description": "Vue Collection is a collection of styled and fully functional Vue components which can easily be integrated into our projects.",
     "version": "1.0.0-beta.2",
     "main": "./lib/index.js",
-    "types": "./lib/index.d.ts",
     "files": [
         "lib/"
     ],

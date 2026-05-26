@@ -1,4 +1,4 @@
-@reference "tailwindcss";
+@reference "../../demo/App.css";
 
 .pagination-item {
     @apply h-9 w-9 text-sm inline-flex items-center justify-center border font-medium border-default-300 text-default-500;

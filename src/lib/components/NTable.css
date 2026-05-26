@@ -1,4 +1,4 @@
-@reference "tailwindcss";
+@reference "../../demo/App.css";
 
 .table-heading {
     @apply text-left text-xs font-medium text-default-500 uppercase tracking-wider;

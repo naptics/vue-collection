@@ -3,8 +3,6 @@ const { defineConfigWithVueTs, vueTsConfigs } = require('@vue/eslint-config-type
 const js = require('@eslint/js')
 const prettierConfig = require('@vue/eslint-config-prettier')
 
-require('@rushstack/eslint-patch/modern-module-resolution')
-
 module.exports = defineConfigWithVueTs(
     {
         ignores: ['node_modules/**', 'dist/**', 'dist-ssr/**', 'lib/**', 'coverage/**', 'scripts/*.js'],

@@ -55,7 +55,7 @@ const Component = createComponent('NLink', nLinkProps, (props, { slots }) => {
     })
 
     const classes = computed(() => [
-        'font-medium focus:outline-none focus-visible:ring-2 rounded-sm ring-offset-2 hover:underline text-left',
+        'font-medium focus:outline-hidden focus-visible:ring-2 rounded-xs ring-offset-2 hover:underline text-left cursor-pointer',
         `${props.textSize} text-${props.color}-${props.shade} hover:text-${props.color}-${hoverShade.value} focus-visible:ring-${props.color}-${props.shade}`,
     ])
     const disabledClasses = computed(() => [

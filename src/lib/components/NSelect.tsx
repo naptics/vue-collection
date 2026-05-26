@@ -101,7 +101,7 @@ const Component = createComponent('NSelect', nSelectProps, (props, context) => {
                             onChange={event => slotProps.onUpdateValue((event.target as HTMLInputElement).value)}
                             onBlur={slotProps.onBlur}
                             class={[
-                                'block w-full py-2 pl-4 pr-10 rounded-md border focus:outline-none focus:ring-1',
+                                'block w-full py-2 pl-4 pr-10 rounded-md border focus:outline-hidden focus:ring-1',
                                 props.disabled ? 'text-default-300 ' : 'text-default-900 ',
                                 slotProps.error
                                     ? 'border-red-500 focus:border-red-500 focus:ring-red-500'

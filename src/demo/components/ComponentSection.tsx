@@ -13,7 +13,7 @@ export default createComponent('ComponentSection', componentSectionProps, (props
         <div class="border-b-2 border-default-200" id={props.id}>
             <div>
                 <div class="px-8 py-10 max-w-4xl mx-auto">
-                    <RouterLink to={{ hash: props.id ? `#${props.id}` : undefined }} class="group outline-none">
+                    <RouterLink to={{ hash: props.id ? `#${props.id}` : undefined }} class="group outline-hidden">
                         <h2 class="font-bold text-4xl mb-2 flex items-center space-x-2 ">
                             <span>{props.title}</span>
                             <LinkIcon class="h-8 w-8 text-default-900 opacity-30 hidden group-hover:block group-focus-visible:block" />

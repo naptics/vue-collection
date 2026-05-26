@@ -60,7 +60,7 @@ const Component = createComponent('NBadge', nBadgeProps, (props, { slots }) => {
         <NTooltip {...mapTooltipProps(props)}>
             <div
                 class={[
-                    'px-2 py-1 rounded-md font-semibold shadow',
+                    'px-2 py-1 rounded-md font-semibold shadow-sm',
                     `${props.textSize} bg-${props.color}-${props.shade} text-${props.color}-${props.textShade}`,
                     props.allCaps ? 'uppercase' : '',
                     props.badgeClass,

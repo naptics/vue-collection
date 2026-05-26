@@ -1,3 +1,5 @@
+@reference "../../demo/App.css";
+
 .arrow,
 .arrow::before {
     position: absolute;

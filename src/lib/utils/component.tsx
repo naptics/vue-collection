@@ -97,7 +97,7 @@ export function extractProps<T extends Record<string, unknown>>(
     ...keys: (keyof T)[]
 ): UnwrapNestedRefs<Partial<ToRefs<T>>> {
     const partial: Partial<ToRefs<T>> = {}
-    for (const key of keys) partial[key] = toRef(props, key)
+    for (const key of keys) partial[key] = toRef(props, key) as never
     return reactive(partial)
 }
 

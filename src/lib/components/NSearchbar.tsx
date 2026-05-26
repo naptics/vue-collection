@@ -64,7 +64,7 @@ const Component = createComponent('NSearchbar', nSearchbarProps, (props, context
                 placeholder={props.placeholder}
                 autocomplete="off"
                 class={[
-                    'block w-full pl-10 pr-4 rounded-md border focus:outline-none focus:ring-1 transition placeholder-default-400 border-default-300 focus:border-primary-500 focus:ring-primary-500',
+                    'block w-full pl-10 pr-4 rounded-md border focus:outline-hidden focus:ring-1 transition placeholder-default-400 border-default-300 focus:border-primary-500 focus:ring-primary-500',
                     props.small ? 'py-1' : 'py-2',
                     props.inputClass,
                 ]}

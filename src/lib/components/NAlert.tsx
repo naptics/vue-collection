@@ -39,16 +39,16 @@ const Component = createComponent('NAlert', nAlertProps, (props, { slots }) => {
     return () => (
         <div class={`rounded-md p-3 shadow-lg bg-${variant.value.color}-50`}>
             <div class="flex items-center">
-                <div class="flex flex-shrink-0 items-center">{variant.value.icon()}</div>
+                <div class="flex shrink-0 items-center">{variant.value.icon()}</div>
 
-                <div class="ml-3 flex-grow">
+                <div class="ml-3 grow">
                     <p class={`text-sm font-medium text-${variant.value.color}-900`}>
                         {slots.default?.() ?? props.text}
                     </p>
                 </div>
 
                 {!props.hideX && (
-                    <div class="flex items-center flex-shrink-0 ml-3">
+                    <div class="flex items-center shrink-0 ml-3">
                         <NIconButton color={variant.value.color} size={5} icon={XMarkIcon} onClick={props.onDismiss} />
                     </div>
                 )}

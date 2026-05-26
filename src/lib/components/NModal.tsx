@@ -1,6 +1,6 @@
 import { createComponentWithSlots } from '../utils/component'
 import type { PropType } from 'vue'
-import { Dialog, DialogOverlay, DialogTitle, TransitionRoot, TransitionChild } from '@headlessui/vue'
+import { Dialog, DialogTitle, TransitionRoot, TransitionChild } from '@headlessui/vue'
 import NButton from './NButton'
 import NIconButton from './NIconButton'
 import { XMarkIcon } from '@heroicons/vue/24/solid'
@@ -160,9 +160,9 @@ const Component = createComponentWithSlots('NModal', nModalProps, ['modal', 'hea
                         leave-to="opacity-0"
                     >
                         {props.closeOnBackground ? (
-                            <DialogOverlay class="fixed inset-0 bg-default-700 bg-opacity-75" />
+                            <div class="fixed inset-0 bg-default-700/75" aria-hidden="true" onClick={cancel} />
                         ) : (
-                            <div class="fixed inset-0 bg-default-700 bg-opacity-75" />
+                            <div class="fixed inset-0 bg-default-700/75" aria-hidden="true" />
                         )}
                     </TransitionChild>
 
@@ -180,7 +180,7 @@ const Component = createComponentWithSlots('NModal', nModalProps, ['modal', 'hea
                         leave-from="opacity-100 translate-y-0 sm:scale-100"
                         leave-to="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                     >
-                        <div class={['transform m-4 w-full align-middle', props.maxWidth]}>
+                        <div class={['relative m-4 w-full align-middle', props.maxWidth]}>
                             {props.modal?.({ ok, cancel }) || (
                                 <div
                                     class={[

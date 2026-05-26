@@ -89,28 +89,30 @@ const Component = createComponentWithSlots('NDropdown', nDropdownProps, ['button
                     <MenuButton
                         disabled={props.disabled}
                         class={[
-                            'shadow w-full flex justify-between items-center text-default-700 rounded-md border bg-white border-default-300 px-4 py-2 text-sm font-medium focus:outline-none focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500',
-                            props.disabled ? 'text-opacity-20 cursor-default' : 'hover:bg-default-100',
+                            'shadow-sm w-full flex justify-between items-center rounded-md border bg-white border-default-300 px-4 py-2 text-sm font-medium focus:outline-hidden focus:ring-offset-2 focus-visible:ring-2 focus-visible:ring-primary-500',
+                            props.disabled
+                                ? 'text-default-700/20 cursor-default'
+                                : 'hover:bg-default-100 text-default-700 cursor-pointer',
                             props.buttonClass,
                         ]}
                     >
                         <span>{props.title}</span>
-                        <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5 flex-shrink-0" aria-hidden="true" />
+                        <ChevronDownIcon class="-mr-1 ml-2 h-5 w-5 shrink-0" aria-hidden="true" />
                     </MenuButton>
                 )}
             </div>
 
             <Transition
                 enterActiveClass="transition ease-out duration-100"
-                enterFromClass="transform opacity-0 scale-95"
-                enterToClass="transform opacity-100 scale-100"
+                enterFromClass="opacity-0 scale-95"
+                enterToClass="opacity-100 scale-100"
                 leaveActiveClass="transition ease-in duration-75"
-                leaveFromClass="transform opacity-100 scale-100"
-                leaveToClass="transform opacity-0 scale-95"
+                leaveFromClass="opacity-100 scale-100"
+                leaveToClass="opacity-0 scale-95"
             >
                 <MenuItems
                     class={[
-                        'z-10 absolute w-56 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none',
+                        'z-10 absolute w-56 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black/5 focus:outline-hidden',
                         props.right ? 'origin-top-right right-0' : 'origin-top-left left-0',
                     ]}
                 >
@@ -142,7 +144,7 @@ const Component = createComponentWithSlots('NDropdown', nDropdownProps, ['button
                                                         type="button"
                                                         onClick={item.onClick}
                                                         class={[
-                                                            'w-full text-left px-4 py-2 text-sm',
+                                                            'w-full text-left px-4 py-2 text-sm cursor-pointer',
                                                             active
                                                                 ? 'bg-default-100 text-default-900'
                                                                 : 'text-default-700',

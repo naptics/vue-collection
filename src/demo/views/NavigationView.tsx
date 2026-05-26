@@ -30,7 +30,7 @@ export default createView('NavigationView', () => {
                 {sections.map(section => (
                     <RouterLink
                         to={{ hash: `#${section.hash}` }}
-                        class="outline-none focus-visible:ring-2 focus-visible ring-primary-500 rounded-md"
+                        class="outline-hidden focus-visible:ring-2 focus-visible ring-primary-500 rounded-md"
                     >
                         <NBadge color="primary" allCaps={false} textSize="text-2xl">
                             {section.label}

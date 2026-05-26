@@ -22,8 +22,7 @@
         "build-demo": "run-p type-check-demo build-only-demo",
         "build-lib": "run-p type-check-lib build-only-lib",
         "build-only-demo": "vite build",
-        "build-only-lib": "bash ./scripts/build-lib.sh",
-        "preinstall": "node ./scripts/sync-node-types.js"
+        "build-only-lib": "bash ./scripts/build-lib.sh"
     },
     "dependencies": {
         "@headlessui/vue": "^1.7.23",

@@ -56,4 +56,4 @@ jobs:
                   name: vue-collection-lib
             - name: Prepare folder structure
               run: mv ./lib/* .
-            - run: npm publish --access=public
+            - run: npm publish --ignore-scripts --access=public

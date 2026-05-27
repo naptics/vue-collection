@@ -9,9 +9,22 @@
 }
 
 .pagination-item.selectable {
-    @apply cursor-pointer hover:bg-slate-50 focus:outline-hidden focus-visible:border-primary-500 focus-visible:ring-primary-500 focus-visible:ring-1 focus-visible:z-2;
+    @apply cursor-pointer hover:bg-slate-50 focus:outline-hidden;
+}
+
+.pagination-item.selectable:focus-visible {
+    border-color: var(--color-primary-500);
+    box-shadow: 0 0 0 1px var(--color-primary-500);
+    z-index: 2;
 }
 
 .pagination-item.selectable.selected {
-    @apply border-primary-500 bg-primary-100 hover:bg-primary-100 text-primary-600 z-1;
+    @apply z-1;
+    border-color: var(--color-primary-500);
+    background-color: var(--color-primary-100);
+    color: var(--color-primary-600);
+}
+
+.pagination-item.selectable.selected:hover {
+    background-color: var(--color-primary-100);
 }

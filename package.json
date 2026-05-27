@@ -22,6 +22,7 @@
             "types": "./lib/i18n/index.d.ts",
             "default": "./lib/i18n/index.js"
         },
+        "./i18n/*/vue-collection.json": "./lib/i18n/*/vue-collection.json",
         "./i18n/*": {
             "types": "./lib/i18n/*/index.d.ts",
             "default": "./lib/i18n/*/index.js"

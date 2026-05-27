@@ -2,7 +2,7 @@
     "name": "@naptics/vue-collection",
     "author": "Timo Siegenthaler and Jonas Schoch",
     "description": "Vue Collection is a collection of styled and fully functional Vue components which can easily be integrated into our projects.",
-    "version": "1.0.0-rc.1",
+    "version": "1.0.0-rc.2",
     "main": "./lib/index.js",
     "types": "./lib/index.d.ts",
     "exports": {
@@ -22,6 +22,7 @@
             "types": "./lib/i18n/index.d.ts",
             "default": "./lib/i18n/index.js"
         },
+        "./i18n/*/vue-collection.json": "./lib/i18n/*/vue-collection.json",
         "./i18n/*": {
             "types": "./lib/i18n/*/index.d.ts",
             "default": "./lib/i18n/*/index.js"

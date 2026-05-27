@@ -4,6 +4,30 @@
     "description": "Vue Collection is a collection of styled and fully functional Vue components which can easily be integrated into our projects.",
     "version": "1.0.0-beta.3",
     "main": "./lib/index.js",
+    "types": "./lib/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./lib/index.d.ts",
+            "default": "./lib/index.js"
+        },
+        "./components/*": {
+            "types": "./lib/components/*.d.ts",
+            "default": "./lib/components/*.js"
+        },
+        "./utils/*": {
+            "types": "./lib/utils/*.d.ts",
+            "default": "./lib/utils/*.js"
+        },
+        "./i18n": {
+            "types": "./lib/i18n/index.d.ts",
+            "default": "./lib/i18n/index.js"
+        },
+        "./i18n/*": {
+            "types": "./lib/i18n/*/index.d.ts",
+            "default": "./lib/i18n/*/index.js"
+        },
+        "./package.json": "./package.json"
+    },
     "files": [
         "lib/"
     ],
@@ -30,8 +54,9 @@
         "awesome-phonenumber": "^7.8.0"
     },
     "peerDependencies": {
-        "@heroicons/vue": "^2.0.16",
-        "vue": "^3.5.0"
+        "@heroicons/vue": "^2.2.0",
+        "vue": "^3.5.0",
+        "vue-router": "^5.0.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.28.6",
@@ -49,20 +74,20 @@
         "@vue/eslint-config-prettier": "^10.2.0",
         "@vue/eslint-config-typescript": "^14.7.0",
         "@vue/test-utils": "^2.4.10",
-        "@vue/tsconfig": "^0.8.1",
+        "@vue/tsconfig": "^0.9.1",
         "eslint": "^10.4.0",
         "eslint-plugin-vue": "^10.9.1",
         "jsdom": "^29.1.1",
-        "npm-run-all": "^4.1.5",
+        "npm-run-all2": "^9.0.1",
         "postcss": "^8.5.15",
         "prettier": "^3.8.3",
         "tailwindcss": "^4.3.0",
-        "typescript": "~5.8.3",
+        "typescript": "~6.0.3",
         "vite": "^8.0.14",
         "vitest": "^4.1.7",
         "vue": "^3.5.34",
         "vue-i18n": "^11.4.4",
         "vue-router": "^5.0.7",
-        "vue-tsc": "^3.3.1"
+        "vue-tsc": "^3.3.2"
     }
 }

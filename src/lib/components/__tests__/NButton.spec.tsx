@@ -23,4 +23,9 @@ describe('<NButton>', () => {
         await button.trigger('click')
         expect(onClick).not.toHaveBeenCalled()
     })
+
+    it('disables pointer events when disabled', () => {
+        const button = mount(() => <NButton disabled={true} />).get('button')
+        expect(button.classes()).toContain('pointer-events-none')
+    })
 })

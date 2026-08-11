@@ -58,7 +58,7 @@ const Component = createComponent('NButton', nButtonProps, (props, { slots }) =>
                 class={[
                     `block w-full font-medium rounded-md focus:outline-hidden focus-visible:ring-2 shadow-sm text-${props.color}-900 relative`,
                     isDisabled.value
-                        ? `bg-${props.color}-100 cursor-default`
+                        ? `bg-${props.color}-100 cursor-default pointer-events-none`
                         : `bg-${props.color}-200 hover:bg-${props.color}-300 focus-visible:ring-${props.color}-500 cursor-pointer`,
 
                     props.small ? 'py-1 px-2 text-xs' : 'py-2 px-4 text-sm',

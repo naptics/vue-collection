@@ -54,6 +54,4 @@ jobs:
               uses: actions/download-artifact@v8
               with:
                   name: vue-collection-lib
-            - name: Prepare folder structure
-              run: mv ./lib/* .
-            - run: npm publish --access=public
+            - run: npm publish --access=public --ignore-scripts
